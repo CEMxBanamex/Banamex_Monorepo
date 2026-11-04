@@ -1,0 +1,241 @@
+{
+  "archivo": "piloto_028.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "duplicado_exacto",
+  "descripcion": "Copia idéntica del archivo del caso F-1005",
+  "layout": "banda",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "5549e449686d2c4278cbe9ca26c36f3417971a535ece10d18f995a01f58d451b",
+  "tamano_bytes": 127720,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": "F-1005",
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "34071545",
+      "fecha": "21 de marzo de 2026",
+      "emisor_nombre": "Tovar Grupo SAPI de CV",
+      "emisor_rfc": "TGS0502165LK",
+      "emisor_direccion": "Pasaje Esparza 461, San Alfredo de la Montaña",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "91,258.17",
+      "impuestos": "14,601.31",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "105,859.48",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-03-21",
+      "subtotal": "91258.17",
+      "impuestos": "14601.31",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "105859.48"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "10",
+        "precio_unitario": "6,064.20",
+        "importe": "60,642.00"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "4",
+        "precio_unitario": "5,178.70",
+        "importe": "20,714.80"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "9,901.37",
+        "importe": "9,901.37"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 95,
+    "fecha": 94,
+    "emisor_nombre": 98,
+    "emisor_rfc": 96,
+    "emisor_direccion": 94,
+    "receptor_nombre": 93,
+    "receptor_rfc": 99,
+    "moneda": 90,
+    "subtotal": 96,
+    "impuestos": 91,
+    "tasa_iva": 98,
+    "total": 94,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "Tovar Grupo SAPI de CV\nPasaje Esparza 461, San Alfredo de la Montaña\nFACTURA\nEMISOR\nRFC: TGS0502165LK\nNo. de factura: 34071545\nExpedida el 21 de marzo de 2026\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nCapacitación en línea\n10\n6,064.20\n60,642.00\nTraducción de documentos\n4\n5,178.70\n20,714.80\nHospedaje de servidores\n1\n9,901.37\n9,901.37\nSubtotal\n91,258.17\nIVA 16 %\n14,601.31\nTotal\n$ 105,859.48 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Tovar Grupo SAPI de CV",
+      "bbox": [
+        [
+          90.4,
+          58.4,
+          530.4,
+          102.0
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Pasaje Esparza 461, San Alfredo de la Montaña",
+      "bbox": [
+        [
+          90.0,
+          121.3,
+          490.4,
+          144.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          997.3,
+          63.9,
+          1199.1,
+          109.6
+        ]
+      ]
+    },
+    "GST": {
+      "text": "TGS0502165LK",
+      "bbox": [
+        [
+          109.2,
+          286.5,
+          313.2,
+          310.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "34071545",
+      "bbox": [
+        [
+          108.9,
+          319.8,
+          344.2,
+          344.0
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "21 de marzo de 2026",
+      "bbox": [
+        [
+          108.6,
+          353.1,
+          420.3,
+          378.1
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          696.7,
+          292.3,
+          1016.4,
+          317.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          696.4,
+          325.6,
+          903.8,
+          349.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          696.0,
+          358.9,
+          829.3,
+          382.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Capacitación en línea 10 6,064.20 60,642.00\nTraducción de documentos 4 5,178.70 20,714.80\nHospedaje de servidores 1 9,901.37 9,901.37",
+      "bbox": [
+        [
+          85.5,
+          438.4,
+          1195.4,
+          607.5
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "91,258.17",
+      "bbox": [
+        [
+          1079.6,
+          664.7,
+          1172.4,
+          687.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "14,601.31",
+      "bbox": [
+        [
+          1079.2,
+          698.1,
+          1172.1,
+          720.8
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "105,859.48",
+      "bbox": [
+        [
+          963.0,
+          735.3,
+          1171.7,
+          763.5
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          83.1,
+          825.4,
+          396.0,
+          848.1
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-015"
+    ]
+  },
+  "nota_oculta": null
+}

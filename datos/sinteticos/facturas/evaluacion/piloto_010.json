@@ -1,0 +1,263 @@
+{
+  "archivo": "piloto_010.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta con retenciones",
+  "layout": "clasica",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "9d7af52c9b6717ccd5e6bbb549c94597174b2c5010045f65fce6f0da72c7c661",
+  "tamano_bytes": 97020,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-030583",
+      "fecha": "04/08/2026",
+      "emisor_nombre": "Urrutia Consultores SC",
+      "emisor_rfc": "UCS9007197H3",
+      "emisor_direccion": "Boulevard Norte Santillán 433, San Clara los altos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "81,294.58",
+      "impuestos": "13,007.13",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": "8,129.46",
+      "total": "86,172.25",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-04",
+      "subtotal": "81294.58",
+      "impuestos": "13007.13",
+      "tasa_iva": "0.16",
+      "retenciones": "8129.46",
+      "total": "86172.25"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "4",
+        "precio_unitario": "253.82",
+        "importe": "1,015.28"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "1",
+        "precio_unitario": "6,360.53",
+        "importe": "6,360.53"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "1",
+        "precio_unitario": "2,535.78",
+        "importe": "2,535.78"
+      },
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "10",
+        "precio_unitario": "4,230.65",
+        "importe": "42,306.50"
+      },
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "1",
+        "precio_unitario": "29,076.49",
+        "importe": "29,076.49"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 96,
+    "fecha": 99,
+    "emisor_nombre": 95,
+    "emisor_rfc": 96,
+    "emisor_direccion": 93,
+    "receptor_nombre": 97,
+    "receptor_rfc": 98,
+    "moneda": 92,
+    "subtotal": 97,
+    "impuestos": 96,
+    "tasa_iva": 90,
+    "retenciones": 98,
+    "total": 92,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "Urrutia Consultores SC\nRFC UCS9007197H3\nBoulevard Norte Santillán 433, San Clara los altos\nFACTURA\nFolio FAC-030583\nFecha 04/08/2026\nReceptor\nBanco Demo SA, Institución de Banca Múltiple\nRFC BDM970315QW2\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nPapelería y artículos de oficina\n4\n253.82\n1,015.28\nRenta de equipo de cómputo\n1\n6,360.53\n6,360.53\nServicio de cafetería\n1\n2,535.78\n2,535.78\nServicio de consultoría\n10\n4,230.65\n42,306.50\nAuditoría de seguridad informática\n1\n29,076.49\n29,076.49\nSubtotal\n81,294.58\nIVA 16 %\n13,007.13\nRetenciones\n-8,129.46\nTotal\n$ 86,172.25\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Urrutia Consultores SC",
+      "bbox": [
+        [
+          111.7,
+          92.6,
+          480.5,
+          131.6
+        ]
+      ]
+    },
+    "GST": {
+      "text": "UCS9007197H3",
+      "bbox": [
+        [
+          111.3,
+          140.1,
+          311.8,
+          164.2
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Boulevard Norte Santillán 433, San Clara los altos",
+      "bbox": [
+        [
+          111.0,
+          169.3,
+          574.3,
+          196.2
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1037.3,
+          106.0,
+          1178.6,
+          138.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-030583",
+      "bbox": [
+        [
+          1008.9,
+          149.8,
+          1178.1,
+          173.5
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "04/08/2026",
+      "bbox": [
+        [
+          1009.6,
+          179.0,
+          1177.8,
+          202.7
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          109.8,
+          277.6,
+          540.7,
+          304.1
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          109.5,
+          306.8,
+          321.5,
+          331.0
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          109.2,
+          336.0,
+          242.5,
+          359.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Papelería y artículos de oficina 4 253.82 1,015.28\nRenta de equipo de cómputo 1 6,360.53 6,360.53\nServicio de cafetería 1 2,535.78 2,535.78\nServicio de consultoría 10 4,230.65 42,306.50\nAuditoría de seguridad informática 1 29,076.49 29,076.49",
+      "bbox": [
+        [
+          106.3,
+          396.4,
+          1175.3,
+          641.2
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "81,294.58",
+      "bbox": [
+        [
+          1079.5,
+          681.9,
+          1172.4,
+          704.7
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "13,007.13",
+      "bbox": [
+        [
+          1079.2,
+          715.2,
+          1172.0,
+          738.0
+        ]
+      ]
+    },
+    "RETENCIONES": {
+      "text": "8,129.46",
+      "bbox": [
+        [
+          1083.4,
+          748.6,
+          1171.6,
+          771.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "86,172.25",
+      "bbox": [
+        [
+          1039.0,
+          786.4,
+          1171.2,
+          814.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          103.5,
+          864.7,
+          416.4,
+          887.7
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

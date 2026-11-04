@@ -1,0 +1,241 @@
+{
+  "archivo": "piloto_019.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "conceptos_no_suman",
+  "descripcion": "Los conceptos no suman el subtotal impreso",
+  "layout": "banda",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "e5646f0ca159115d3bdcd0bd73fbfa2f2067444c58b71de132013faaf8f4db16",
+  "tamano_bytes": 100296,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 1274",
+      "fecha": "15 de julio de 2026",
+      "emisor_nombre": "Casanova Servicios SAPI de CV",
+      "emisor_rfc": "CSS171128GQ2",
+      "emisor_direccion": "Periférico Chiapas 515, Vieja República Democrática Popular Lao",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "50,813.04",
+      "impuestos": "8,130.09",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "58,943.13",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-15",
+      "subtotal": "50813.04",
+      "impuestos": "8130.09",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "58943.13"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "2",
+        "precio_unitario": "5,343.60",
+        "importe": "10,387.20"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "4",
+        "precio_unitario": "8,569.80",
+        "importe": "34,279.20"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "3",
+        "precio_unitario": "1,948.88",
+        "importe": "5,846.64"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 90,
+    "fecha": 91,
+    "emisor_nombre": 90,
+    "emisor_rfc": 91,
+    "emisor_direccion": 99,
+    "receptor_nombre": 95,
+    "receptor_rfc": 94,
+    "moneda": 94,
+    "subtotal": 94,
+    "impuestos": 96,
+    "tasa_iva": 91,
+    "total": 91,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "Casanova Servicios SAPI de CV\nPeriférico Chiapas 515, Vieja República Democrática Popular Lao\nFACTURA\nEMISOR\nRFC: CSS171128GQ2\nNo. de factura: B 1274\nExpedida el 15 de julio de 2026\nFACTURAR A\nServicios Corporativos Demo SA de CV\nRFC: SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n2\n5,343.60\n10,387.20\nLicencia anual de software\n4\n8,569.80\n34,279.20\nPapelería y artículos de oficina\n3\n1,948.88\n5,846.64\nSubtotal\n50,813.04\nIVA 16 %\n8,130.09\nTotal\n$ 58,943.13 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Casanova Servicios SAPI de CV",
+      "bbox": [
+        [
+          102.2,
+          49.7,
+          672.0,
+          103.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Periférico Chiapas 515, Vieja República Democrática Popular Lao",
+      "bbox": [
+        [
+          101.1,
+          112.6,
+          648.5,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1008.9,
+          69.8,
+          1211.3,
+          118.8
+        ]
+      ]
+    },
+    "GST": {
+      "text": "CSS171128GQ2",
+      "bbox": [
+        [
+          117.6,
+          278.1,
+          328.8,
+          305.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 1274",
+      "bbox": [
+        [
+          116.8,
+          311.4,
+          325.7,
+          338.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "15 de julio de 2026",
+      "bbox": [
+        [
+          115.9,
+          344.6,
+          407.1,
+          374.1
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          704.9,
+          293.3,
+          1072.4,
+          324.6
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          704.1,
+          326.6,
+          913.0,
+          353.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          703.2,
+          359.9,
+          836.8,
+          385.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 2 5,343.60 10,387.20\nLicencia anual de software 4 8,569.80 34,279.20\nPapelería y artículos de oficina 3 1,948.88 5,846.64",
+      "bbox": [
+        [
+          89.3,
+          429.6,
+          1201.4,
+          616.5
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "50,813.04",
+      "bbox": [
+        [
+          1081.7,
+          671.9,
+          1174.9,
+          696.2
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "8,130.09",
+      "bbox": [
+        [
+          1092.5,
+          705.6,
+          1174.0,
+          729.4
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "58,943.13",
+      "bbox": [
+        [
+          977.9,
+          740.9,
+          1173.0,
+          772.1
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          82.8,
+          816.4,
+          395.9,
+          844.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-010"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,233 @@
+{
+  "archivo": "piloto_001.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "clasica",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "82ebcbedd28b17e37fa82b79e18109d4a46897b464ab51f9a1ee0e8e41be6a77",
+  "tamano_bytes": 86423,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "23175403",
+      "fecha": "27/09/2026",
+      "emisor_nombre": "Gonzales Servicios SAPI de CV",
+      "emisor_rfc": "GSS07010186W",
+      "emisor_direccion": "Privada Ozuna 662, Nueva Sri Lanka",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "115,943.76",
+      "impuestos": "18,551.00",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "134,494.76",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-27",
+      "subtotal": "115943.76",
+      "impuestos": "18551.00",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "134494.76"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "10",
+        "precio_unitario": "11,550.88",
+        "importe": "115,508.80"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "434.96",
+        "importe": "434.96"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 94,
+    "emisor_nombre": 92,
+    "emisor_rfc": 94,
+    "emisor_direccion": 96,
+    "receptor_nombre": 94,
+    "receptor_rfc": 96,
+    "moneda": 96,
+    "subtotal": 98,
+    "impuestos": 96,
+    "tasa_iva": 93,
+    "total": 96,
+    "condiciones_pago": 96
+  },
+  "texto_completo": "Gonzales Servicios SAPI de CV\nRFC GSS07010186W\nPrivada Ozuna 662, Nueva Sri Lanka\nFACTURA\nFolio 23175403\nFecha 27/09/2026\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nSoporte técnico mensual\n10\n11,550.88\n115,508.80\nPapelería y artículos de oficina\n1\n434.96\n434.96\nSubtotal\n115,943.76\nIVA 16 %\n18,551.00\nTotal\n$ 134,494.76\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Gonzales Servicios SAPI de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          600.7,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "GSS07010186W",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          309.1,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Privada Ozuna 662, Nueva Sri Lanka",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          448.1,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "23175403",
+      "bbox": [
+        [
+          1027.2,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "27/09/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          471.2,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          306.8,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Soporte técnico mensual 10 11,550.88 115,508.80\nPapelería y artículos de oficina 1 434.96 434.96",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          522.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "115,943.76",
+      "bbox": [
+        [
+          1066.6,
+          564.6,
+          1170.8,
+          586.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "18,551.00",
+      "bbox": [
+        [
+          1078.2,
+          597.9,
+          1170.8,
+          619.8
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "134,494.76",
+      "bbox": [
+        [
+          1024.9,
+          636.2,
+          1170.8,
+          662.5
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          104.2,
+          724.6,
+          416.9,
+          744.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,245 @@
+{
+  "archivo": "piloto_003.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "banda",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "c6e1773e0fd48c0177eedf4ce764d5379ff5a0620bff25c067d3abe084392e47",
+  "tamano_bytes": 105165,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-042683",
+      "fecha": "24 de agosto de 2026",
+      "emisor_nombre": "Heredia Grupo SC",
+      "emisor_rfc": "HGS940808H56",
+      "emisor_direccion": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "80,916.47",
+      "impuestos": "12,946.64",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "93,863.11",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-08-24",
+      "subtotal": "80916.47",
+      "impuestos": "12946.64",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "93863.11"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "5",
+        "precio_unitario": "11,936.89",
+        "importe": "59,684.45"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "5",
+        "precio_unitario": "1,092.83",
+        "importe": "5,464.15"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "3",
+        "precio_unitario": "3,466.40",
+        "importe": "10,399.20"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "5,368.67",
+        "importe": "5,368.67"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 90,
+    "fecha": 94,
+    "emisor_nombre": 92,
+    "emisor_rfc": 99,
+    "emisor_direccion": 94,
+    "receptor_nombre": 97,
+    "receptor_rfc": 94,
+    "moneda": 97,
+    "subtotal": 98,
+    "impuestos": 91,
+    "tasa_iva": 98,
+    "total": 94,
+    "condiciones_pago": 94
+  },
+  "texto_completo": "Heredia Grupo SC\nCircunvalación Norte Padilla 482, San Lorenzo los bajos\nFACTURA\nEMISOR\nRFC: HGS940808H56\nNo. de factura: FAC-042683\nExpedida el 24 de agosto de 2026\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nCapacitación en línea\n5\n11,936.89\n59,684.45\nServicio de cafetería\n5\n1,092.83\n5,464.15\nLicencia anual de software\n3\n3,466.40\n10,399.20\nServicio de limpieza\n1\n5,368.67\n5,368.67\nSubtotal\n80,916.47\nIVA 16 %\n12,946.64\nTotal\n$ 93,863.11 MXN\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Heredia Grupo SC",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          406.3,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          551.2,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          990.3,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "HGS940808H56",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          311.4,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-042683",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          364.7,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "24 de agosto de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          420.4,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1011.2,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          898.9,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Capacitación en línea 5 11,936.89 59,684.45\nServicio de cafetería 5 1,092.83 5,464.15\nLicencia anual de software 3 3,466.40 10,399.20\nServicio de limpieza 1 5,368.67 5,368.67",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          639.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "80,916.47",
+      "bbox": [
+        [
+          1078.2,
+          697.9,
+          1170.8,
+          719.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "12,946.64",
+      "bbox": [
+        [
+          1078.2,
+          731.2,
+          1170.8,
+          753.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "93,863.11",
+      "bbox": [
+        [
+          976.3,
+          769.6,
+          1170.8,
+          795.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          83.3,
+          868.3,
+          340.8,
+          888.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

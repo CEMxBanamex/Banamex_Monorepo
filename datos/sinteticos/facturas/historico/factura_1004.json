@@ -1,0 +1,227 @@
+{
+  "archivo": "factura_1004.jpg",
+  "grupo": "historico",
+  "caso_id": "F-1004",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "3352487d3d6bff88b7ac7c6a862902551b7b134b33f742f9d380382976f3b59d",
+  "tamano_bytes": 109000,
+  "fecha_recepcion": "2026-03-30",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 2898",
+      "fecha": "25/03/2026",
+      "emisor_nombre": "Cervántez Servicios SA de CV",
+      "emisor_rfc": "CSS131018FNR",
+      "emisor_direccion": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "USD",
+      "subtotal": "6,944.73",
+      "impuestos": "555.58",
+      "tasa_iva": "IVA 8 %",
+      "retenciones": null,
+      "total": "7,500.31",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-03-25",
+      "subtotal": "6944.73",
+      "impuestos": "555.58",
+      "tasa_iva": "0.08",
+      "retenciones": "0.00",
+      "total": "7500.31"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "1",
+        "precio_unitario": "6,944.73",
+        "importe": "6,944.73"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 96,
+    "emisor_nombre": 98,
+    "emisor_rfc": 99,
+    "emisor_direccion": 98,
+    "receptor_nombre": 92,
+    "receptor_rfc": 91,
+    "moneda": 90,
+    "subtotal": 94,
+    "impuestos": 96,
+    "tasa_iva": 90,
+    "total": 98,
+    "condiciones_pago": 98
+  },
+  "texto_completo": "Cervántez Servicios SA de CV\nRFC CSS131018FNR\nPeatonal República Unida de Tanzanía 1, Vieja Bhután\nFACTURA\nFolio B 2898\nFecha 25/03/2026\nReceptor\nGrupo Financiero Demo SA de CV\nRFC GFD960701AB4\nMoneda: USD\nConcepto\nCant.\nP. unitario\nImporte\nLicencia anual de software\n1\n6,944.73\n6,944.73\nSubtotal\n6,944.73\nIVA 8 %\n555.58\nTotal\n$ 7,500.31\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Cervántez Servicios SA de CV",
+      "bbox": [
+        [
+          114.5,
+          90.5,
+          591.0,
+          132.5
+        ]
+      ]
+    },
+    "GST": {
+      "text": "CSS131018FNR",
+      "bbox": [
+        [
+          114.0,
+          138.0,
+          318.0,
+          162.9
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+      "bbox": [
+        [
+          113.5,
+          167.2,
+          623.3,
+          196.6
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1040.1,
+          107.6,
+          1181.4,
+          140.2
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 2898",
+      "bbox": [
+        [
+          1063.6,
+          152.0,
+          1180.8,
+          175.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "25/03/2026",
+      "bbox": [
+        [
+          1012.1,
+          180.5,
+          1180.3,
+          204.8
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          111.9,
+          275.5,
+          431.7,
+          302.1
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          111.5,
+          304.7,
+          313.2,
+          329.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "USD",
+      "bbox": [
+        [
+          111.1,
+          333.9,
+          242.2,
+          357.6
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Licencia anual de software 1 6,944.73 6,944.73",
+      "bbox": [
+        [
+          109.3,
+          394.3,
+          1177.0,
+          493.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "6,944.73",
+      "bbox": [
+        [
+          1093.8,
+          533.8,
+          1175.1,
+          556.9
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "555.58",
+      "bbox": [
+        [
+          1110.6,
+          567.4,
+          1174.6,
+          590.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "7,500.31",
+      "bbox": [
+        [
+          1055.6,
+          605.0,
+          1174.1,
+          632.9
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          106.0,
+          679.2,
+          419.0,
+          703.6
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

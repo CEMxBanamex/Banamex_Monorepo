@@ -1,0 +1,244 @@
+{
+  "archivo": "piloto_008.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "moderna",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "5c7f3f50abab02ae567f28b8dbaec1af749e28abde2578377d71ed6279ea2f08",
+  "tamano_bytes": 2408,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-3217",
+      "fecha": "17/08/2026",
+      "emisor_nombre": "Salas Suministros SC",
+      "emisor_rfc": "SSS130401FHU",
+      "emisor_direccion": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "5,201.37",
+      "impuestos": "832.22",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "6,033.59",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-17",
+      "subtotal": "5201.37",
+      "impuestos": "832.22",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "6033.59"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "1",
+        "precio_unitario": "4,463.45",
+        "importe": "4,463.45"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "1",
+        "precio_unitario": "737.92",
+        "importe": "737.92"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 90,
+    "fecha": 96,
+    "emisor_nombre": 97,
+    "emisor_rfc": 95,
+    "emisor_direccion": 95,
+    "receptor_nombre": 94,
+    "receptor_rfc": 98,
+    "moneda": 95,
+    "subtotal": 90,
+    "impuestos": 96,
+    "tasa_iva": 96,
+    "total": 95,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "SS\nSalas Suministros SC\nCerrada Sur Blanco 770, Vieja Brasil\nRFC emisor  SSS130401FHU\nDocumento\nFactura\nSerie y folio\nA-3217\nFecha de emisión\n17/08/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nRenta de equipo de cómputo\n1\n4,463.45\n4,463.45\nMensajería y paquetería\n1\n737.92\n737.92\nSubtotal\n5,201.37\nIVA 16 %\n832.22\nTotal\n$ 6,033.59 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Salas Suministros SC",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          547.3,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          551.2,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "SSS130401FHU",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          494.9,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-3217",
+      "bbox": [
+        [
+          1109.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "17/08/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          423.7,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          257.0,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Renta de equipo de cómputo 1 4,463.45 4,463.45\nMensajería y paquetería 1 737.92 737.92",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          543.8
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "5,201.37",
+      "bbox": [
+        [
+          1089.8,
+          585.4,
+          1170.8,
+          607.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "832.22",
+      "bbox": [
+        [
+          1107.1,
+          618.8,
+          1170.8,
+          640.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "6,033.59",
+      "bbox": [
+        [
+          990.2,
+          657.1,
+          1170.8,
+          683.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          755.8,
+          416.9,
+          775.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

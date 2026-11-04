@@ -1,0 +1,251 @@
+{
+  "archivo": "factura_1010.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1010",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "compacta",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "532a3220cedae6dc85765b18c2d3cfb36a212e467553943f478d7b749859a213",
+  "tamano_bytes": 2379,
+  "fecha_recepcion": "2026-05-11",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-1686",
+      "fecha": "2026-04-23",
+      "emisor_nombre": "Salinas Tecnología S de RL de CV",
+      "emisor_rfc": "STS020102K59",
+      "emisor_direccion": "Privada Sur López 302, San Fabiola de la Montaña",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "27,916.74",
+      "impuestos": "4,466.68",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": "2,791.67",
+      "total": "29,591.75",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-04-23",
+      "subtotal": "27916.74",
+      "impuestos": "4466.68",
+      "tasa_iva": "0.16",
+      "retenciones": "2791.67",
+      "total": "29591.75"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "10",
+        "precio_unitario": "701.18",
+        "importe": "7,011.80"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "1",
+        "precio_unitario": "14,924.14",
+        "importe": "14,924.14"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "3",
+        "precio_unitario": "1,993.60",
+        "importe": "5,980.80"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 97,
+    "emisor_nombre": 99,
+    "emisor_rfc": 97,
+    "emisor_direccion": 98,
+    "receptor_nombre": 90,
+    "receptor_rfc": 92,
+    "moneda": 95,
+    "subtotal": 92,
+    "impuestos": 90,
+    "tasa_iva": 91,
+    "retenciones": 96,
+    "total": 91,
+    "condiciones_pago": 92
+  },
+  "texto_completo": "SALINAS TECNOLOGÍA S DE RL DE CV\nPrivada Sur López 302, San Fabiola de la Montaña\nR.F.C. STS020102K59\nFACTURA\n#A-1686\nFecha: 2026-04-23\nCliente: Servicios Corporativos Demo SA de CV\nRFC cliente: SCD050920LM8\nMoneda: MXN\n10 x Mensajería y paquetería\n7,011.80\n1 x Licencia anual de software\n14,924.14\n3 x Renta de equipo de cómputo\n5,980.80\nSUBTOTAL\n27,916.74\nIVA 16 %\n4,466.68\nRETENCIONES\n-2,791.67\nTOTAL\n29,591.75\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Salinas Tecnología S de RL de CV",
+      "bbox": [
+        [
+          397.5,
+          84.2,
+          877.5,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Privada Sur López 302, San Fabiola de la Montaña",
+      "bbox": [
+        [
+          397.5,
+          124.2,
+          877.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "STS020102K59",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-1686",
+      "bbox": [
+        [
+          895.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-04-23",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          797.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Mensajería y paquetería 10 701.18 7,011.80\nLicencia anual de software 1 14,924.14 14,924.14\nRenta de equipo de cómputo 3 1,993.60 5,980.80",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          475.0
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "27,916.74",
+      "bbox": [
+        [
+          882.1,
+          497.5,
+          983.3,
+          517.2
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "4,466.68",
+      "bbox": [
+        [
+          893.3,
+          524.6,
+          983.3,
+          544.3
+        ]
+      ]
+    },
+    "RETENCIONES": {
+      "text": "2,791.67",
+      "bbox": [
+        [
+          882.1,
+          551.7,
+          983.3,
+          571.4
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "29,591.75",
+      "bbox": [
+        [
+          859.6,
+          583.8,
+          983.3,
+          607.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          291.7,
+          642.9,
+          641.7,
+          660.4
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

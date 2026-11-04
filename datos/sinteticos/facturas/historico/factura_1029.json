@@ -1,0 +1,251 @@
+{
+  "archivo": "factura_1029.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1029",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "banda",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "41c5f9fc88cfb6c59caccce18a7ac199919f3947c03b2948f38d99bf0e9bf069",
+  "tamano_bytes": 106539,
+  "fecha_recepcion": "2026-09-21",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "58167934",
+      "fecha": "19 de septiembre de 2026",
+      "emisor_nombre": "Serrato Tecnología SAPI de CV",
+      "emisor_rfc": "STS970523758",
+      "emisor_direccion": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "84,425.59",
+      "impuestos": "13,508.09",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "97,933.68",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-19",
+      "subtotal": "84425.59",
+      "impuestos": "13508.09",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "97933.68"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "1",
+        "precio_unitario": "2,801.14",
+        "importe": "2,801.14"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "4",
+        "precio_unitario": "6,343.83",
+        "importe": "25,375.32"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "2",
+        "precio_unitario": "1,029.94",
+        "importe": "2,059.88"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "3",
+        "precio_unitario": "8,880.63",
+        "importe": "26,641.89"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "4",
+        "precio_unitario": "6,886.84",
+        "importe": "27,547.36"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 90,
+    "emisor_nombre": 97,
+    "emisor_rfc": 92,
+    "emisor_direccion": 97,
+    "receptor_nombre": 96,
+    "receptor_rfc": 91,
+    "moneda": 95,
+    "subtotal": 91,
+    "impuestos": 94,
+    "tasa_iva": 91,
+    "total": 96,
+    "condiciones_pago": 93
+  },
+  "texto_completo": "Serrato Tecnología SAPI de CV\nPasaje Guerrero 944, San Hermelinda de la Montaña\nFACTURA\nEMISOR\nRFC: STS970523758\nNo. de factura: 58167934\nExpedida el 19 de septiembre de 2026\nFACTURAR A\nServicios Corporativos Demo SA de CV\nRFC: SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de cafetería\n1\n2,801.14\n2,801.14\nRenta de equipo de cómputo\n4\n6,343.83\n25,375.32\nMensajería y paquetería\n2\n1,029.94\n2,059.88\nHospedaje de servidores\n3\n8,880.63\n26,641.89\nServicio de limpieza\n4\n6,886.84\n27,547.36\nSubtotal\n84,425.59\nIVA 16 %\n13,508.09\nTotal\n$ 97,933.68 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Serrato Tecnología SAPI de CV",
+      "bbox": [
+        [
+          65.5,
+          64.0,
+          620.7,
+          116.3
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "bbox": [
+        [
+          67.0,
+          129.5,
+          510.3,
+          159.6
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          972.2,
+          47.6,
+          1174.6,
+          96.1
+        ]
+      ]
+    },
+    "GST": {
+      "text": "STS970523758",
+      "bbox": [
+        [
+          91.8,
+          299.7,
+          291.4,
+          326.2
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "58167934",
+      "bbox": [
+        [
+          92.6,
+          332.2,
+          328.1,
+          359.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "19 de septiembre de 2026",
+      "bbox": [
+        [
+          93.4,
+          362.6,
+          450.5,
+          392.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          679.1,
+          281.9,
+          1046.5,
+          312.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          679.9,
+          319.0,
+          888.8,
+          345.8
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          680.7,
+          354.0,
+          814.3,
+          379.0
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de cafetería 1 2,801.14 2,801.14\nRenta de equipo de cómputo 4 6,343.83 25,375.32\nMensajería y paquetería 2 1,029.94 2,059.88\nHospedaje de servidores 3 8,880.63 26,641.89\nServicio de limpieza 4 6,886.84 27,547.36",
+      "bbox": [
+        [
+          74.5,
+          430.9,
+          1188.1,
+          690.2
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "84,425.59",
+      "bbox": [
+        [
+          1076.0,
+          722.9,
+          1169.1,
+          746.9
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "13,508.09",
+      "bbox": [
+        [
+          1076.8,
+          756.3,
+          1169.8,
+          780.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "97,933.68",
+      "bbox": [
+        [
+          975.8,
+          794.5,
+          1170.8,
+          825.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          85.4,
+          911.5,
+          398.4,
+          938.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

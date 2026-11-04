@@ -1,0 +1,244 @@
+{
+  "archivo": "factura_1027.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1027",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "moderna",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "f746c71859adb428a6b2704de972e5ca143341f5e2e29d27d1c20ee66edbf9e1",
+  "tamano_bytes": 2439,
+  "fecha_recepcion": "2026-09-07",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-060816",
+      "fecha": "29/08/2026",
+      "emisor_nombre": "Alcaraz Consultores SC",
+      "emisor_rfc": "ACS9309086J8",
+      "emisor_direccion": "Diagonal Benavides 707, Vieja Sri Lanka",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "13,994.05",
+      "impuestos": "2,239.05",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "16,233.10",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-29",
+      "subtotal": "13994.05",
+      "impuestos": "2239.05",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "16233.10"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "3",
+        "precio_unitario": "368.16",
+        "importe": "1,104.48"
+      },
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "1",
+        "precio_unitario": "12,889.57",
+        "importe": "12,889.57"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 92,
+    "fecha": 93,
+    "emisor_nombre": 98,
+    "emisor_rfc": 94,
+    "emisor_direccion": 91,
+    "receptor_nombre": 96,
+    "receptor_rfc": 94,
+    "moneda": 99,
+    "subtotal": 97,
+    "impuestos": 95,
+    "tasa_iva": 93,
+    "total": 92,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "AC\nAlcaraz Consultores SC\nDiagonal Benavides 707, Vieja Sri Lanka\nRFC emisor  ACS9309086J8\nDocumento\nFactura\nSerie y folio\nFAC-060816\nFecha de emisión\n29/08/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nPapelería y artículos de oficina\n3\n368.16\n1,104.48\nCapacitación en línea\n1\n12,889.57\n12,889.57\nSubtotal\n13,994.05\nIVA 16 %\n2,239.05\nTotal\n$ 16,233.10 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Alcaraz Consultores SC",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          576.5,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Diagonal Benavides 707, Vieja Sri Lanka",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          585.6,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "ACS9309086J8",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          487.6,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-060816",
+      "bbox": [
+        [
+          1063.5,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "29/08/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          423.7,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          257.0,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Papelería y artículos de oficina 3 368.16 1,104.48\nCapacitación en línea 1 12,889.57 12,889.57",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          543.8
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "13,994.05",
+      "bbox": [
+        [
+          1078.2,
+          585.4,
+          1170.8,
+          607.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "2,239.05",
+      "bbox": [
+        [
+          1089.8,
+          618.8,
+          1170.8,
+          640.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "16,233.10",
+      "bbox": [
+        [
+          976.3,
+          657.1,
+          1170.8,
+          683.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          104.2,
+          755.8,
+          416.9,
+          775.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

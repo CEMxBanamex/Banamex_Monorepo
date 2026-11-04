@@ -1,0 +1,30 @@
+{
+  "archivo": "clientes_rfc.csv",
+  "escenario": "rfc_invalido",
+  "descripcion": "3 RFC con estructura inválida",
+  "hoja": null,
+  "caso_id": null,
+  "fecha_recepcion": "2026-11-02",
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-103"
+    ],
+    "filas": {
+      "R-103": [
+        5,
+        18,
+        40
+      ]
+    }
+  },
+  "grupo": "evaluacion",
+  "total_registros": 60,
+  "columnas": [
+    "id_cliente",
+    "nombre",
+    "rfc",
+    "correo_contacto",
+    "alta"
+  ]
+}

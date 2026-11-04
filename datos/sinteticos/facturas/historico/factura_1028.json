@@ -1,0 +1,245 @@
+{
+  "archivo": "factura_1028.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1028",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "4b56f6b9381c4e90bebf09993c9c519e7256e1a766953ca21f1db137be42679c",
+  "tamano_bytes": 90023,
+  "fecha_recepcion": "2026-09-14",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-1775",
+      "fecha": "11/09/2026",
+      "emisor_nombre": "Gonzales Servicios SAPI de CV",
+      "emisor_rfc": "GSS07010186W",
+      "emisor_direccion": "Privada Ozuna 662, Nueva Sri Lanka",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "44,085.17",
+      "impuestos": "0.00",
+      "tasa_iva": "IVA 0 %",
+      "retenciones": null,
+      "total": "44,085.17",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-11",
+      "subtotal": "44085.17",
+      "impuestos": "0.00",
+      "tasa_iva": "0.0",
+      "retenciones": "0.00",
+      "total": "44085.17"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "3",
+        "precio_unitario": "3,920.78",
+        "importe": "11,762.34"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "5",
+        "precio_unitario": "1,029.89",
+        "importe": "5,149.45"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "4",
+        "precio_unitario": "6,185.15",
+        "importe": "24,740.60"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "2,432.78",
+        "importe": "2,432.78"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 93,
+    "fecha": 98,
+    "emisor_nombre": 90,
+    "emisor_rfc": 90,
+    "emisor_direccion": 95,
+    "receptor_nombre": 93,
+    "receptor_rfc": 90,
+    "moneda": 95,
+    "subtotal": 91,
+    "impuestos": 94,
+    "tasa_iva": 97,
+    "total": 96,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "Gonzales Servicios SAPI de CV\nRFC GSS07010186W\nPrivada Ozuna 662, Nueva Sri Lanka\nFACTURA\nFolio A-1775\nFecha 11/09/2026\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nHospedaje de servidores\n3\n3,920.78\n11,762.34\nServicio de cafetería\n5\n1,029.89\n5,149.45\nLicencia anual de software\n4\n6,185.15\n24,740.60\nPapelería y artículos de oficina\n1\n2,432.78\n2,432.78\nSubtotal\n44,085.17\nIVA 0 %\n0.00\nTotal\n$ 44,085.17\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Gonzales Servicios SAPI de CV",
+      "bbox": [
+        [
+          94.9,
+          98.8,
+          591.8,
+          140.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "GSS07010186W",
+      "bbox": [
+        [
+          95.5,
+          150.1,
+          300.7,
+          174.6
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Privada Ozuna 662, Nueva Sri Lanka",
+      "bbox": [
+        [
+          95.9,
+          177.5,
+          440.0,
+          203.8
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1020.5,
+          94.9,
+          1161.8,
+          127.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-1775",
+      "bbox": [
+        [
+          1043.9,
+          139.0,
+          1162.3,
+          162.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "11/09/2026",
+      "bbox": [
+        [
+          994.5,
+          168.2,
+          1162.7,
+          192.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          97.3,
+          285.5,
+          464.5,
+          312.1
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          97.6,
+          316.8,
+          300.5,
+          341.3
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          98.0,
+          346.9,
+          231.4,
+          370.4
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Hospedaje de servidores 3 3,920.78 11,762.34\nServicio de cafetería 5 1,029.89 5,149.45\nLicencia anual de software 4 6,185.15 24,740.60\nPapelería y artículos de oficina 1 2,432.78 2,432.78",
+      "bbox": [
+        [
+          98.8,
+          395.3,
+          1167.8,
+          604.8
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "44,085.17",
+      "bbox": [
+        [
+          1075.8,
+          632.7,
+          1168.6,
+          655.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "0.00",
+      "bbox": [
+        [
+          1128.3,
+          666.0,
+          1169.1,
+          688.5
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "44,085.17",
+      "bbox": [
+        [
+          1037.3,
+          704.3,
+          1169.6,
+          732.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          103.9,
+          802.4,
+          416.8,
+          826.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

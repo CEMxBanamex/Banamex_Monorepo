@@ -1,0 +1,251 @@
+{
+  "archivo": "factura_1016.png",
+  "grupo": "historico",
+  "caso_id": "F-1016",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "40541e171da95c7dd391ff1981a949bfc5efb4a66b7a42c2271292fe6b4b4b5d",
+  "tamano_bytes": 108885,
+  "fecha_recepcion": "2026-06-22",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-6096",
+      "fecha": "12/06/2026",
+      "emisor_nombre": "Berríos Servicios S de RL de CV",
+      "emisor_rfc": "BSS960121D4N",
+      "emisor_direccion": "Circunvalación Sur Montañez 663, Vieja Mozambique",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "89,303.75",
+      "impuestos": "14,288.60",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "103,592.35",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-12",
+      "subtotal": "89303.75",
+      "impuestos": "14288.60",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "103592.35"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "9,095.73",
+        "importe": "9,095.73"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "10",
+        "precio_unitario": "4,727.52",
+        "importe": "47,275.20"
+      },
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "1",
+        "precio_unitario": "10,287.64",
+        "importe": "10,287.64"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "10",
+        "precio_unitario": "2,082.45",
+        "importe": "20,824.50"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "1",
+        "precio_unitario": "1,820.68",
+        "importe": "1,820.68"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 94,
+    "emisor_nombre": 92,
+    "emisor_rfc": 96,
+    "emisor_direccion": 90,
+    "receptor_nombre": 97,
+    "receptor_rfc": 99,
+    "moneda": 91,
+    "subtotal": 91,
+    "impuestos": 93,
+    "tasa_iva": 95,
+    "total": 91,
+    "condiciones_pago": 96
+  },
+  "texto_completo": "Berríos Servicios S de RL de CV\nRFC BSS960121D4N\nCircunvalación Sur Montañez 663, Vieja Mozambique\nFACTURA\nFolio A-6096\nFecha 12/06/2026\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n1\n9,095.73\n9,095.73\nTraducción de documentos\n10\n4,727.52\n47,275.20\nCapacitación en línea\n1\n10,287.64\n10,287.64\nMantenimiento preventivo de equipo\n10\n2,082.45\n20,824.50\nRenta de equipo de cómputo\n1\n1,820.68\n1,820.68\nSubtotal\n89,303.75\nIVA 16 %\n14,288.60\nTotal\n$ 103,592.35\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Berríos Servicios S de RL de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          615.5,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "BSS960121D4N",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          305.6,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Circunvalación Sur Montañez 663, Vieja Mozambique",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          599.7,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-6096",
+      "bbox": [
+        [
+          1052.7,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "12/06/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          471.2,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          306.8,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 1 9,095.73 9,095.73\nTraducción de documentos 10 4,727.52 47,275.20\nCapacitación en línea 1 10,287.64 10,287.64\nMantenimiento preventivo de equipo 10 2,082.45 20,824.50\nRenta de equipo de cómputo 1 1,820.68 1,820.68",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          635.4
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "89,303.75",
+      "bbox": [
+        [
+          1078.2,
+          677.1,
+          1170.8,
+          699.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "14,288.60",
+      "bbox": [
+        [
+          1078.2,
+          710.4,
+          1170.8,
+          732.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "103,592.35",
+      "bbox": [
+        [
+          1024.9,
+          748.8,
+          1170.8,
+          775.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          837.1,
+          416.9,
+          856.8
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

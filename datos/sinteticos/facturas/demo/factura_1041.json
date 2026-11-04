@@ -1,0 +1,251 @@
+{
+  "archivo": "factura_1041.png",
+  "grupo": "demo",
+  "caso_id": "F-1041",
+  "escenario": "demo_sin_hallazgos",
+  "descripcion": "Factura sin hallazgos",
+  "layout": "banda",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "482524cecaf038607c98f452f9317d552c8d6e5efa36e398eda293cf75bff439",
+  "tamano_bytes": 112912,
+  "fecha_recepcion": "2026-10-26",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-046993",
+      "fecha": "20 de octubre de 2026",
+      "emisor_nombre": "Cornejo Grupo SAPI de CV",
+      "emisor_rfc": "CGS101110861",
+      "emisor_direccion": "Periférico Norte Murillo 574, Vieja Tonga",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "68,292.90",
+      "impuestos": "10,926.86",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "79,219.76",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-10-20",
+      "subtotal": "68292.90",
+      "impuestos": "10926.86",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "79219.76"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "2,747.36",
+        "importe": "2,747.36"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "10",
+        "precio_unitario": "2,089.44",
+        "importe": "20,894.40"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "3",
+        "precio_unitario": "9,915.03",
+        "importe": "29,745.09"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "1",
+        "precio_unitario": "6,970.27",
+        "importe": "6,970.27"
+      },
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "1",
+        "precio_unitario": "7,935.78",
+        "importe": "7,935.78"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 94,
+    "fecha": 94,
+    "emisor_nombre": 90,
+    "emisor_rfc": 92,
+    "emisor_direccion": 95,
+    "receptor_nombre": 92,
+    "receptor_rfc": 91,
+    "moneda": 99,
+    "subtotal": 96,
+    "impuestos": 90,
+    "tasa_iva": 97,
+    "total": 93,
+    "condiciones_pago": 98
+  },
+  "texto_completo": "Cornejo Grupo SAPI de CV\nPeriférico Norte Murillo 574, Vieja Tonga\nFACTURA\nEMISOR\nRFC: CGS101110861\nNo. de factura: FAC-046993\nExpedida el 20 de octubre de 2026\nFACTURAR A\nServicios Corporativos Demo SA de CV\nRFC: SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n1\n2,747.36\n2,747.36\nMantenimiento preventivo de equipo\n10\n2,089.44\n20,894.40\nHospedaje de servidores\n3\n9,915.03\n29,745.09\nSoporte técnico mensual\n1\n6,970.27\n6,970.27\nCapacitación en línea\n1\n7,935.78\n7,935.78\nSubtotal\n68,292.90\nIVA 16 %\n10,926.86\nTotal\n$ 79,219.76 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Cornejo Grupo SAPI de CV",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          562.6,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Periférico Norte Murillo 574, Vieja Tonga",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          420.9,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          990.3,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "CGS101110861",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          308.0,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-046993",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          364.7,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "20 de octubre de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          427.3,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1058.7,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          900.1,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 1 2,747.36 2,747.36\nMantenimiento preventivo de equipo 10 2,089.44 20,894.40\nHospedaje de servidores 3 9,915.03 29,745.09\nSoporte técnico mensual 1 6,970.27 6,970.27\nCapacitación en línea 1 7,935.78 7,935.78",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          677.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "68,292.90",
+      "bbox": [
+        [
+          1078.2,
+          735.4,
+          1170.8,
+          757.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "10,926.86",
+      "bbox": [
+        [
+          1078.2,
+          768.8,
+          1170.8,
+          790.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "79,219.76",
+      "bbox": [
+        [
+          976.3,
+          807.1,
+          1170.8,
+          833.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          83.3,
+          905.8,
+          396.0,
+          925.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

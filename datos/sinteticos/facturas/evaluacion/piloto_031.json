@@ -1,0 +1,241 @@
+{
+  "archivo": "piloto_031.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "monto_alto_usd",
+  "descripcion": "Total en USD equivalente a más de 250,000 MXN",
+  "layout": "banda",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "44ce4e1b0b189b640582d7181f9606bf37664df03ea19de07cc07686ef00578f",
+  "tamano_bytes": 129686,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-068366",
+      "fecha": "18 de octubre de 2026",
+      "emisor_nombre": "Jasso Tecnología SAPI de CV",
+      "emisor_rfc": "JTS9712282K4",
+      "emisor_direccion": "Calle Aguascalientes 99, San Violeta los altos",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "USD",
+      "subtotal": "111,675.26",
+      "impuestos": "17,868.04",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "129,543.30",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-10-18",
+      "subtotal": "111675.26",
+      "impuestos": "17868.04",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "129543.30"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "5",
+        "precio_unitario": "8,268.58",
+        "importe": "41,342.90"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "4",
+        "precio_unitario": "13,958.09",
+        "importe": "55,832.36"
+      },
+      {
+        "descripcion": "Implementación de plataforma",
+        "cantidad": "1",
+        "precio_unitario": "14,500.00",
+        "importe": "14,500.00"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 92,
+    "fecha": 96,
+    "emisor_nombre": 95,
+    "emisor_rfc": 94,
+    "emisor_direccion": 99,
+    "receptor_nombre": 90,
+    "receptor_rfc": 98,
+    "moneda": 99,
+    "subtotal": 98,
+    "impuestos": 92,
+    "tasa_iva": 93,
+    "total": 98,
+    "condiciones_pago": 94
+  },
+  "texto_completo": "Jasso Tecnología SAPI de CV\nCalle Aguascalientes 99, San Violeta los altos\nFACTURA\nEMISOR\nRFC: JTS9712282K4\nNo. de factura: FAC-068366\nExpedida el 18 de octubre de 2026\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: USD\nConcepto\nCant.\nP. unitario\nImporte\nLicencia anual de software\n5\n8,268.58\n41,342.90\nSoporte técnico mensual\n4\n13,958.09\n55,832.36\nImplementación de plataforma\n1\n14,500.00\n14,500.00\nSubtotal\n111,675.26\nIVA 16 %\n17,868.04\nTotal\n$ 129,543.30 USD\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Jasso Tecnología SAPI de CV",
+      "bbox": [
+        [
+          98.2,
+          52.6,
+          628.3,
+          102.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Aguascalientes 99, San Violeta los altos",
+      "bbox": [
+        [
+          97.3,
+          115.5,
+          479.1,
+          143.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1005.0,
+          67.8,
+          1207.2,
+          115.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "JTS9712282K4",
+      "bbox": [
+        [
+          114.8,
+          280.9,
+          313.2,
+          306.7
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-068366",
+      "bbox": [
+        [
+          114.1,
+          314.2,
+          375.0,
+          341.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "18 de octubre de 2026",
+      "bbox": [
+        [
+          113.4,
+          347.5,
+          436.9,
+          376.0
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          702.2,
+          292.9,
+          1022.0,
+          321.3
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          701.5,
+          326.2,
+          909.1,
+          352.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "USD",
+      "bbox": [
+        [
+          700.8,
+          359.5,
+          832.0,
+          384.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Licencia anual de software 5 8,268.58 41,342.90\nSoporte técnico mensual 4 13,958.09 55,832.36\nImplementación de plataforma 1 14,500.00 14,500.00",
+      "bbox": [
+        [
+          88.0,
+          432.5,
+          1199.4,
+          613.5
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "111,675.26",
+      "bbox": [
+        [
+          1069.4,
+          669.2,
+          1174.1,
+          693.2
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "17,868.04",
+      "bbox": [
+        [
+          1080.3,
+          702.8,
+          1173.4,
+          726.5
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "129,543.30",
+      "bbox": [
+        [
+          966.5,
+          738.8,
+          1172.6,
+          769.2
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          82.9,
+          819.5,
+          395.9,
+          845.6
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-021"
+    ]
+  },
+  "nota_oculta": null
+}

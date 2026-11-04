@@ -1,0 +1,227 @@
+{
+  "archivo": "piloto_011.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta en USD",
+  "layout": "clasica",
+  "formato": "pdf",
+  "paginas": 2,
+  "sha256": "40a09b0c7ef44f4a314c6a72eb8e6d92c5bb68a66b0fefad6de8e9564443324f",
+  "tamano_bytes": 2871,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-023194",
+      "fecha": "03/10/2026",
+      "emisor_nombre": "Sierra Suministros S de RL de CV",
+      "emisor_rfc": "SSS060820QE1",
+      "emisor_direccion": "Callejón Suecia 445, Vieja Grecia",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "USD",
+      "subtotal": "2,729.84",
+      "impuestos": "436.77",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "3,166.61",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-10-03",
+      "subtotal": "2729.84",
+      "impuestos": "436.77",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "3166.61"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "2,729.84",
+        "importe": "2,729.84"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 92,
+    "fecha": 90,
+    "emisor_nombre": 95,
+    "emisor_rfc": 91,
+    "emisor_direccion": 91,
+    "receptor_nombre": 94,
+    "receptor_rfc": 98,
+    "moneda": 92,
+    "subtotal": 99,
+    "impuestos": 94,
+    "tasa_iva": 91,
+    "total": 93,
+    "condiciones_pago": 94
+  },
+  "texto_completo": "Sierra Suministros S de RL de CV\nRFC SSS060820QE1\nCallejón Suecia 445, Vieja Grecia\nFACTURA\nFolio FAC-023194\nFecha 03/10/2026\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: USD\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n1\n2,729.84\n2,729.84\nSubtotal\n2,729.84\nIVA 16 %\n436.77\nTotal\n$ 3,166.61\nCondiciones de pago: Contado\nTérminos y condiciones\n1. Los precios incluyen los impuestos desglosados en la página 1.\n2. Las aclaraciones se reciben dentro de los 5 días hábiles siguientes a la emisión.\n3. Documento sintético generado para el piloto del Data Steward Agéntico.",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Sierra Suministros S de RL de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          637.7,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "SSS060820QE1",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          305.6,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Callejón Suecia 445, Vieja Grecia",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          414.5,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-023194",
+      "bbox": [
+        [
+          1001.8,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "03/10/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          471.2,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          306.8,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "USD",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          235.0,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 1 2,729.84 2,729.84",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          485.4
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "2,729.84",
+      "bbox": [
+        [
+          1089.8,
+          527.1,
+          1170.8,
+          549.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "436.77",
+      "bbox": [
+        [
+          1107.1,
+          560.4,
+          1170.8,
+          582.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "3,166.61",
+      "bbox": [
+        [
+          1052.7,
+          598.8,
+          1170.8,
+          625.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          104.2,
+          687.1,
+          361.6,
+          706.8
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

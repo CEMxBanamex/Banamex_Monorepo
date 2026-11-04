@@ -1,0 +1,227 @@
+{
+  "archivo": "piloto_006.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "compacta",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "581f992b61ea16014e9cc38dcbf5a7306f778c6eb0628f18cb40d31a86eec367",
+  "tamano_bytes": 2210,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-4936",
+      "fecha": "2026-09-08",
+      "emisor_nombre": "Martínez Servicios SC",
+      "emisor_rfc": "MSS161111P1S",
+      "emisor_direccion": "Diagonal Gabón 12, San Antonia los bajos",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "4,597.29",
+      "impuestos": "735.57",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "5,332.86",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-08",
+      "subtotal": "4597.29",
+      "impuestos": "735.57",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "5332.86"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "4,597.29",
+        "importe": "4,597.29"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 90,
+    "fecha": 94,
+    "emisor_nombre": 92,
+    "emisor_rfc": 96,
+    "emisor_direccion": 93,
+    "receptor_nombre": 97,
+    "receptor_rfc": 91,
+    "moneda": 96,
+    "subtotal": 97,
+    "impuestos": 91,
+    "tasa_iva": 95,
+    "total": 92,
+    "condiciones_pago": 99
+  },
+  "texto_completo": "MARTÍNEZ SERVICIOS SC\nDiagonal Gabón 12, San Antonia los bajos\nR.F.C. MSS161111P1S\nFACTURA\n#A-4936\nFecha: 2026-09-08\nCliente: Servicios Corporativos Demo SA de CV\nRFC cliente: SCD050920LM8\nMoneda: MXN\n1 x Servicio de consultoría\n4,597.29\nSUBTOTAL\n4,597.29\nIVA 16 %\n735.57\nTOTAL\n5,332.86\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Martínez Servicios SC",
+      "bbox": [
+        [
+          480.0,
+          84.2,
+          795.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Diagonal Gabón 12, San Antonia los bajos",
+      "bbox": [
+        [
+          437.5,
+          124.2,
+          837.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "MSS161111P1S",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-4936",
+      "bbox": [
+        [
+          895.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-09-08",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          797.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 1 4,597.29 4,597.29",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          420.8
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "4,597.29",
+      "bbox": [
+        [
+          893.3,
+          443.3,
+          983.3,
+          463.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "735.57",
+      "bbox": [
+        [
+          915.8,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "5,332.86",
+      "bbox": [
+        [
+          873.3,
+          502.5,
+          983.3,
+          526.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          291.7,
+          561.7,
+          641.7,
+          579.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,241 @@
+{
+  "archivo": "piloto_022.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "rfc_fecha_inexistente",
+  "descripcion": "RFC del emisor con fecha 31 de febrero",
+  "layout": "clasica",
+  "formato": "pdf",
+  "paginas": 2,
+  "sha256": "dd134751858cfd04fc9f03aa8e9c6c0caf5b5e79399a7be34d2c6b90eb871885",
+  "tamano_bytes": 3057,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 563",
+      "fecha": "05/07/2026",
+      "emisor_nombre": "Alvarez Consultores SA de CV",
+      "emisor_rfc": "ACS230231V82",
+      "emisor_direccion": "Continuación Norte Rascón 428, San Germán los bajos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "38,283.91",
+      "impuestos": "6,125.43",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "44,409.34",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-05",
+      "subtotal": "38283.91",
+      "impuestos": "6125.43",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "44409.34"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "5",
+        "precio_unitario": "6,232.17",
+        "importe": "31,160.85"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "6,056.00",
+        "importe": "6,056.00"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "2",
+        "precio_unitario": "533.53",
+        "importe": "1,067.06"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 96,
+    "emisor_nombre": 93,
+    "emisor_rfc": 98,
+    "emisor_direccion": 98,
+    "receptor_nombre": 96,
+    "receptor_rfc": 99,
+    "moneda": 91,
+    "subtotal": 98,
+    "impuestos": 90,
+    "tasa_iva": 94,
+    "total": 91,
+    "condiciones_pago": 98
+  },
+  "texto_completo": "Alvarez Consultores SA de CV\nRFC ACS230231V82\nContinuación Norte Rascón 428, San Germán los bajos\nFACTURA\nFolio B 563\nFecha 05/07/2026\nReceptor\nBanco Demo SA, Institución de Banca Múltiple\nRFC BDM970315QW2\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nMantenimiento preventivo de equipo\n5\n6,232.17\n31,160.85\nServicio de limpieza\n1\n6,056.00\n6,056.00\nMensajería y paquetería\n2\n533.53\n1,067.06\nSubtotal\n38,283.91\nIVA 16 %\n6,125.43\nTotal\n$ 44,409.34\nCondiciones de pago: Pago a 45 días\nTérminos y condiciones\n1. Los precios incluyen los impuestos desglosados en la página 1.\n2. Las aclaraciones se reciben dentro de los 5 días hábiles siguientes a la emisión.\n3. Documento sintético generado para el piloto del Data Steward Agéntico.",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Alvarez Consultores SA de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          585.8,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "ACS230231V82",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          302.2,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Continuación Norte Rascón 428, San Germán los bajos",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          617.1,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 563",
+      "bbox": [
+        [
+          1065.5,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "05/07/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          534.9,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          316.0,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Mantenimiento preventivo de equipo 5 6,232.17 31,160.85\nServicio de limpieza 1 6,056.00 6,056.00\nMensajería y paquetería 2 533.53 1,067.06",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          560.4
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "38,283.91",
+      "bbox": [
+        [
+          1078.2,
+          602.1,
+          1170.8,
+          624.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "6,125.43",
+      "bbox": [
+        [
+          1089.8,
+          635.4,
+          1170.8,
+          657.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "44,409.34",
+      "bbox": [
+        [
+          1038.8,
+          673.8,
+          1170.8,
+          700.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          762.1,
+          416.9,
+          781.8
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-002"
+    ]
+  },
+  "nota_oculta": null
+}

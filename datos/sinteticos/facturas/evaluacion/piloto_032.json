@@ -1,0 +1,235 @@
+{
+  "archivo": "piloto_032.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "proveedor_no_padron",
+  "descripcion": "Proveedor que no está en el padrón",
+  "layout": "banda",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "bce6195f81b8530508c9c1eff49c7cc08c9d04ed39e5a2183433b18db1c56a27",
+  "tamano_bytes": 125157,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 5425",
+      "fecha": "12 de agosto de 2026",
+      "emisor_nombre": "Lozano Consultores SA de CV",
+      "emisor_rfc": "LCS980401F5X",
+      "emisor_direccion": "Privada Distrito Federal 869, Vieja Botswana",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "97,459.54",
+      "impuestos": "15,593.53",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "113,053.07",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-12",
+      "subtotal": "97459.54",
+      "impuestos": "15593.53",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "113053.07"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "4",
+        "precio_unitario": "21,745.76",
+        "importe": "86,983.04"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "10,476.50",
+        "importe": "10,476.50"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 94,
+    "fecha": 94,
+    "emisor_nombre": 97,
+    "emisor_rfc": 94,
+    "emisor_direccion": 94,
+    "receptor_nombre": 95,
+    "receptor_rfc": 91,
+    "moneda": 99,
+    "subtotal": 99,
+    "impuestos": 95,
+    "tasa_iva": 95,
+    "total": 93,
+    "condiciones_pago": 99
+  },
+  "texto_completo": "Lozano Consultores SA de CV\nPrivada Distrito Federal 869, Vieja Botswana\nFACTURA\nEMISOR\nRFC: LCS980401F5X\nNo. de factura: B 5425\nExpedida el 12 de agosto de 2026\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n4\n21,745.76\n86,983.04\nHospedaje de servidores\n1\n10,476.50\n10,476.50\nSubtotal\n97,459.54\nIVA 16 %\n15,593.53\nTotal\n$ 113,053.07 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Lozano Consultores SA de CV",
+      "bbox": [
+        [
+          78.6,
+          63.9,
+          618.5,
+          106.6
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Privada Distrito Federal 869, Vieja Botswana",
+      "bbox": [
+        [
+          79.0,
+          127.8,
+          451.2,
+          149.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          985.5,
+          57.0,
+          1187.2,
+          102.0
+        ]
+      ]
+    },
+    "GST": {
+      "text": "LCS980401F5X",
+      "bbox": [
+        [
+          100.9,
+          293.8,
+          303.6,
+          316.8
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 5425",
+      "bbox": [
+        [
+          101.1,
+          327.0,
+          309.6,
+          350.2
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "12 de agosto de 2026",
+      "bbox": [
+        [
+          101.3,
+          359.7,
+          417.6,
+          383.5
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          688.4,
+          289.4,
+          1008.0,
+          313.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          688.6,
+          323.4,
+          895.9,
+          346.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          688.8,
+          357.1,
+          822.0,
+          379.9
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 4 21,745.76 86,983.04\nHospedaje de servidores 1 10,476.50 10,476.50",
+      "bbox": [
+        [
+          80.9,
+          440.3,
+          1190.1,
+          568.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "97,459.54",
+      "bbox": [
+        [
+          1076.9,
+          619.6,
+          1169.7,
+          642.1
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "15,593.53",
+      "bbox": [
+        [
+          1077.1,
+          652.9,
+          1169.9,
+          675.4
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "113,053.07",
+      "bbox": [
+        [
+          961.6,
+          691.3,
+          1170.1,
+          718.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          83.1,
+          794.8,
+          395.9,
+          816.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-017"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,223 @@
+{
+  "archivo": "piloto_020.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "sin_folio",
+  "descripcion": "La factura no muestra folio",
+  "layout": "compacta",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "0e8220836c60b2f26c6b58ed2b049f08816eea5b384444e636ef2fdb2782bcd0",
+  "tamano_bytes": 61660,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": null,
+      "fecha": "2026-08-19",
+      "emisor_nombre": "Serrato Tecnología SAPI de CV",
+      "emisor_rfc": "STS970523758",
+      "emisor_direccion": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "50,326.99",
+      "impuestos": "8,052.32",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "58,379.31",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-08-19",
+      "subtotal": "50326.99",
+      "impuestos": "8052.32",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "58379.31"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "1",
+        "precio_unitario": "49,083.79",
+        "importe": "49,083.79"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "1",
+        "precio_unitario": "1,243.20",
+        "importe": "1,243.20"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "fecha": 91,
+    "emisor_nombre": 94,
+    "emisor_rfc": 92,
+    "emisor_direccion": 93,
+    "receptor_nombre": 97,
+    "receptor_rfc": 93,
+    "moneda": 93,
+    "subtotal": 96,
+    "impuestos": 99,
+    "tasa_iva": 97,
+    "total": 95,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "SERRATO TECNOLOGÍA SAPI DE CV\nPasaje Guerrero 944, San Hermelinda de la Montaña\nR.F.C. STS970523758\nFACTURA\nFecha: 2026-08-19\nCliente: Banco Demo SA, Institución de Banca Múltiple\nRFC cliente: BDM970315QW2\nMoneda: MXN\n1 x Auditoría de seguridad informática\n49,083.79\n1 x Mensajería y paquetería\n1,243.20\nSUBTOTAL\n50,326.99\nIVA 16 %\n8,052.32\nTOTAL\n58,379.31\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Serrato Tecnología SAPI de CV",
+      "bbox": [
+        [
+          420.0,
+          84.2,
+          855.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "bbox": [
+        [
+          392.5,
+          124.2,
+          882.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "STS970523758",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-08-19",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          887.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Auditoría de seguridad informática 1 49,083.79 49,083.79\nMensajería y paquetería 1 1,243.20 1,243.20",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          447.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "50,326.99",
+      "bbox": [
+        [
+          882.1,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "8,052.32",
+      "bbox": [
+        [
+          893.3,
+          497.5,
+          983.3,
+          517.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "58,379.31",
+      "bbox": [
+        [
+          859.6,
+          529.6,
+          983.3,
+          553.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          291.7,
+          588.8,
+          571.7,
+          606.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-001"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,244 @@
+{
+  "archivo": "factura_1015.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1015",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "moderna",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "0854eaec12dbfc017578948309f5b649304b6ddf53c948ba25d28cc08794a694",
+  "tamano_bytes": 87089,
+  "fecha_recepcion": "2026-06-15",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "84458991",
+      "fecha": "30/05/2026",
+      "emisor_nombre": "Tijerina Tecnología S de RL de CV",
+      "emisor_rfc": "TTS180815H99",
+      "emisor_direccion": "Boulevard San Vicente y las Granadinas 334, San María Teresa los altos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "5,755.66",
+      "impuestos": "920.91",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "6,676.57",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-05-30",
+      "subtotal": "5755.66",
+      "impuestos": "920.91",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "6676.57"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "4",
+        "precio_unitario": "415.19",
+        "importe": "1,660.76"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "4,094.90",
+        "importe": "4,094.90"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 95,
+    "emisor_nombre": 91,
+    "emisor_rfc": 99,
+    "emisor_direccion": 90,
+    "receptor_nombre": 94,
+    "receptor_rfc": 93,
+    "moneda": 91,
+    "subtotal": 96,
+    "impuestos": 93,
+    "tasa_iva": 94,
+    "total": 99,
+    "condiciones_pago": 99
+  },
+  "texto_completo": "TT\nTijerina Tecnología S de RL de CV\nBoulevard San Vicente y las Granadinas 334, San María Teresa los altos\nRFC emisor  TTS180815H99\nDocumento\nFactura\nSerie y folio\n84458991\nFecha de emisión\n30/05/2026\nMoneda\nMXN\nRECEPTOR\nBanco Demo SA, Institución de Banca Múltiple\nBDM970315QW2\nConcepto\nCant.\nP. unitario\nImporte\nMensajería y paquetería\n4\n415.19\n1,660.76\nHospedaje de servidores\n1\n4,094.90\n4,094.90\nSubtotal\n5,755.66\nIVA 16 %\n920.91\nTotal\n$ 6,676.57 MXN\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          120.4,
+          70.0,
+          235.7,
+          185.3
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Tijerina Tecnología S de RL de CV",
+      "bbox": [
+        [
+          263.7,
+          87.8,
+          737.6,
+          130.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Boulevard San Vicente y las Granadinas 334, San María Teresa los altos",
+      "bbox": [
+        [
+          262.9,
+          129.4,
+          870.8,
+          164.6
+        ]
+      ]
+    },
+    "GST": {
+      "text": "TTS180815H99",
+      "bbox": [
+        [
+          262.2,
+          158.5,
+          505.4,
+          184.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1117.2,
+          257.4,
+          1185.4,
+          278.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "84458991",
+      "bbox": [
+        [
+          1100.7,
+          288.3,
+          1184.6,
+          310.2
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "30/05/2026",
+      "bbox": [
+        [
+          1089.5,
+          319.3,
+          1183.8,
+          341.3
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1140.9,
+          351.9,
+          1183.0,
+          372.6
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          117.8,
+          261.6,
+          548.9,
+          294.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          117.0,
+          292.8,
+          280.7,
+          318.8
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Mensajería y paquetería 4 415.19 1,660.76\nHospedaje de servidores 1 4,094.90 4,094.90",
+      "bbox": [
+        [
+          111.5,
+          409.4,
+          1180.9,
+          557.5
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "5,755.66",
+      "bbox": [
+        [
+          1095.2,
+          597.0,
+          1176.7,
+          621.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "920.91",
+      "bbox": [
+        [
+          1111.6,
+          630.8,
+          1175.9,
+          654.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "6,676.57",
+      "bbox": [
+        [
+          993.7,
+          666.1,
+          1174.9,
+          696.9
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          105.6,
+          742.2,
+          363.5,
+          768.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

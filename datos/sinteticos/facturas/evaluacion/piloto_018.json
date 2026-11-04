@@ -1,0 +1,241 @@
+{
+  "archivo": "piloto_018.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "conceptos_no_suman",
+  "descripcion": "Los conceptos no suman el subtotal impreso",
+  "layout": "compacta",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "da77558ad79bbbeb88d5f7b9dd5b304d0912f2cbb106b3428dbe9d36a99680b2",
+  "tamano_bytes": 66078,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 4897",
+      "fecha": "2026-07-17",
+      "emisor_nombre": "Berríos Servicios S de RL de CV",
+      "emisor_rfc": "BSS960121D4N",
+      "emisor_direccion": "Circunvalación Sur Montañez 663, Vieja Mozambique",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "43,493.91",
+      "impuestos": "6,959.03",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "50,452.94",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-17",
+      "subtotal": "43493.91",
+      "impuestos": "6959.03",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "50452.94"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "3",
+        "precio_unitario": "1,844.00",
+        "importe": "5,482.00"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "5",
+        "precio_unitario": "7,229.67",
+        "importe": "36,148.35"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "1,813.56",
+        "importe": "1,813.56"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 96,
+    "emisor_nombre": 95,
+    "emisor_rfc": 98,
+    "emisor_direccion": 94,
+    "receptor_nombre": 95,
+    "receptor_rfc": 90,
+    "moneda": 90,
+    "subtotal": 97,
+    "impuestos": 94,
+    "tasa_iva": 98,
+    "total": 91,
+    "condiciones_pago": 94
+  },
+  "texto_completo": "BERRÍOS SERVICIOS S DE RL DE CV\nCircunvalación Sur Montañez 663, Vieja Mozambique\nR.F.C. BSS960121D4N\nFACTURA\n#B 4897\nFecha: 2026-07-17\nCliente: Banco Demo SA, Institución de Banca Múltiple\nRFC cliente: BDM970315QW2\nMoneda: MXN\n3 x Servicio de cafetería\n5,482.00\n5 x Servicio de limpieza\n36,148.35\n1 x Papelería y artículos de oficina\n1,813.56\nSUBTOTAL\n43,493.91\nIVA 16 %\n6,959.03\nTOTAL\n50,452.94\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Berríos Servicios S de RL de CV",
+      "bbox": [
+        [
+          405.0,
+          84.2,
+          870.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Circunvalación Sur Montañez 663, Vieja Mozambique",
+      "bbox": [
+        [
+          392.5,
+          124.2,
+          882.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "BSS960121D4N",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 4897",
+      "bbox": [
+        [
+          895.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-07-17",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          887.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de cafetería 3 1,844.00 5,482.00\nServicio de limpieza 5 7,229.67 36,148.35\nPapelería y artículos de oficina 1 1,813.56 1,813.56",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          475.0
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "43,493.91",
+      "bbox": [
+        [
+          882.1,
+          497.5,
+          983.3,
+          517.2
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "6,959.03",
+      "bbox": [
+        [
+          893.3,
+          524.6,
+          983.3,
+          544.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "50,452.94",
+      "bbox": [
+        [
+          859.6,
+          556.7,
+          983.3,
+          580.7
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          291.7,
+          615.8,
+          641.7,
+          633.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-010"
+    ]
+  },
+  "nota_oculta": null
+}

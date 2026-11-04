@@ -1,0 +1,245 @@
+{
+  "archivo": "factura_1001.png",
+  "grupo": "historico",
+  "caso_id": "F-1001",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "banda",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "b031bfbafed67476bdfb38b2c5f7401958d0b22d9389c548a08bf3e06c50d759",
+  "tamano_bytes": 108373,
+  "fecha_recepcion": "2026-03-09",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-3004",
+      "fecha": "17 de febrero de 2026",
+      "emisor_nombre": "Jasso Tecnología SAPI de CV",
+      "emisor_rfc": "JTS9712282K4",
+      "emisor_direccion": "Calle Aguascalientes 99, San Violeta los altos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "73,054.92",
+      "impuestos": "11,688.79",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "84,743.71",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-02-17",
+      "subtotal": "73054.92",
+      "impuestos": "11688.79",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "84743.71"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "3",
+        "precio_unitario": "773.60",
+        "importe": "2,320.80"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "4",
+        "precio_unitario": "2,450.91",
+        "importe": "9,803.64"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "5",
+        "precio_unitario": "5,379.93",
+        "importe": "26,899.65"
+      },
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "3",
+        "precio_unitario": "11,343.61",
+        "importe": "34,030.83"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 93,
+    "fecha": 98,
+    "emisor_nombre": 90,
+    "emisor_rfc": 91,
+    "emisor_direccion": 92,
+    "receptor_nombre": 99,
+    "receptor_rfc": 91,
+    "moneda": 91,
+    "subtotal": 90,
+    "impuestos": 92,
+    "tasa_iva": 98,
+    "total": 99,
+    "condiciones_pago": 94
+  },
+  "texto_completo": "Jasso Tecnología SAPI de CV\nCalle Aguascalientes 99, San Violeta los altos\nFACTURA\nEMISOR\nRFC: JTS9712282K4\nNo. de factura: A-3004\nExpedida el 17 de febrero de 2026\nFACTURAR A\nBanco Demo SA, Institución de Banca Múltiple\nRFC: BDM970315QW2\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nMensajería y paquetería\n3\n773.60\n2,320.80\nLicencia anual de software\n4\n2,450.91\n9,803.64\nTraducción de documentos\n5\n5,379.93\n26,899.65\nCapacitación en línea\n3\n11,343.61\n34,030.83\nSubtotal\n73,054.92\nIVA 16 %\n11,688.79\nTotal\n$ 84,743.71 MXN\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Jasso Tecnología SAPI de CV",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          612.7,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Aguascalientes 99, San Violeta los altos",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          464.8,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          990.3,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "JTS9712282K4",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          302.2,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-3004",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          313.8,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "17 de febrero de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          423.8,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1122.4,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          909.3,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Mensajería y paquetería 3 773.60 2,320.80\nLicencia anual de software 4 2,450.91 9,803.64\nTraducción de documentos 5 5,379.93 26,899.65\nCapacitación en línea 3 11,343.61 34,030.83",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          639.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "73,054.92",
+      "bbox": [
+        [
+          1078.2,
+          697.9,
+          1170.8,
+          719.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "11,688.79",
+      "bbox": [
+        [
+          1078.2,
+          731.2,
+          1170.8,
+          753.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "84,743.71",
+      "bbox": [
+        [
+          976.3,
+          769.6,
+          1170.8,
+          795.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          83.3,
+          868.3,
+          340.8,
+          888.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

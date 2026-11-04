@@ -1,0 +1,245 @@
+{
+  "archivo": "piloto_009.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta con IVA de 8 % (frontera)",
+  "layout": "banda",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "070365d0df6d0969c9a51e98307e7412a3bbb1348ff4c00284841617bc3bd450",
+  "tamano_bytes": 132691,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "54586994",
+      "fecha": "22 de septiembre de 2026",
+      "emisor_nombre": "Nevárez Tecnología SC",
+      "emisor_rfc": "NTS8705115G4",
+      "emisor_direccion": "Calzada Patiño 572, Vieja Andorra",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "47,725.14",
+      "impuestos": "3,818.01",
+      "tasa_iva": "IVA 8 %",
+      "retenciones": null,
+      "total": "51,543.15",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-22",
+      "subtotal": "47725.14",
+      "impuestos": "3818.01",
+      "tasa_iva": "0.08",
+      "retenciones": "0.00",
+      "total": "51543.15"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "4",
+        "precio_unitario": "5,699.75",
+        "importe": "22,799.00"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "2",
+        "precio_unitario": "5,430.21",
+        "importe": "10,860.42"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "1",
+        "precio_unitario": "9,315.25",
+        "importe": "9,315.25"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "1",
+        "precio_unitario": "4,750.47",
+        "importe": "4,750.47"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 90,
+    "emisor_nombre": 99,
+    "emisor_rfc": 92,
+    "emisor_direccion": 90,
+    "receptor_nombre": 98,
+    "receptor_rfc": 92,
+    "moneda": 94,
+    "subtotal": 92,
+    "impuestos": 92,
+    "tasa_iva": 90,
+    "total": 92,
+    "condiciones_pago": 96
+  },
+  "texto_completo": "Nevárez Tecnología SC\nCalzada Patiño 572, Vieja Andorra\nFACTURA\nEMISOR\nRFC: NTS8705115G4\nNo. de factura: 54586994\nExpedida el 22 de septiembre de 2026\nFACTURAR A\nServicios Corporativos Demo SA de CV\nRFC: SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n4\n5,699.75\n22,799.00\nHospedaje de servidores\n2\n5,430.21\n10,860.42\nDesarrollo de reporte analítico\n1\n9,315.25\n9,315.25\nMantenimiento preventivo de equipo\n1\n4,750.47\n4,750.47\nSubtotal\n47,725.14\nIVA 8 %\n3,818.01\nTotal\n$ 51,543.15 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Nevárez Tecnología SC",
+      "bbox": [
+        [
+          88.5,
+          59.9,
+          503.4,
+          102.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calzada Patiño 572, Vieja Andorra",
+      "bbox": [
+        [
+          88.2,
+          122.8,
+          376.0,
+          144.5
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          995.4,
+          62.9,
+          1197.2,
+          108.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "NTS8705115G4",
+      "bbox": [
+        [
+          107.9,
+          287.9,
+          312.9,
+          311.2
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "54586994",
+      "bbox": [
+        [
+          107.6,
+          321.2,
+          342.9,
+          344.8
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "22 de septiembre de 2026",
+      "bbox": [
+        [
+          107.4,
+          354.5,
+          464.2,
+          378.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          695.4,
+          292.1,
+          1062.5,
+          316.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          695.1,
+          325.4,
+          903.7,
+          348.8
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          694.9,
+          358.7,
+          828.1,
+          381.6
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 4 5,699.75 22,799.00\nHospedaje de servidores 2 5,430.21 10,860.42\nDesarrollo de reporte analítico 1 9,315.25 9,315.25\nMantenimiento preventivo de equipo 1 4,750.47 4,750.47",
+      "bbox": [
+        [
+          84.6,
+          439.8,
+          1194.4,
+          643.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "47,725.14",
+      "bbox": [
+        [
+          1078.9,
+          701.1,
+          1171.7,
+          723.6
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "3,818.01",
+      "bbox": [
+        [
+          1090.3,
+          734.4,
+          1171.5,
+          756.9
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "51,543.15",
+      "bbox": [
+        [
+          976.5,
+          772.0,
+          1171.2,
+          799.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          82.9,
+          864.3,
+          395.7,
+          886.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

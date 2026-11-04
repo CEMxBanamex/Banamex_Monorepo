@@ -1,0 +1,262 @@
+{
+  "archivo": "factura_1003.png",
+  "grupo": "historico",
+  "caso_id": "F-1003",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "moderna",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "1fdadd9d581bd9e3d2ef4192842de2223d5b8b8923d8a935cd2f372605a93bdf",
+  "tamano_bytes": 102351,
+  "fecha_recepcion": "2026-03-23",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 6638",
+      "fecha": "06/03/2026",
+      "emisor_nombre": "Trejo Consultores S de RL de CV",
+      "emisor_rfc": "TCS96051572U",
+      "emisor_direccion": "Ampliación Jordania 353, Vieja República de Macedonia del Norte",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "50,461.24",
+      "impuestos": "8,073.80",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": "5,046.12",
+      "total": "53,488.92",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-03-06",
+      "subtotal": "50461.24",
+      "impuestos": "8073.80",
+      "tasa_iva": "0.16",
+      "retenciones": "5046.12",
+      "total": "53488.92"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "4",
+        "precio_unitario": "3,675.07",
+        "importe": "14,700.28"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "1",
+        "precio_unitario": "1,174.80",
+        "importe": "1,174.80"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "2",
+        "precio_unitario": "17,293.08",
+        "importe": "34,586.16"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 94,
+    "emisor_nombre": 95,
+    "emisor_rfc": 93,
+    "emisor_direccion": 95,
+    "receptor_nombre": 95,
+    "receptor_rfc": 97,
+    "moneda": 97,
+    "subtotal": 98,
+    "impuestos": 97,
+    "tasa_iva": 99,
+    "retenciones": 94,
+    "total": 93,
+    "condiciones_pago": 92
+  },
+  "texto_completo": "TC\nTrejo Consultores S de RL de CV\nAmpliación Jordania 353, Vieja República de Macedonia del Norte\nRFC emisor  TCS96051572U\nDocumento\nFactura\nSerie y folio\nB 6638\nFecha de emisión\n06/03/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nCapacitación en línea\n4\n3,675.07\n14,700.28\nMensajería y paquetería\n1\n1,174.80\n1,174.80\nDesarrollo de reporte analítico\n2\n17,293.08\n34,586.16\nSubtotal\n50,461.24\nIVA 16 %\n8,073.80\nRetenciones\n-5,046.12\nTotal\n$ 53,488.92 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Trejo Consultores S de RL de CV",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          702.9,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Ampliación Jordania 353, Vieja República de Macedonia del Norte",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          796.1,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "TCS96051572U",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          490.7,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 6638",
+      "bbox": [
+        [
+          1110.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "06/03/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          423.7,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          257.0,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Capacitación en línea 4 3,675.07 14,700.28\nMensajería y paquetería 1 1,174.80 1,174.80\nDesarrollo de reporte analítico 2 17,293.08 34,586.16",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          581.2
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "50,461.24",
+      "bbox": [
+        [
+          1078.2,
+          622.9,
+          1170.8,
+          644.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "8,073.80",
+      "bbox": [
+        [
+          1089.8,
+          656.2,
+          1170.8,
+          678.1
+        ]
+      ]
+    },
+    "RETENCIONES": {
+      "text": "5,046.12",
+      "bbox": [
+        [
+          1082.8,
+          689.6,
+          1170.8,
+          711.5
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "53,488.92",
+      "bbox": [
+        [
+          976.3,
+          727.9,
+          1170.8,
+          754.2
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          104.2,
+          826.7,
+          416.9,
+          846.4
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

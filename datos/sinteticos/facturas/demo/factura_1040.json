@@ -1,0 +1,253 @@
+{
+  "archivo": "factura_1040.jpg",
+  "grupo": "demo",
+  "caso_id": "F-1040",
+  "escenario": "demo_monto_alto",
+  "descripcion": "Monto alto con total que no cuadra; un analista lo escaló y lo rechazó",
+  "layout": "moderna",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "0eb75cba5e3ca7d17ed077fa3813b8e8603c75219fa423a0c00c12288808d99b",
+  "tamano_bytes": 117188,
+  "fecha_recepcion": "2026-10-25",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-053620",
+      "fecha": "18/10/2026",
+      "emisor_nombre": "Salas Suministros SC",
+      "emisor_rfc": "SSS130401FHU",
+      "emisor_direccion": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "327,302.08",
+      "impuestos": "52,368.33",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "381,170.41",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-10-18",
+      "subtotal": "327302.08",
+      "impuestos": "52368.33",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "381170.41"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "2",
+        "precio_unitario": "4,415.08",
+        "importe": "8,830.16"
+      },
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "1",
+        "precio_unitario": "6,471.92",
+        "importe": "6,471.92"
+      },
+      {
+        "descripcion": "Auditoría anual de sistemas",
+        "cantidad": "1",
+        "precio_unitario": "312,000.00",
+        "importe": "312,000.00"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 95,
+    "fecha": 90,
+    "emisor_nombre": 94,
+    "emisor_rfc": 99,
+    "emisor_direccion": 99,
+    "receptor_nombre": 97,
+    "receptor_rfc": 99,
+    "moneda": 91,
+    "subtotal": 96,
+    "impuestos": 92,
+    "tasa_iva": 92,
+    "total": 92,
+    "condiciones_pago": 94
+  },
+  "texto_completo": "SS\nSalas Suministros SC\nCerrada Sur Blanco 770, Vieja Brasil\nRFC emisor  SSS130401FHU\nDocumento\nFactura\nSerie y folio\nFAC-053620\nFecha de emisión\n18/10/2026\nMoneda\nMXN\nRECEPTOR\nServicios Corporativos Demo SA de CV\nSCD050920LM8\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n2\n4,415.08\n8,830.16\nCapacitación en línea\n1\n6,471.92\n6,471.92\nAuditoría anual de sistemas\n1\n312,000.00\n312,000.00\nSubtotal\n327,302.08\nIVA 16 %\n52,368.33\nTotal\n$ 381,170.41 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          86.6,
+          93.6,
+          201.8,
+          208.7
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Salas Suministros SC",
+      "bbox": [
+        [
+          228.5,
+          99.9,
+          530.7,
+          137.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "bbox": [
+        [
+          229.5,
+          141.5,
+          535.3,
+          168.5
+        ]
+      ]
+    },
+    "GST": {
+      "text": "SSS130401FHU",
+      "bbox": [
+        [
+          230.2,
+          171.9,
+          479.7,
+          197.6
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1089.1,
+          232.8,
+          1157.3,
+          254.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-053620",
+      "bbox": [
+        [
+          1050.3,
+          264.1,
+          1158.0,
+          286.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "18/10/2026",
+      "bbox": [
+        [
+          1064.5,
+          295.3,
+          1158.7,
+          317.2
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1117.4,
+          326.6,
+          1159.5,
+          347.3
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          91.2,
+          279.1,
+          458.6,
+          309.8
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          91.9,
+          315.4,
+          246.4,
+          341.0
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 2 4,415.08 8,830.16\nCapacitación en línea 1 6,471.92 6,471.92\nAuditoría anual de sistemas 1 312,000.00 312,000.00",
+      "bbox": [
+        [
+          94.7,
+          410.3,
+          1164.8,
+          594.0
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "327,302.08",
+      "bbox": [
+        [
+          1061.6,
+          610.2,
+          1166.3,
+          634.6
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "52,368.33",
+      "bbox": [
+        [
+          1074.0,
+          643.5,
+          1167.1,
+          667.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "381,170.41",
+      "bbox": [
+        [
+          959.2,
+          681.9,
+          1168.2,
+          713.1
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          103.6,
+          798.6,
+          416.7,
+          825.8
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-014",
+      "R-021"
+    ]
+  },
+  "nota_oculta": null
+}

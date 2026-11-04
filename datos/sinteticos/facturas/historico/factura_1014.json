@@ -1,0 +1,227 @@
+{
+  "archivo": "factura_1014.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1014",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "compacta",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "2ca3c8a0ba7ba4ab8318b637cd721f5330b6df985778949b42537b2f4f1e8299",
+  "tamano_bytes": 71502,
+  "fecha_recepcion": "2026-06-08",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-088457",
+      "fecha": "2026-06-05",
+      "emisor_nombre": "Portillo Suministros SA de CV",
+      "emisor_rfc": "PSS990327D9G",
+      "emisor_direccion": "Calle Norte Girón 590, Vieja Swazilandia",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "60,512.90",
+      "impuestos": "0.00",
+      "tasa_iva": "IVA 0 %",
+      "retenciones": null,
+      "total": "60,512.90",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-05",
+      "subtotal": "60512.90",
+      "impuestos": "0.00",
+      "tasa_iva": "0.0",
+      "retenciones": "0.00",
+      "total": "60512.90"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "5",
+        "precio_unitario": "12,102.58",
+        "importe": "60,512.90"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 93,
+    "emisor_nombre": 98,
+    "emisor_rfc": 95,
+    "emisor_direccion": 96,
+    "receptor_nombre": 94,
+    "receptor_rfc": 92,
+    "moneda": 97,
+    "subtotal": 91,
+    "impuestos": 90,
+    "tasa_iva": 95,
+    "total": 92,
+    "condiciones_pago": 99
+  },
+  "texto_completo": "PORTILLO SUMINISTROS SA DE CV\nCalle Norte Girón 590, Vieja Swazilandia\nR.F.C. PSS990327D9G\nFACTURA\n#FAC-088457\nFecha: 2026-06-05\nCliente: Grupo Financiero Demo SA de CV\nRFC cliente: GFD960701AB4\nMoneda: MXN\n5 x Servicio de consultoría\n60,512.90\nSUBTOTAL\n60,512.90\nIVA 0 %\n0.00\nTOTAL\n60,512.90\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Portillo Suministros SA de CV",
+      "bbox": [
+        [
+          438.7,
+          78.8,
+          874.2,
+          116.3
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Norte Girón 590, Vieja Swazilandia",
+      "bbox": [
+        [
+          455.4,
+          119.2,
+          855.7,
+          147.1
+        ]
+      ]
+    },
+    "GST": {
+      "text": "PSS990327D9G",
+      "bbox": [
+        [
+          547.7,
+          149.1,
+          761.9,
+          174.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          307.2,
+          202.0,
+          404.0,
+          228.6
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-088457",
+      "bbox": [
+        [
+          861.1,
+          218.1,
+          999.2,
+          243.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-06-05",
+      "bbox": [
+        [
+          306.4,
+          238.7,
+          498.0,
+          263.4
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          305.6,
+          267.9,
+          744.7,
+          299.0
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          304.8,
+          297.0,
+          586.5,
+          324.0
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          304.1,
+          326.1,
+          428.3,
+          349.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 5 12,102.58 60,512.90",
+      "bbox": [
+        [
+          302.4,
+          372.3,
+          994.8,
+          430.0
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "60,512.90",
+      "bbox": [
+        [
+          891.5,
+          449.8,
+          993.1,
+          472.1
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "0.00",
+      "bbox": [
+        [
+          946.9,
+          478.4,
+          992.4,
+          499.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "60,512.90",
+      "bbox": [
+        [
+          867.3,
+          508.4,
+          991.6,
+          535.7
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          298.2,
+          552.8,
+          648.6,
+          579.4
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

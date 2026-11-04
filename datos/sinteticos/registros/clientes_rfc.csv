@@ -1,0 +1,61 @@
+id_cliente,nombre,rfc,correo_contacto,alta
+C-00300,Jasso Logística SA de CV,JAS850827WSW,jasso300@ejemplo.mx,11/10/2026
+C-00301,Bianca Maya Jáquez,BIAN740604729,bianca301@ejemplo.mx,13/10/2026
+C-00302,Rael Industrial SA de CV,RAE970807FJT,rael302@ejemplo.mx,09/10/2026
+C-00303,Dr. Ricardo Jasso,DRRI0311230SQ,dr.303@empresa.com.mx,06/10/2026
+C-00304,González Industrial SA de CV,GON690926BM,gonzalez304@empresa.com.mx,06/10/2026
+C-00305,Meraz Logística SA de CV,MER681224KKB,meraz305@empresa.com.mx,10/10/2026
+C-00306,Rolando Cornelio Jasso Lozada,ROLA8503175BZ,rolando306@ejemplo.mx,08/10/2026
+C-00307,Ing. Salma Pacheco,INGS0102184AV,ing.307@ejemplo.mx,17/10/2026
+C-00308,Alejandra Nayeli Mendoza,ALEJ890902GQQ,alejandra308@empresa.com.mx,27/10/2026
+C-00309,Parra Industrial SA de CV,PAR7107193N6,parra309@empresa.com.mx,12/10/2026
+C-00310,Miramontes Comercial SA de CV,MIR8907238JG,miramontes310@empresa.com.mx,02/10/2026
+C-00311,Cadena Industrial SA de CV,CAD000206N9Y,cadena311@correo.com,04/10/2026
+C-00312,Teresa Salma Treviño Sierra,TERE620106P11,teresa312@empresa.com.mx,05/10/2026
+C-00313,Fuentes Comercial SA de CV,FUE760405U1W,fuentes313@correo.com,16/10/2026
+C-00314,Irma Sessa Menéndez,IRMA721212DD3,irma314@ejemplo.mx,04/10/2026
+C-00315,Balderas Logística SA de CV,BAL9102246EH,balderas315@ejemplo.mx,23/10/2026
+C-00316,Pabón Industrial SA de CV,PAB740421E2X,pabon316@empresa.com.mx,12/10/2026
+C-00317,Abraham Gustavo Valdivia Hernádez,ABRA991332BGW,abraham317@correo.com,14/10/2026
+C-00318,Joaquín Santiago Pedroza Rolón,JOAQ840202BKM,joaquin318@correo.com,07/10/2026
+C-00319,Ilse Adriana Archuleta Garay,ILSE660627AZH,ilse319@ejemplo.mx,06/10/2026
+C-00320,Gustavo Jerónimo Almanza,GUST681021H8P,gustavo320@correo.com,09/10/2026
+C-00321,Maximiliano Serrato,MAXI610905P81,maximiliano321@empresa.com.mx,26/10/2026
+C-00322,Lebrón Comercial SA de CV,LEB830324JMM,lebron322@ejemplo.mx,04/10/2026
+C-00323,Negrón Logística SA de CV,NEG021213757,negron323@correo.com,07/10/2026
+C-00324,Rodrigo Eugenio Tijerina,RODR600610LU0,rodrigo324@empresa.com.mx,30/10/2026
+C-00325,Alba Industrial SA de CV,ALB03030943T,alba325@ejemplo.mx,05/10/2026
+C-00326,Cadena Comercial SA de CV,CAD991116S41,cadena326@correo.com,10/10/2026
+C-00327,Jesús Francisco Rivas Fonseca,JESU890208Q1D,jesus327@empresa.com.mx,20/10/2026
+C-00328,Srita. Virginia Mares,SRIT610519Z5A,srita.328@empresa.com.mx,13/10/2026
+C-00329,Rufino Luis Manuel Solorio,RUFI810709QQP,rufino329@empresa.com.mx,23/10/2026
+C-00330,Lic. Carla Cardenas,LICC03100665G,lic.330@ejemplo.mx,13/10/2026
+C-00331,Amaya Logística SA de CV,AMA8505091VC,amaya331@ejemplo.mx,10/10/2026
+C-00332,Lic. Alonso Escalante,LICA610614RJ2,lic.332@correo.com,18/10/2026
+C-00333,Urbina Comercial SA de CV,URB9006130YF,urbina333@correo.com,17/10/2026
+C-00334,Serna Logística SA de CV,SER630818MCR,serna334@empresa.com.mx,17/10/2026
+C-00335,Modesto Mondragón,MODE71011942X,modesto335@ejemplo.mx,21/10/2026
+C-00336,Montalvo Logística SA de CV,MON990803AB9,montalvo336@empresa.com.mx,04/10/2026
+C-00337,Montenegro Industrial SA de CV,MON0201018JL,montenegro337@ejemplo.mx,06/10/2026
+C-00338,Matías Comercial SA de CV,MAT651126K9S,matias338@correo.com,14/10/2026
+C-00339,Ing. Esparta Sáenz,RFC-PENDIENTE,ing.339@correo.com,02/10/2026
+C-00340,Esmeralda Arce Saiz,ESME8908090TP,esmeralda340@ejemplo.mx,14/10/2026
+C-00341,Cepeda Comercial SA de CV,CEP87121644L,cepeda341@ejemplo.mx,29/10/2026
+C-00342,Óliver Navarrete Hernandes,OLIV040627PUV,oliver342@correo.com,31/10/2026
+C-00343,Robledo Logística SA de CV,ROB020715YME,robledo343@empresa.com.mx,05/10/2026
+C-00344,Farías Logística SA de CV,FAR620407EJ3,farias344@empresa.com.mx,06/10/2026
+C-00345,Esther Sepúlveda Pabón,ESTH861006L5F,esther345@ejemplo.mx,29/10/2026
+C-00346,Dr. Santiago Ayala,DRSA6703197FZ,dr.346@empresa.com.mx,09/10/2026
+C-00347,Anabel Zoé Saucedo,ANAB020321ZKM,anabel347@ejemplo.mx,24/10/2026
+C-00348,Frida Rosas,FRID700613W78,frida348@ejemplo.mx,31/10/2026
+C-00349,Sra. Mercedes Solorio,SRAM911213UWK,sra.349@correo.com,07/10/2026
+C-00350,Ybarra Comercial SA de CV,YBA871209AEE,ybarra350@correo.com,11/10/2026
+C-00351,Marisela Matías Mojica,MARI7807023ZU,marisela351@correo.com,27/10/2026
+C-00352,Murillo Comercial SA de CV,MUR6108219WH,murillo352@correo.com,09/10/2026
+C-00353,Augusto Rolando Delgado Hinojosa,AUGU600207REZ,augusto353@correo.com,26/10/2026
+C-00354,Miriam Olivera,MIRI030118N58,miriam354@empresa.com.mx,23/10/2026
+C-00355,Caraballo Logística SA de CV,CAR8111252EA,caraballo355@ejemplo.mx,23/10/2026
+C-00356,Srita. Alicia Rivas,SRIT961227USV,srita.356@correo.com,11/10/2026
+C-00357,Fernando Portillo,FERN660616RJE,fernando357@ejemplo.mx,12/10/2026
+C-00358,Sauceda Industrial SA de CV,SAU781028CLE,sauceda358@empresa.com.mx,24/10/2026
+C-00359,Soto Logística SA de CV,SOT630519XRE,soto359@correo.com,20/10/2026

@@ -1,0 +1,245 @@
+{
+  "archivo": "factura_1008.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1008",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "pdf",
+  "paginas": 2,
+  "sha256": "b8d2f5a3d14ee14edfda06fa30c982fb00d855a99bb513aa036f6fc8ac5bb10d",
+  "tamano_bytes": 3063,
+  "fecha_recepcion": "2026-04-27",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "12086822",
+      "fecha": "09/04/2026",
+      "emisor_nombre": "Martínez Servicios SC",
+      "emisor_rfc": "MSS161111P1S",
+      "emisor_direccion": "Diagonal Gabón 12, San Antonia los bajos",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "18,079.31",
+      "impuestos": "2,892.69",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "20,972.00",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-04-09",
+      "subtotal": "18079.31",
+      "impuestos": "2892.69",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "20972.00"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "4",
+        "precio_unitario": "364.69",
+        "importe": "1,458.76"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "1",
+        "precio_unitario": "2,306.68",
+        "importe": "2,306.68"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "3,020.61",
+        "importe": "3,020.61"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "3",
+        "precio_unitario": "3,764.42",
+        "importe": "11,293.26"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 93,
+    "fecha": 92,
+    "emisor_nombre": 93,
+    "emisor_rfc": 93,
+    "emisor_direccion": 97,
+    "receptor_nombre": 93,
+    "receptor_rfc": 95,
+    "moneda": 92,
+    "subtotal": 98,
+    "impuestos": 96,
+    "tasa_iva": 96,
+    "total": 95,
+    "condiciones_pago": 93
+  },
+  "texto_completo": "Martínez Servicios SC\nRFC MSS161111P1S\nDiagonal Gabón 12, San Antonia los bajos\nFACTURA\nFolio 12086822\nFecha 09/04/2026\nReceptor\nGrupo Financiero Demo SA de CV\nRFC GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nMensajería y paquetería\n4\n364.69\n1,458.76\nServicio de cafetería\n1\n2,306.68\n2,306.68\nServicio de limpieza\n1\n3,020.61\n3,020.61\nMantenimiento preventivo de equipo\n3\n3,764.42\n11,293.26\nSubtotal\n18,079.31\nIVA 16 %\n2,892.69\nTotal\n$ 20,972.00\nCondiciones de pago: Pago a 45 días\nTérminos y condiciones\n1. Los precios incluyen los impuestos desglosados en la página 1.\n2. Las aclaraciones se reciben dentro de los 5 días hábiles siguientes a la emisión.\n3. Documento sintético generado para el piloto del Data Steward Agéntico.",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Martínez Servicios SC",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          452.4,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "MSS161111P1S",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          306.8,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Diagonal Gabón 12, San Antonia los bajos",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          496.8,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "12086822",
+      "bbox": [
+        [
+          1027.2,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "09/04/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          423.7,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          305.6,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Mensajería y paquetería 4 364.69 1,458.76\nServicio de cafetería 1 2,306.68 2,306.68\nServicio de limpieza 1 3,020.61 3,020.61\nMantenimiento preventivo de equipo 3 3,764.42 11,293.26",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          597.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "18,079.31",
+      "bbox": [
+        [
+          1078.2,
+          639.6,
+          1170.8,
+          661.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "2,892.69",
+      "bbox": [
+        [
+          1089.8,
+          672.9,
+          1170.8,
+          694.8
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "20,972.00",
+      "bbox": [
+        [
+          1038.8,
+          711.2,
+          1170.8,
+          737.5
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          799.6,
+          416.9,
+          819.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

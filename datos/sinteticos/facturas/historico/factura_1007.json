@@ -1,0 +1,238 @@
+{
+  "archivo": "factura_1007.jpg",
+  "grupo": "historico",
+  "caso_id": "F-1007",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "moderna",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "91f213c5754d6b3154081663847eeec0e0bfe47c7b0bfa06390b6555e3d11175",
+  "tamano_bytes": 109075,
+  "fecha_recepcion": "2026-04-20",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 8952",
+      "fecha": "01/04/2026",
+      "emisor_nombre": "Salas Suministros SC",
+      "emisor_rfc": "SSS130401FHU",
+      "emisor_direccion": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "34,229.19",
+      "impuestos": "5,476.67",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "39,705.86",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-04-01",
+      "subtotal": "34229.19",
+      "impuestos": "5476.67",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "39705.86"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "3",
+        "precio_unitario": "11,409.73",
+        "importe": "34,229.19"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 92,
+    "emisor_nombre": 92,
+    "emisor_rfc": 90,
+    "emisor_direccion": 92,
+    "receptor_nombre": 92,
+    "receptor_rfc": 96,
+    "moneda": 99,
+    "subtotal": 97,
+    "impuestos": 98,
+    "tasa_iva": 90,
+    "total": 93,
+    "condiciones_pago": 98
+  },
+  "texto_completo": "SS\nSalas Suministros SC\nCerrada Sur Blanco 770, Vieja Brasil\nRFC emisor  SSS130401FHU\nDocumento\nFactura\nSerie y folio\nB 8952\nFecha de emisión\n01/04/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nSoporte técnico mensual\n3\n11,409.73\n34,229.19\nSubtotal\n34,229.19\nIVA 16 %\n5,476.67\nTotal\n$ 39,705.86 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          105.0,
+          82.7,
+          217.6,
+          195.3
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Salas Suministros SC",
+      "bbox": [
+        [
+          246.6,
+          97.0,
+          548.2,
+          128.0
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "bbox": [
+        [
+          246.6,
+          138.7,
+          552.0,
+          158.8
+        ]
+      ]
+    },
+    "GST": {
+      "text": "SSS130401FHU",
+      "bbox": [
+        [
+          246.6,
+          167.8,
+          495.7,
+          187.8
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.8,
+          246.0,
+          1171.5,
+          265.7
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 8952",
+      "bbox": [
+        [
+          1111.0,
+          277.3,
+          1171.5,
+          297.0
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "01/04/2026",
+      "bbox": [
+        [
+          1077.6,
+          308.4,
+          1171.4,
+          328.2
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.8,
+          339.8,
+          1171.4,
+          359.5
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.8,
+          274.4,
+          424.4,
+          296.6
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.8,
+          305.6,
+          257.6,
+          327.6
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Soporte técnico mensual 3 11,409.73 34,229.19",
+      "bbox": [
+        [
+          104.6,
+          422.3,
+          1171.3,
+          506.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "34,229.19",
+      "bbox": [
+        [
+          1078.5,
+          548.4,
+          1171.1,
+          570.4
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "5,476.67",
+      "bbox": [
+        [
+          1090.1,
+          581.7,
+          1171.1,
+          603.7
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "39,705.86",
+      "bbox": [
+        [
+          976.5,
+          620.0,
+          1171.0,
+          646.4
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          104.3,
+          717.7,
+          417.0,
+          737.7
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

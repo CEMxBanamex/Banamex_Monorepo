@@ -1,0 +1,235 @@
+{
+  "archivo": "piloto_033.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "proveedor_no_padron",
+  "descripcion": "Proveedor que no está en el padrón",
+  "layout": "banda",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "446d82d382d8094e9b793c5eb7f0f62d360713f2af3f371d44cb93207e5a1ec1",
+  "tamano_bytes": 97879,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 4135",
+      "fecha": "24 de septiembre de 2026",
+      "emisor_nombre": "Balderas Tecnología S de RL de CV",
+      "emisor_rfc": "BTS860628LYP",
+      "emisor_direccion": "Callejón Chiapas 985, San Rodolfo los altos",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "82,017.25",
+      "impuestos": "13,122.76",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "95,140.01",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-24",
+      "subtotal": "82017.25",
+      "impuestos": "13122.76",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "95140.01"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "1",
+        "precio_unitario": "35,877.73",
+        "importe": "35,877.73"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "2",
+        "precio_unitario": "23,069.76",
+        "importe": "46,139.52"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 90,
+    "emisor_nombre": 95,
+    "emisor_rfc": 97,
+    "emisor_direccion": 98,
+    "receptor_nombre": 96,
+    "receptor_rfc": 90,
+    "moneda": 95,
+    "subtotal": 91,
+    "impuestos": 98,
+    "tasa_iva": 93,
+    "total": 96,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "Balderas Tecnología S de RL de CV\nCallejón Chiapas 985, San Rodolfo los altos\nFACTURA\nEMISOR\nRFC: BTS860628LYP\nNo. de factura: B 4135\nExpedida el 24 de septiembre de 2026\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nAuditoría de seguridad informática\n1\n35,877.73\n35,877.73\nDesarrollo de reporte analítico\n2\n23,069.76\n46,139.52\nSubtotal\n82,017.25\nIVA 16 %\n13,122.76\nTotal\n$ 95,140.01 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Balderas Tecnología S de RL de CV",
+      "bbox": [
+        [
+          73.8,
+          62.9,
+          707.9,
+          110.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Callejón Chiapas 985, San Rodolfo los altos",
+      "bbox": [
+        [
+          74.6,
+          129.1,
+          440.6,
+          153.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          980.7,
+          53.5,
+          1182.6,
+          99.8
+        ]
+      ]
+    },
+    "GST": {
+      "text": "BTS860628LYP",
+      "bbox": [
+        [
+          97.6,
+          295.9,
+          301.6,
+          320.2
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 4135",
+      "bbox": [
+        [
+          98.0,
+          329.1,
+          306.6,
+          353.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "24 de septiembre de 2026",
+      "bbox": [
+        [
+          98.4,
+          360.5,
+          455.4,
+          386.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          685.0,
+          287.1,
+          1004.8,
+          312.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          685.4,
+          321.8,
+          892.9,
+          346.3
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          685.9,
+          356.0,
+          819.2,
+          379.6
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Auditoría de seguridad informática 1 35,877.73 35,877.73\nDesarrollo de reporte analítico 2 23,069.76 46,139.52",
+      "bbox": [
+        [
+          78.6,
+          436.9,
+          1188.4,
+          571.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "82,017.25",
+      "bbox": [
+        [
+          1075.6,
+          616.2,
+          1168.5,
+          639.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "13,122.76",
+      "bbox": [
+        [
+          1076.1,
+          649.5,
+          1168.9,
+          672.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "95,140.01",
+      "bbox": [
+        [
+          974.6,
+          687.9,
+          1169.5,
+          716.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          82.9,
+          796.3,
+          395.9,
+          819.9
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-017"
+    ]
+  },
+  "nota_oculta": null
+}

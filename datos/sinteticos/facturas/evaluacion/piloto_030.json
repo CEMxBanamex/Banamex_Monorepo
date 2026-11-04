@@ -1,0 +1,241 @@
+{
+  "archivo": "piloto_030.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "monto_alto",
+  "descripcion": "Total mayor a 250,000 MXN",
+  "layout": "clasica",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "d8173e5c33893d4b9be0982f2cd22043462f273401e79e9f770adee4c3f217ed",
+  "tamano_bytes": 118640,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 894",
+      "fecha": "23/09/2026",
+      "emisor_nombre": "Serrato Tecnología SAPI de CV",
+      "emisor_rfc": "STS970523758",
+      "emisor_direccion": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "281,704.54",
+      "impuestos": "45,072.73",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "326,777.27",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-23",
+      "subtotal": "281704.54",
+      "impuestos": "45072.73",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "326777.27"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "5",
+        "precio_unitario": "1,817.58",
+        "importe": "9,087.90"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "4",
+        "precio_unitario": "1,029.16",
+        "importe": "4,116.64"
+      },
+      {
+        "descripcion": "Implementación de plataforma",
+        "cantidad": "1",
+        "precio_unitario": "268,500.00",
+        "importe": "268,500.00"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 95,
+    "fecha": 99,
+    "emisor_nombre": 94,
+    "emisor_rfc": 96,
+    "emisor_direccion": 90,
+    "receptor_nombre": 95,
+    "receptor_rfc": 95,
+    "moneda": 91,
+    "subtotal": 98,
+    "impuestos": 93,
+    "tasa_iva": 90,
+    "total": 90,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "Serrato Tecnología SAPI de CV\nRFC STS970523758\nPasaje Guerrero 944, San Hermelinda de la Montaña\nFACTURA\nFolio B 894\nFecha 23/09/2026\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nTraducción de documentos\n5\n1,817.58\n9,087.90\nMensajería y paquetería\n4\n1,029.16\n4,116.64\nImplementación de plataforma\n1\n268,500.00\n268,500.00\nSubtotal\n281,704.54\nIVA 16 %\n45,072.73\nTotal\n$ 326,777.27\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Serrato Tecnología SAPI de CV",
+      "bbox": [
+        [
+          85.1,
+          99.6,
+          578.6,
+          147.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "STS970523758",
+      "bbox": [
+        [
+          86.4,
+          155.0,
+          280.2,
+          182.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "bbox": [
+        [
+          87.2,
+          176.3,
+          579.7,
+          211.2
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1010.6,
+          87.8,
+          1152.3,
+          122.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 894",
+      "bbox": [
+        [
+          1047.4,
+          131.9,
+          1153.2,
+          156.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "23/09/2026",
+      "bbox": [
+        [
+          985.6,
+          161.1,
+          1154.0,
+          187.4
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          90.0,
+          287.9,
+          457.5,
+          319.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          90.8,
+          321.4,
+          293.9,
+          348.7
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          91.6,
+          352.5,
+          225.2,
+          377.8
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Traducción de documentos 5 1,817.58 9,087.90\nMensajería y paquetería 4 1,029.16 4,116.64\nImplementación de plataforma 1 268,500.00 268,500.00",
+      "bbox": [
+        [
+          93.2,
+          388.1,
+          1163.6,
+          574.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "281,704.54",
+      "bbox": [
+        [
+          1060.5,
+          588.0,
+          1165.3,
+          612.7
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "45,072.73",
+      "bbox": [
+        [
+          1073.0,
+          621.3,
+          1166.2,
+          645.7
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "326,777.27",
+      "bbox": [
+        [
+          1020.8,
+          659.7,
+          1167.3,
+          689.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          102.7,
+          768.0,
+          415.8,
+          795.9
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-021"
+    ]
+  },
+  "nota_oculta": null
+}

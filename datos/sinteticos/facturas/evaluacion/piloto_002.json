@@ -1,0 +1,239 @@
+{
+  "archivo": "piloto_002.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "clasica",
+  "formato": "pdf",
+  "paginas": 2,
+  "sha256": "89c8623f3c372e56cd4e0b5cef5d9028f2c0e7b12bca1dc2057950fec9613c73",
+  "tamano_bytes": 3085,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 1556",
+      "fecha": "13/09/2026",
+      "emisor_nombre": "Tijerina Tecnología S de RL de CV",
+      "emisor_rfc": "TTS180815H99",
+      "emisor_direccion": "Boulevard San Vicente y las Granadinas 334, San María Teresa los altos",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "127,987.42",
+      "impuestos": "20,477.99",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "148,465.41",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-13",
+      "subtotal": "127987.42",
+      "impuestos": "20477.99",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "148465.41"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "10",
+        "precio_unitario": "2,235.14",
+        "importe": "22,351.40"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "4",
+        "precio_unitario": "2,449.32",
+        "importe": "9,797.28"
+      },
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "2",
+        "precio_unitario": "47,919.37",
+        "importe": "95,838.74"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 92,
+    "emisor_nombre": 93,
+    "emisor_rfc": 93,
+    "emisor_direccion": 94,
+    "receptor_nombre": 99,
+    "receptor_rfc": 96,
+    "moneda": 97,
+    "subtotal": 97,
+    "impuestos": 90,
+    "tasa_iva": 94,
+    "total": 91,
+    "condiciones_pago": 90
+  },
+  "texto_completo": "Tijerina Tecnología S de RL de CV\nRFC TTS180815H99\nBoulevard San Vicente y las Granadinas 334, San María Teresa los altos\nFACTURA\nFolio B 1556\nFecha 13/09/2026\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nTraducción de documentos\n10\n2,235.14\n22,351.40\nPapelería y artículos de oficina\n4\n2,449.32\n9,797.28\nAuditoría de seguridad informática\n2\n47,919.37\n95,838.74\nSubtotal\n127,987.42\nIVA 16 %\n20,477.99\nTotal\n$ 148,465.41\nCondiciones de pago: Pago a 30 días\nTérminos y condiciones\n1. Los precios incluyen los impuestos desglosados en la página 1.\n2. Las aclaraciones se reciben dentro de los 5 días hábiles siguientes a la emisión.\n3. Documento sintético generado para el piloto del Data Steward Agéntico.",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Tijerina Tecnología S de RL de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          645.1,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "TTS180815H99",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          299.8,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Boulevard San Vicente y las Granadinas 334, San María Teresa los altos",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          779.3,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 1556",
+      "bbox": [
+        [
+          1053.9,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "13/09/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          471.2,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          306.8,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Traducción de documentos 10 2,235.14 22,351.40\nPapelería y artículos de oficina 4 2,449.32 9,797.28\nAuditoría de seguridad informática 2 47,919.37 95,838.74",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          560.4
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "127,987.42",
+      "bbox": [
+        [
+          1066.6,
+          602.1,
+          1170.8,
+          624.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "20,477.99",
+      "bbox": [
+        [
+          1078.2,
+          635.4,
+          1170.8,
+          657.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "148,465.41",
+      "bbox": [
+        [
+          1024.9,
+          673.8,
+          1170.8,
+          700.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          104.2,
+          762.1,
+          416.9,
+          781.8
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

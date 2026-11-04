@@ -1,0 +1,229 @@
+{
+  "archivo": "piloto_035.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "baja_legibilidad",
+  "descripcion": "Escaneo degradado; se espera baja confianza en algunos campos",
+  "layout": "compacta",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "2a69cade1a6d0bdbf0410a6b670a219eb1f45062d2bb15cf3707fb5a87c66dd0",
+  "tamano_bytes": 367624,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-3525",
+      "fecha": "2026-06-18",
+      "emisor_nombre": "Vélez Suministros SAPI de CV",
+      "emisor_rfc": "VSS140321VBZ",
+      "emisor_direccion": "Ampliación San Luis Potosí 295, San Francisca los bajos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "20,653.08",
+      "impuestos": "3,304.49",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "23,957.57",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-06-18",
+      "subtotal": "20653.08",
+      "impuestos": "3304.49",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "23957.57"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "4",
+        "precio_unitario": "5,163.27",
+        "importe": "20,653.08"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 55,
+    "emisor_nombre": 93,
+    "emisor_rfc": 98,
+    "emisor_direccion": 93,
+    "receptor_nombre": 92,
+    "receptor_rfc": 99,
+    "moneda": 99,
+    "subtotal": 90,
+    "impuestos": 97,
+    "tasa_iva": 97,
+    "total": 59,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "VÉLEZ SUMINISTROS SAPI DE CV\nAmpliación San Luis Potosí 295, San Francisca los bajos\nR.F.C. VSS140321VBZ\nFACTURA\n#A-3525\nFecha: 2026-06-18\nCliente: Banco Demo SA, Institución de Banca Múltiple\nRFC cliente: BDM970315QW2\nMoneda: MXN\n4 x Servicio de limpieza\n20,653.08\nSUBTOTAL\n20,653.08\nIVA 16 %\n3,304.49\nTOTAL\n23,957.57\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Vélez Suministros SAPI de CV",
+      "bbox": [
+        [
+          438.5,
+          81.1,
+          858.8,
+          113.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Ampliación San Luis Potosí 295, San Francisca los bajos",
+      "bbox": [
+        [
+          373.0,
+          120.1,
+          923.2,
+          146.0
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VSS140321VBZ",
+      "bbox": [
+        [
+          540.6,
+          150.1,
+          754.7,
+          173.1
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          300.8,
+          205.6,
+          397.3,
+          231.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-3525",
+      "bbox": [
+        [
+          904.8,
+          216.5,
+          992.6,
+          239.8
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-06-18",
+      "bbox": [
+        [
+          300.3,
+          242.3,
+          491.8,
+          264.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          299.8,
+          271.5,
+          896.3,
+          300.3
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          299.4,
+          300.6,
+          580.9,
+          324.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          298.9,
+          329.8,
+          422.9,
+          351.4
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 4 5,163.27 20,653.08",
+      "bbox": [
+        [
+          297.9,
+          376.0,
+          990.1,
+          426.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "20,653.08",
+      "bbox": [
+        [
+          887.6,
+          447.1,
+          989.1,
+          468.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "3,304.49",
+      "bbox": [
+        [
+          898.4,
+          474.4,
+          988.7,
+          495.4
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "23,957.57",
+      "bbox": [
+        [
+          864.1,
+          505.9,
+          988.2,
+          531.9
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          295.5,
+          556.4,
+          575.7,
+          578.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-003"
+    ]
+  },
+  "nota_oculta": null
+}

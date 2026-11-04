@@ -1,0 +1,233 @@
+{
+  "archivo": "factura_1026.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1026",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "compacta",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "ead61d1b0152a6d72fb14b71f6ab70668522674e621c9daa8f4e67e2e9b92068",
+  "tamano_bytes": 2297,
+  "fecha_recepcion": "2026-08-31",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-035356",
+      "fecha": "2026-08-15",
+      "emisor_nombre": "Jasso Tecnología SAPI de CV",
+      "emisor_rfc": "JTS9712282K4",
+      "emisor_direccion": "Calle Aguascalientes 99, San Violeta los altos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "55,071.67",
+      "impuestos": "4,405.73",
+      "tasa_iva": "IVA 8 %",
+      "retenciones": null,
+      "total": "59,477.40",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-15",
+      "subtotal": "55071.67",
+      "impuestos": "4405.73",
+      "tasa_iva": "0.08",
+      "retenciones": "0.00",
+      "total": "59477.40"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "3",
+        "precio_unitario": "11,450.08",
+        "importe": "34,350.24"
+      },
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "20,721.43",
+        "importe": "20,721.43"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 95,
+    "fecha": 92,
+    "emisor_nombre": 94,
+    "emisor_rfc": 90,
+    "emisor_direccion": 91,
+    "receptor_nombre": 93,
+    "receptor_rfc": 97,
+    "moneda": 96,
+    "subtotal": 91,
+    "impuestos": 95,
+    "tasa_iva": 96,
+    "total": 90,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "JASSO TECNOLOGÍA SAPI DE CV\nCalle Aguascalientes 99, San Violeta los altos\nR.F.C. JTS9712282K4\nFACTURA\n#FAC-035356\nFecha: 2026-08-15\nCliente: Banco Demo SA, Institución de Banca Múltiple\nRFC cliente: BDM970315QW2\nMoneda: MXN\n3 x Hospedaje de servidores\n34,350.24\n1 x Servicio de consultoría\n20,721.43\nSUBTOTAL\n55,071.67\nIVA 8 %\n4,405.73\nTOTAL\n59,477.40\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Jasso Tecnología SAPI de CV",
+      "bbox": [
+        [
+          435.0,
+          84.2,
+          840.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Aguascalientes 99, San Violeta los altos",
+      "bbox": [
+        [
+          407.5,
+          124.2,
+          867.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "JTS9712282K4",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-035356",
+      "bbox": [
+        [
+          845.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-08-15",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          887.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Hospedaje de servidores 3 11,450.08 34,350.24\nServicio de consultoría 1 20,721.43 20,721.43",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          447.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "55,071.67",
+      "bbox": [
+        [
+          882.1,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "4,405.73",
+      "bbox": [
+        [
+          893.3,
+          497.5,
+          983.3,
+          517.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "59,477.40",
+      "bbox": [
+        [
+          859.6,
+          529.6,
+          983.3,
+          553.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          291.7,
+          588.8,
+          641.7,
+          606.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

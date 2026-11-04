@@ -1,0 +1,257 @@
+{
+  "archivo": "factura_1017.png",
+  "grupo": "historico",
+  "caso_id": "F-1017",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "banda",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "6312aa2768acb5b5b55431202899e03d10cd7b6ff267cb3acd0c3a0ca8cd990b",
+  "tamano_bytes": 110567,
+  "fecha_recepcion": "2026-06-29",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 6708",
+      "fecha": "14 de junio de 2026",
+      "emisor_nombre": "Loera Tecnología SA de CV",
+      "emisor_rfc": "LTS1804269JL",
+      "emisor_direccion": "Callejón Norte Solano 133, San Esperanza de la Montaña",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "64,641.45",
+      "impuestos": "10,342.63",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": "6,464.15",
+      "total": "68,519.93",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-14",
+      "subtotal": "64641.45",
+      "impuestos": "10342.63",
+      "tasa_iva": "0.16",
+      "retenciones": "6464.15",
+      "total": "68519.93"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "5",
+        "precio_unitario": "2,302.40",
+        "importe": "11,512.00"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "4",
+        "precio_unitario": "10,180.73",
+        "importe": "40,722.92"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "9,542.73",
+        "importe": "9,542.73"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "1",
+        "precio_unitario": "2,863.80",
+        "importe": "2,863.80"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 91,
+    "fecha": 93,
+    "emisor_nombre": 96,
+    "emisor_rfc": 92,
+    "emisor_direccion": 99,
+    "receptor_nombre": 95,
+    "receptor_rfc": 98,
+    "moneda": 96,
+    "subtotal": 93,
+    "impuestos": 99,
+    "tasa_iva": 98,
+    "retenciones": 94,
+    "total": 98,
+    "condiciones_pago": 98
+  },
+  "texto_completo": "Loera Tecnología SA de CV\nCallejón Norte Solano 133, San Esperanza de la Montaña\nFACTURA\nEMISOR\nRFC: LTS1804269JL\nNo. de factura: B 6708\nExpedida el 14 de junio de 2026\nFACTURAR A\nServicios Corporativos Demo SA de CV\nRFC: SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de cafetería\n5\n2,302.40\n11,512.00\nSoporte técnico mensual\n4\n10,180.73\n40,722.92\nHospedaje de servidores\n1\n9,542.73\n9,542.73\nRenta de equipo de cómputo\n1\n2,863.80\n2,863.80\nSubtotal\n64,641.45\nIVA 16 %\n10,342.63\nRetenciones\n-6,464.15\nTotal\n$ 68,519.93 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Loera Tecnología SA de CV",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          573.0,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Callejón Norte Solano 133, San Esperanza de la Montaña",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          564.8,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          990.3,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "LTS1804269JL",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          299.9,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 6708",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          312.6,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "14 de junio de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          401.8,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1058.7,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          900.1,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de cafetería 5 2,302.40 11,512.00\nSoporte técnico mensual 4 10,180.73 40,722.92\nHospedaje de servidores 1 9,542.73 9,542.73\nRenta de equipo de cómputo 1 2,863.80 2,863.80",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          639.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "64,641.45",
+      "bbox": [
+        [
+          1078.2,
+          697.9,
+          1170.8,
+          719.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "10,342.63",
+      "bbox": [
+        [
+          1078.2,
+          731.2,
+          1170.8,
+          753.1
+        ]
+      ]
+    },
+    "RETENCIONES": {
+      "text": "6,464.15",
+      "bbox": [
+        [
+          1082.8,
+          764.6,
+          1170.8,
+          786.5
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "68,519.93",
+      "bbox": [
+        [
+          976.3,
+          802.9,
+          1170.8,
+          829.2
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          83.3,
+          901.7,
+          396.0,
+          921.4
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

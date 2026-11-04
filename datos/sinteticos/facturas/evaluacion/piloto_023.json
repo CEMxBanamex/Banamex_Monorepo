@@ -1,0 +1,229 @@
+{
+  "archivo": "piloto_023.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "rfc_longitud",
+  "descripcion": "RFC del emisor con 11 caracteres",
+  "layout": "compacta",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "51ff0dc27004bde4173fab6499232a195badd979d817bf014fdfc75224adc92a",
+  "tamano_bytes": 56953,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-080552",
+      "fecha": "2026-10-04",
+      "emisor_nombre": "Vera Grupo SAPI de CV",
+      "emisor_rfc": "VGS9607276E",
+      "emisor_direccion": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "8,442.86",
+      "impuestos": "1,350.86",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "9,793.72",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-10-04",
+      "subtotal": "8442.86",
+      "impuestos": "1350.86",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "9793.72"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "2",
+        "precio_unitario": "4,221.43",
+        "importe": "8,442.86"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 93,
+    "fecha": 99,
+    "emisor_nombre": 95,
+    "emisor_rfc": 94,
+    "emisor_direccion": 96,
+    "receptor_nombre": 91,
+    "receptor_rfc": 98,
+    "moneda": 90,
+    "subtotal": 97,
+    "impuestos": 95,
+    "tasa_iva": 96,
+    "total": 98,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "VERA GRUPO SAPI DE CV\nRetorno Farías 464, Nueva San Vicente y las Granadinas\nR.F.C. VGS9607276E\nFACTURA\n#FAC-080552\nFecha: 2026-10-04\nCliente: Servicios Corporativos Demo SA de CV\nRFC cliente: SCD050920LM8\nMoneda: MXN\n2 x Traducción de documentos\n8,442.86\nSUBTOTAL\n8,442.86\nIVA 16 %\n1,350.86\nTOTAL\n9,793.72\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Vera Grupo SAPI de CV",
+      "bbox": [
+        [
+          480.0,
+          84.2,
+          795.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "bbox": [
+        [
+          367.5,
+          124.2,
+          907.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VGS9607276E",
+      "bbox": [
+        [
+          536.2,
+          151.7,
+          738.8,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-080552",
+      "bbox": [
+        [
+          845.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-10-04",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          797.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Traducción de documentos 2 4,221.43 8,442.86",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          420.8
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "8,442.86",
+      "bbox": [
+        [
+          893.3,
+          443.3,
+          983.3,
+          463.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "1,350.86",
+      "bbox": [
+        [
+          893.3,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "9,793.72",
+      "bbox": [
+        [
+          873.3,
+          502.5,
+          983.3,
+          526.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          291.7,
+          561.7,
+          571.7,
+          579.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-002"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,233 @@
+{
+  "archivo": "factura_1002.png",
+  "grupo": "historico",
+  "caso_id": "F-1002",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "compacta",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "481ebf6508c3905b03e54a7c815683c12fd81a2d036a6a390780eb2d03150204",
+  "tamano_bytes": 60176,
+  "fecha_recepcion": "2026-03-16",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "88793441",
+      "fecha": "2026-03-02",
+      "emisor_nombre": "Alvarez Consultores SA de CV",
+      "emisor_rfc": "ACS950326V82",
+      "emisor_direccion": "Continuación Norte Rascón 428, San Germán los bajos",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "68,352.25",
+      "impuestos": "10,936.36",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "79,288.61",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-03-02",
+      "subtotal": "68352.25",
+      "impuestos": "10936.36",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "79288.61"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "5",
+        "precio_unitario": "7,526.19",
+        "importe": "37,630.95"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "5",
+        "precio_unitario": "6,144.26",
+        "importe": "30,721.30"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 92,
+    "fecha": 93,
+    "emisor_nombre": 90,
+    "emisor_rfc": 90,
+    "emisor_direccion": 94,
+    "receptor_nombre": 98,
+    "receptor_rfc": 97,
+    "moneda": 96,
+    "subtotal": 94,
+    "impuestos": 95,
+    "tasa_iva": 92,
+    "total": 91,
+    "condiciones_pago": 92
+  },
+  "texto_completo": "ALVAREZ CONSULTORES SA DE CV\nContinuación Norte Rascón 428, San Germán los bajos\nR.F.C. ACS950326V82\nFACTURA\n#88793441\nFecha: 2026-03-02\nCliente: Grupo Financiero Demo SA de CV\nRFC cliente: GFD960701AB4\nMoneda: MXN\n5 x Capacitación en línea\n37,630.95\n5 x Servicio de limpieza\n30,721.30\nSUBTOTAL\n68,352.25\nIVA 16 %\n10,936.36\nTOTAL\n79,288.61\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Alvarez Consultores SA de CV",
+      "bbox": [
+        [
+          427.5,
+          84.2,
+          847.5,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Continuación Norte Rascón 428, San Germán los bajos",
+      "bbox": [
+        [
+          382.5,
+          124.2,
+          892.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "ACS950326V82",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "88793441",
+      "bbox": [
+        [
+          870.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-03-02",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          730.4,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Capacitación en línea 5 7,526.19 37,630.95\nServicio de limpieza 5 6,144.26 30,721.30",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          447.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "68,352.25",
+      "bbox": [
+        [
+          882.1,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "10,936.36",
+      "bbox": [
+        [
+          882.1,
+          497.5,
+          983.3,
+          517.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "79,288.61",
+      "bbox": [
+        [
+          859.6,
+          529.6,
+          983.3,
+          553.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          291.7,
+          588.8,
+          571.7,
+          606.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

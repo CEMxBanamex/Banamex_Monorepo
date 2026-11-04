@@ -1,0 +1,240 @@
+{
+  "archivo": "piloto_036.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "baja_legibilidad",
+  "descripcion": "Escaneo degradado; se espera baja confianza en algunos campos",
+  "layout": "moderna",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "c1bf64423009d49deb9c1c0e7f74f6c385fed707b19821316247463c41dcba0d",
+  "tamano_bytes": 266040,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "35992249",
+      "fecha": "07/07/2026",
+      "emisor_nombre": "Cervántez Servicios SA de CV",
+      "emisor_rfc": "CSS131018FNR",
+      "emisor_direccion": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "3,155.85",
+      "impuestos": "504.94",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "3,660.79",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-07",
+      "subtotal": "3155.85",
+      "impuestos": "504.94",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "3660.79"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "3,155.85",
+        "importe": "3,155.85"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 57,
+    "fecha": 96,
+    "emisor_nombre": 98,
+    "emisor_rfc": 99,
+    "emisor_direccion": 91,
+    "receptor_nombre": 97,
+    "receptor_rfc": 97,
+    "moneda": 96,
+    "subtotal": 67,
+    "impuestos": 93,
+    "tasa_iva": 94,
+    "total": 93,
+    "condiciones_pago": 96
+  },
+  "texto_completo": "CS\nCervántez Servicios SA de CV\nPeatonal República Unida de Tanzanía 1, Vieja Bhután\nRFC emisor  CSS131018FNR\nDocumento\nFactura\nSerie y folio\n35992249\nFecha de emisión\n07/07/2026\nMoneda\nMXN\nRECEPTOR\nServicios Corporativos Demo SA de CV\nSCD050920LM8\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n1\n3,155.85\n3,155.85\nSubtotal\n3,155.85\nIVA 16 %\n504.94\nTotal\n$ 3,660.79 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          122.3,
+          68.5,
+          237.9,
+          184.1
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Cervántez Servicios SA de CV",
+      "bbox": [
+        [
+          265.7,
+          86.7,
+          683.0,
+          129.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+      "bbox": [
+        [
+          264.9,
+          128.4,
+          723.8,
+          161.1
+        ]
+      ]
+    },
+    "GST": {
+      "text": "CSS131018FNR",
+      "bbox": [
+        [
+          264.0,
+          157.4,
+          514.6,
+          184.2
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1118.8,
+          258.8,
+          1187.0,
+          280.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "35992249",
+      "bbox": [
+        [
+          1102.2,
+          289.7,
+          1186.1,
+          311.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "07/07/2026",
+      "bbox": [
+        [
+          1090.9,
+          320.6,
+          1185.3,
+          342.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1142.2,
+          353.3,
+          1184.4,
+          374.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          119.4,
+          260.1,
+          486.9,
+          292.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          118.5,
+          291.3,
+          273.1,
+          317.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 1 3,155.85 3,155.85",
+      "bbox": [
+        [
+          113.5,
+          407.9,
+          1182.0,
+          521.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "3,155.85",
+      "bbox": [
+        [
+          1096.9,
+          560.8,
+          1178.4,
+          585.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "504.94",
+      "bbox": [
+        [
+          1113.2,
+          594.6,
+          1177.5,
+          618.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "3,660.79",
+      "bbox": [
+        [
+          995.1,
+          629.7,
+          1176.4,
+          661.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          106.9,
+          703.2,
+          420.0,
+          731.8
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-003"
+    ]
+  },
+  "nota_oculta": null
+}

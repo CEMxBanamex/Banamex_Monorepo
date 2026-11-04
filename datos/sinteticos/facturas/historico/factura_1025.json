@@ -1,0 +1,227 @@
+{
+  "archivo": "factura_1025.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1025",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "banda",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "2229827e345e41507ad1cfdd5b96a3913b59ea7be256824ea8428e43f9d525ba",
+  "tamano_bytes": 2423,
+  "fecha_recepcion": "2026-08-24",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 4803",
+      "fecha": "21 de agosto de 2026",
+      "emisor_nombre": "Bermúdez Consultores SAPI de CV",
+      "emisor_rfc": "BCS091217EXF",
+      "emisor_direccion": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "83,278.55",
+      "impuestos": "13,324.57",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "96,603.12",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-21",
+      "subtotal": "83278.55",
+      "impuestos": "13324.57",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "96603.12"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "5",
+        "precio_unitario": "16,655.71",
+        "importe": "83,278.55"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 93,
+    "fecha": 90,
+    "emisor_nombre": 96,
+    "emisor_rfc": 94,
+    "emisor_direccion": 92,
+    "receptor_nombre": 94,
+    "receptor_rfc": 98,
+    "moneda": 92,
+    "subtotal": 99,
+    "impuestos": 96,
+    "tasa_iva": 90,
+    "total": 97,
+    "condiciones_pago": 99
+  },
+  "texto_completo": "Bermúdez Consultores SAPI de CV\nAvenida Nuevo León 825, San Fabiola de la Montaña\nFACTURA\nEMISOR\nRFC: BCS091217EXF\nNo. de factura: B 4803\nExpedida el 21 de agosto de 2026\nFACTURAR A\nBanco Demo SA, Institución de Banca Múltiple\nRFC: BDM970315QW2\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nAuditoría de seguridad informática\n5\n16,655.71\n83,278.55\nSubtotal\n83,278.55\nIVA 16 %\n13,324.57\nTotal\n$ 96,603.12 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Bermúdez Consultores SAPI de CV",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          708.5,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          528.4,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          990.3,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "BCS091217EXF",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          311.4,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 4803",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          312.6,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "21 de agosto de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          420.4,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1122.4,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          909.3,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Auditoría de seguridad informática 5 16,655.71 83,278.55",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          527.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "83,278.55",
+      "bbox": [
+        [
+          1078.2,
+          585.4,
+          1170.8,
+          607.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "13,324.57",
+      "bbox": [
+        [
+          1078.2,
+          618.8,
+          1170.8,
+          640.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "96,603.12",
+      "bbox": [
+        [
+          976.3,
+          657.1,
+          1170.8,
+          683.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          83.3,
+          755.8,
+          396.0,
+          775.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,13 @@
+{
+  "archivo": "registros_prueba.csv",
+  "escenario": "archivo_ilegible",
+  "caso_id": "V-0206",
+  "grupo": "demo",
+  "descripcion": "Archivo que no se puede leer (caso V-0206 del frontend)",
+  "fecha_recepcion": "2026-11-02",
+  "esperado": {
+    "resultado": null,
+    "estado": "error",
+    "reglas": []
+  }
+}

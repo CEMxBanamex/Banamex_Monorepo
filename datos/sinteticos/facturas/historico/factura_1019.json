@@ -1,0 +1,238 @@
+{
+  "archivo": "factura_1019.png",
+  "grupo": "historico",
+  "caso_id": "F-1019",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "moderna",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "b3b00942420a61386cf73f2cf3f45019e9829bd7deb0cd76bf4b79cfa4fea3fb",
+  "tamano_bytes": 85190,
+  "fecha_recepcion": "2026-07-13",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 9678",
+      "fecha": "26/06/2026",
+      "emisor_nombre": "Portillo Suministros SA de CV",
+      "emisor_rfc": "PSS990327D9G",
+      "emisor_direccion": "Calle Norte Girón 590, Vieja Swazilandia",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "23,153.80",
+      "impuestos": "1,852.30",
+      "tasa_iva": "IVA 8 %",
+      "retenciones": null,
+      "total": "25,006.10",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-26",
+      "subtotal": "23153.80",
+      "impuestos": "1852.30",
+      "tasa_iva": "0.08",
+      "retenciones": "0.00",
+      "total": "25006.10"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "5",
+        "precio_unitario": "4,630.76",
+        "importe": "23,153.80"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 91,
+    "fecha": 93,
+    "emisor_nombre": 93,
+    "emisor_rfc": 92,
+    "emisor_direccion": 97,
+    "receptor_nombre": 99,
+    "receptor_rfc": 96,
+    "moneda": 97,
+    "subtotal": 92,
+    "impuestos": 96,
+    "tasa_iva": 98,
+    "total": 95,
+    "condiciones_pago": 90
+  },
+  "texto_completo": "PS\nPortillo Suministros SA de CV\nCalle Norte Girón 590, Vieja Swazilandia\nRFC emisor  PSS990327D9G\nDocumento\nFactura\nSerie y folio\nB 9678\nFecha de emisión\n26/06/2026\nMoneda\nMXN\nRECEPTOR\nBanco Demo SA, Institución de Banca Múltiple\nBDM970315QW2\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n5\n4,630.76\n23,153.80\nSubtotal\n23,153.80\nIVA 8 %\n1,852.30\nTotal\n$ 25,006.10 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Portillo Suministros SA de CV",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          662.4,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Norte Girón 590, Vieja Swazilandia",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          584.5,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "PSS990327D9G",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          494.9,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 9678",
+      "bbox": [
+        [
+          1110.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "26/06/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          534.9,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          267.4,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 5 4,630.76 23,153.80",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          506.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "23,153.80",
+      "bbox": [
+        [
+          1078.2,
+          547.9,
+          1170.8,
+          569.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "1,852.30",
+      "bbox": [
+        [
+          1089.8,
+          581.2,
+          1170.8,
+          603.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "25,006.10",
+      "bbox": [
+        [
+          976.3,
+          619.6,
+          1170.8,
+          645.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          104.2,
+          718.3,
+          416.9,
+          738.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}
