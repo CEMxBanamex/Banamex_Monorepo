@@ -63,6 +63,7 @@ Coincide con lo que dibuja el frontend en `Detalle.jsx` y `Validacion.jsx`:
 ```json
 {
   "regla_id": "R-014", "regla_version": "2.1", "politica_id": "P-002",
+  "politica_version": "2.0", "politica_seccion": "5. Total de la factura",
   "efecto": "rechazo", "severidad": "error",
   "titulo": "El total no coincide con subtotal más impuestos",
   "texto": "La suma de subtotal e impuestos da un valor distinto al total impreso en la factura.",
@@ -74,6 +75,7 @@ Coincide con lo que dibuja el frontend en `Detalle.jsx` y `Validacion.jsx`:
 ```
 
 `severidad` es la del ícono en la interfaz (`error`, `adv`, `info`); `efecto` es el que decide el resultado.
+`politica_version` y `politica_seccion` salen del catálogo de reglas: la cita de cada hallazgo no depende del RAG.
 
 ### Cómo se decide el resultado sugerido
 
@@ -113,6 +115,11 @@ usuario_actual.set(ContextoUsuario(usuario_id=claims["sub"], rol=claims["cognito
 
 Sin contexto, la tool falla con `PermissionError`. Las tools de Juan Pablo (`ejecutar_consulta`) deben hacer lo mismo con `steward_datos.contexto.fijar_en_bd(sesion, usuario)` antes de ejecutar.
 
+`fijar_en_bd` usa `SET LOCAL`, no `set_config`: la migración `0003` le quita `set_config` a `PUBLIC` porque una consulta como
+`SELECT set_config('app.rol', 'administrador', true), * FROM v_clientes` cambiaba el rol dentro de un solo SELECT y se saltaba
+la seguridad por fila. Aun así, la validación del SQL de `ejecutar_consulta` debe aceptar solo una lista blanca de funciones.
+En RDS, si quien migra no es dueño de `set_config`, la migración avisa con un `WARNING` y hay que pedir el `REVOKE` a un superusuario.
+
 ### Registro en el servidor MCP
 
 ```python
@@ -125,6 +132,8 @@ registrar_tools_datos(mcp)
 
 ## Pendiente de acordar en 0.7.4
 
-- Cómo obtiene Agentes la confianza por campo del modelo de visión.
+- Cómo obtiene Agentes la confianza por campo del modelo de visión. Mientras no la tenga, R-003 deja un hallazgo informativo con los campos sin confianza; con `sin_confianza: revision` en el catálogo, esos casos pasan a revisión humana.
+- Validador como nodo de código (`steward_datos.validador.preparar_para_redactor`) en lugar de agente con LLM: ver `datos/agentes/validador.md`.
+- `buscar_politicas` aplica el umbral de similitud aunque se filtre por regla; con el modelo real podría descartar la sección exacta. Propuesta: no aplicar el umbral cuando viene `reglas`.
 - Si `validar_reglas` debe llamar a `registrar_hallazgo` por su cuenta o si el grafo guarda todo al final con `guardar_resultado` (propuesta: lo segundo, en un solo paso, para que un caso no quede con hallazgos a medias).
-- Umbral de similitud del RAG (`RAG_UMBRAL_SIMILITUD`) con `embeddinggemma:300m`: en la prueba de Carlos Delgado las similitudes correctas fueron de 0.39 a 0.56, así que el valor por defecto de 0.30 hay que calibrarlo con `scripts/evaluar_rag.py`.
+- Umbral de similitud del RAG (`RAG_UMBRAL_SIMILITUD`) con `embeddinggemma:300m`: en la prueba de Carlos Delgado las similitudes correctas fueron de 0.39 a 0.56, así que el valor por defecto de 0.30 hay que calibrarlo con `scripts/evaluar_rag.py --calibrar`.

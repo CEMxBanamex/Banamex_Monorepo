@@ -118,7 +118,16 @@ La selección queda en `sinteticos/fatura_piloto/` (ignorada por git) con la ano
 python scripts/evaluar.py --referencia                      # prueba de cordura: debe dar 100 %
 python scripts/evaluar.py --predicciones pred.jsonl --linea-base evaluacion/linea_base_manual.csv --salida reporte.md
 EMBEDDING_PROVEEDOR=ollama python scripts/evaluar_rag.py    # acierto@1, acierto@5 y MRR del RAG
+EMBEDDING_PROVEEDOR=ollama python scripts/evaluar_rag.py --calibrar   # umbral recomendado para RAG_UMBRAL_SIMILITUD
+
+python scripts/evaluar_gobernanza.py fuentes                # sin LLM: cada pregunta de prueba tiene su fuente en la base
+python scripts/evaluar_gobernanza.py respuestas --archivo salidas.jsonl
+python scripts/evaluar_validador.py citas                   # sin LLM: cada regla encuentra la sección que la sustenta
+python scripts/evaluar_validador.py entradas --salida entradas.jsonl
+python scripts/evaluar_validador.py respuestas --archivo salidas.jsonl
 ```
+
+Prompts de los agentes de los que somos dueños: [`agentes/gobernanza.md`](agentes/gobernanza.md) (Mario) y [`agentes/validador.md`](agentes/validador.md) (Iris). Las preguntas de prueba del agente de gobernanza están en `evaluacion/preguntas_gobernanza.yaml` (35, con su fuente esperada).
 
 Con los embeddings falsos (sin GPU) el RAG da acierto@1 de 70 % y acierto@5 de 95 %; hay que repetirlo con el modelo real y usarlo para calibrar `RAG_UMBRAL_SIMILITUD`.
 
