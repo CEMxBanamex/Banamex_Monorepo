@@ -62,6 +62,7 @@ class _Acumulador:
         severidad = r.severidad if efecto == r.efecto else {"rechazo": "error", "revision": "adv", "informativo": "info"}[efecto]
         self.hallazgos.append(HallazgoOut(
             regla_id=r.id, regla_version=r.version, politica_id=r.politica_id,
+            politica_version=r.politica_version, politica_seccion=r.seccion,
             efecto=efecto, severidad=severidad, titulo=titulo, texto=texto, **kw,
         ))
 
@@ -154,6 +155,16 @@ def validar_factura(caso_id: str, f: FacturaExtraida, ctx: Optional[Contexto] = 
             acc.agregar("R-003", f"{ETIQUETAS[c]}: se leyó con baja confianza",
                         f"El campo se leyó con {campo.confianza} % de confianza (mínimo {umbral} %). "
                         "Verifícalo contra el documento original.", campos=[c], evidencia=ev, evidencia_detalle=det)
+    # Si el modelo no da confianza, R-003 no puede evaluarse: se dice en lugar de suponer que la lectura es buena (P-004 §3).
+    sin_conf = [c for c in CAMPOS_EVALUADOS
+                if (campo := f.campos.get(c)) and not n.vacio(campo.valor) and campo.confianza is None]
+    if sin_conf:
+        nombres = ", ".join(ETIQUETAS[c].lower() for c in sin_conf)
+        acc.agregar("R-003", "No se conoce la confianza de lectura",
+                    f"El modelo de visión no informó la confianza de: {nombres}. "
+                    "No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+                    efecto=r.parametros.get("sin_confianza", "informativo"), campos=sin_conf,
+                    evidencia=f"página 1, {nombres}")
 
     r = acc.evaluar("R-004")
     fe = n.fecha(valor("fecha"))

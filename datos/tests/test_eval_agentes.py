@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from steward_datos.eval_agentes import calificar, cargar_preguntas, normalizar, revisar_fuente
+from steward_datos.eval_agentes import calificar, calificar_validador, cargar_preguntas, normalizar, revisar_fuente
 
 RAIZ = Path(__file__).resolve().parent.parent
 GOB = {p["id"]: p for p in cargar_preguntas(RAIZ / "evaluacion" / "preguntas_gobernanza.yaml")}
@@ -82,3 +82,46 @@ def test_revisar_fuente_detecta_errores(fuente, debe):
     with sesion() as s:
         ok, motivo = revisar_fuente(s, {"id": "X", "fuente": fuente, "debe_contener": debe})
     assert not ok and motivo
+
+
+def _resultado_con_hallazgo():
+    from steward_datos.contratos import CampoLeido, FacturaExtraida
+    from steward_datos.reglas.motor import Contexto, validar_factura
+    from datetime import date
+    campos = {"folio": "A-1", "fecha": "20/10/2026", "emisor_nombre": "Proveedor Demo SA", "emisor_rfc": "PDE2001",
+              "receptor_nombre": "Cliente SA", "receptor_rfc": "CPR180301KJ7", "moneda": "MXN",
+              "subtotal": "10,000.00", "impuestos": "1,600.00", "total": "11,600.00"}
+    f = FacturaExtraida(campos={k: CampoLeido(valor=v, confianza=97) for k, v in campos.items()})
+    return validar_factura("F-1", f, Contexto(fecha_recepcion=date(2026, 11, 2)))
+
+
+def test_validador_cita_del_catalogo_sin_depender_del_rag():
+    from steward_datos.contratos import BuscarPoliticasSalida
+    from steward_datos.validador import preparar_para_redactor
+    pedidas = []
+
+    def buscar(e):
+        pedidas.append(e)
+        return BuscarPoliticasSalida(fragmentos=[], modelo_embedding="x", sin_resultados=True)
+
+    r = _resultado_con_hallazgo()
+    s = preparar_para_redactor(r, historia=1, buscar=buscar)
+    h = next(x for x in s.hallazgos if x.hallazgo.regla_id == "R-002")
+    assert (h.politica.politica_id, h.politica.version, h.politica.origen) == ("P-011", "2.0", "catalogo")
+    assert all(e.tipo is None and e.reglas for e in pedidas), "se busca por regla, no por tipo"
+    assert s.resultado_sugerido == r.resultado_sugerido
+
+
+def test_calificar_validador():
+    from steward_datos.reglas.catalogo import catalogo
+    cat = catalogo()
+    bien = {"tools": [{"nombre": "validar_reglas"}], "resultado_sugerido": "rechazado",
+            "hallazgos": [{"regla_id": "R-014", "politica_id": "P-002", "politica_version": "2.0",
+                           "politica_seccion": "5. Total de la factura"}]}
+    esperado = {"resultado": "rechazado", "reglas": ["R-014"]}
+    assert calificar_validador(esperado, bien, cat)["ok"]
+    cambia = {**bien, "resultado_sugerido": "aceptado"}
+    r = calificar_validador(esperado, cambia, cat)
+    assert not r["ok"] and r["falso_aceptado"]
+    mal_citada = {**bien, "hallazgos": [{**bien["hallazgos"][0], "politica_version": "1.0"}]}
+    assert calificar_validador(esperado, mal_citada, cat)["checks"]["citas"] is False

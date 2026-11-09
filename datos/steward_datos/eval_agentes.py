@@ -145,3 +145,22 @@ def resumen(resultados: list[dict]) -> dict:
         a[1] += 1
     total = sum(r["ok"] for r in resultados)
     return {"aciertos": total, "total": len(resultados), "por_categoria": por_cat}
+
+
+def calificar_validador(esperado: dict, salida: dict, cat) -> dict:
+    """esperado: {"resultado", "reglas"} de la verdad de referencia. cat: catálogo de reglas."""
+    llamadas = [t["nombre"] for t in salida.get("tools", [])]
+    hallazgos = salida.get("hallazgos", [])
+    citas_ok = all(
+        h.get("regla_id") in cat.reglas
+        and (h.get("politica_id"), h.get("politica_version"), h.get("politica_seccion"))
+        == (cat[h["regla_id"]].politica_id, cat[h["regla_id"]].politica_version, cat[h["regla_id"]].seccion)
+        for h in hallazgos)
+    c = {
+        "tool": llamadas.count("validar_reglas") == 1,
+        "resultado": salida.get("resultado_sugerido") == esperado["resultado"],
+        "reglas": sorted({h.get("regla_id") for h in hallazgos}) == sorted(esperado["reglas"]),
+        "citas": citas_ok,
+    }
+    falso_aceptado = salida.get("resultado_sugerido") == "aceptado" and esperado["resultado"] != "aceptado"
+    return {"checks": c, "ok": all(c.values()), "falso_aceptado": falso_aceptado}

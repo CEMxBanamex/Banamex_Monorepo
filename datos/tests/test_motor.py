@@ -154,3 +154,20 @@ def test_columnas_con_alias_y_faltantes():
     assert r.resultado_sugerido == "aceptado"
     r = validar_registros("V-1", tabla([OK[:4]], ("id_cliente", "nombre", "rfc", "correo")), Contexto(fecha_recepcion=HOY))
     assert reglas(r) == ["R-106"]
+
+
+def test_r003_sin_confianza_se_avisa_sin_cambiar_el_resultado():
+    r = correr(factura(_conf={"total": None, "fecha": None}))
+    assert r.resultado_sugerido == "aceptado"
+    h = [x for x in r.hallazgos if x.regla_id == "R-003"]
+    assert len(h) == 1 and h[0].efecto == "informativo" and h[0].campos == ["fecha", "total"]
+
+
+def test_r003_sin_confianza_puede_exigir_revision():
+    import copy
+    from steward_datos.reglas.catalogo import catalogo
+    cat = copy.deepcopy(catalogo())
+    cat["R-003"].parametros["sin_confianza"] = "revision"
+    r = validar_factura("F-1", factura(_conf={"total": None}),
+                        Contexto(proveedores_activos=PROV, entidades_receptoras=ENT, fecha_recepcion=HOY), cat)
+    assert r.resultado_sugerido == "humana" and reglas(r) == ["R-003"]

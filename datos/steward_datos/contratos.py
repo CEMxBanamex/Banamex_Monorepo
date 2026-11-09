@@ -87,6 +87,8 @@ class HallazgoOut(BaseModel):
     regla_id: str
     regla_version: str
     politica_id: str
+    politica_version: Optional[str] = Field(None, description="Del catálogo de reglas; la cita no depende del RAG")
+    politica_seccion: Optional[str] = None
     efecto: Efecto
     severidad: Severidad
     titulo: str

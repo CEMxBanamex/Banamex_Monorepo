@@ -43,6 +43,8 @@ reglas:
     descripcion: Si un campo usado por las reglas se leyó con confianza menor al umbral, una persona debe verificarlo contra el documento original.
     parametros:
       umbral: 80
+      # Si el modelo no da confianza en un campo: informativo (se avisa, no cambia el resultado) o revision.
+      sin_confianza: informativo
 
   - id: R-004
     version: "1.1"
