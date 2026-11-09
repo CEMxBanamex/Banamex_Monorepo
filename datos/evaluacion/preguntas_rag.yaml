@@ -57,3 +57,16 @@ preguntas:
     esperado: {politica: P-023, version: "1.0"}
   - pregunta: ¿Por qué veo el RFC del cliente con asteriscos?
     esperado: {politica: P-023, version: "1.0"}
+  # Sin política: buscar_politicas debe responder sin_resultados. Sirven para calibrar RAG_UMBRAL_SIMILITUD (--calibrar).
+  - pregunta: ¿Cuántos días de vacaciones tiene el personal?
+    esperado: null
+  - pregunta: ¿Cómo se calcula el ISR de la nómina?
+    esperado: null
+  - pregunta: ¿Qué tasa de interés cobra la tarjeta de crédito?
+    esperado: null
+  - pregunta: ¿A qué hora abre la sucursal del centro?
+    esperado: null
+  - pregunta: ¿Cómo solicito un préstamo personal?
+    esperado: null
+  - pregunta: ¿Quién ganó el partido de ayer?
+    esperado: null
