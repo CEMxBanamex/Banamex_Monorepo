@@ -3,7 +3,9 @@ from datetime import date
 
 import pytest
 from sqlalchemy import inspect, text
+from sqlalchemy.orm import Session
 
+from steward_datos.contexto import fijar_en_bd
 from steward_datos.contratos import ContextoUsuario, MetricaNoDisponible, ObtenerMetricaEntrada
 from steward_datos.db.sesion import motor, sesion
 from steward_datos.gobernanza import catalogo_datos, glosario, metricas
@@ -62,7 +64,7 @@ def test_usuario_de_consultas_solo_lee_vistas():
         pytest.skip("No existe el rol steward_consultas en este servidor")
     with motor().connect() as c:
         c.execute(text("SET ROLE steward_consultas"))
-        c.execute(text("SELECT set_config('app.rol', 'administrador', false)"))
+        c.execute(text("SET app.rol = 'administrador'"))
         assert c.execute(text("SELECT count(*) FROM v_facturas")).scalar() > 0
         with pytest.raises(Exception, match="permission denied"):
             c.execute(text("SELECT count(*) FROM facturas"))
@@ -70,6 +72,48 @@ def test_usuario_de_consultas_solo_lee_vistas():
         c.execute(text("SET ROLE steward_consultas"))
         with pytest.raises(Exception, match="permission denied"):
             c.execute(text("SELECT count(*) FROM bitacora"))
+
+
+def _como_consultas():
+    if not motor().connect().execute(text("SELECT 1 FROM pg_roles WHERE rolname = 'steward_consultas'")).scalar():
+        pytest.skip("No existe el rol steward_consultas en este servidor")
+    s = Session(bind=motor().connect())
+    s.execute(text("SET LOCAL ROLE steward_consultas"))
+    return s
+
+
+def test_usuario_de_consultas_no_puede_cambiar_su_rol_con_set_config():
+    for sql in [
+        "SELECT set_config('app.rol', 'administrador', true), * FROM v_clientes",
+        "SELECT count(*) FROM (SELECT set_config('app.rol', 'administrador', true)) s, LATERAL (SELECT * FROM v_clientes) c",
+        "WITH x AS MATERIALIZED (SELECT set_config('app.rol', 'administrador', true)) SELECT count(*) FROM x, v_clientes",
+    ]:
+        s = _como_consultas()
+        fijar_en_bd(s, LUIS)
+        with pytest.raises(Exception, match="permission denied for function set_config"):
+            s.execute(text(sql))
+        s.close()
+
+
+def test_fijar_en_bd_funciona_con_el_usuario_de_consultas():
+    s = _como_consultas()
+    fijar_en_bd(s, LUIS)
+    n, rfc = s.execute(text("SELECT count(*), max(rfc) FROM v_clientes")).one()
+    assert 0 < n < 600 and "*" in rfc
+    s.close()
+    s = _como_consultas()
+    fijar_en_bd(s, ADMIN)
+    assert s.execute(text("SELECT count(*) FROM v_clientes")).scalar() == 600
+    s.close()
+
+
+def test_fijar_en_bd_rechaza_valores_que_romperian_el_set():
+    with sesion() as s:
+        for u in ["x'; SET app.rol = 'administrador", "a:b", "", "a" * 200]:
+            with pytest.raises(ValueError):
+                fijar_en_bd(s, ContextoUsuario.model_construct(usuario_id=u, rol="analista"))
+        with pytest.raises(ValueError):
+            fijar_en_bd(s, ContextoUsuario.model_construct(usuario_id="dev-ana", rol="auditor"))
 
 
 def test_catalogo_documenta_cada_columna_de_las_vistas_y_cada_tabla():
