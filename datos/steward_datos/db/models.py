@@ -51,6 +51,9 @@ class Proveedor(Base):
     razon_social: Mapped[str] = mapped_column(Text)
     activo: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true")
     alta: Mapped[Optional[date]] = mapped_column(Date)
+    categoria: Mapped[Optional[str]] = mapped_column(Text)
+    correo_contacto: Mapped[Optional[str]] = mapped_column(Text)
+    plazo_pago_dias: Mapped[Optional[int]] = mapped_column(SmallInteger)
 
 
 class EntidadReceptora(Base):
@@ -71,6 +74,7 @@ class Caso(Base):
         CheckConstraint(f"estado IN ({_en(ESTADOS_CASO)})", name="ck_casos_estado"),
         CheckConstraint(f"resultado_sugerido IN ({_en(RESULTADOS)})", name="ck_casos_resultado_sugerido"),
         CheckConstraint(f"resultado_final IN ({_en(RESULTADOS)})", name="ck_casos_resultado_final"),
+        CheckConstraint("origen IN ('aplicacion', 'semilla', 'negocio')", name="ck_casos_origen"),
         Index("ix_casos_estado_creado", "estado", "creado_en"),
         Index("ix_casos_responsable", "responsable_id"),
     )
@@ -87,6 +91,8 @@ class Caso(Base):
     responsable_nombre: Mapped[str] = mapped_column(Text)
     revisado_por: Mapped[Optional[str]] = mapped_column(Text)
     revisado_en: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True))
+    # aplicacion: subido por un analista; semilla: demo e histórico con archivo; negocio: historia sintética sin archivo
+    origen: Mapped[str] = mapped_column(String(10), default="aplicacion", server_default="aplicacion")
     creado_en: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     actualizado_en: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
@@ -136,6 +142,7 @@ class Factura(Base):
     retenciones: Mapped[Optional[Decimal]] = mapped_column(Numeric(14, 2))
     total: Mapped[Optional[Decimal]] = mapped_column(Numeric(14, 2))
     tasa_iva: Mapped[Optional[Decimal]] = mapped_column(Numeric(5, 4))
+    orden_compra_id: Mapped[Optional[str]] = mapped_column(ForeignKey("ordenes_compra.id", ondelete="SET NULL"), index=True)
     modelo_extraccion: Mapped[Optional[str]] = mapped_column(Text)  # etiqueta exacta del modelo de visión
     extraido_en: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True))
     salida_cruda: Mapped[Optional[dict]] = mapped_column(JSONB)  # JSON tal cual lo devolvió el modelo
@@ -346,3 +353,187 @@ class Mensaje(Base):
     citas: Mapped[Optional[list]] = mapped_column(JSONB)  # [{"fragmento_id", "politica_id", "version", "seccion"}]
     duracion_ms: Mapped[Optional[int]] = mapped_column(Integer)
     creado_en: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+# Datos de negocio sintéticos (consultas del chat)
+
+
+class CentroCosto(Base):
+    __tablename__ = "centros_costo"
+
+    id: Mapped[str] = mapped_column(String(10), primary_key=True)  # CC-110
+    nombre: Mapped[str] = mapped_column(Text)
+    area: Mapped[str] = mapped_column(Text)
+    entidad_rfc: Mapped[str] = mapped_column(ForeignKey("entidades_receptoras.rfc"))
+    responsable: Mapped[str] = mapped_column(Text)
+    presupuesto_anual: Mapped[Decimal] = mapped_column(Numeric(14, 2))
+
+
+class OrdenCompra(Base):
+    __tablename__ = "ordenes_compra"
+    __table_args__ = (
+        CheckConstraint("estado IN ('abierta', 'facturada', 'cancelada')", name="ck_oc_estado"),
+        Index("ix_oc_proveedor_fecha", "proveedor_rfc", "fecha"),
+    )
+
+    id: Mapped[str] = mapped_column(String(14), primary_key=True)  # OC-2026-00123
+    proveedor_rfc: Mapped[str] = mapped_column(ForeignKey("proveedores.rfc"))
+    entidad_rfc: Mapped[str] = mapped_column(ForeignKey("entidades_receptoras.rfc"))
+    centro_costo_id: Mapped[Optional[str]] = mapped_column(ForeignKey("centros_costo.id"))
+    fecha: Mapped[date] = mapped_column(Date)
+    descripcion: Mapped[str] = mapped_column(Text)
+    moneda: Mapped[str] = mapped_column(String(3))
+    monto: Mapped[Decimal] = mapped_column(Numeric(14, 2))  # con impuestos
+    estado: Mapped[str] = mapped_column(String(10))
+
+
+class Pago(Base):
+    """Pagos registrados por Tesorería. Solo lectura para el sistema: ninguna tool crea ni libera pagos."""
+    __tablename__ = "pagos"
+    __table_args__ = (CheckConstraint("estado IN ('programado', 'pagado', 'cancelado')", name="ck_pagos_estado"),)
+
+    id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
+    caso_id: Mapped[str] = mapped_column(ForeignKey("casos.id", ondelete="CASCADE"), index=True)
+    fecha_programada: Mapped[date] = mapped_column(Date)
+    fecha_pago: Mapped[Optional[date]] = mapped_column(Date)
+    moneda: Mapped[str] = mapped_column(String(3))
+    monto: Mapped[Decimal] = mapped_column(Numeric(14, 2))
+    estado: Mapped[str] = mapped_column(String(10))
+
+
+class Cliente(Base):
+    """Clientes ya dados de alta (los archivos de la Historia 2 son altas nuevas que se validan antes de entrar aquí)."""
+    __tablename__ = "clientes"
+    __table_args__ = (CheckConstraint("tipo_persona IN ('fisica', 'moral')", name="ck_clientes_tipo"),)
+
+    id_cliente: Mapped[str] = mapped_column(String(12), primary_key=True)
+    nombre: Mapped[str] = mapped_column(Text)
+    tipo_persona: Mapped[str] = mapped_column(String(6))
+    rfc: Mapped[Optional[str]] = mapped_column(Text)  # texto libre a propósito: las reglas de calidad miden su validez
+    correo_contacto: Mapped[Optional[str]] = mapped_column(Text)
+    segmento: Mapped[str] = mapped_column(Text)
+    entidad_rfc: Mapped[str] = mapped_column(ForeignKey("entidades_receptoras.rfc"))
+    alta: Mapped[Optional[date]] = mapped_column(Date)
+    activo: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true")
+
+
+class UsuarioEntidad(Base):
+    """Entidades que ve cada usuario en las vistas consultables (seguridad por fila). El administrador ve todo."""
+    __tablename__ = "usuarios_entidades"
+
+    usuario_id: Mapped[str] = mapped_column(Text, primary_key=True)  # sub de Cognito o X-Usuario en dev
+    entidad_rfc: Mapped[str] = mapped_column(ForeignKey("entidades_receptoras.rfc"), primary_key=True)
+
+
+# Gobernanza de datos
+
+
+SENSIBILIDADES = ("publico", "interno", "confidencial", "restringido")
+
+
+class CatalogoTabla(Base):
+    __tablename__ = "catalogo_tablas"
+    __table_args__ = (CheckConstraint(f"sensibilidad IN ({_en(SENSIBILIDADES)})", name="ck_catalogo_tablas_sensibilidad"),)
+
+    tabla: Mapped[str] = mapped_column(Text, primary_key=True)  # nombre físico (tabla o vista)
+    nombre_negocio: Mapped[str] = mapped_column(Text)
+    descripcion: Mapped[str] = mapped_column(Text)
+    dominio: Mapped[str] = mapped_column(Text)
+    data_owner: Mapped[str] = mapped_column(Text)
+    data_steward: Mapped[str] = mapped_column(Text)
+    sensibilidad: Mapped[str] = mapped_column(String(12))
+    origen: Mapped[str] = mapped_column(Text)
+    consultable: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")  # True = vista para el chat
+    relacionadas: Mapped[list[str]] = mapped_column(ARRAY(Text), default=list, server_default="{}")
+
+    columnas: Mapped[list["CatalogoColumna"]] = relationship(cascade="all, delete-orphan", order_by="CatalogoColumna.orden")
+
+
+class CatalogoColumna(Base):
+    __tablename__ = "catalogo_columnas"
+    __table_args__ = (CheckConstraint(f"sensibilidad IN ({_en(SENSIBILIDADES)})", name="ck_catalogo_columnas_sensibilidad"),)
+
+    tabla: Mapped[str] = mapped_column(ForeignKey("catalogo_tablas.tabla", ondelete="CASCADE"), primary_key=True)
+    columna: Mapped[str] = mapped_column(Text, primary_key=True)
+    orden: Mapped[int] = mapped_column(SmallInteger)
+    tipo: Mapped[str] = mapped_column(Text)
+    descripcion: Mapped[str] = mapped_column(Text)
+    sensibilidad: Mapped[str] = mapped_column(String(12))
+    enmascarada: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")  # en las vistas, para no administradores
+    ejemplos: Mapped[Optional[list[str]]] = mapped_column(ARRAY(Text))  # solo valores no sensibles
+    termino_glosario: Mapped[Optional[str]] = mapped_column(Text)
+
+
+class TerminoGlosario(Base):
+    __tablename__ = "glosario_terminos"
+
+    termino: Mapped[str] = mapped_column(Text, primary_key=True)
+    definicion: Mapped[str] = mapped_column(Text)
+    sinonimos: Mapped[list[str]] = mapped_column(ARRAY(Text), default=list, server_default="{}")
+    dominio: Mapped[str] = mapped_column(Text)
+    dueno: Mapped[str] = mapped_column(Text)
+    relacionados: Mapped[list[str]] = mapped_column(ARRAY(Text), default=list, server_default="{}")
+    fuente: Mapped[Optional[str]] = mapped_column(Text)  # política o métrica que lo define
+    actualizado_en: Mapped[date] = mapped_column(Date)
+
+
+class ReglaCalidad(Base):
+    __tablename__ = "reglas_calidad"
+    __table_args__ = (
+        CheckConstraint("dimension IN ('completitud', 'unicidad', 'validez', 'oportunidad', 'consistencia')", name="ck_calidad_dimension"),
+    )
+
+    id: Mapped[str] = mapped_column(String(8), primary_key=True)  # RC-001
+    tabla: Mapped[str] = mapped_column(Text, index=True)
+    columna: Mapped[Optional[str]] = mapped_column(Text)
+    dimension: Mapped[str] = mapped_column(String(14))
+    descripcion: Mapped[str] = mapped_column(Text)
+    umbral: Mapped[Decimal] = mapped_column(Numeric(5, 2))  # porcentaje mínimo que debe cumplir
+    sql_medicion: Mapped[str] = mapped_column(Text)  # devuelve (cumple, total)
+    politica_id: Mapped[Optional[str]] = mapped_column(String(10))
+    activa: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true")
+
+    resultados: Mapped[list["ResultadoCalidad"]] = relationship(cascade="all, delete-orphan", order_by="ResultadoCalidad.ejecutado_en")
+
+
+class ResultadoCalidad(Base):
+    __tablename__ = "resultados_calidad"
+    __table_args__ = (Index("ix_resultados_calidad_regla_fecha", "regla_id", "ejecutado_en"),)
+
+    id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
+    regla_id: Mapped[str] = mapped_column(ForeignKey("reglas_calidad.id", ondelete="CASCADE"))
+    ejecutado_en: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    registros_evaluados: Mapped[int] = mapped_column(Integer)
+    registros_cumplen: Mapped[int] = mapped_column(Integer)
+    porcentaje: Mapped[Decimal] = mapped_column(Numeric(5, 2))
+    cumple_umbral: Mapped[bool] = mapped_column(Boolean)
+
+
+class Metrica(Base):
+    """Copia en la base de las definiciones de semantica/metricas.yaml, para gobernanza y para el catálogo."""
+    __tablename__ = "metricas"
+
+    nombre: Mapped[str] = mapped_column(Text, primary_key=True)
+    etiqueta: Mapped[str] = mapped_column(Text)
+    definicion: Mapped[str] = mapped_column(Text)
+    unidad: Mapped[str] = mapped_column(Text)
+    vista: Mapped[str] = mapped_column(Text)
+    dimensiones: Mapped[list[str]] = mapped_column(ARRAY(Text))
+    dueno: Mapped[str] = mapped_column(Text)
+    version: Mapped[str] = mapped_column(String(10))
+
+
+class ConsultaLibre(Base):
+    """Registro de ejecutar_consulta (mejora continua: las preguntas repetidas se vuelven métricas)."""
+    __tablename__ = "consultas_libres"
+
+    id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
+    fecha: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    usuario_id: Mapped[str] = mapped_column(Text)
+    rol: Mapped[str] = mapped_column(Text)
+    pregunta: Mapped[str] = mapped_column(Text)
+    sql: Mapped[str] = mapped_column(Text)
+    valida: Mapped[bool] = mapped_column(Boolean)
+    motivo_rechazo: Mapped[Optional[str]] = mapped_column(Text)
+    filas: Mapped[Optional[int]] = mapped_column(Integer)
+    duracion_ms: Mapped[Optional[int]] = mapped_column(Integer)

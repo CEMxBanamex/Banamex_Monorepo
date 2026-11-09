@@ -7,6 +7,9 @@ Carga, en este orden:
      o EMBEDDING_PROVEEDOR=falso).
   4. Histórico: 30 facturas ya revisadas (F-1000 a F-1029).
   5. Casos de la demo con los mismos IDs que el mock del frontend: F-1040, F-1041, F-1042, V-0206 y V-0207.
+  6. Datos de negocio (sinteticos/negocio/): centros de costo, órdenes de compra, clientes, permisos por entidad y
+     960 facturas ya revisadas (F-0001 a F-0960) con sus pagos.
+  7. Gobernanza: catálogo de datos, glosario, métricas y reglas de calidad con sus resultados.
 
 Los casos de sinteticos/facturas/evaluacion/ NO se cargan: se suben por la aplicación durante la evaluación.
 
@@ -29,6 +32,8 @@ from steward_datos.db.models import (  # noqa: E402
     CampoExtraido, Caso, Documento, EntidadReceptora, EventoBitacora, Proveedor, Regla,
 )
 from steward_datos.db.sesion import sesion  # noqa: E402
+from steward_datos.gobernanza import cargar_calidad, cargar_catalogo, cargar_glosario, cargar_metricas  # noqa: E402
+from steward_datos.negocio import cargar_negocio  # noqa: E402
 from steward_datos.persistencia import guardar_extraccion, guardar_resultado  # noqa: E402
 from steward_datos.rag.ingesta import ingestar_politica  # noqa: E402
 from steward_datos.reglas.catalogo import catalogo  # noqa: E402
@@ -45,8 +50,9 @@ USUARIOS = {
 }
 MIME = {".pdf": "application/pdf", ".png": "image/png", ".jpg": "image/jpeg", ".xlsx":
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", ".csv": "text/csv"}
-TABLAS = ["bitacora", "mensajes", "conversaciones", "hallazgos", "campos_extraidos", "conceptos_factura", "facturas",
-          "documentos", "casos", "politica_fragmentos", "politicas", "reglas", "proveedores", "entidades_receptoras"]
+TABLAS = ["resultados_calidad", "reglas_calidad", "catalogo_columnas", "catalogo_tablas", "glosario_terminos", "metricas",
+          "consultas_libres", "pagos", "clientes", "usuarios_entidades", "bitacora", "mensajes", "conversaciones", "hallazgos", "campos_extraidos", "conceptos_factura", "facturas",
+          "documentos", "casos", "politica_fragmentos", "politicas", "reglas", "ordenes_compra", "centros_costo", "proveedores", "entidades_receptoras"]
 
 
 def hora(d: date | str, hh: int, mm: int) -> datetime:
@@ -63,7 +69,7 @@ def evento(s, caso_id, cuando, accion, detalle, *, usuario=None, tono="info", re
 
 def crear_caso(s, caso_id, tipo, usuario, cuando, ruta: Path, sha256: str, paginas=1):
     uid, nombre = USUARIOS[usuario]
-    c = Caso(id=caso_id, tipo=tipo, estado="procesando", responsable_id=uid, responsable_nombre=nombre, creado_en=cuando)
+    c = Caso(id=caso_id, tipo=tipo, estado="procesando", origen="semilla", responsable_id=uid, responsable_nombre=nombre, creado_en=cuando)
     s.add(c)
     s.flush()
     s.add(Documento(caso_id=caso_id, nombre=ruta.name, s3_key=f"casos/{caso_id}/{ruta.name}", mime=MIME[ruta.suffix],
@@ -88,8 +94,8 @@ def main():
     ap.add_argument("--embeddings", action="store_true", help="Genera los embeddings de las políticas")
     ap.add_argument("--reiniciar", action="store_true", help="Vacía las tablas antes de cargar")
     args = ap.parse_args()
-    if not (CARPETA_SINTETICOS / "facturas" / "demo").exists():
-        sys.exit("Primero genera los datos: python scripts/generar_facturas.py && python scripts/generar_registros.py")
+    if not (CARPETA_SINTETICOS / "facturas" / "demo").exists() or not (CARPETA_SINTETICOS / "negocio").exists():
+        sys.exit("Primero genera los datos: python scripts/generar_facturas.py, generar_registros.py y generar_negocio.py")
 
     with sesion() as s:
         if not args.reiniciar and s.execute(text("SELECT count(*) FROM casos")).scalar():
@@ -169,8 +175,12 @@ def main():
         evento(s, c.id, hora("2026-10-25", 16, 2), "error", "No se pudo leer registros_prueba.csv", tono="error")
         print("  demo: F-1040, F-1041, F-1042, V-0206, V-0207")
 
+        print(f"  negocio: {cargar_negocio(s)}")
+        print(f"  catálogo: {cargar_catalogo(s)} tablas · glosario: {cargar_glosario(s)} términos · "
+              f"métricas: {cargar_metricas(s)} · reglas de calidad: {cargar_calidad(s)}")
+
     with sesion() as s:
-        for t in ("casos", "hallazgos", "bitacora", "politica_fragmentos"):
+        for t in ("casos", "hallazgos", "bitacora", "politica_fragmentos", "pagos", "clientes", "resultados_calidad"):
             print(f"  {t}: {s.execute(text(f'SELECT count(*) FROM {t}')).scalar()}")
 
 

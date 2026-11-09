@@ -42,3 +42,18 @@ preguntas:
     esperado: {politica: P-015, version: "1.1", regla: R-104}
   - pregunta: ¿Se puede repetir el id_cliente en un archivo?
     esperado: {politica: P-018, version: "1.0", regla: R-105}
+  # Gobernanza (ejemplos del agente de gobernanza en el vault)
+  - pregunta: ¿Quién es el dueño de los datos de proveedores?
+    esperado: {politica: P-021, version: "1.0"}
+  - pregunta: ¿El RFC es dato sensible?
+    esperado: {politica: P-020, version: "1.0"}
+  - pregunta: ¿Qué niveles de clasificación de la información existen?
+    esperado: {politica: P-020, version: "1.0"}
+  - pregunta: ¿Qué hace el data steward cuando una regla de calidad no alcanza su umbral?
+    esperado: {politica: P-022, version: "1.0"}
+  - pregunta: ¿Qué umbral de calidad se exige al correo de los clientes?
+    esperado: {politica: P-022, version: "1.0"}
+  - pregunta: ¿Puedo consultar la bitácora o las tablas internas desde el chat?
+    esperado: {politica: P-023, version: "1.0"}
+  - pregunta: ¿Por qué veo el RFC del cliente con asteriscos?
+    esperado: {politica: P-023, version: "1.0"}

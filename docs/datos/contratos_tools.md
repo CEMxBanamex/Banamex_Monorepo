@@ -1,6 +1,21 @@
 # Contratos de las tools del MCP (frente de Datos)
 
-Borrador para la sesión de revisión de contratos (0.7.4). Los modelos Pydantic están en [`datos/steward_datos/contratos.py`](../../datos/steward_datos/contratos.py); este documento los resume.
+Borrador para la sesión de revisión de contratos (0.7.4).
+
+## Quién implementa cada tool (reparto del vault, 4 nov.)
+
+| Tool | Responsable | Estado en este repo |
+|---|---|---|
+| `validar_reglas` | Iris | Lista, con pruebas |
+| `consultar_calidad` | Iris | Lista, con pruebas |
+| `obtener_metrica` | Mario | Lista, con pruebas |
+| `consultar_glosario` | Mario | Lista, con pruebas |
+| `buscar_politicas` | Carlos Delgado / Carlos Ramos | Implementación de referencia para que la tomen o la descarten |
+| `registrar_hallazgo` | Yael | Implementación de referencia |
+| `consultar_caso`, `buscar_facturas` | Mauricio | Implementación de referencia |
+| `ejecutar_consulta`, `listar_vistas_consultables`, `consultar_catalogo` | Juan Pablo | No implementadas; las vistas, el usuario `steward_consultas`, la tabla `consultas_libres` y el catálogo ya están en la base |
+
+`registrar_tools_datos(mcp, solo_propias=True)` registra solo las cuatro de Datos. Los modelos Pydantic están en [`datos/steward_datos/contratos.py`](../../datos/steward_datos/contratos.py); este documento los resume.
 
 ## Lo que Datos necesita de Agentes
 
@@ -74,6 +89,29 @@ La incertidumbre gana sobre el rechazo porque un dato mal leído puede producir 
 
 - `guardar_extraccion(s, caso_id, factura)` llena `facturas`, `conceptos_factura`, `campos_extraidos` y registra el evento de extracción.
 - `guardar_resultado(s, resultado)` guarda los hallazgos, sus eventos, el resultado sugerido y pasa el caso a `revision`.
+
+## Tools nuevas de gobernanza y consultas
+
+Todas emiten `paso`, el texto corto para la línea de pasos del chat.
+
+| Tool | Entrada | Salida |
+|---|---|---|
+| `obtener_metrica` | `ObtenerMetricaEntrada`: `metrica`, `dimensiones` (hasta 2), `filtros`, `fecha_desde`, `fecha_hasta`, `orden`, `limite` | `ObtenerMetricaSalida` (filas, definición oficial, unidad, SQL generado y sus parámetros, `truncado`) o `MetricaNoDisponible` (motivo, métricas disponibles y sugerencia) |
+| `consultar_glosario` | `termino` | `ConsultarGlosarioSalida`: `encontrado`, `coincidencia` (`exacta`, `sinonimo` o `aproximada`), el término con definición, sinónimos, dueño, relacionados y fuente, y `alternativas` |
+| `consultar_calidad` | `tabla` (acepta `facturas`, `v_facturas` o "tabla de facturas"), `dimension` opcional | `ConsultarCalidadSalida`: por regla, umbral, último porcentaje, el anterior y si cumple; `tablas_con_reglas` si la tabla no tiene |
+
+### Contexto del usuario
+
+`obtener_metrica` lee vistas con seguridad por fila, así que necesita el rol y el usuario **del JWT**, nunca del texto de la pregunta. El servidor MCP lo fija en cada petición:
+
+```python
+from steward_datos.contexto import usuario_actual
+from steward_datos.contratos import ContextoUsuario
+
+usuario_actual.set(ContextoUsuario(usuario_id=claims["sub"], rol=claims["cognito:groups"][0]))
+```
+
+Sin contexto, la tool falla con `PermissionError`. Las tools de Juan Pablo (`ejecutar_consulta`) deben hacer lo mismo con `steward_datos.contexto.fijar_en_bd(sesion, usuario)` antes de ejecutar.
 
 ### Registro en el servidor MCP
 

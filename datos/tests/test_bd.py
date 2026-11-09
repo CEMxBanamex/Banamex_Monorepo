@@ -1,25 +1,12 @@
 """Integración contra PostgreSQL: migración, semilla y tools de datos. La base de DATABASE_URL_PRUEBAS se borra."""
-import os
-import subprocess
-import sys
 from datetime import date
 from pathlib import Path
 
 import pytest
-from sqlalchemy import create_engine, text
+from sqlalchemy import text
 
-pytestmark = pytest.mark.bd
+pytestmark = [pytest.mark.bd, pytest.mark.usefixtures("base_lista")]
 RAIZ = Path(__file__).resolve().parent.parent
-
-
-@pytest.fixture(scope="module", autouse=True)
-def base_lista():
-    url = os.environ["DATABASE_URL_PRUEBAS"]
-    with create_engine(url, isolation_level="AUTOCOMMIT").connect() as c:
-        c.execute(text("DROP SCHEMA public CASCADE; CREATE SCHEMA public"))
-    env = {**os.environ, "DATABASE_URL": url, "EMBEDDING_PROVEEDOR": "falso"}
-    subprocess.run(["alembic", "upgrade", "head"], cwd=RAIZ, env=env, check=True, capture_output=True)
-    subprocess.run([sys.executable, "scripts/cargar_semilla.py", "--embeddings"], cwd=RAIZ, env=env, check=True, capture_output=True)
 
 
 def test_semilla_reproduce_el_frontend():
@@ -38,12 +25,13 @@ def test_semilla_reproduce_el_frontend():
 def test_buscar_facturas():
     from steward_datos.contratos import BuscarFacturasEntrada
     from steward_datos.tools.consultas_chat import buscar_facturas
-    r = buscar_facturas(BuscarFacturasEntrada(con_regla="R-014"))
-    assert {f.caso_id for f in r.facturas} == {"F-1040", "F-1042"}
-    r = buscar_facturas(BuscarFacturasEntrada(emisor="proveedor demo"))
-    assert [f.caso_id for f in r.facturas] == ["F-1042"]
+    r = buscar_facturas(BuscarFacturasEntrada(con_regla="R-014", limite=100))
+    assert {"F-1040", "F-1042"} <= {f.caso_id for f in r.facturas}
+    assert all("R-014" in f.reglas_con_hallazgo for f in r.facturas)
+    r = buscar_facturas(BuscarFacturasEntrada(emisor="proveedor demo", limite=100))
+    assert "F-1042" in {f.caso_id for f in r.facturas} and all(f.emisor_nombre == "Proveedor Demo SA" for f in r.facturas)
     r = buscar_facturas(BuscarFacturasEntrada(resultado="aceptado", limite=5))
-    assert r.total_coincidencias == 31 and len(r.facturas) == 5
+    assert r.total_coincidencias > 800 and len(r.facturas) == 5
     r = buscar_facturas(BuscarFacturasEntrada(emisor="'; DROP TABLE casos; --"))
     assert r.total_coincidencias == 0
 
@@ -132,4 +120,8 @@ def test_tools_se_registran_en_mcp():
     mcp = Servidor("prueba")
     registrar_tools_datos(mcp)
     nombres = {t.name for t in anyio.run(mcp.list_tools)}
-    assert nombres == {"validar_reglas", "buscar_politicas", "registrar_hallazgo", "consultar_caso", "buscar_facturas"}
+    assert nombres == {"obtener_metrica", "consultar_glosario", "consultar_calidad", "validar_reglas", "buscar_politicas",
+                       "registrar_hallazgo", "consultar_caso", "buscar_facturas"}
+    propias = Servidor("prueba2")
+    registrar_tools_datos(propias, solo_propias=True)
+    assert {t.name for t in anyio.run(propias.list_tools)} == {"obtener_metrica", "consultar_glosario", "consultar_calidad", "validar_reglas"}

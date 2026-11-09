@@ -147,6 +147,101 @@ erDiagram
 
 `proveedores` y `entidades_receptoras` son catálogos sin relación formal: las reglas R-017 y R-018 los consultan por RFC.
 
+## Negocio y gobernanza (migración 0002)
+
+```mermaid
+erDiagram
+    entidades_receptoras ||--o{ centros_costo : "tiene"
+    proveedores ||--o{ ordenes_compra : "recibe"
+    centros_costo ||--o{ ordenes_compra : "carga"
+    ordenes_compra |o--o{ facturas : "ampara"
+    casos ||--o{ pagos : "se paga con"
+    entidades_receptoras ||--o{ clientes : "atiende"
+    entidades_receptoras ||--o{ usuarios_entidades : "visible para"
+    catalogo_tablas ||--o{ catalogo_columnas : "documenta"
+    reglas_calidad ||--o{ resultados_calidad : "se mide en"
+
+    centros_costo {
+        string id PK "CC-110"
+        string entidad_rfc FK
+        numeric presupuesto_anual
+    }
+    ordenes_compra {
+        string id PK "OC-2026-00123"
+        string proveedor_rfc FK
+        string centro_costo_id FK
+        numeric monto
+        string estado "abierta | facturada | cancelada"
+    }
+    pagos {
+        bigint id PK
+        string caso_id FK
+        date fecha_programada
+        date fecha_pago
+        numeric monto
+        string estado "programado | pagado | cancelado"
+    }
+    clientes {
+        string id_cliente PK "C-10001"
+        text rfc "confidencial"
+        text correo_contacto "confidencial"
+        string entidad_rfc FK
+    }
+    usuarios_entidades {
+        text usuario_id PK "sub de Cognito"
+        string entidad_rfc PK, FK
+    }
+    catalogo_tablas {
+        text tabla PK
+        text data_owner
+        text data_steward
+        string sensibilidad "publico | interno | confidencial | restringido"
+        bool consultable
+    }
+    catalogo_columnas {
+        text tabla PK, FK
+        text columna PK
+        string sensibilidad
+        bool enmascarada
+        text termino_glosario
+    }
+    glosario_terminos {
+        text termino PK
+        text definicion
+        text_array sinonimos
+        text dueno
+    }
+    reglas_calidad {
+        string id PK "RC-001"
+        text tabla
+        string dimension
+        numeric umbral
+        text sql_medicion
+    }
+    resultados_calidad {
+        bigint id PK
+        string regla_id FK
+        timestamptz ejecutado_en
+        numeric porcentaje
+        bool cumple_umbral
+    }
+    metricas {
+        text nombre PK
+        text definicion
+        text vista
+    }
+    consultas_libres {
+        bigint id PK
+        text pregunta
+        text sql
+        bool valida
+    }
+```
+
+Además: `casos.origen` (`aplicacion`, `semilla` o `negocio`), `facturas.orden_compra_id` y en `proveedores` la categoría, el correo de facturación y el plazo de pago.
+
+Las **vistas consultables** (`v_facturas`, `v_proveedores`, `v_casos`, `v_hallazgos`, `v_ordenes_compra`, `v_pagos`, `v_centros_costo`, `v_clientes`) y su seguridad por fila están en [vistas_y_catalogo.md](vistas_y_catalogo.md).
+
 ## Decisiones
 
 | Decisión | Por qué |
@@ -169,4 +264,5 @@ La migración otorga permisos si existen los usuarios que crea Infraestructura (
 | Usuario | Permisos |
 |---|---|
 | `steward_backend` | Lectura y escritura en todas las tablas, excepto `UPDATE`/`DELETE` en `bitacora`. |
-| `steward_mcp` | Solo lectura, más `INSERT` en `hallazgos` y `bitacora` (lo que necesita `registrar_hallazgo`). |
+| `steward_mcp` | Solo lectura, más `INSERT` en `hallazgos`, `bitacora` y `consultas_libres`. |
+| `steward_consultas` | Solo `SELECT` sobre las vistas consultables, con `statement_timeout` de 5 s (para `ejecutar_consulta`). |

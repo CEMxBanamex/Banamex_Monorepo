@@ -1,0 +1,137 @@
+# Reglas de calidad de datos (política P-022). Las consulta consultar_calidad (Iris).
+# sql_medicion corre sobre las tablas y devuelve dos columnas: cumple y total.
+# En el piloto los resultados se calculan al cargar la semilla y se guardan; la tool no ejecuta reglas en vivo.
+reglas:
+  - id: RC-001
+    tabla: facturas
+    columna: emisor_rfc
+    dimension: completitud
+    descripcion: Toda factura tiene RFC del emisor.
+    umbral: 99.0
+    politica_id: P-022
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE emisor_rfc IS NOT NULL AND emisor_rfc <> ''), count(*) FROM facturas
+
+  - id: RC-002
+    tabla: facturas
+    columna: folio
+    dimension: completitud
+    descripcion: Toda factura tiene folio.
+    umbral: 99.0
+    politica_id: P-022
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE folio IS NOT NULL AND folio <> ''), count(*) FROM facturas
+
+  - id: RC-003
+    tabla: facturas
+    columna: folio
+    dimension: unicidad
+    descripcion: No hay dos facturas del mismo emisor con el mismo folio.
+    umbral: 99.5
+    politica_id: P-022
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE n = 1), count(*)
+      FROM (SELECT count(*) OVER (PARTITION BY emisor_rfc, upper(folio)) AS n FROM facturas WHERE folio IS NOT NULL) t
+
+  - id: RC-004
+    tabla: facturas
+    columna: total
+    dimension: consistencia
+    descripcion: El total es subtotal + impuestos − retenciones (tolerancia 0.05).
+    umbral: 98.0
+    politica_id: P-002
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE abs(subtotal + impuestos - coalesce(retenciones, 0) - total) <= 0.05), count(*)
+      FROM facturas WHERE subtotal IS NOT NULL AND impuestos IS NOT NULL AND total IS NOT NULL
+
+  - id: RC-005
+    tabla: facturas
+    columna: null
+    dimension: oportunidad
+    descripcion: Las facturas se revisan en 48 horas o menos desde que se reciben.
+    umbral: 90.0
+    politica_id: P-022
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE c.revisado_en - c.creado_en <= interval '48 hours'), count(*)
+      FROM casos c JOIN facturas f ON f.caso_id = c.id WHERE c.revisado_en IS NOT NULL
+
+  - id: RC-006
+    tabla: proveedores
+    columna: rfc
+    dimension: validez
+    descripcion: El RFC del proveedor tiene la estructura de P-011.
+    umbral: 100.0
+    politica_id: P-011
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE rfc ~ '^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$'), count(*) FROM proveedores
+
+  - id: RC-007
+    tabla: clientes
+    columna: correo_contacto
+    dimension: completitud
+    descripcion: Todo cliente tiene correo de contacto.
+    umbral: 99.0
+    politica_id: P-007
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE correo_contacto IS NOT NULL AND correo_contacto <> ''), count(*) FROM clientes
+
+  - id: RC-008
+    tabla: clientes
+    columna: correo_contacto
+    dimension: validez
+    descripcion: El correo de contacto tiene la forma usuario@dominio.ext.
+    umbral: 99.5
+    politica_id: P-007
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE correo_contacto ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'), count(*)
+      FROM clientes WHERE correo_contacto IS NOT NULL AND correo_contacto <> ''
+
+  - id: RC-009
+    tabla: clientes
+    columna: rfc
+    dimension: validez
+    descripcion: El RFC del cliente tiene la estructura de P-011.
+    umbral: 99.5
+    politica_id: P-011
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE rfc ~ '^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$'), count(*) FROM clientes
+
+  - id: RC-010
+    tabla: clientes
+    columna: id_cliente
+    dimension: unicidad
+    descripcion: Ningún id_cliente se repite.
+    umbral: 100.0
+    politica_id: P-018
+    sql_medicion: |
+      SELECT count(DISTINCT upper(trim(id_cliente))), count(*) FROM clientes
+
+  - id: RC-011
+    tabla: clientes
+    columna: alta
+    dimension: completitud
+    descripcion: Todo cliente tiene fecha de alta.
+    umbral: 99.5
+    politica_id: P-015
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE alta IS NOT NULL), count(*) FROM clientes
+
+  - id: RC-012
+    tabla: ordenes_compra
+    columna: centro_costo_id
+    dimension: completitud
+    descripcion: Toda orden de compra tiene centro de costo.
+    umbral: 100.0
+    politica_id: P-022
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE centro_costo_id IS NOT NULL), count(*) FROM ordenes_compra
+
+  - id: RC-013
+    tabla: pagos
+    columna: fecha_pago
+    dimension: oportunidad
+    descripcion: Los pagos se hacen a más tardar en la fecha programada.
+    umbral: 90.0
+    politica_id: P-022
+    sql_medicion: |
+      SELECT count(*) FILTER (WHERE fecha_pago <= fecha_programada), count(*) FROM pagos WHERE estado = 'pagado'

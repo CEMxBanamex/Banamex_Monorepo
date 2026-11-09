@@ -1,6 +1,6 @@
 # Frente de Datos · Data Steward Agéntico
 
-Responsables: Iris Balderas y Mario Oropeza. Esquema de la base, datos sintéticos del piloto, políticas, catálogo de reglas, RAG y tools de datos del servidor MCP.
+Responsables: Iris Balderas y Mario Oropeza. Según el reparto del vault del equipo (`plan-de-trabajo/decision-reparto-de-tools-y-subequipos-de-agentes`), este frente es **la base de datos**: estructura (esquema, migraciones, vistas consultables y seguridad por fila), datos del piloto y de negocio, contenido de gobernanza (catálogo, glosario, políticas, reglas de calidad), definiciones de reglas y métricas, ingesta al RAG y datos de evaluación. Además: `validar_reglas` y `consultar_calidad` (Iris), `obtener_metrica` y `consultar_glosario` (Mario).
 
 ## Inicio rápido
 
@@ -12,7 +12,7 @@ pip install -r requirements.txt
 docker run -d --name steward-db -e POSTGRES_PASSWORD=steward -p 5432:5432 pgvector/pgvector:pg16
 export DATABASE_URL=postgresql+psycopg://postgres:steward@localhost:5432/postgres
 
-alembic upgrade head                                   # crea el esquema (1.4.1)
+alembic upgrade head                                   # esquema (0001) y negocio, gobernanza y vistas (0002)
 python scripts/cargar_semilla.py --embeddings          # catálogos, reglas, políticas, histórico y casos demo (1.4.4)
 pytest                                                 # pruebas unitarias; las de integración necesitan DATABASE_URL_PRUEBAS
 ```
@@ -22,7 +22,8 @@ Sin GPU, usa `EMBEDDING_PROVEEDOR=falso` para generar vectores de prueba. Con Ol
 Los datos sintéticos ya están generados en `sinteticos/`. Para regenerarlos (son deterministas con la semilla 2026):
 
 ```bash
-python scripts/generar_facturas.py && python scripts/generar_registros.py
+python scripts/generar_facturas.py && python scripts/generar_registros.py && python scripts/generar_negocio.py
+python scripts/generar_docs.py   # regenera docs/datos/ a partir de los YAML
 ```
 
 ## Qué hay aquí y a qué tarea corresponde
@@ -50,6 +51,25 @@ python scripts/generar_facturas.py && python scripts/generar_registros.py
 | 4.3.1–4.3.3 Evaluación | `scripts/evaluar.py`, plantilla `evaluacion/linea_base_manual.csv` |
 | 4.5.1 Inyección en factura | Escenarios `inyeccion_visible` e `inyeccion_oculta`, regla R-030 |
 | 4.7.1 Casos de la demo | `sinteticos/facturas/demo/` y la semilla (ver guion abajo) |
+| Chat · tablas de negocio | `ordenes_compra`, `pagos`, `centros_costo`, `clientes` (migración 0002), datos en `sinteticos/negocio/` |
+| Chat · vistas y seguridad por fila | Vistas `v_*` en la migración 0002; [`docs/datos/vistas_y_catalogo.md`](../docs/datos/vistas_y_catalogo.md) |
+| Chat · catálogo de datos | `gobernanza/catalogo_datos.yaml` (lo lee `consultar_catalogo`, de Juan Pablo) |
+| Chat · glosario | `gobernanza/glosario.yaml`, [`docs/datos/glosario.md`](../docs/datos/glosario.md) |
+| Chat · reglas de calidad | `gobernanza/calidad.yaml`, resultados medidos en la semilla, [`docs/datos/calidad.md`](../docs/datos/calidad.md) |
+| Chat · métricas de la capa semántica | `semantica/metricas.yaml`, [`docs/datos/metricas.md`](../docs/datos/metricas.md) |
+| Chat · políticas de gobernanza | `politicas/P-020` a `P-023` (`tipo: gobernanza`) |
+| Tools de Iris | `tools/validar_reglas.py`, `tools/consultar_calidad.py` |
+| Tools de Mario | `tools/obtener_metrica.py`, `tools/consultar_glosario.py` |
+
+## Tools de otros responsables
+
+`buscar_politicas` (Carlos Delgado / Carlos Ramos), `registrar_hallazgo` (Yael), `consultar_caso` y `buscar_facturas` (Mauricio) se construyeron aquí antes del reparto del 4 nov. Se quedan como **implementación de referencia** para que sus responsables las tomen, las cambien o las descarten. `registrar_tools_datos(mcp, solo_propias=True)` registra solo las de Datos.
+
+## Datos de negocio (consultas del chat)
+
+`scripts/generar_negocio.py` crea 12 meses (nov. 2025 a oct. 2026) de operación sintética: 960 facturas ya revisadas (casos `F-0001` a `F-0960`, `origen = negocio`, sin archivo), 861 órdenes de compra, 8 centros de costo en 3 entidades, pagos de Tesorería y 600 clientes. La semilla les aplica el mismo motor de reglas, así que las métricas por regla salen de hallazgos reales. Hay errores a propósito (totales que no cuadran, IVA mal calculado, folios repetidos, pagos tardíos, clientes sin correo) para que las reglas de calidad tengan algo que medir.
+
+Usuarios de desarrollo y sus entidades (`usuarios_entidades`): `dev-ana` (Grupo Financiero y Banco Demo, más la entidad de prueba), `dev-luis` (Servicios Corporativos), `dev-diego` (todas) y `dev-admin` (administrador, ve todo).
 
 ## Datos sintéticos
 
@@ -112,9 +132,12 @@ Con los embeddings falsos (sin GPU) el RAG da acierto@1 de 70 % y acierto@5 de 9
 4. **En vivo**: subir `sinteticos/facturas/demo/demo_inyeccion.pdf`. El agente no obedece la instrucción y reporta R-030.
 5. **En vivo**: subir `demo_nota_credito.pdf` → "No se encontró una regla aplicable" (R-031).
 6. **Chat**: "¿Qué facturas no cuadran en el total?" (`buscar_facturas` con R-014) y "¿Qué tolerancia permite la política?" (`buscar_politicas`, cita P-002 v2.0 §5).
+7. **Chat · analista de datos**: "¿Cuánto nos facturó cada proveedor en octubre?" (`obtener_metrica` monto_facturado por proveedor) y lo mismo como `dev-luis`, que solo ve su entidad.
+8. **Chat · gobernanza**: "¿Qué significa factura conciliada?" (`consultar_glosario`), "¿Qué reglas de calidad aplican a la tabla de facturas?" (`consultar_calidad`: 3 de 5 no alcanzan su umbral) y "¿El RFC es dato sensible?" (`buscar_politicas` tipo gobernanza → P-020 §3).
 
 ## Integración con los otros frentes
 
 - **Infraestructura**: el `requirements.txt` va en las imágenes de `backend` y `mcp`; ambas necesitan el paquete `steward_datos`. El usuario de base `steward_mcp` solo necesita lectura más `INSERT` en `hallazgos` y `bitacora`. Los archivos se suben a S3 en `casos/<caso_id>/<archivo>` y `politicas/<archivo>`.
+- **Juan Pablo** (`ejecutar_consulta`, `listar_vistas_consultables`, `consultar_catalogo`): las vistas, el usuario `steward_consultas` con permisos solo sobre ellas, `consultas_libres` y el catálogo con descripción y ejemplos por columna ya están en la base. Antes de ejecutar SQL hay que fijar el contexto con `steward_datos.contexto.fijar_en_bd`. Importante para la validación con `sqlglot`: rechazar llamadas a `set_config`, `current_setting` y funciones de sistema, porque un `SELECT set_config('app.rol', 'administrador', true)` dentro de la consulta saltaría la seguridad por fila.
 - **Agentes**: ver [`docs/datos/contratos_tools.md`](../docs/datos/contratos_tools.md). El grafo llama a `validar_reglas` y guarda con `persistencia.guardar_extraccion` y `guardar_resultado`. `registrar_tools_datos(mcp)` registra las cinco tools.
 - **Frontend**: los hallazgos ya tienen la forma de `HALLAZGOS_FACTURA` en `data.js` (`titulo`, `texto`, `cifras`, `regla`, `version`, `evidencia`). En la semilla, los RFC son válidos y distintos del `XAXX010101000` del mock.

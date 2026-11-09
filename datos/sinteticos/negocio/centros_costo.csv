@@ -1,0 +1,9 @@
+id,nombre,area,entidad_rfc,responsable,presupuesto_anual
+CC-110,Tecnología,Dirección de Tecnología,GFD960701AB4,Jaime Pascual Sepúlveda,9500000.00
+CC-120,Operaciones,Dirección de Operaciones,GFD960701AB4,Francisco Javier Timoteo Valadez,6200000.00
+CC-130,Recursos Humanos,Dirección de Personas,GFD960701AB4,Olga Nayeli Salas,2400000.00
+CC-210,Banca Comercial,Dirección Comercial,BDM970315QW2,Ing. Elvia Acevedo,7800000.00
+CC-220,Riesgos,Dirección de Riesgos,BDM970315QW2,Sra. Beatriz Loera,3100000.00
+CC-230,Cumplimiento,Dirección de Cumplimiento,BDM970315QW2,Mauricio Abraham Salas,2000000.00
+CC-310,Servicios Generales,Dirección de Administración,SCD050920LM8,Diana Osorio Heredia,4300000.00
+CC-320,Compras,Dirección de Administración,SCD050920LM8,Isabel Ocampo Serna,1500000.00

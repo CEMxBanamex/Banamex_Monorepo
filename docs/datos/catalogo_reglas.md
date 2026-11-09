@@ -1,6 +1,8 @@
 # Catálogo de reglas del piloto
 
-Tarea 1.5.3. Generado desde [`datos/reglas/catalogo.yaml`](../../datos/reglas/catalogo.yaml), que es la fuente única para `validar_reglas`, la tabla `reglas` y la verdad de referencia.
+_Generado con `datos/scripts/generar_docs.py`. No lo edites a mano._
+
+Fuente: [`datos/reglas/catalogo.yaml`](../../datos/reglas/catalogo.yaml), única para `validar_reglas`, la tabla `reglas` y la verdad de referencia.
 
 Efecto: **rechazo** → Rechazado si no hay dudas · **revision** → Requiere revisión humana · La revisión tiene precedencia sobre el rechazo.
 

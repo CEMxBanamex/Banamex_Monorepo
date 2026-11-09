@@ -31,7 +31,7 @@ def main():
         for p in preguntas:
             fecha = p.get("fecha", args.fecha)
             fecha = date.fromisoformat(str(fecha))
-            r = buscar_politicas(BuscarPoliticasEntrada(consulta=p["pregunta"], k=args.k, fecha=fecha), s)
+            r = buscar_politicas(BuscarPoliticasEntrada(consulta=p["pregunta"], k=args.k, fecha=fecha, tipo=p.get("tipo")), s)
             esp = p["esperado"]
             pos = next((i for i, f in enumerate(r.fragmentos)
                         if f.politica_id == esp["politica"] and f.version == esp["version"]), None)

@@ -225,3 +225,91 @@ class FacturaResumen(BaseModel):
 class BuscarFacturasSalida(BaseModel):
     total_coincidencias: int
     facturas: list[FacturaResumen]
+
+
+# Contexto del usuario: lo pone el backend desde el JWT (o X-Usuario / X-Rol en AUTH_MODE=dev), nunca el LLM
+
+
+class ContextoUsuario(BaseModel):
+    usuario_id: str
+    rol: Literal["analista", "administrador"]
+
+
+# obtener_metrica (Mario)
+
+
+class ObtenerMetricaEntrada(BaseModel):
+    metrica: str = Field(description="Nombre de una métrica definida, p. ej. monto_facturado")
+    dimensiones: list[str] = Field(default_factory=list, max_length=2, description="Hasta 2, p. ej. ['proveedor'] o ['mes']")
+    filtros: dict[str, str] = Field(default_factory=dict, description="Solo los filtros que admite la métrica, p. ej. {'proveedor': 'Demo'}")
+    fecha_desde: Optional[date] = None
+    fecha_hasta: Optional[date] = None
+    orden: Literal["valor_desc", "valor_asc", "dimension"] = "valor_desc"
+    limite: int = Field(20, ge=1, le=200)
+
+
+class ObtenerMetricaSalida(BaseModel):
+    metrica: str
+    etiqueta: str
+    definicion: str = Field(description="Definición oficial; el agente debe citarla")
+    unidad: str
+    dimensiones: list[str]
+    filas: list[dict]
+    truncado: bool = Field(description="True si hay más grupos que el límite")
+    sql: str = Field(description="SQL generado, para el detalle del paso")
+    parametros: dict
+    paso: str
+
+
+class MetricaNoDisponible(BaseModel):
+    """Se devuelve en lugar de un error cuando la pregunta no encaja: el agente pasa a buscar_facturas o al SQL de respaldo."""
+    motivo: str
+    metricas_disponibles: dict[str, str]
+    sugerencia: Optional[str] = None
+
+
+# consultar_glosario (Mario)
+
+
+class TerminoOut(BaseModel):
+    termino: str
+    definicion: str
+    sinonimos: list[str]
+    dominio: str
+    dueno: str
+    relacionados: list[str]
+    fuente: Optional[str]
+
+
+class ConsultarGlosarioSalida(BaseModel):
+    encontrado: bool
+    coincidencia: Optional[Literal["exacta", "sinonimo", "aproximada"]] = None
+    termino: Optional[TerminoOut] = None
+    alternativas: list[str] = Field(default_factory=list, description="Otros términos parecidos")
+    paso: str = "Consultando el glosario…"
+
+
+# consultar_calidad (Iris)
+
+
+class ResultadoReglaCalidad(BaseModel):
+    regla_id: str
+    tabla: str
+    columna: Optional[str]
+    dimension: str
+    descripcion: str
+    umbral: float
+    porcentaje: float
+    cumple_umbral: bool
+    registros_evaluados: int
+    registros_cumplen: int
+    ejecutado_en: datetime
+    porcentaje_anterior: Optional[float] = None
+    politica_id: Optional[str] = None
+
+
+class ConsultarCalidadSalida(BaseModel):
+    tabla: Optional[str]
+    reglas: list[ResultadoReglaCalidad]
+    tablas_con_reglas: list[str] = Field(description="Si la tabla no tiene reglas, para que el agente lo diga")
+    paso: str = "Revisando reglas de calidad…"

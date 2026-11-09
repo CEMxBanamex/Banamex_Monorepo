@@ -1,0 +1,228 @@
+# Glosario de negocio del piloto. Lo consulta consultar_glosario (Mario).
+# Cada término tiene un dueño (P-021) y, cuando aplica, la política o métrica que lo define.
+actualizado_en: 2026-11-09
+terminos:
+  - termino: Factura conciliada
+    definicion: Factura aceptada cuyo total coincide con el monto de su orden de compra y con el pago registrado por Tesorería, con una tolerancia de 0.05.
+    sinonimos: [conciliación, factura cuadrada con la OC]
+    dominio: facturas
+    dueno: Dirección de Cuentas por Pagar
+    relacionados: [Orden de compra, Tasa de conciliación, Pago]
+    fuente: métrica tasa_conciliacion
+  - termino: Monto facturado
+    definicion: Suma del total de las facturas no rechazadas, en pesos. Las facturas en USD se convierten al tipo de cambio fijo del piloto (18.50).
+    sinonimos: [gasto facturado, facturación]
+    dominio: facturas
+    dueno: Dirección de Cuentas por Pagar
+    relacionados: [Factura conciliada, Proveedor]
+    fuente: métrica monto_facturado
+  - termino: Tasa de rechazo
+    definicion: Porcentaje de facturas cuyo resultado vigente es Rechazado, sobre el total de facturas del periodo.
+    sinonimos: [porcentaje de rechazo]
+    dominio: facturas
+    dueno: Dirección de Cuentas por Pagar
+    relacionados: [Resultado sugerido, Hallazgo]
+    fuente: métrica tasa_rechazo
+  - termino: Tasa de conciliación
+    definicion: Porcentaje de facturas aceptadas que están conciliadas.
+    sinonimos: []
+    dominio: facturas
+    dueno: Dirección de Cuentas por Pagar
+    relacionados: [Factura conciliada]
+    fuente: métrica tasa_conciliacion
+  - termino: Tiempo de revisión
+    definicion: Horas entre la creación de un caso y la decisión del analista. El objetivo del piloto es reducirlo frente a la revisión manual.
+    sinonimos: [tiempo de atención, tiempo de respuesta]
+    dominio: facturas
+    dueno: Dirección de Cuentas por Pagar
+    relacionados: [Caso, Oportunidad]
+    fuente: métrica tiempo_promedio_revision
+  - termino: Caso
+    definicion: Unidad de trabajo del Data Steward. Se crea al subir una factura (F-) o un archivo de registros (V-) y termina con la decisión de un analista.
+    sinonimos: [caso de revisión]
+    dominio: facturas
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Resultado sugerido, Hallazgo, Bitácora de auditoría]
+    fuente: README del proyecto
+  - termino: Resultado sugerido
+    definicion: Lo que recomienda el agente para un caso (Aceptado, Rechazado o Requiere revisión humana). La decisión final siempre la toma un analista.
+    sinonimos: [recomendación del agente, sugerencia]
+    dominio: facturas
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Revisión humana, Caso]
+    fuente: P-001
+  - termino: Revisión humana
+    definicion: Resultado que sugiere el agente cuando hay incertidumbre (baja confianza de lectura, monto alto, posible duplicado, falta de política) y una persona debe decidir.
+    sinonimos: [requiere revisión humana, escalamiento]
+    dominio: facturas
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Resultado sugerido, Confianza de lectura]
+    fuente: P-004
+  - termino: Hallazgo
+    definicion: Incumplimiento u observación que encuentra el agente al aplicar una regla, con la regla y su versión, la evidencia y una explicación.
+    sinonimos: [observación, incumplimiento]
+    dominio: facturas
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Regla de negocio, Caso]
+    fuente: catálogo de reglas
+  - termino: Regla de negocio
+    definicion: Comprobación determinista del catálogo de reglas (R-001 a R-106) con identificador, versión y política que la sustenta. La evalúa código, no el modelo.
+    sinonimos: [regla, regla del catálogo]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Hallazgo, Política vigente, Regla de calidad]
+    fuente: reglas/catalogo.yaml
+  - termino: Confianza de lectura
+    definicion: Porcentaje de 0 a 100 que indica qué tan seguro está el modelo de visión de un campo leído. Debajo de 80 % el campo se marca como dudoso.
+    sinonimos: [confianza, nivel de confianza]
+    dominio: facturas
+    dueno: Gobierno de Datos · Cuentas por Pagar
+    relacionados: [Revisión humana]
+    fuente: P-004
+  - termino: Proveedor
+    definicion: Persona moral o física que emite facturas a una entidad del grupo.
+    sinonimos: [emisor, vendedor]
+    dominio: proveedores
+    dueno: Dirección de Compras
+    relacionados: [Proveedor activo, Padrón de proveedores]
+    fuente: P-003
+  - termino: Proveedor activo
+    definicion: Proveedor que aparece activo en el padrón; solo a ellos se les tramitan facturas sin revisión adicional.
+    sinonimos: [proveedor autorizado]
+    dominio: proveedores
+    dueno: Dirección de Compras
+    relacionados: [Padrón de proveedores]
+    fuente: P-003
+  - termino: Padrón de proveedores
+    definicion: Lista oficial de proveedores autorizados que mantiene Compras.
+    sinonimos: [catálogo de proveedores]
+    dominio: proveedores
+    dueno: Dirección de Compras
+    relacionados: [Proveedor activo]
+    fuente: P-003
+  - termino: Entidad receptora
+    definicion: Empresa del grupo a la que va dirigida una factura. Solo se tramitan facturas dirigidas a una entidad autorizada.
+    sinonimos: [receptor, entidad del grupo]
+    dominio: proveedores
+    dueno: Dirección de Compras
+    relacionados: [Proveedor]
+    fuente: P-001
+  - termino: Orden de compra
+    definicion: Documento de Compras que autoriza un gasto con un proveedor, un centro de costo y un monto, antes de que llegue la factura.
+    sinonimos: [OC, pedido]
+    dominio: proveedores
+    dueno: Dirección de Compras
+    relacionados: [Factura conciliada, Centro de costo]
+    fuente: P-021
+  - termino: Centro de costo
+    definicion: Unidad presupuestal a la que se carga un gasto.
+    sinonimos: [CC, centro de gasto]
+    dominio: presupuesto
+    dueno: Dirección de Finanzas
+    relacionados: [Orden de compra]
+    fuente: P-021
+  - termino: Pago
+    definicion: Desembolso que registra Tesorería por una factura aceptada. El sistema solo lo consulta; ninguna tool lo crea ni lo libera.
+    sinonimos: [desembolso]
+    dominio: pagos
+    dueno: Tesorería
+    relacionados: [Factura conciliada]
+    fuente: P-021
+  - termino: RFC
+    definicion: Registro Federal de Contribuyentes. 12 caracteres para persona moral y 13 para persona física. El de una persona física es un dato personal.
+    sinonimos: [registro federal de contribuyentes]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Dato personal, Clasificación de la información]
+    fuente: P-011 y P-020
+  - termino: Dato personal
+    definicion: Información que identifica o hace identificable a una persona física, como su nombre, RFC, correo o teléfono. Se clasifica al menos como confidencial.
+    sinonimos: [dato sensible, información personal]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Clasificación de la información, Enmascaramiento]
+    fuente: P-020
+  - termino: Clasificación de la información
+    definicion: Nivel de sensibilidad de un dato (público, interno, confidencial o restringido) que define quién puede verlo y cómo se protege.
+    sinonimos: [nivel de sensibilidad, clasificación de sensibilidad]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Dato personal, Enmascaramiento]
+    fuente: P-020
+  - termino: Enmascaramiento
+    definicion: Mostrar solo parte de un dato confidencial (por ejemplo, las primeras letras del RFC) a quien no tiene permiso de verlo completo.
+    sinonimos: [ofuscación]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Dato personal]
+    fuente: P-023
+  - termino: Data owner
+    definicion: Dirección que es dueña de un dominio de datos. Decide quién puede usarlos, aprueba sus reglas de calidad y responde por ellos.
+    sinonimos: [dueño de los datos, propietario de datos]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Data steward]
+    fuente: P-021
+  - termino: Data steward
+    definicion: Responsable operativo de un dominio de datos. Mantiene el catálogo, las definiciones y las reglas de calidad, y atiende sus incidentes.
+    sinonimos: [custodio de datos, responsable de datos]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Data owner]
+    fuente: P-021
+  - termino: Regla de calidad
+    definicion: Medición periódica de una dimensión de calidad sobre una tabla, con un umbral mínimo de cumplimiento.
+    sinonimos: [control de calidad]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Completitud, Unicidad, Validez, Oportunidad]
+    fuente: P-022
+  - termino: Completitud
+    definicion: Dimensión de calidad que mide qué porcentaje de registros tiene un dato obligatorio.
+    sinonimos: [datos completos]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Regla de calidad]
+    fuente: P-022
+  - termino: Unicidad
+    definicion: Dimensión de calidad que mide qué porcentaje de registros no está duplicado según su llave de negocio.
+    sinonimos: [no duplicidad]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Regla de calidad]
+    fuente: P-022
+  - termino: Validez
+    definicion: Dimensión de calidad que mide qué porcentaje de valores cumple el formato o el rango permitido.
+    sinonimos: [conformidad, exactitud de formato]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Regla de calidad]
+    fuente: P-022
+  - termino: Oportunidad
+    definicion: Dimensión de calidad que mide qué porcentaje de registros se procesó dentro del plazo esperado.
+    sinonimos: [puntualidad]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Regla de calidad, Tiempo de revisión]
+    fuente: P-022
+  - termino: Política vigente
+    definicion: Versión de una política cuya fecha de vigencia incluye el día de la consulta. El agente solo cita políticas vigentes, salvo que se pida otra versión.
+    sinonimos: [versión vigente]
+    dominio: gobernanza
+    dueno: Oficina de Gobierno de Datos
+    relacionados: [Regla de negocio]
+    fuente: P-004
+  - termino: Bitácora de auditoría
+    definicion: Registro oficial de quién hizo qué, sobre qué caso y cuándo. Solo admite inserciones.
+    sinonimos: [bitácora, registro de auditoría]
+    dominio: auditoria
+    dueno: Contraloría Interna
+    relacionados: [Caso, Hallazgo]
+    fuente: P-021
+  - termino: Factura extemporánea
+    definicion: Factura con más de 365 días de antigüedad al recibirse; no cumple la política P-001.
+    sinonimos: [factura vencida]
+    dominio: facturas
+    dueno: Dirección de Cuentas por Pagar
+    relacionados: [Hallazgo]
+    fuente: P-001
