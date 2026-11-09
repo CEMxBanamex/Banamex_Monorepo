@@ -1,6 +1,7 @@
 ---
 id: P-015
 nombre: Fechas de alta válidas
+tipo: gobernanza
 version: "1.1"
 historia: 2
 area_responsable: Gobierno de Datos

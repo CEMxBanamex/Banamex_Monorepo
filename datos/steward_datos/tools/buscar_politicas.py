@@ -38,12 +38,14 @@ def buscar_politicas(entrada: BuscarPoliticasEntrada, s: Optional[Session] = Non
         .order_by(distancia)
         .limit(entrada.k)
     )
+    if entrada.tipo:
+        q = q.where(Politica.tipo == entrada.tipo)
     if entrada.historia:
         q = q.where(or_(Politica.historia.is_(None), Politica.historia == entrada.historia))
     if entrada.reglas:
         q = q.where(FragmentoPolitica.reglas.overlap(entrada.reglas))
     fragmentos = [
-        FragmentoOut(fragmento_id=f.id, politica_id=p.id, politica_nombre=p.nombre, version=p.version,
+        FragmentoOut(fragmento_id=f.id, politica_id=p.id, politica_nombre=p.nombre, tipo=p.tipo, version=p.version,
                      vigente_desde=p.vigente_desde, vigente_hasta=p.vigente_hasta, seccion=f.seccion, texto=f.texto,
                      reglas=f.reglas, similitud=round(1 - float(d), 4))
         for f, p, d in s.execute(q).all()

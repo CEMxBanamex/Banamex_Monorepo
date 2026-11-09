@@ -31,7 +31,8 @@ ETIQUETAS = {
 
 class CampoLeido(BaseModel):
     valor: Optional[str] = Field(None, description="Texto tal como aparece en el documento; null si no aparece")
-    confianza: Optional[int] = Field(None, ge=0, le=100)
+    confianza: Optional[int] = Field(None, ge=0, le=100, description="Si el modelo no la da, R-003 no se evalúa para el campo")
+    etiqueta: Optional[str] = Field(None, description="Etiqueta impresa junto al valor, como evidencia (p. ej. 'Total')")
     pagina: Optional[int] = 1
     bbox: Optional[list[float]] = Field(None, description="[x0, y0, x1, y1] en píxeles, origen arriba a la izquierda")
 
@@ -111,6 +112,7 @@ class ResultadoValidacion(BaseModel):
 class BuscarPoliticasEntrada(BaseModel):
     consulta: str
     k: int = Field(5, ge=1, le=20)
+    tipo: Optional[Literal["facturas", "gobernanza"]] = None
     historia: Optional[Literal[1, 2]] = None
     fecha: Optional[date] = Field(None, description="Solo políticas vigentes en esta fecha; por defecto, hoy")
     reglas: Optional[list[str]] = Field(None, description="Filtra fragmentos que mencionan estas reglas")
@@ -120,6 +122,7 @@ class FragmentoOut(BaseModel):
     fragmento_id: int
     politica_id: str
     politica_nombre: str
+    tipo: str
     version: str
     vigente_desde: date
     vigente_hasta: Optional[date]

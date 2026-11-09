@@ -1,6 +1,7 @@
 ---
 id: P-003
 nombre: Facturas que requieren revisión adicional
+tipo: facturas
 version: "1.2"
 historia: 1
 area_responsable: Cuentas por Pagar · Supervisión

@@ -67,6 +67,8 @@ def test_buscar_politicas_respeta_vigencia():
     assert {(f.politica_id, f.version) for f in hoy.fragmentos if f.politica_id == "P-002"} == {("P-002", "2.0")}
     antes = buscar_politicas(BuscarPoliticasEntrada(consulta="tolerancia del total de la factura", fecha=date(2025, 6, 1)))
     assert antes.fragmentos and all(f.politica_id == "P-002" and f.version == "1.0" for f in antes.fragmentos)
+    gob = buscar_politicas(BuscarPoliticasEntrada(consulta="formato del RFC del cliente", tipo="gobernanza"))
+    assert gob.fragmentos and {f.politica_id for f in gob.fragmentos} <= {"P-007", "P-011", "P-015", "P-018"}
     r = buscar_politicas(BuscarPoliticasEntrada(consulta="tasas de IVA", reglas=["R-011"]))
     assert r.fragmentos and all("R-011" in f.reglas for f in r.fragmentos)
 

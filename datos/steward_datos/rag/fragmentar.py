@@ -19,6 +19,7 @@ class MetaPolitica:
     id: str
     nombre: str
     version: str
+    tipo: str
     historia: int | None
     area_responsable: str | None
     vigente_desde: date
@@ -49,7 +50,8 @@ def leer_politica(texto_md: str) -> tuple[MetaPolitica, str]:
         raise ValueError(f"Faltan metadatos obligatorios: {', '.join(faltan)}")
     hasta = meta.get("vigente_hasta")
     return MetaPolitica(
-        id=str(meta["id"]), nombre=meta["nombre"], version=str(meta["version"]), historia=meta.get("historia"),
+        id=str(meta["id"]), nombre=meta["nombre"], version=str(meta["version"]), tipo=meta.get("tipo", "facturas"),
+        historia=meta.get("historia"),
         area_responsable=meta.get("area_responsable"), vigente_desde=_fecha(meta["vigente_desde"]),
         vigente_hasta=_fecha(hasta) if hasta else None, estado=meta.get("estado", "vigente"),
         sha256=hashlib.sha256(texto_md.encode("utf-8")).hexdigest(),

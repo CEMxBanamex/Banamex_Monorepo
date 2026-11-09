@@ -1,6 +1,7 @@
 ---
 id: P-011
 nombre: Formato de RFC
+tipo: gobernanza
 version: "2.0"
 historia: null  # aplica a ambas historias
 area_responsable: Gobierno de Datos

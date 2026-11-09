@@ -1,6 +1,7 @@
 ---
 id: P-001
 nombre: Recepción y validación de facturas de proveedores
+tipo: facturas
 version: "3.0"
 historia: 1
 area_responsable: Cuentas por Pagar

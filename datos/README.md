@@ -17,7 +17,7 @@ python scripts/cargar_semilla.py --embeddings          # catálogos, reglas, pol
 pytest                                                 # pruebas unitarias; las de integración necesitan DATABASE_URL_PRUEBAS
 ```
 
-Sin GPU, usa `EMBEDDING_PROVEEDOR=falso` para generar vectores de prueba. Con Ollama, configura `OLLAMA_URL`, `EMBEDDING_MODELO` y `EMBEDDING_DIM` según lo que se elija en 0.5.5 (por defecto `bge-m3`, 1024 dimensiones, multilingüe). **Cambiar la dimensión requiere una migración nueva.**
+Sin GPU, usa `EMBEDDING_PROVEEDOR=falso` para generar vectores de prueba. Con Ollama, configura `OLLAMA_URL`, `EMBEDDING_MODELO` y `EMBEDDING_DIM` si cambian (por defecto `embeddinggemma:300m`, 768 dimensiones, el modelo que eligió Carlos Delgado en el vault). **Cambiar la dimensión requiere una migración nueva.**
 
 Los datos sintéticos ya están generados en `sinteticos/`. Para regenerarlos (son deterministas con la semilla 2026):
 

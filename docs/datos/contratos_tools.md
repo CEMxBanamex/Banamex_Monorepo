@@ -24,7 +24,8 @@ Borrador para la sesión de revisión de contratos (0.7.4). Los modelos Pydantic
 - Claves de `campos`: `folio, fecha, emisor_nombre, emisor_rfc, emisor_direccion, receptor_nombre, receptor_rfc, moneda, subtotal, impuestos, tasa_iva, retenciones, total, condiciones_pago`.
 - `valor` va **tal como aparece** en el documento (texto). La normalización de montos y fechas la hace `validar_reglas`.
 - Un campo que no aparece se omite o va con `valor: null`. Nunca se inventa.
-- `confianza` de 0 a 100. Si el modelo no da confianza, Agentes define cómo estimarla (p. ej., logprobs o autoevaluación); la regla R-003 usa el umbral de 80.
+- `confianza` de 0 a 100. La prueba de `gemma3:4b` en el vault devuelve `valor` y `etiqueta`, pero no confianza. Sin confianza, la regla R-003 (umbral de 80) no se evalúa para ese campo, así que hay que acordar cómo estimarla (p. ej., logprobs o autoevaluación).
+- `etiqueta` es opcional: la etiqueta impresa junto al valor ("Total", "Subtotal"), como en el esquema que probó Carlos Delgado.
 - `texto_completo` lo usa R-030 para detectar instrucciones inyectadas.
 - `bbox` en píxeles a 150 dpi, origen arriba a la izquierda (igual que nuestras anotaciones).
 
@@ -35,7 +36,7 @@ Borrador para la sesión de revisión de contratos (0.7.4). Los modelos Pydantic
 | Tool | Entrada | Salida | Escribe en la base |
 |---|---|---|---|
 | `validar_reglas` | `ValidarReglasEntrada`: `caso_id`, `historia` (1 o 2), `factura` o `registros`, `sha256`, `fecha_recepcion` | `ResultadoValidacion`: `reglas_evaluadas`, `hallazgos`, `resultado_sugerido`, `motivo` | No |
-| `buscar_politicas` | `BuscarPoliticasEntrada`: `consulta`, `k`, `historia`, `fecha`, `reglas` | `BuscarPoliticasSalida`: `fragmentos` (con política, versión, vigencia, sección, similitud), `sin_resultados` | No |
+| `buscar_politicas` | `BuscarPoliticasEntrada`: `consulta`, `k`, `tipo` (`facturas` o `gobernanza`), `historia`, `fecha`, `reglas` | `BuscarPoliticasSalida`: `fragmentos` (con política, versión, vigencia, sección, similitud), `sin_resultados` | No |
 | `registrar_hallazgo` | `RegistrarHallazgoEntrada`: `caso_id`, `hallazgo`, `origen`, `fragmentos_ids` | `hallazgo_id`, `evento_id` | `hallazgos`, `bitacora` |
 | `consultar_caso` | `caso_id` | `CasoOut`: estado, resultado, campos, hallazgos y eventos | No |
 | `buscar_facturas` | `BuscarFacturasEntrada`: filtros cerrados (proveedor, folio, fechas, montos, moneda, resultado, estado, regla) | `BuscarFacturasSalida` | No |
@@ -88,4 +89,4 @@ registrar_tools_datos(mcp)
 
 - Cómo obtiene Agentes la confianza por campo del modelo de visión.
 - Si `validar_reglas` debe llamar a `registrar_hallazgo` por su cuenta o si el grafo guarda todo al final con `guardar_resultado` (propuesta: lo segundo, en un solo paso, para que un caso no quede con hallazgos a medias).
-- Umbral de similitud del RAG (`RAG_UMBRAL_SIMILITUD`) una vez elegido el modelo de embeddings (0.5.5).
+- Umbral de similitud del RAG (`RAG_UMBRAL_SIMILITUD`) con `embeddinggemma:300m`: en la prueba de Carlos Delgado las similitudes correctas fueron de 0.39 a 0.56, así que el valor por defecto de 0.30 hay que calibrarlo con `scripts/evaluar_rag.py`.

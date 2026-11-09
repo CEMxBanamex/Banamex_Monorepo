@@ -52,6 +52,7 @@ def upgrade():
     sa.Column('id', sa.String(length=10), nullable=False),
     sa.Column('version', sa.String(length=10), nullable=False),
     sa.Column('nombre', sa.Text(), nullable=False),
+    sa.Column('tipo', sa.String(length=12), server_default='facturas', nullable=False),
     sa.Column('historia', sa.SmallInteger(), nullable=True),
     sa.Column('area_responsable', sa.Text(), nullable=True),
     sa.Column('vigente_desde', sa.Date(), nullable=False),
@@ -64,6 +65,7 @@ def upgrade():
     sa.Column('cargada_en', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.CheckConstraint("estado IN ('vigente', 'reemplazada', 'borrador')", name='ck_politicas_estado'),
     sa.CheckConstraint('vigente_hasta IS NULL OR vigente_hasta >= vigente_desde', name='ck_politicas_vigencia'),
+    sa.CheckConstraint("tipo IN ('facturas', 'gobernanza')", name='ck_politicas_tipo'),
     sa.PrimaryKeyConstraint('id', 'version')
     )
     op.create_table('proveedores',

@@ -24,7 +24,7 @@ def ingestar_politica(s: Session, texto_md: str, nombre_archivo: str, *, s3_key:
 
     accion = "actualizada" if existente else "nueva"
     p = existente or Politica(id=meta.id, version=meta.version)
-    p.nombre, p.historia, p.area_responsable = meta.nombre, meta.historia, meta.area_responsable
+    p.nombre, p.tipo, p.historia, p.area_responsable = meta.nombre, meta.tipo, meta.historia, meta.area_responsable
     p.vigente_desde, p.vigente_hasta, p.estado = meta.vigente_desde, meta.vigente_hasta, meta.estado
     p.fuente_nombre, p.fuente_s3_key, p.sha256, p.cargada_por = nombre_archivo, s3_key, meta.sha256, cargada_por
     p.fragmentos.clear()

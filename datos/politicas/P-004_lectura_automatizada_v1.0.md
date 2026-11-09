@@ -1,6 +1,7 @@
 ---
 id: P-004
 nombre: Lectura automatizada de documentos
+tipo: facturas
 version: "1.0"
 historia: 1
 area_responsable: Gobierno de Datos

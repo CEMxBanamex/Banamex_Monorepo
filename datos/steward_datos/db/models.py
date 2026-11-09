@@ -265,11 +265,13 @@ class Politica(Base):
     __table_args__ = (
         CheckConstraint("estado IN ('vigente', 'reemplazada', 'borrador')", name="ck_politicas_estado"),
         CheckConstraint("vigente_hasta IS NULL OR vigente_hasta >= vigente_desde", name="ck_politicas_vigencia"),
+        CheckConstraint("tipo IN ('facturas', 'gobernanza')", name="ck_politicas_tipo"),
     )
 
     id: Mapped[str] = mapped_column(String(10), primary_key=True)
     version: Mapped[str] = mapped_column(String(10), primary_key=True)
     nombre: Mapped[str] = mapped_column(Text)
+    tipo: Mapped[str] = mapped_column(String(12), default="facturas", server_default="facturas")  # filtro de buscar_politicas
     historia: Mapped[Optional[int]] = mapped_column(SmallInteger)  # NULL = aplica a ambas historias
     area_responsable: Mapped[Optional[str]] = mapped_column(Text)
     vigente_desde: Mapped[date] = mapped_column(Date)

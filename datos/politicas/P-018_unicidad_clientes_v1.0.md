@@ -1,6 +1,7 @@
 ---
 id: P-018
 nombre: Unicidad de identificadores de cliente
+tipo: gobernanza
 version: "1.0"
 historia: 2
 area_responsable: Gobierno de Datos

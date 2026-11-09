@@ -1,6 +1,7 @@
 ---
 id: P-002
 nombre: Cálculo de importes e impuestos en facturas
+tipo: facturas
 version: "2.0"
 historia: 1
 area_responsable: Contraloría Fiscal

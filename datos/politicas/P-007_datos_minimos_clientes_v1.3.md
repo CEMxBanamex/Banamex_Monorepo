@@ -1,6 +1,7 @@
 ---
 id: P-007
 nombre: Datos mínimos de clientes
+tipo: gobernanza
 version: "1.3"
 historia: 2
 area_responsable: Gobierno de Datos
