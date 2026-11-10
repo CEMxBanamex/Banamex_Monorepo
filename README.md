@@ -248,3 +248,9 @@ Ninguno de estos cambios requiere modificar la lógica del agente.
 - [ ] Verificar los límites del plan gratuito de Tailscale para el equipo.
 - [ ] Agregar al diagrama el título visible del Auto Scaling Group, el VPC endpoint de S3 y los security groups.
 - [ ] Definir las metas de evaluación después de medir la línea base.
+
+---
+
+## Frente de Datos
+
+El esquema de la base, los datos sintéticos del piloto (facturas y registros con su verdad de referencia), las políticas, el catálogo de reglas, el RAG y las tools de datos del MCP están en [`datos/`](datos/README.md). Documentación: [esquema y diagrama ER](docs/datos/esquema.md), [contratos de las tools](docs/datos/contratos_tools.md) y [catálogo de reglas](docs/datos/catalogo_reglas.md).

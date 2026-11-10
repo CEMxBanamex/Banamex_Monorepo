@@ -1,0 +1,224 @@
+{
+  "archivo": "piloto_027.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "varios_errores",
+  "descripcion": "Sin folio y con total que no cuadra",
+  "layout": "compacta",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "1e9280e8dabed2562ef221b9fb144448fed585e5f90e01c8f7b59a4b51ceedf6",
+  "tamano_bytes": 58857,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": null,
+      "fecha": "2026-08-08",
+      "emisor_nombre": "de la Rosa Tecnología S de RL de CV",
+      "emisor_rfc": "DLR970701G0E",
+      "emisor_direccion": "Prolongación Paraguay 533, Vieja Senegal",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "8,266.45",
+      "impuestos": "1,322.63",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "9,509.08",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-08",
+      "subtotal": "8266.45",
+      "impuestos": "1322.63",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "9509.08"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "2",
+        "precio_unitario": "1,249.86",
+        "importe": "2,499.72"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "1",
+        "precio_unitario": "5,766.73",
+        "importe": "5,766.73"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "fecha": 98,
+    "emisor_nombre": 97,
+    "emisor_rfc": 93,
+    "emisor_direccion": 96,
+    "receptor_nombre": 96,
+    "receptor_rfc": 97,
+    "moneda": 94,
+    "subtotal": 97,
+    "impuestos": 91,
+    "tasa_iva": 94,
+    "total": 93,
+    "condiciones_pago": 92
+  },
+  "texto_completo": "DE LA ROSA TECNOLOGÍA S DE RL DE CV\nProlongación Paraguay 533, Vieja Senegal\nR.F.C. DLR970701G0E\nFACTURA\nFecha: 2026-08-08\nCliente: Banco Demo SA, Institución de Banca Múltiple\nRFC cliente: BDM970315QW2\nMoneda: MXN\n2 x Servicio de cafetería\n2,499.72\n1 x Traducción de documentos\n5,766.73\nSUBTOTAL\n8,266.45\nIVA 16 %\n1,322.63\nTOTAL\n9,509.08\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "de la Rosa Tecnología S de RL de CV",
+      "bbox": [
+        [
+          375.0,
+          84.2,
+          900.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Prolongación Paraguay 533, Vieja Senegal",
+      "bbox": [
+        [
+          437.5,
+          124.2,
+          837.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "DLR970701G0E",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-08-08",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          887.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de cafetería 2 1,249.86 2,499.72\nTraducción de documentos 1 5,766.73 5,766.73",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          447.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "8,266.45",
+      "bbox": [
+        [
+          893.3,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "1,322.63",
+      "bbox": [
+        [
+          893.3,
+          497.5,
+          983.3,
+          517.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "9,509.08",
+      "bbox": [
+        [
+          873.3,
+          529.6,
+          983.3,
+          553.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          291.7,
+          588.8,
+          641.7,
+          606.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-001",
+      "R-014"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,240 @@
+{
+  "archivo": "piloto_013.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "total_no_cuadra",
+  "descripcion": "El total impreso no es subtotal + impuestos",
+  "layout": "moderna",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "4f546a832fc262dd0e26596a4010967146dfd277a478735336720bf4189daff7",
+  "tamano_bytes": 2355,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "54212728",
+      "fecha": "20/10/2026",
+      "emisor_nombre": "Heredia Grupo SC",
+      "emisor_rfc": "HGS940808H56",
+      "emisor_direccion": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "1,151.78",
+      "impuestos": "184.28",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "1,736.06",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-10-20",
+      "subtotal": "1151.78",
+      "impuestos": "184.28",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "1736.06"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "1",
+        "precio_unitario": "1,151.78",
+        "importe": "1,151.78"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 91,
+    "emisor_nombre": 93,
+    "emisor_rfc": 99,
+    "emisor_direccion": 93,
+    "receptor_nombre": 96,
+    "receptor_rfc": 90,
+    "moneda": 95,
+    "subtotal": 95,
+    "impuestos": 90,
+    "tasa_iva": 94,
+    "total": 96,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "HG\nHeredia Grupo SC\nCircunvalación Norte Padilla 482, San Lorenzo los bajos\nRFC emisor  HGS940808H56\nDocumento\nFactura\nSerie y folio\n54212728\nFecha de emisión\n20/10/2026\nMoneda\nMXN\nRECEPTOR\nServicios Corporativos Demo SA de CV\nSCD050920LM8\nConcepto\nCant.\nP. unitario\nImporte\nMensajería y paquetería\n1\n1,151.78\n1,151.78\nSubtotal\n1,151.78\nIVA 16 %\n184.28\nTotal\n$ 1,736.06 MXN\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Heredia Grupo SC",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          497.0,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          713.7,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "HGS940808H56",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          493.8,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "54212728",
+      "bbox": [
+        [
+          1087.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "20/10/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          471.2,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          258.2,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Mensajería y paquetería 1 1,151.78 1,151.78",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          506.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "1,151.78",
+      "bbox": [
+        [
+          1089.8,
+          547.9,
+          1170.8,
+          569.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "184.28",
+      "bbox": [
+        [
+          1107.1,
+          581.2,
+          1170.8,
+          603.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "1,736.06",
+      "bbox": [
+        [
+          990.2,
+          619.6,
+          1170.8,
+          645.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          104.2,
+          718.3,
+          361.6,
+          738.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-014"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,42 @@
+{
+  "archivo": "clientes_mixto.xlsx",
+  "escenario": "varios_errores",
+  "descripcion": "Varios errores en el mismo archivo",
+  "hoja": "clientes",
+  "caso_id": null,
+  "fecha_recepcion": "2026-11-02",
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-101",
+      "R-103",
+      "R-104",
+      "R-105"
+    ],
+    "filas": {
+      "R-101": [
+        3,
+        9
+      ],
+      "R-103": [
+        16
+      ],
+      "R-104": [
+        61
+      ],
+      "R-105": [
+        41,
+        42
+      ]
+    }
+  },
+  "grupo": "evaluacion",
+  "total_registros": 70,
+  "columnas": [
+    "id_cliente",
+    "nombre",
+    "rfc",
+    "correo_contacto",
+    "alta"
+  ]
+}

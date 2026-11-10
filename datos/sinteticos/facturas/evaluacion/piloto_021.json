@@ -1,0 +1,252 @@
+{
+  "archivo": "piloto_021.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "sin_rfc_emisor",
+  "descripcion": "La factura no muestra el RFC del emisor",
+  "layout": "moderna",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "9bb0bf2acd2e4ba38d703b223ad621f6225a4848f0cf5fd849016b5a5a78bfae",
+  "tamano_bytes": 123868,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 8836",
+      "fecha": "11/07/2026",
+      "emisor_nombre": "Vera Grupo SAPI de CV",
+      "emisor_rfc": null,
+      "emisor_direccion": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "76,252.23",
+      "impuestos": "12,200.36",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "88,452.59",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-11",
+      "subtotal": "76252.23",
+      "impuestos": "12200.36",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "88452.59"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "3",
+        "precio_unitario": "6,186.25",
+        "importe": "18,558.75"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "1",
+        "precio_unitario": "5,333.24",
+        "importe": "5,333.24"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "3",
+        "precio_unitario": "8,878.06",
+        "importe": "26,634.18"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "10,926.02",
+        "importe": "10,926.02"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "4",
+        "precio_unitario": "3,700.01",
+        "importe": "14,800.04"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 96,
+    "emisor_nombre": 93,
+    "emisor_direccion": 90,
+    "receptor_nombre": 95,
+    "receptor_rfc": 96,
+    "moneda": 91,
+    "subtotal": 93,
+    "impuestos": 95,
+    "tasa_iva": 97,
+    "total": 90,
+    "condiciones_pago": 96
+  },
+  "texto_completo": "VG\nVera Grupo SAPI de CV\nRetorno Farías 464, Nueva San Vicente y las Granadinas\nDocumento\nFactura\nSerie y folio\nB 8836\nFecha de emisión\n11/07/2026\nMoneda\nMXN\nRECEPTOR\nBanco Demo SA, Institución de Banca Múltiple\nBDM970315QW2\nConcepto\nCant.\nP. unitario\nImporte\nCapacitación en línea\n3\n6,186.25\n18,558.75\nSoporte técnico mensual\n1\n5,333.24\n5,333.24\nMantenimiento preventivo de equipo\n3\n8,878.06\n26,634.18\nHospedaje de servidores\n1\n10,926.02\n10,926.02\nRenta de equipo de cómputo\n4\n3,700.01\n14,800.04\nSubtotal\n76,252.23\nIVA 16 %\n12,200.36\nTotal\n$ 88,452.59 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          119.3,
+          70.8,
+          234.5,
+          186.0
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Vera Grupo SAPI de CV",
+      "bbox": [
+        [
+          262.5,
+          88.4,
+          588.9,
+          126.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "bbox": [
+        [
+          261.8,
+          130.1,
+          740.5,
+          161.2
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1116.3,
+          256.6,
+          1184.4,
+          278.0
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 8836",
+      "bbox": [
+        [
+          1122.8,
+          288.1,
+          1183.7,
+          309.2
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "11/07/2026",
+      "bbox": [
+        [
+          1088.7,
+          318.5,
+          1183.0,
+          340.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1140.2,
+          351.0,
+          1182.2,
+          371.7
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          116.9,
+          262.5,
+          548.0,
+          294.6
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          116.2,
+          293.7,
+          279.9,
+          319.4
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Capacitación en línea 3 6,186.25 18,558.75\nSoporte técnico mensual 1 5,333.24 5,333.24\nMantenimiento preventivo de equipo 3 8,878.06 26,634.18\nHospedaje de servidores 1 10,926.02 10,926.02\nRenta de equipo de cómputo 4 3,700.01 14,800.04",
+      "bbox": [
+        [
+          108.4,
+          410.3,
+          1180.2,
+          668.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "76,252.23",
+      "bbox": [
+        [
+          1080.6,
+          708.4,
+          1173.7,
+          732.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "12,200.36",
+      "bbox": [
+        [
+          1079.8,
+          741.7,
+          1172.9,
+          765.8
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "88,452.59",
+      "bbox": [
+        [
+          976.9,
+          777.7,
+          1172.0,
+          808.5
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          102.9,
+          855.6,
+          415.9,
+          882.7
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-001"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,235 @@
+{
+  "archivo": "piloto_029.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "duplicado_folio",
+  "descripcion": "Mismo emisor y folio que el caso F-1012, otro archivo",
+  "layout": "compacta",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "7a22f4d99267aa43d8bd737adf099075b44a824699addaeba717b93cbd6a1b14",
+  "tamano_bytes": 2274,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-3786",
+      "fecha": "2026-06-15",
+      "emisor_nombre": "Nevárez Tecnología SC",
+      "emisor_rfc": "NTS8705115G4",
+      "emisor_direccion": "Calzada Patiño 572, Vieja Andorra",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "30,276.62",
+      "impuestos": "4,844.26",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "35,120.88",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-15",
+      "subtotal": "30276.62",
+      "impuestos": "4844.26",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "35120.88"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "2,220.68",
+        "importe": "2,220.68"
+      },
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "2",
+        "precio_unitario": "14,027.97",
+        "importe": "28,055.94"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 96,
+    "fecha": 92,
+    "emisor_nombre": 97,
+    "emisor_rfc": 91,
+    "emisor_direccion": 92,
+    "receptor_nombre": 95,
+    "receptor_rfc": 92,
+    "moneda": 90,
+    "subtotal": 94,
+    "impuestos": 92,
+    "tasa_iva": 96,
+    "total": 91,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "NEVÁREZ TECNOLOGÍA SC\nCalzada Patiño 572, Vieja Andorra\nR.F.C. NTS8705115G4\nFACTURA\n#A-3786\nFecha: 2026-06-15\nCliente: Grupo Financiero Demo SA de CV\nRFC cliente: GFD960701AB4\nMoneda: MXN\n1 x Papelería y artículos de oficina\n2,220.68\n2 x Capacitación en línea\n28,055.94\nSUBTOTAL\n30,276.62\nIVA 16 %\n4,844.26\nTOTAL\n35,120.88\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Nevárez Tecnología SC",
+      "bbox": [
+        [
+          480.0,
+          84.2,
+          795.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calzada Patiño 572, Vieja Andorra",
+      "bbox": [
+        [
+          472.5,
+          124.2,
+          802.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "NTS8705115G4",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-3786",
+      "bbox": [
+        [
+          895.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-06-15",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          730.4,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Papelería y artículos de oficina 1 2,220.68 2,220.68\nCapacitación en línea 2 14,027.97 28,055.94",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          447.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "30,276.62",
+      "bbox": [
+        [
+          882.1,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "4,844.26",
+      "bbox": [
+        [
+          893.3,
+          497.5,
+          983.3,
+          517.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "35,120.88",
+      "bbox": [
+        [
+          859.6,
+          529.6,
+          983.3,
+          553.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          291.7,
+          588.8,
+          641.7,
+          606.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-015"
+    ]
+  },
+  "nota_oculta": null
+}

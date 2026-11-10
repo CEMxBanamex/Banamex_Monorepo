@@ -1,0 +1,240 @@
+{
+  "archivo": "piloto_039.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "nota_credito",
+  "descripcion": "Nota de crédito: no hay política aplicable",
+  "layout": "moderna",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "f622d7867813e36aff421f44431b2e3ed8a3fe55b1d9382a7eaa1f20026232e4",
+  "tamano_bytes": 2411,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "nota_credito",
+    "campos": {
+      "folio": "A-1661",
+      "fecha": "16/09/2026",
+      "emisor_nombre": "Salinas Tecnología S de RL de CV",
+      "emisor_rfc": "STS020102K59",
+      "emisor_direccion": "Privada Sur López 302, San Fabiola de la Montaña",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "17,140.08",
+      "impuestos": "2,742.41",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "19,882.49",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-16",
+      "subtotal": "17140.08",
+      "impuestos": "2742.41",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "19882.49"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "3",
+        "precio_unitario": "5,713.36",
+        "importe": "17,140.08"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 96,
+    "fecha": 92,
+    "emisor_nombre": 97,
+    "emisor_rfc": 99,
+    "emisor_direccion": 97,
+    "receptor_nombre": 93,
+    "receptor_rfc": 96,
+    "moneda": 97,
+    "subtotal": 96,
+    "impuestos": 96,
+    "tasa_iva": 96,
+    "total": 97,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "ST\nSalinas Tecnología S de RL de CV\nPrivada Sur López 302, San Fabiola de la Montaña\nRFC emisor  STS020102K59\nDocumento\nNota De Crédito\nSerie y folio\nA-1661\nFecha de emisión\n16/09/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nRenta de equipo de cómputo\n3\n5,713.36\n17,140.08\nSubtotal\n17,140.08\nIVA 16 %\n2,742.41\nTotal\n$ 19,882.49 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Salinas Tecnología S de RL de CV",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          717.5,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Privada Sur López 302, San Fabiola de la Montaña",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          671.1,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "STS020102K59",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          488.6,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "NOTA DE CRÉDITO",
+      "bbox": [
+        [
+          1029.2,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-1661",
+      "bbox": [
+        [
+          1109.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "16/09/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          423.7,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          257.0,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Renta de equipo de cómputo 3 5,713.36 17,140.08",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          506.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "17,140.08",
+      "bbox": [
+        [
+          1078.2,
+          547.9,
+          1170.8,
+          569.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "2,742.41",
+      "bbox": [
+        [
+          1089.8,
+          581.2,
+          1170.8,
+          603.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "19,882.49",
+      "bbox": [
+        [
+          976.3,
+          619.6,
+          1170.8,
+          645.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          718.3,
+          416.9,
+          738.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-031"
+    ]
+  },
+  "nota_oculta": null
+}

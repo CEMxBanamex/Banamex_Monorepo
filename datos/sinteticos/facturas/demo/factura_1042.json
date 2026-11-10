@@ -1,0 +1,238 @@
+{
+  "archivo": "factura_1042.pdf",
+  "grupo": "demo",
+  "caso_id": "F-1042",
+  "escenario": "demo_total_y_fecha",
+  "descripcion": "Caso principal de la demo: total con 400.00 de diferencia y fecha leída con 62 % (el modelo lee 12/03 en vez de 12/08)",
+  "layout": "clasica",
+  "formato": "pdf",
+  "paginas": 2,
+  "sha256": "02e45742163408981f17d9445e54f48be23044c68ebd11a6756798c60e5abbf0",
+  "tamano_bytes": 2901,
+  "fecha_recepcion": "2026-10-26",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-1042",
+      "fecha": "12/08/2026",
+      "emisor_nombre": "Proveedor Demo SA",
+      "emisor_rfc": "PDE200115AB3",
+      "emisor_direccion": "Calle Ejemplo 123, Ciudad de México",
+      "receptor_nombre": "Cliente de prueba SA de CV",
+      "receptor_rfc": "CPR180301KJ7",
+      "moneda": "MXN",
+      "subtotal": "10,000.00",
+      "impuestos": "1,600.00",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "12,000.00",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-12",
+      "subtotal": "10000.00",
+      "impuestos": "1600.00",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "12000.00"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "8,000.00",
+        "importe": "8,000.00"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "1",
+        "precio_unitario": "2,000.00",
+        "importe": "2,000.00"
+      }
+    ]
+  },
+  "lectura_simulada": {
+    "fecha": "12/03/2026"
+  },
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 62,
+    "emisor_nombre": 98,
+    "emisor_rfc": 91,
+    "emisor_direccion": 99,
+    "receptor_nombre": 98,
+    "receptor_rfc": 94,
+    "moneda": 99,
+    "subtotal": 97,
+    "impuestos": 96,
+    "tasa_iva": 93,
+    "total": 95,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "Proveedor Demo SA\nRFC PDE200115AB3\nCalle Ejemplo 123, Ciudad de México\nFACTURA\nFolio A-1042\nFecha 12/08/2026\nReceptor\nCliente de prueba SA de CV\nRFC CPR180301KJ7\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n1\n8,000.00\n8,000.00\nLicencia anual de software\n1\n2,000.00\n2,000.00\nSubtotal\n10,000.00\nIVA 16 %\n1,600.00\nTotal\n$ 12,000.00\nCondiciones de pago: Pago a 45 días\nTérminos y condiciones\n1. Los precios incluyen los impuestos desglosados en la página 1.\n2. Las aclaraciones se reciben dentro de los 5 días hábiles siguientes a la emisión.\n3. Documento sintético generado para el piloto del Data Steward Agéntico.",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Proveedor Demo SA",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          426.5,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "PDE200115AB3",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          304.5,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Ejemplo 123, Ciudad de México",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          451.5,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-1042",
+      "bbox": [
+        [
+          1052.7,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "12/08/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Cliente de prueba SA de CV",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          365.9,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "CPR180301KJ7",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          302.1,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 1 8,000.00 8,000.00\nLicencia anual de software 1 2,000.00 2,000.00",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          522.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "10,000.00",
+      "bbox": [
+        [
+          1078.2,
+          564.6,
+          1170.8,
+          586.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "1,600.00",
+      "bbox": [
+        [
+          1089.8,
+          597.9,
+          1170.8,
+          619.8
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "12,000.00",
+      "bbox": [
+        [
+          1038.8,
+          636.2,
+          1170.8,
+          662.5
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          724.6,
+          416.9,
+          744.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-003",
+      "R-014"
+    ]
+  },
+  "nota_oculta": null
+}

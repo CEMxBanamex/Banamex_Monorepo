@@ -1,0 +1,227 @@
+{
+  "archivo": "factura_1022.jpg",
+  "grupo": "historico",
+  "caso_id": "F-1022",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "compacta",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "c1754dfc1255afe7b2ef8f56477d3490caad332e7cffd55e9bd8c22749be2c88",
+  "tamano_bytes": 99151,
+  "fecha_recepcion": "2026-08-03",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 7094",
+      "fecha": "2026-07-20",
+      "emisor_nombre": "Bermúdez Consultores SAPI de CV",
+      "emisor_rfc": "BCS091217EXF",
+      "emisor_direccion": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "USD",
+      "subtotal": "5,678.27",
+      "impuestos": "908.52",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "6,586.79",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-20",
+      "subtotal": "5678.27",
+      "impuestos": "908.52",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "6586.79"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "5,678.27",
+        "importe": "5,678.27"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 98,
+    "emisor_nombre": 92,
+    "emisor_rfc": 98,
+    "emisor_direccion": 96,
+    "receptor_nombre": 94,
+    "receptor_rfc": 90,
+    "moneda": 98,
+    "subtotal": 99,
+    "impuestos": 94,
+    "tasa_iva": 98,
+    "total": 94,
+    "condiciones_pago": 96
+  },
+  "texto_completo": "BERMÚDEZ CONSULTORES SAPI DE CV\nAvenida Nuevo León 825, San Fabiola de la Montaña\nR.F.C. BCS091217EXF\nFACTURA\n#B 7094\nFecha: 2026-07-20\nCliente: Servicios Corporativos Demo SA de CV\nRFC cliente: SCD050920LM8\nMoneda: USD\n1 x Servicio de limpieza\n5,678.27\nSUBTOTAL\n5,678.27\nIVA 16 %\n908.52\nTOTAL\n6,586.79\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Bermúdez Consultores SAPI de CV",
+      "bbox": [
+        [
+          391.6,
+          80.1,
+          857.0,
+          114.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "bbox": [
+        [
+          379.8,
+          119.9,
+          870.1,
+          146.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "BCS091217EXF",
+      "bbox": [
+        [
+          518.4,
+          149.9,
+          732.5,
+          173.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          280.6,
+          215.4,
+          377.2,
+          241.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 7094",
+      "bbox": [
+        [
+          884.6,
+          206.3,
+          972.5,
+          229.8
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-07-20",
+      "bbox": [
+        [
+          281.3,
+          250.4,
+          472.8,
+          273.6
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          281.8,
+          273.9,
+          788.3,
+          302.8
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          282.3,
+          307.1,
+          563.8,
+          331.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "USD",
+      "bbox": [
+        [
+          282.9,
+          339.1,
+          406.9,
+          361.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 1 5,678.27 5,678.27",
+      "bbox": [
+        [
+          283.7,
+          375.0,
+          975.9,
+          427.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "5,678.27",
+      "bbox": [
+        [
+          886.3,
+          437.1,
+          976.7,
+          458.4
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "908.52",
+      "bbox": [
+        [
+          909.3,
+          464.2,
+          977.2,
+          485.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "6,586.79",
+      "bbox": [
+        [
+          867.4,
+          496.3,
+          977.8,
+          522.4
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          287.0,
+          561.7,
+          637.2,
+          585.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

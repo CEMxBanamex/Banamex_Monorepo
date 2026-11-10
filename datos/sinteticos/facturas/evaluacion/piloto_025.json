@@ -1,0 +1,252 @@
+{
+  "archivo": "piloto_025.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "extemporanea",
+  "descripcion": "Factura con más de 365 días de antigüedad",
+  "layout": "moderna",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "7ff5565d1893a60716f96f297e98886fb67738a68e98e519e80cb4ec0804104e",
+  "tamano_bytes": 87776,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "97110651",
+      "fecha": "08/09/2025",
+      "emisor_nombre": "Villa Servicios SA de CV",
+      "emisor_rfc": "VSS190522YKA",
+      "emisor_direccion": "Periférico Tabasco 770, San Isaac los altos",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "67,920.45",
+      "impuestos": "10,867.27",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "78,787.72",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2025-09-08",
+      "subtotal": "67920.45",
+      "impuestos": "10867.27",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "78787.72"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "5",
+        "precio_unitario": "8,146.91",
+        "importe": "40,734.55"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "4",
+        "precio_unitario": "3,669.08",
+        "importe": "14,676.32"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "3",
+        "precio_unitario": "4,169.86",
+        "importe": "12,509.58"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 93,
+    "fecha": 91,
+    "emisor_nombre": 96,
+    "emisor_rfc": 92,
+    "emisor_direccion": 94,
+    "receptor_nombre": 94,
+    "receptor_rfc": 98,
+    "moneda": 97,
+    "subtotal": 91,
+    "impuestos": 97,
+    "tasa_iva": 97,
+    "total": 98,
+    "condiciones_pago": 93
+  },
+  "texto_completo": "VS\nVilla Servicios SA de CV\nPeriférico Tabasco 770, San Isaac los altos\nRFC emisor  VSS190522YKA\nDocumento\nFactura\nSerie y folio\n97110651\nFecha de emisión\n08/09/2025\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nCapacitación en línea\n5\n8,146.91\n40,734.55\nRenta de equipo de cómputo\n4\n3,669.08\n14,676.32\nTraducción de documentos\n3\n4,169.86\n12,509.58\nSubtotal\n67,920.45\nIVA 16 %\n10,867.27\nTotal\n$ 78,787.72 MXN\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          120.4,
+          70.0,
+          235.7,
+          185.3
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Villa Servicios SA de CV",
+      "bbox": [
+        [
+          263.7,
+          87.8,
+          601.5,
+          126.9
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Periférico Tabasco 770, San Isaac los altos",
+      "bbox": [
+        [
+          262.9,
+          129.5,
+          623.9,
+          158.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VSS190522YKA",
+      "bbox": [
+        [
+          262.1,
+          158.5,
+          510.6,
+          184.5
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1117.2,
+          257.4,
+          1185.4,
+          278.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "97110651",
+      "bbox": [
+        [
+          1100.7,
+          288.3,
+          1184.6,
+          310.1
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "08/09/2025",
+      "bbox": [
+        [
+          1089.5,
+          319.3,
+          1183.8,
+          341.3
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1140.9,
+          351.9,
+          1183.0,
+          372.6
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          117.8,
+          261.6,
+          437.8,
+          291.6
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          117.0,
+          292.8,
+          270.3,
+          318.6
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Capacitación en línea 5 8,146.91 40,734.55\nRenta de equipo de cómputo 4 3,669.08 14,676.32\nTraducción de documentos 3 4,169.86 12,509.58",
+      "bbox": [
+        [
+          110.6,
+          409.5,
+          1180.9,
+          594.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "67,920.45",
+      "bbox": [
+        [
+          1082.6,
+          634.2,
+          1175.8,
+          658.4
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "10,867.27",
+      "bbox": [
+        [
+          1081.8,
+          667.5,
+          1174.9,
+          691.7
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "78,787.72",
+      "bbox": [
+        [
+          978.8,
+          703.3,
+          1173.9,
+          734.4
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          104.7,
+          779.7,
+          362.5,
+          806.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-004"
+    ]
+  },
+  "nota_oculta": null
+}

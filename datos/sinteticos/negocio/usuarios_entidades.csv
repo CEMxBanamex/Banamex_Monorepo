@@ -1,0 +1,10 @@
+usuario_id,nombre,rol,entidad_rfc
+dev-ana,Ana López,analista,GFD960701AB4
+dev-ana,Ana López,analista,BDM970315QW2
+dev-ana,Ana López,analista,CPR180301KJ7
+dev-luis,Luis Ortega,analista,SCD050920LM8
+dev-diego,Diego Ruiz,analista,GFD960701AB4
+dev-diego,Diego Ruiz,analista,BDM970315QW2
+dev-diego,Diego Ruiz,analista,SCD050920LM8
+dev-diego,Diego Ruiz,analista,CPR180301KJ7
+dev-admin,Administrador Demo,administrador,

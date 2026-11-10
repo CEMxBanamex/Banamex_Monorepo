@@ -1,0 +1,235 @@
+{
+  "archivo": "piloto_024.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "fecha_futura",
+  "descripcion": "Fecha de emisión posterior a la recepción",
+  "layout": "clasica",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "d90275780e550c1d310bbad534f5fcc1ea76d25b5f85f700bdd1b8923c74c4d6",
+  "tamano_bytes": 113285,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-035175",
+      "fecha": "14/11/2026",
+      "emisor_nombre": "Cervántez Servicios SA de CV",
+      "emisor_rfc": "CSS131018FNR",
+      "emisor_direccion": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "14,098.56",
+      "impuestos": "2,255.77",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "16,354.33",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-11-14",
+      "subtotal": "14098.56",
+      "impuestos": "2255.77",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "16354.33"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "5",
+        "precio_unitario": "2,078.65",
+        "importe": "10,393.25"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "1",
+        "precio_unitario": "3,705.31",
+        "importe": "3,705.31"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 90,
+    "emisor_nombre": 92,
+    "emisor_rfc": 95,
+    "emisor_direccion": 97,
+    "receptor_nombre": 99,
+    "receptor_rfc": 97,
+    "moneda": 98,
+    "subtotal": 91,
+    "impuestos": 97,
+    "tasa_iva": 96,
+    "total": 98,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "Cervántez Servicios SA de CV\nRFC CSS131018FNR\nPeatonal República Unida de Tanzanía 1, Vieja Bhután\nFACTURA\nFolio FAC-035175\nFecha 14/11/2026\nReceptor\nGrupo Financiero Demo SA de CV\nRFC GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de cafetería\n5\n2,078.65\n10,393.25\nSoporte técnico mensual\n1\n3,705.31\n3,705.31\nSubtotal\n14,098.56\nIVA 16 %\n2,255.77\nTotal\n$ 16,354.33\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Cervántez Servicios SA de CV",
+      "bbox": [
+        [
+          104.0,
+          98.3,
+          580.1,
+          133.4
+        ]
+      ]
+    },
+    "GST": {
+      "text": "CSS131018FNR",
+      "bbox": [
+        [
+          104.0,
+          145.9,
+          307.7,
+          167.8
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+      "bbox": [
+        [
+          104.0,
+          175.0,
+          613.5,
+          197.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.7,
+          101.6,
+          1170.6,
+          132.2
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-035175",
+      "bbox": [
+        [
+          1001.6,
+          145.7,
+          1170.6,
+          167.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "14/11/2026",
+      "bbox": [
+        [
+          1002.7,
+          174.9,
+          1170.6,
+          196.8
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.1,
+          283.4,
+          423.6,
+          305.3
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.1,
+          312.6,
+          305.5,
+          334.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.1,
+          341.8,
+          237.2,
+          363.6
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de cafetería 5 2,078.65 10,393.25\nSoporte técnico mensual 1 3,705.31 3,705.31",
+      "bbox": [
+        [
+          104.1,
+          402.0,
+          1170.7,
+          523.0
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "14,098.56",
+      "bbox": [
+        [
+          1078.1,
+          564.5,
+          1170.7,
+          586.4
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "2,255.77",
+      "bbox": [
+        [
+          1089.7,
+          597.8,
+          1170.7,
+          619.7
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "16,354.33",
+      "bbox": [
+        [
+          1038.8,
+          636.1,
+          1170.8,
+          662.4
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          104.2,
+          724.7,
+          361.6,
+          744.4
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-004"
+    ]
+  },
+  "nota_oculta": null
+}

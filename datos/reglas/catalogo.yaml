@@ -1,0 +1,212 @@
+# Catálogo de reglas del piloto (tarea 1.5.3).
+# Fuente única para validar_reglas, para la tabla `reglas` y para la verdad de referencia.
+#
+# efecto:
+#   rechazo      -> el caso no cumple la regla; si no hay dudas, el resultado sugerido es Rechazado
+#   revision     -> hay incertidumbre o un supuesto que exige criterio; el resultado es Requiere revisión humana
+#   informativo  -> se muestra, pero no cambia el resultado
+# Precedencia del resultado: revision > rechazo > aceptado (README: "si hay dudas, pide revisión humana").
+
+parametros_globales:
+  umbral_confianza: 80
+  tolerancia_montos: 0.05
+  tipo_cambio_usd_mxn: 18.50   # fijo para el piloto
+
+reglas:
+  # Historia 1 · Facturas
+  - id: R-001
+    version: "1.2"
+    nombre: Campos obligatorios de la factura
+    historia: 1
+    politica: {id: P-001, version: "3.0", seccion: "3. Datos obligatorios"}
+    efecto: rechazo
+    descripcion: La factura debe mostrar folio, fecha, nombre y RFC del emisor, nombre y RFC del receptor, subtotal, impuestos, total y moneda.
+    parametros:
+      campos: [folio, fecha, emisor_nombre, emisor_rfc, receptor_nombre, receptor_rfc, subtotal, impuestos, total, moneda]
+
+  - id: R-002
+    version: "2.0"
+    nombre: Formato de RFC en la factura
+    historia: 1
+    politica: {id: P-011, version: "2.0", seccion: "2. Estructura del RFC"}
+    efecto: rechazo
+    descripcion: El RFC del emisor y del receptor deben tener la estructura de la política P-011 (12 caracteres persona moral, 13 persona física, con fecha válida).
+    parametros:
+      campos: [emisor_rfc, receptor_rfc]
+
+  - id: R-003
+    version: "1.0"
+    nombre: Confianza mínima de lectura
+    historia: 1
+    politica: {id: P-004, version: "1.0", seccion: "2. Umbral de confianza"}
+    efecto: revision
+    descripcion: Si un campo usado por las reglas se leyó con confianza menor al umbral, una persona debe verificarlo contra el documento original.
+    parametros:
+      umbral: 80
+      # Si el modelo no da confianza en un campo: informativo (se avisa, no cambia el resultado) o revision.
+      sin_confianza: informativo
+
+  - id: R-004
+    version: "1.1"
+    nombre: Fecha de emisión válida
+    historia: 1
+    politica: {id: P-001, version: "3.0", seccion: "4. Fecha de emisión"}
+    efecto: rechazo
+    descripcion: La fecha de emisión no puede ser posterior a la fecha de recepción ni tener más de 365 días de antigüedad.
+    parametros:
+      antiguedad_max_dias: 365
+
+  - id: R-005
+    version: "1.0"
+    nombre: Moneda admitida
+    historia: 1
+    politica: {id: P-001, version: "3.0", seccion: "5. Moneda"}
+    efecto: revision
+    descripcion: Solo se procesan facturas en MXN o USD. Cualquier otra moneda la revisa Tesorería.
+    parametros:
+      monedas: [MXN, USD]
+
+  - id: R-010
+    version: "1.0"
+    nombre: Los conceptos suman el subtotal
+    historia: 1
+    politica: {id: P-002, version: "2.0", seccion: "3. Conceptos y subtotal"}
+    efecto: rechazo
+    descripcion: La suma de los importes de los conceptos debe ser igual al subtotal, con la tolerancia de la política.
+    parametros:
+      tolerancia: 0.05
+
+  - id: R-011
+    version: "2.0"
+    nombre: Impuestos calculados con una tasa admitida
+    historia: 1
+    politica: {id: P-002, version: "2.0", seccion: "4. Tasas de IVA"}
+    efecto: rechazo
+    descripcion: Los impuestos deben ser el subtotal por una tasa admitida de IVA (16 %, 8 % o 0 %).
+    parametros:
+      tasas: [0.16, 0.08, 0.0]
+      tolerancia: 0.05
+
+  - id: R-014
+    version: "2.1"
+    nombre: El total coincide con subtotal más impuestos
+    historia: 1
+    politica: {id: P-002, version: "2.0", seccion: "5. Total de la factura"}
+    efecto: rechazo
+    descripcion: El total debe ser subtotal + impuestos − retenciones, con la tolerancia de la política.
+    parametros:
+      tolerancia: 0.05
+
+  - id: R-015
+    version: "1.0"
+    nombre: Factura duplicada
+    historia: 1
+    politica: {id: P-003, version: "1.2", seccion: "2. Duplicados"}
+    efecto: rechazo
+    descripcion: Un archivo idéntico a uno ya registrado se rechaza. Si coincide el RFC del emisor y el folio, pero el archivo es distinto, pasa a revisión humana.
+    parametros:
+      efecto_mismo_folio: revision
+
+  - id: R-017
+    version: "1.0"
+    nombre: Proveedor registrado en el padrón
+    historia: 1
+    politica: {id: P-003, version: "1.2", seccion: "3. Padrón de proveedores"}
+    efecto: revision
+    descripcion: El RFC del emisor debe estar activo en el padrón de proveedores. Si no está, Compras debe validarlo.
+
+  - id: R-018
+    version: "1.0"
+    nombre: Receptor es una entidad del grupo
+    historia: 1
+    politica: {id: P-001, version: "3.0", seccion: "6. Receptor"}
+    efecto: rechazo
+    descripcion: El RFC del receptor debe pertenecer a una de las entidades receptoras autorizadas.
+
+  - id: R-021
+    version: "1.2"
+    nombre: Monto que requiere revisión adicional
+    historia: 1
+    politica: {id: P-003, version: "1.2", seccion: "4. Montos altos"}
+    efecto: revision
+    descripcion: Las facturas con total igual o mayor a 250,000.00 MXN (o su equivalente en USD) las revisa una persona de supervisión.
+    parametros:
+      monto_mxn: 250000
+
+  - id: R-030
+    version: "1.0"
+    nombre: Instrucciones dirigidas al sistema dentro del documento
+    historia: 1
+    politica: {id: P-004, version: "1.0", seccion: "4. Contenido sospechoso"}
+    efecto: revision
+    descripcion: Si el documento contiene texto que intenta dar instrucciones al sistema, no se siguen, se reporta y una persona revisa el caso.
+
+  - id: R-031
+    version: "1.0"
+    nombre: Tipo de documento sin política aplicable
+    historia: 1
+    politica: {id: P-001, version: "3.0", seccion: "2. Alcance"}
+    efecto: revision
+    descripcion: Esta política solo cubre facturas de proveedores. Notas de crédito, recibos y otros documentos requieren revisión humana.
+    parametros:
+      tipos: [factura]
+
+  # Historia 2 · Validación de registros de clientes
+  - id: R-101
+    version: "1.3"
+    nombre: Datos mínimos del cliente
+    historia: 2
+    politica: {id: P-007, version: "1.3", seccion: "2. Campos obligatorios"}
+    efecto: rechazo
+    descripcion: Todo cliente dado de alta debe tener id_cliente, nombre, rfc, correo_contacto y alta.
+    parametros:
+      campos: [id_cliente, nombre, rfc, correo_contacto, alta]
+
+  - id: R-102
+    version: "1.0"
+    nombre: Formato del correo de contacto
+    historia: 2
+    politica: {id: P-007, version: "1.3", seccion: "3. Formato de los datos de contacto"}
+    efecto: rechazo
+    descripcion: El correo de contacto debe tener la forma usuario@dominio.ext.
+
+  - id: R-103
+    version: "2.0"
+    nombre: Formato de RFC del cliente
+    historia: 2
+    politica: {id: P-011, version: "2.0", seccion: "2. Estructura del RFC"}
+    efecto: rechazo
+    descripcion: El RFC del cliente debe tener la estructura de la política P-011.
+
+  - id: R-104
+    version: "1.1"
+    nombre: Fecha de alta válida
+    historia: 2
+    politica: {id: P-015, version: "1.1", seccion: "2. Reglas de la fecha de alta"}
+    efecto: rechazo
+    descripcion: La fecha de alta debe estar en formato DD/MM/AAAA, no ser futura y no ser anterior al 01/01/2000.
+    parametros:
+      minima: "2000-01-01"
+
+  - id: R-105
+    version: "1.0"
+    nombre: Identificador de cliente único
+    historia: 2
+    politica: {id: P-018, version: "1.0", seccion: "2. Unicidad"}
+    efecto: rechazo
+    descripcion: Ningún id_cliente puede repetirse dentro del archivo.
+
+  - id: R-106
+    version: "1.0"
+    nombre: Columnas esperadas del archivo
+    historia: 2
+    politica: {id: P-007, version: "1.3", seccion: "4. Estructura del archivo"}
+    efecto: rechazo
+    descripcion: El archivo debe contener las columnas de la política (se aceptan los alias listados).
+    parametros:
+      alias:
+        id_cliente: [id_cliente, id, cliente_id, numero_cliente]
+        nombre: [nombre, razon_social, nombre_cliente]
+        rfc: [rfc, rfc_cliente]
+        correo_contacto: [correo_contacto, correo, email, e-mail]
+        alta: [alta, fecha_alta, fecha_de_alta]

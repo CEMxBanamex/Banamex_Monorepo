@@ -1,0 +1,245 @@
+{
+  "archivo": "factura_1018.png",
+  "grupo": "historico",
+  "caso_id": "F-1018",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "compacta",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "6b6bae8bbc99433a201f575a0f5ca062cd44f0f3d05cb1c0e96e3c981a4f8ae4",
+  "tamano_bytes": 71401,
+  "fecha_recepcion": "2026-07-06",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 1069",
+      "fecha": "2026-06-27",
+      "emisor_nombre": "Serrato Tecnología SAPI de CV",
+      "emisor_rfc": "STS970523758",
+      "emisor_direccion": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "125,826.77",
+      "impuestos": "10,066.14",
+      "tasa_iva": "IVA 8 %",
+      "retenciones": null,
+      "total": "135,892.91",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-27",
+      "subtotal": "125826.77",
+      "impuestos": "10066.14",
+      "tasa_iva": "0.08",
+      "retenciones": "0.00",
+      "total": "135892.91"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "1,877.10",
+        "importe": "1,877.10"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "2",
+        "precio_unitario": "3,542.34",
+        "importe": "7,084.68"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "5",
+        "precio_unitario": "22,083.34",
+        "importe": "110,416.70"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "1",
+        "precio_unitario": "6,448.29",
+        "importe": "6,448.29"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 98,
+    "emisor_nombre": 95,
+    "emisor_rfc": 98,
+    "emisor_direccion": 94,
+    "receptor_nombre": 96,
+    "receptor_rfc": 93,
+    "moneda": 98,
+    "subtotal": 98,
+    "impuestos": 94,
+    "tasa_iva": 99,
+    "total": 95,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "SERRATO TECNOLOGÍA SAPI DE CV\nPasaje Guerrero 944, San Hermelinda de la Montaña\nR.F.C. STS970523758\nFACTURA\n#B 1069\nFecha: 2026-06-27\nCliente: Banco Demo SA, Institución de Banca Múltiple\nRFC cliente: BDM970315QW2\nMoneda: MXN\n1 x Papelería y artículos de oficina\n1,877.10\n2 x Mantenimiento preventivo de equipo\n7,084.68\n5 x Desarrollo de reporte analítico\n110,416.70\n1 x Soporte técnico mensual\n6,448.29\nSUBTOTAL\n125,826.77\nIVA 8 %\n10,066.14\nTOTAL\n135,892.91\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Serrato Tecnología SAPI de CV",
+      "bbox": [
+        [
+          420.0,
+          84.2,
+          855.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+      "bbox": [
+        [
+          392.5,
+          124.2,
+          882.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "STS970523758",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 1069",
+      "bbox": [
+        [
+          895.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-06-27",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          887.9,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Papelería y artículos de oficina 1 1,877.10 1,877.10\nMantenimiento preventivo de equipo 2 3,542.34 7,084.68\nDesarrollo de reporte analítico 5 22,083.34 110,416.70\nSoporte técnico mensual 1 6,448.29 6,448.29",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          502.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "125,826.77",
+      "bbox": [
+        [
+          870.8,
+          524.6,
+          983.3,
+          544.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "10,066.14",
+      "bbox": [
+        [
+          882.1,
+          551.7,
+          983.3,
+          571.4
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "135,892.91",
+      "bbox": [
+        [
+          845.8,
+          583.8,
+          983.3,
+          607.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          291.7,
+          642.9,
+          641.7,
+          660.4
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

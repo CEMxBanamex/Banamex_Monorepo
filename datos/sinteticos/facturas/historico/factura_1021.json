@@ -1,0 +1,227 @@
+{
+  "archivo": "factura_1021.jpg",
+  "grupo": "historico",
+  "caso_id": "F-1021",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "banda",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "9438227c0bbcb6059331de365dfeaf9be7a9fb053fd901806ca1dc705f92b788",
+  "tamano_bytes": 121744,
+  "fecha_recepcion": "2026-07-27",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-2493",
+      "fecha": "12 de julio de 2026",
+      "emisor_nombre": "Jasso Tecnología SAPI de CV",
+      "emisor_rfc": "JTS9712282K4",
+      "emisor_direccion": "Calle Aguascalientes 99, San Violeta los altos",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "120,430.45",
+      "impuestos": "19,268.87",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "139,699.32",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-12",
+      "subtotal": "120430.45",
+      "impuestos": "19268.87",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "139699.32"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "5",
+        "precio_unitario": "24,086.09",
+        "importe": "120,430.45"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 90,
+    "emisor_nombre": 97,
+    "emisor_rfc": 97,
+    "emisor_direccion": 95,
+    "receptor_nombre": 91,
+    "receptor_rfc": 90,
+    "moneda": 96,
+    "subtotal": 92,
+    "impuestos": 96,
+    "tasa_iva": 91,
+    "total": 98,
+    "condiciones_pago": 98
+  },
+  "texto_completo": "Jasso Tecnología SAPI de CV\nCalle Aguascalientes 99, San Violeta los altos\nFACTURA\nEMISOR\nRFC: JTS9712282K4\nNo. de factura: A-2493\nExpedida el 12 de julio de 2026\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nDesarrollo de reporte analítico\n5\n24,086.09\n120,430.45\nSubtotal\n120,430.45\nIVA 16 %\n19,268.87\nTotal\n$ 139,699.32 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Jasso Tecnología SAPI de CV",
+      "bbox": [
+        [
+          78.6,
+          64.0,
+          608.2,
+          106.5
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Aguascalientes 99, San Violeta los altos",
+      "bbox": [
+        [
+          79.0,
+          127.8,
+          460.6,
+          149.8
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          985.6,
+          57.0,
+          1187.2,
+          102.0
+        ]
+      ]
+    },
+    "GST": {
+      "text": "JTS9712282K4",
+      "bbox": [
+        [
+          100.9,
+          293.8,
+          299.0,
+          316.8
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-2493",
+      "bbox": [
+        [
+          101.1,
+          327.0,
+          310.8,
+          350.2
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "12 de julio de 2026",
+      "bbox": [
+        [
+          101.3,
+          359.8,
+          392.1,
+          383.5
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          688.4,
+          289.4,
+          1008.0,
+          313.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          688.6,
+          323.4,
+          895.9,
+          346.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          688.8,
+          357.1,
+          822.0,
+          379.9
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Desarrollo de reporte analítico 5 24,086.09 120,430.45",
+      "bbox": [
+        [
+          80.9,
+          440.4,
+          1189.8,
+          530.5
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "120,430.45",
+      "bbox": [
+        [
+          1065.1,
+          582.1,
+          1169.4,
+          604.6
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "19,268.87",
+      "bbox": [
+        [
+          1076.9,
+          615.5,
+          1169.6,
+          637.9
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "139,699.32",
+      "bbox": [
+        [
+          961.4,
+          653.8,
+          1169.9,
+          681.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          82.9,
+          757.3,
+          395.7,
+          778.9
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

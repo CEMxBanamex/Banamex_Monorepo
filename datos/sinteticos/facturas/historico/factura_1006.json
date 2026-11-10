@@ -1,0 +1,251 @@
+{
+  "archivo": "factura_1006.jpg",
+  "grupo": "historico",
+  "caso_id": "F-1006",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "compacta",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "0e1839cf7c39f4382c1e930a92be09b7501f248087cbcb66d74eb9e1fa874418",
+  "tamano_bytes": 106643,
+  "fecha_recepcion": "2026-04-13",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 8516",
+      "fecha": "2026-03-27",
+      "emisor_nombre": "Villa Servicios SA de CV",
+      "emisor_rfc": "VSS190522YKA",
+      "emisor_direccion": "Periférico Tabasco 770, San Isaac los altos",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "50,301.90",
+      "impuestos": "8,048.30",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "58,350.20",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-03-27",
+      "subtotal": "50301.90",
+      "impuestos": "8048.30",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "58350.20"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "4",
+        "precio_unitario": "5,173.93",
+        "importe": "20,695.72"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "1",
+        "precio_unitario": "5,748.48",
+        "importe": "5,748.48"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "5",
+        "precio_unitario": "4,115.76",
+        "importe": "20,578.80"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "2",
+        "precio_unitario": "168.51",
+        "importe": "337.02"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "2",
+        "precio_unitario": "1,470.94",
+        "importe": "2,941.88"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 92,
+    "fecha": 98,
+    "emisor_nombre": 95,
+    "emisor_rfc": 95,
+    "emisor_direccion": 96,
+    "receptor_nombre": 98,
+    "receptor_rfc": 99,
+    "moneda": 98,
+    "subtotal": 93,
+    "impuestos": 92,
+    "tasa_iva": 99,
+    "total": 92,
+    "condiciones_pago": 92
+  },
+  "texto_completo": "VILLA SERVICIOS SA DE CV\nPeriférico Tabasco 770, San Isaac los altos\nR.F.C. VSS190522YKA\nFACTURA\n#B 8516\nFecha: 2026-03-27\nCliente: Servicios Corporativos Demo SA de CV\nRFC cliente: SCD050920LM8\nMoneda: MXN\n4 x Capacitación en línea\n20,695.72\n1 x Renta de equipo de cómputo\n5,748.48\n5 x Traducción de documentos\n20,578.80\n2 x Mensajería y paquetería\n337.02\n2 x Servicio de cafetería\n2,941.88\nSUBTOTAL\n50,301.90\nIVA 16 %\n8,048.30\nTOTAL\n58,350.20\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Villa Servicios SA de CV",
+      "bbox": [
+        [
+          470.1,
+          81.2,
+          830.5,
+          113.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Periférico Tabasco 770, San Isaac los altos",
+      "bbox": [
+        [
+          434.5,
+          120.5,
+          864.8,
+          145.6
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VSS190522YKA",
+      "bbox": [
+        [
+          542.1,
+          149.9,
+          756.2,
+          173.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          302.1,
+          204.8,
+          398.7,
+          230.6
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 8516",
+      "bbox": [
+        [
+          906.1,
+          217.1,
+          994.0,
+          240.6
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-03-27",
+      "bbox": [
+        [
+          301.5,
+          241.5,
+          493.1,
+          264.6
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          301.0,
+          270.7,
+          807.5,
+          299.3
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          300.5,
+          299.8,
+          582.0,
+          324.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          300.0,
+          329.0,
+          424.0,
+          350.9
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Capacitación en línea 4 5,173.93 20,695.72\nRenta de equipo de cómputo 1 5,748.48 5,748.48\nTraducción de documentos 5 4,115.76 20,578.80\nMensajería y paquetería 2 168.51 337.02\nServicio de cafetería 2 1,470.94 2,941.88",
+      "bbox": [
+        [
+          296.9,
+          375.2,
+          991.0,
+          535.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "50,301.90",
+      "bbox": [
+        [
+          886.5,
+          556.0,
+          988.0,
+          577.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "8,048.30",
+      "bbox": [
+        [
+          897.2,
+          583.3,
+          987.6,
+          604.5
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "58,350.20",
+      "bbox": [
+        [
+          862.9,
+          614.7,
+          987.0,
+          641.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          294.2,
+          664.0,
+          644.4,
+          687.6
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,257 @@
+{
+  "archivo": "factura_1024.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1024",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "pdf",
+  "paginas": 2,
+  "sha256": "db55d1584a32cc417d923eec93abdb824472ce711de07c1183a99a6a088101df",
+  "tamano_bytes": 3128,
+  "fecha_recepcion": "2026-08-17",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-1944",
+      "fecha": "05/08/2026",
+      "emisor_nombre": "Vera Grupo SAPI de CV",
+      "emisor_rfc": "VGS9607276ET",
+      "emisor_direccion": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "162,373.01",
+      "impuestos": "25,979.68",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": "16,237.30",
+      "total": "172,115.39",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-08-05",
+      "subtotal": "162373.01",
+      "impuestos": "25979.68",
+      "tasa_iva": "0.16",
+      "retenciones": "16237.30",
+      "total": "172115.39"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "6,439.28",
+        "importe": "6,439.28"
+      },
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "4",
+        "precio_unitario": "34,429.00",
+        "importe": "137,716.00"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "5",
+        "precio_unitario": "2,430.16",
+        "importe": "12,150.80"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "3",
+        "precio_unitario": "2,022.31",
+        "importe": "6,066.93"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 98,
+    "emisor_nombre": 97,
+    "emisor_rfc": 91,
+    "emisor_direccion": 99,
+    "receptor_nombre": 98,
+    "receptor_rfc": 98,
+    "moneda": 99,
+    "subtotal": 90,
+    "impuestos": 94,
+    "tasa_iva": 92,
+    "retenciones": 91,
+    "total": 96,
+    "condiciones_pago": 93
+  },
+  "texto_completo": "Vera Grupo SAPI de CV\nRFC VGS9607276ET\nRetorno Farías 464, Nueva San Vicente y las Granadinas\nFACTURA\nFolio A-1944\nFecha 05/08/2026\nReceptor\nGrupo Financiero Demo SA de CV\nRFC GFD960701AB4\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n1\n6,439.28\n6,439.28\nAuditoría de seguridad informática\n4\n34,429.00\n137,716.00\nTraducción de documentos\n5\n2,430.16\n12,150.80\nSoporte técnico mensual\n3\n2,022.31\n6,066.93\nSubtotal\n162,373.01\nIVA 16 %\n25,979.68\nRetenciones\n-16,237.30\nTotal\n$ 172,115.39\nCondiciones de pago: Contado\nTérminos y condiciones\n1. Los precios incluyen los impuestos desglosados en la página 1.\n2. Las aclaraciones se reciben dentro de los 5 días hábiles siguientes a la emisión.\n3. Documento sintético generado para el piloto del Data Steward Agéntico.",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Vera Grupo SAPI de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          476.5,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VGS9607276ET",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          304.5,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          635.7,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-1944",
+      "bbox": [
+        [
+          1052.7,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "05/08/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          423.7,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          305.6,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 1 6,439.28 6,439.28\nAuditoría de seguridad informática 4 34,429.00 137,716.00\nTraducción de documentos 5 2,430.16 12,150.80\nSoporte técnico mensual 3 2,022.31 6,066.93",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          597.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "162,373.01",
+      "bbox": [
+        [
+          1066.6,
+          639.6,
+          1170.8,
+          661.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "25,979.68",
+      "bbox": [
+        [
+          1078.2,
+          672.9,
+          1170.8,
+          694.8
+        ]
+      ]
+    },
+    "RETENCIONES": {
+      "text": "16,237.30",
+      "bbox": [
+        [
+          1071.2,
+          706.2,
+          1170.8,
+          728.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "172,115.39",
+      "bbox": [
+        [
+          1024.9,
+          744.6,
+          1170.8,
+          770.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          104.2,
+          832.9,
+          361.6,
+          852.6
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

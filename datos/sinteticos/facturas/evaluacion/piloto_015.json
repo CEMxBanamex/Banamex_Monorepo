@@ -1,0 +1,264 @@
+{
+  "archivo": "piloto_015.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "iva_incorrecto",
+  "descripcion": "Impuestos mal calculados; el total es consistente con ellos",
+  "layout": "moderna",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "0ec598f73e1704f7f3d87023eda26bb6e436085f5b886368395889dd3a68b00c",
+  "tamano_bytes": 123958,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "25004523",
+      "fecha": "20/06/2026",
+      "emisor_nombre": "Lara Grupo S de RL de CV",
+      "emisor_rfc": "LGS0207182F0",
+      "emisor_direccion": "Calzada Godoy 400, Nueva Mongolia",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "69,215.55",
+      "impuestos": "11,628.21",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "80,843.76",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-20",
+      "subtotal": "69215.55",
+      "impuestos": "11628.21",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "80843.76"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "10",
+        "precio_unitario": "3,919.56",
+        "importe": "39,195.60"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "1",
+        "precio_unitario": "1,985.92",
+        "importe": "1,985.92"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "4,421.95",
+        "importe": "4,421.95"
+      },
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "21,909.08",
+        "importe": "21,909.08"
+      },
+      {
+        "descripcion": "Mensajería y paquetería",
+        "cantidad": "1",
+        "precio_unitario": "1,703.00",
+        "importe": "1,703.00"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 90,
+    "fecha": 96,
+    "emisor_nombre": 92,
+    "emisor_rfc": 94,
+    "emisor_direccion": 94,
+    "receptor_nombre": 93,
+    "receptor_rfc": 91,
+    "moneda": 97,
+    "subtotal": 97,
+    "impuestos": 94,
+    "tasa_iva": 96,
+    "total": 94,
+    "condiciones_pago": 93
+  },
+  "texto_completo": "LG\nLara Grupo S de RL de CV\nCalzada Godoy 400, Nueva Mongolia\nRFC emisor  LGS0207182F0\nDocumento\nFactura\nSerie y folio\n25004523\nFecha de emisión\n20/06/2026\nMoneda\nMXN\nRECEPTOR\nServicios Corporativos Demo SA de CV\nSCD050920LM8\nConcepto\nCant.\nP. unitario\nImporte\nRenta de equipo de cómputo\n10\n3,919.56\n39,195.60\nLicencia anual de software\n1\n1,985.92\n1,985.92\nHospedaje de servidores\n1\n4,421.95\n4,421.95\nServicio de consultoría\n1\n21,909.08\n21,909.08\nMensajería y paquetería\n1\n1,703.00\n1,703.00\nSubtotal\n69,215.55\nIVA 16 %\n11,628.21\nTotal\n$ 80,843.76 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          102.4,
+          84.3,
+          215.2,
+          197.1
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Lara Grupo S de RL de CV",
+      "bbox": [
+        [
+          244.1,
+          97.6,
+          608.8,
+          129.0
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calzada Godoy 400, Nueva Mongolia",
+      "bbox": [
+        [
+          244.2,
+          139.4,
+          555.8,
+          159.8
+        ]
+      ]
+    },
+    "GST": {
+      "text": "LGS0207182F0",
+      "bbox": [
+        [
+          244.2,
+          168.7,
+          487.1,
+          188.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1101.7,
+          244.1,
+          1169.5,
+          264.0
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "25004523",
+      "bbox": [
+        [
+          1086.1,
+          275.4,
+          1169.5,
+          295.3
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "20/06/2026",
+      "bbox": [
+        [
+          1075.8,
+          306.6,
+          1169.6,
+          326.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1128.0,
+          337.9,
+          1169.7,
+          357.7
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          102.9,
+          275.4,
+          469.9,
+          298.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          103.0,
+          307.1,
+          257.0,
+          329.4
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Renta de equipo de cómputo 10 3,919.56 39,195.60\nLicencia anual de software 1 1,985.92 1,985.92\nHospedaje de servidores 1 4,421.95 4,421.95\nServicio de consultoría 1 21,909.08 21,909.08\nMensajería y paquetería 1 1,703.00 1,703.00",
+      "bbox": [
+        [
+          103.2,
+          421.6,
+          1170.4,
+          657.5
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "69,215.55",
+      "bbox": [
+        [
+          1077.9,
+          696.6,
+          1170.5,
+          718.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "11,628.21",
+      "bbox": [
+        [
+          1078.0,
+          729.9,
+          1170.6,
+          752.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "80,843.76",
+      "bbox": [
+        [
+          976.2,
+          768.3,
+          1170.7,
+          795.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          104.3,
+          868.8,
+          417.1,
+          889.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-011"
+    ]
+  },
+  "nota_oculta": null
+}

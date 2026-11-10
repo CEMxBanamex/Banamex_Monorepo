@@ -1,0 +1,227 @@
+{
+  "archivo": "piloto_004.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "banda",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "e760e2e666f83f54a21a0f97d9735deb133f7b94abb20fa306b4aa710cd7c932",
+  "tamano_bytes": 2384,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-7066",
+      "fecha": "9 de junio de 2026",
+      "emisor_nombre": "Nevárez Tecnología SC",
+      "emisor_rfc": "NTS8705115G4",
+      "emisor_direccion": "Calzada Patiño 572, Vieja Andorra",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "43,564.15",
+      "impuestos": "6,970.26",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "50,534.41",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-06-09",
+      "subtotal": "43564.15",
+      "impuestos": "6970.26",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "50534.41"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "5",
+        "precio_unitario": "8,712.83",
+        "importe": "43,564.15"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 91,
+    "fecha": 90,
+    "emisor_nombre": 90,
+    "emisor_rfc": 90,
+    "emisor_direccion": 95,
+    "receptor_nombre": 92,
+    "receptor_rfc": 90,
+    "moneda": 90,
+    "subtotal": 97,
+    "impuestos": 90,
+    "tasa_iva": 90,
+    "total": 91,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "Nevárez Tecnología SC\nCalzada Patiño 572, Vieja Andorra\nFACTURA\nEMISOR\nRFC: NTS8705115G4\nNo. de factura: A-7066\nExpedida el 9 de junio de 2026\nFACTURAR A\nServicios Corporativos Demo SA de CV\nRFC: SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nMantenimiento preventivo de equipo\n5\n8,712.83\n43,564.15\nSubtotal\n43,564.15\nIVA 16 %\n6,970.26\nTotal\n$ 50,534.41 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Nevárez Tecnología SC",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          498.0,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calzada Patiño 572, Vieja Andorra",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          371.0,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          990.3,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "NTS8705115G4",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          309.1,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-7066",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          313.8,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "9 de junio de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          390.2,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1058.7,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          900.1,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Mantenimiento preventivo de equipo 5 8,712.83 43,564.15",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          527.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "43,564.15",
+      "bbox": [
+        [
+          1078.2,
+          585.4,
+          1170.8,
+          607.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "6,970.26",
+      "bbox": [
+        [
+          1089.8,
+          618.8,
+          1170.8,
+          640.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "50,534.41",
+      "bbox": [
+        [
+          976.3,
+          657.1,
+          1170.8,
+          683.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          83.3,
+          755.8,
+          396.0,
+          775.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

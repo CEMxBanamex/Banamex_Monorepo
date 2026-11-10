@@ -1,0 +1,23 @@
+{
+  "archivo": "clientes_sin_columna.csv",
+  "escenario": "columna_faltante",
+  "descripcion": "Falta la columna correo_contacto",
+  "hoja": null,
+  "caso_id": null,
+  "fecha_recepcion": "2026-11-02",
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-106"
+    ],
+    "filas": {}
+  },
+  "grupo": "evaluacion",
+  "total_registros": 25,
+  "columnas": [
+    "id_cliente",
+    "nombre",
+    "rfc",
+    "alta"
+  ]
+}

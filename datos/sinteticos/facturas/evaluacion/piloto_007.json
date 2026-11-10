@@ -1,0 +1,238 @@
+{
+  "archivo": "piloto_007.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "moderna",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "3b87881e1c42ad74c72cd84c3c77350d4315afaf3ba1ee5d1ff82f002ac48ae0",
+  "tamano_bytes": 83612,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "20099907",
+      "fecha": "01/07/2026",
+      "emisor_nombre": "Portillo Suministros SA de CV",
+      "emisor_rfc": "PSS990327D9G",
+      "emisor_direccion": "Calle Norte Girón 590, Vieja Swazilandia",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "8,408.15",
+      "impuestos": "1,345.30",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "9,753.45",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-01",
+      "subtotal": "8408.15",
+      "impuestos": "1345.30",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "9753.45"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "1",
+        "precio_unitario": "8,408.15",
+        "importe": "8,408.15"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 95,
+    "fecha": 97,
+    "emisor_nombre": 99,
+    "emisor_rfc": 92,
+    "emisor_direccion": 99,
+    "receptor_nombre": 99,
+    "receptor_rfc": 92,
+    "moneda": 93,
+    "subtotal": 99,
+    "impuestos": 98,
+    "tasa_iva": 91,
+    "total": 93,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "PS\nPortillo Suministros SA de CV\nCalle Norte Girón 590, Vieja Swazilandia\nRFC emisor  PSS990327D9G\nDocumento\nFactura\nSerie y folio\n20099907\nFecha de emisión\n01/07/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nLicencia anual de software\n1\n8,408.15\n8,408.15\nSubtotal\n8,408.15\nIVA 16 %\n1,345.30\nTotal\n$ 9,753.45 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Portillo Suministros SA de CV",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          662.4,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calle Norte Girón 590, Vieja Swazilandia",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          584.5,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "PSS990327D9G",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          494.9,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "20099907",
+      "bbox": [
+        [
+          1087.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "01/07/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          423.7,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          257.0,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Licencia anual de software 1 8,408.15 8,408.15",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          506.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "8,408.15",
+      "bbox": [
+        [
+          1089.8,
+          547.9,
+          1170.8,
+          569.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "1,345.30",
+      "bbox": [
+        [
+          1089.8,
+          581.2,
+          1170.8,
+          603.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "9,753.45",
+      "bbox": [
+        [
+          990.2,
+          619.6,
+          1170.8,
+          645.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          104.2,
+          718.3,
+          416.9,
+          738.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

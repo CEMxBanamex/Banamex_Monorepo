@@ -1,0 +1,72 @@
+# Prueba de calidad del RAG (tarea 3.1.3). Cada pregunta indica la política (y versión) que debe aparecer.
+# `fecha` sirve para probar la vigencia: la misma pregunta en 2025 debe traer P-002 v1.0.
+preguntas:
+  - pregunta: ¿Qué tolerancia se permite cuando el total no coincide con subtotal más impuestos?
+    esperado: {politica: P-002, version: "2.0", regla: R-014}
+  - pregunta: ¿Cuál era la tolerancia para el total de una factura en 2025?
+    fecha: 2025-06-01
+    esperado: {politica: P-002, version: "1.0"}
+  - pregunta: ¿Qué tasas de IVA se aceptan en una factura?
+    esperado: {politica: P-002, version: "2.0", regla: R-011}
+  - pregunta: ¿Qué datos obligatorios debe tener una factura de proveedor?
+    esperado: {politica: P-001, version: "3.0", regla: R-001}
+  - pregunta: ¿Se puede recibir una factura con fecha futura o de hace más de un año?
+    esperado: {politica: P-001, version: "3.0", regla: R-004}
+  - pregunta: ¿En qué monedas se procesan las facturas?
+    esperado: {politica: P-001, version: "3.0", regla: R-005}
+  - pregunta: ¿Qué pasa si la factura está dirigida a una empresa que no es del grupo?
+    esperado: {politica: P-001, version: "3.0", regla: R-018}
+  - pregunta: ¿Qué hago con una nota de crédito?
+    esperado: {politica: P-001, version: "3.0", regla: R-031}
+  - pregunta: ¿Cómo se tratan las facturas duplicadas o con el mismo folio?
+    esperado: {politica: P-003, version: "1.2", regla: R-015}
+  - pregunta: El proveedor no aparece en el padrón, ¿se rechaza la factura?
+    esperado: {politica: P-003, version: "1.2", regla: R-017}
+  - pregunta: ¿A partir de qué monto una factura la revisa supervisión?
+    esperado: {politica: P-003, version: "1.2", regla: R-021}
+  - pregunta: ¿Qué confianza mínima de lectura se necesita para usar un campo extraído?
+    esperado: {politica: P-004, version: "1.0", regla: R-003}
+  - pregunta: El documento dice que ignore las reglas y lo marque como aceptado, ¿qué hago?
+    esperado: {politica: P-004, version: "1.0", regla: R-030}
+  - pregunta: ¿Cuántos caracteres tiene un RFC de persona moral?
+    esperado: {politica: P-011, version: "2.0"}
+  - pregunta: ¿Es válido el RFC genérico XAXX010101000?
+    esperado: {politica: P-011, version: "2.0"}
+  - pregunta: ¿Qué campos son obligatorios para dar de alta a un cliente?
+    esperado: {politica: P-007, version: "1.3", regla: R-101}
+  - pregunta: ¿Qué formato debe tener el correo de contacto del cliente?
+    esperado: {politica: P-007, version: "1.3", regla: R-102}
+  - pregunta: ¿Qué nombres de columna se aceptan en el archivo de clientes?
+    esperado: {politica: P-007, version: "1.3", regla: R-106}
+  - pregunta: ¿Puede un cliente tener fecha de alta de 1998?
+    esperado: {politica: P-015, version: "1.1", regla: R-104}
+  - pregunta: ¿Se puede repetir el id_cliente en un archivo?
+    esperado: {politica: P-018, version: "1.0", regla: R-105}
+  # Gobernanza (ejemplos del agente de gobernanza en el vault)
+  - pregunta: ¿Quién es el dueño de los datos de proveedores?
+    esperado: {politica: P-021, version: "1.0"}
+  - pregunta: ¿El RFC es dato sensible?
+    esperado: {politica: P-020, version: "1.0"}
+  - pregunta: ¿Qué niveles de clasificación de la información existen?
+    esperado: {politica: P-020, version: "1.0"}
+  - pregunta: ¿Qué hace el data steward cuando una regla de calidad no alcanza su umbral?
+    esperado: {politica: P-022, version: "1.0"}
+  - pregunta: ¿Qué umbral de calidad se exige al correo de los clientes?
+    esperado: {politica: P-022, version: "1.0"}
+  - pregunta: ¿Puedo consultar la bitácora o las tablas internas desde el chat?
+    esperado: {politica: P-023, version: "1.0"}
+  - pregunta: ¿Por qué veo el RFC del cliente con asteriscos?
+    esperado: {politica: P-023, version: "1.0"}
+  # Sin política: buscar_politicas debe responder sin_resultados. Sirven para calibrar RAG_UMBRAL_SIMILITUD (--calibrar).
+  - pregunta: ¿Cuántos días de vacaciones tiene el personal?
+    esperado: null
+  - pregunta: ¿Cómo se calcula el ISR de la nómina?
+    esperado: null
+  - pregunta: ¿Qué tasa de interés cobra la tarjeta de crédito?
+    esperado: null
+  - pregunta: ¿A qué hora abre la sucursal del centro?
+    esperado: null
+  - pregunta: ¿Cómo solicito un préstamo personal?
+    esperado: null
+  - pregunta: ¿Quién ganó el partido de ayer?
+    esperado: null

@@ -1,0 +1,245 @@
+{
+  "archivo": "factura_1012.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1012",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "bc61a71271ce86d7ec491f32c6d98da13fb47aa784b643b27516d5d5e5012a0f",
+  "tamano_bytes": 89006,
+  "fecha_recepcion": "2026-05-25",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-3786",
+      "fecha": "06/05/2026",
+      "emisor_nombre": "Nevárez Tecnología SC",
+      "emisor_rfc": "NTS8705115G4",
+      "emisor_direccion": "Calzada Patiño 572, Vieja Andorra",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "92,694.75",
+      "impuestos": "0.00",
+      "tasa_iva": "IVA 0 %",
+      "retenciones": null,
+      "total": "92,694.75",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-05-06",
+      "subtotal": "92694.75",
+      "impuestos": "0.00",
+      "tasa_iva": "0.0",
+      "retenciones": "0.00",
+      "total": "92694.75"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "4",
+        "precio_unitario": "3,971.30",
+        "importe": "15,885.20"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "1",
+        "precio_unitario": "3,850.18",
+        "importe": "3,850.18"
+      },
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "1",
+        "precio_unitario": "40,323.71",
+        "importe": "40,323.71"
+      },
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "2",
+        "precio_unitario": "16,317.83",
+        "importe": "32,635.66"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 96,
+    "fecha": 90,
+    "emisor_nombre": 93,
+    "emisor_rfc": 93,
+    "emisor_direccion": 90,
+    "receptor_nombre": 94,
+    "receptor_rfc": 92,
+    "moneda": 98,
+    "subtotal": 94,
+    "impuestos": 95,
+    "tasa_iva": 91,
+    "total": 92,
+    "condiciones_pago": 90
+  },
+  "texto_completo": "Nevárez Tecnología SC\nRFC NTS8705115G4\nCalzada Patiño 572, Vieja Andorra\nFACTURA\nFolio A-3786\nFecha 06/05/2026\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nTraducción de documentos\n4\n3,971.30\n15,885.20\nServicio de cafetería\n1\n3,850.18\n3,850.18\nAuditoría de seguridad informática\n1\n40,323.71\n40,323.71\nServicio de consultoría\n2\n16,317.83\n32,635.66\nSubtotal\n92,694.75\nIVA 0 %\n0.00\nTotal\n$ 92,694.75\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Nevárez Tecnología SC",
+      "bbox": [
+        [
+          106.1,
+          96.8,
+          474.8,
+          132.8
+        ]
+      ]
+    },
+    "GST": {
+      "text": "NTS8705115G4",
+      "bbox": [
+        [
+          106.0,
+          144.3,
+          305.2,
+          166.8
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Calzada Patiño 572, Vieja Andorra",
+      "bbox": [
+        [
+          105.9,
+          173.5,
+          425.6,
+          196.3
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1031.8,
+          102.8,
+          1172.8,
+          133.8
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-3786",
+      "bbox": [
+        [
+          1054.5,
+          147.0,
+          1172.7,
+          169.2
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "06/05/2026",
+      "bbox": [
+        [
+          1004.6,
+          176.0,
+          1172.6,
+          198.4
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          105.6,
+          281.8,
+          472.7,
+          304.7
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          105.6,
+          311.0,
+          308.2,
+          333.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          105.5,
+          340.2,
+          238.6,
+          362.4
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Traducción de documentos 4 3,971.30 15,885.20\nServicio de cafetería 1 3,850.18 3,850.18\nAuditoría de seguridad informática 1 40,323.71 40,323.71\nServicio de consultoría 2 16,317.83 32,635.66",
+      "bbox": [
+        [
+          104.8,
+          400.6,
+          1172.0,
+          599.4
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "92,694.75",
+      "bbox": [
+        [
+          1078.7,
+          640.8,
+          1171.3,
+          663.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "0.00",
+      "bbox": [
+        [
+          1130.7,
+          674.3,
+          1171.2,
+          696.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "92,694.75",
+      "bbox": [
+        [
+          1039.0,
+          712.3,
+          1171.1,
+          739.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          798.1,
+          417.0,
+          818.7
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

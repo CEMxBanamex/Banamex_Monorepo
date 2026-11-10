@@ -1,0 +1,35 @@
+{
+  "archivo": "clientes_octubre.xlsx",
+  "escenario": "correo_faltante",
+  "descripcion": "8 de 120 clientes sin correo (caso V-0207 del frontend)",
+  "hoja": "clientes",
+  "caso_id": "V-0207",
+  "fecha_recepcion": "2026-11-02",
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-101"
+    ],
+    "filas": {
+      "R-101": [
+        14,
+        27,
+        33,
+        48,
+        61,
+        79,
+        95,
+        112
+      ]
+    }
+  },
+  "grupo": "demo",
+  "total_registros": 120,
+  "columnas": [
+    "id_cliente",
+    "nombre",
+    "rfc",
+    "correo_contacto",
+    "alta"
+  ]
+}

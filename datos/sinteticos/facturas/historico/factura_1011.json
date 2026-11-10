@@ -1,0 +1,238 @@
+{
+  "archivo": "factura_1011.pdf",
+  "grupo": "historico",
+  "caso_id": "F-1011",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "moderna",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "269c8c880ed1f5a0836bda2c2e6c76ab2e1b16b0c8884cbbe6ce403f0bb26e69",
+  "tamano_bytes": 2364,
+  "fecha_recepcion": "2026-05-18",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 7813",
+      "fecha": "17/05/2026",
+      "emisor_nombre": "Salas Suministros SC",
+      "emisor_rfc": "SSS130401FHU",
+      "emisor_direccion": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "10,923.05",
+      "impuestos": "1,747.69",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "12,670.74",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-05-17",
+      "subtotal": "10923.05",
+      "impuestos": "1747.69",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "12670.74"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "10,923.05",
+        "importe": "10,923.05"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 93,
+    "fecha": 96,
+    "emisor_nombre": 93,
+    "emisor_rfc": 98,
+    "emisor_direccion": 95,
+    "receptor_nombre": 96,
+    "receptor_rfc": 90,
+    "moneda": 97,
+    "subtotal": 93,
+    "impuestos": 99,
+    "tasa_iva": 92,
+    "total": 93,
+    "condiciones_pago": 91
+  },
+  "texto_completo": "SS\nSalas Suministros SC\nCerrada Sur Blanco 770, Vieja Brasil\nRFC emisor  SSS130401FHU\nDocumento\nFactura\nSerie y folio\nB 7813\nFecha de emisión\n17/05/2026\nMoneda\nMXN\nRECEPTOR\nBanco Demo SA, Institución de Banca Múltiple\nBDM970315QW2\nConcepto\nCant.\nP. unitario\nImporte\nHospedaje de servidores\n1\n10,923.05\n10,923.05\nSubtotal\n10,923.05\nIVA 16 %\n1,747.69\nTotal\n$ 12,670.74 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Salas Suministros SC",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          547.3,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Cerrada Sur Blanco 770, Vieja Brasil",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          551.2,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "SSS130401FHU",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          494.9,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 7813",
+      "bbox": [
+        [
+          1110.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "17/05/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          534.9,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          267.4,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Hospedaje de servidores 1 10,923.05 10,923.05",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          506.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "10,923.05",
+      "bbox": [
+        [
+          1078.2,
+          547.9,
+          1170.8,
+          569.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "1,747.69",
+      "bbox": [
+        [
+          1089.8,
+          581.2,
+          1170.8,
+          603.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "12,670.74",
+      "bbox": [
+        [
+          976.3,
+          619.6,
+          1170.8,
+          645.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.2,
+          718.3,
+          416.9,
+          738.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

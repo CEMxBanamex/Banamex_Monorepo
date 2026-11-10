@@ -1,0 +1,227 @@
+{
+  "archivo": "piloto_005.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "correcta",
+  "descripcion": "Factura correcta",
+  "layout": "compacta",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "251dc015f55eff2924348aa1a4c1f97661759bc5288f8d24ebff428023cee513",
+  "tamano_bytes": 55370,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-048939",
+      "fecha": "2026-10-21",
+      "emisor_nombre": "Loera Tecnología SA de CV",
+      "emisor_rfc": "LTS1804269JL",
+      "emisor_direccion": "Callejón Norte Solano 133, San Esperanza de la Montaña",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "1,307.96",
+      "impuestos": "209.27",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "1,517.23",
+      "condiciones_pago": "Contado"
+    },
+    "normalizados": {
+      "fecha": "2026-10-21",
+      "subtotal": "1307.96",
+      "impuestos": "209.27",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "1517.23"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "1,307.96",
+        "importe": "1,307.96"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 98,
+    "fecha": 98,
+    "emisor_nombre": 97,
+    "emisor_rfc": 97,
+    "emisor_direccion": 98,
+    "receptor_nombre": 91,
+    "receptor_rfc": 96,
+    "moneda": 96,
+    "subtotal": 91,
+    "impuestos": 91,
+    "tasa_iva": 94,
+    "total": 93,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "LOERA TECNOLOGÍA SA DE CV\nCallejón Norte Solano 133, San Esperanza de la Montaña\nR.F.C. LTS1804269JL\nFACTURA\n#FAC-048939\nFecha: 2026-10-21\nCliente: Grupo Financiero Demo SA de CV\nRFC cliente: GFD960701AB4\nMoneda: MXN\n1 x Papelería y artículos de oficina\n1,307.96\nSUBTOTAL\n1,307.96\nIVA 16 %\n209.27\nTOTAL\n1,517.23\nCondiciones de pago: Contado",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Loera Tecnología SA de CV",
+      "bbox": [
+        [
+          450.0,
+          84.2,
+          825.0,
+          110.4
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Callejón Norte Solano 133, San Esperanza de la Montaña",
+      "bbox": [
+        [
+          367.5,
+          124.2,
+          907.5,
+          141.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "LTS1804269JL",
+      "bbox": [
+        [
+          530.6,
+          151.7,
+          744.4,
+          171.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          291.7,
+          210.8,
+          387.9,
+          234.9
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-048939",
+      "bbox": [
+        [
+          845.8,
+          212.5,
+          983.3,
+          234.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "2026-10-21",
+      "bbox": [
+        [
+          291.7,
+          247.5,
+          482.9,
+          267.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          291.7,
+          276.7,
+          730.4,
+          296.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          291.7,
+          305.8,
+          572.9,
+          325.5
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          291.7,
+          335.0,
+          415.4,
+          354.7
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Papelería y artículos de oficina 1 1,307.96 1,307.96",
+      "bbox": [
+        [
+          291.7,
+          381.2,
+          983.3,
+          420.8
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "1,307.96",
+      "bbox": [
+        [
+          893.3,
+          443.3,
+          983.3,
+          463.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "209.27",
+      "bbox": [
+        [
+          915.8,
+          470.4,
+          983.3,
+          490.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "1,517.23",
+      "bbox": [
+        [
+          873.3,
+          502.5,
+          983.3,
+          526.6
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Contado",
+      "bbox": [
+        [
+          291.7,
+          561.7,
+          571.7,
+          579.2
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

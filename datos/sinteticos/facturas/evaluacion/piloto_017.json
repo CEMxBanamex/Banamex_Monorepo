@@ -1,0 +1,247 @@
+{
+  "archivo": "piloto_017.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "iva_tasa_no_admitida",
+  "descripcion": "Declara IVA de 10 %, que no es una tasa admitida",
+  "layout": "clasica",
+  "formato": "pdf",
+  "paginas": 2,
+  "sha256": "696ea48bf3adf6a52006b07aa3b28464d2a8a2e4df506c3927823b119135a3b4",
+  "tamano_bytes": 3113,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 2181",
+      "fecha": "22/09/2026",
+      "emisor_nombre": "Villa Servicios SA de CV",
+      "emisor_rfc": "VSS190522YKA",
+      "emisor_direccion": "Periférico Tabasco 770, San Isaac los altos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "63,786.23",
+      "impuestos": "6,378.62",
+      "tasa_iva": "IVA 10 %",
+      "retenciones": null,
+      "total": "70,164.85",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-09-22",
+      "subtotal": "63786.23",
+      "impuestos": "6378.62",
+      "tasa_iva": "0.10",
+      "retenciones": "0.00",
+      "total": "70164.85"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "1",
+        "precio_unitario": "24,901.42",
+        "importe": "24,901.42"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "2",
+        "precio_unitario": "8,705.54",
+        "importe": "17,411.08"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "4,476.72",
+        "importe": "4,476.72"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "3",
+        "precio_unitario": "5,665.67",
+        "importe": "16,997.01"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 90,
+    "fecha": 97,
+    "emisor_nombre": 94,
+    "emisor_rfc": 92,
+    "emisor_direccion": 95,
+    "receptor_nombre": 96,
+    "receptor_rfc": 95,
+    "moneda": 97,
+    "subtotal": 99,
+    "impuestos": 98,
+    "tasa_iva": 93,
+    "total": 91,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "Villa Servicios SA de CV\nRFC VSS190522YKA\nPeriférico Tabasco 770, San Isaac los altos\nFACTURA\nFolio B 2181\nFecha 22/09/2026\nReceptor\nBanco Demo SA, Institución de Banca Múltiple\nRFC BDM970315QW2\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nAuditoría de seguridad informática\n1\n24,901.42\n24,901.42\nMantenimiento preventivo de equipo\n2\n8,705.54\n17,411.08\nHospedaje de servidores\n1\n4,476.72\n4,476.72\nRenta de equipo de cómputo\n3\n5,665.67\n16,997.01\nSubtotal\n63,786.23\nIVA 10 %\n6,378.62\nTotal\n$ 70,164.85\nCondiciones de pago: Pago a 15 días\nTérminos y condiciones\n1. Los precios incluyen los impuestos desglosados en la página 1.\n2. Las aclaraciones se reciben dentro de los 5 días hábiles siguientes a la emisión.\n3. Documento sintético generado para el piloto del Data Steward Agéntico.",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Villa Servicios SA de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          489.5,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VSS190522YKA",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          305.6,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Periférico Tabasco 770, San Isaac los altos",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          504.8,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 2181",
+      "bbox": [
+        [
+          1053.9,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "22/09/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          534.9,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          316.0,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Auditoría de seguridad informática 1 24,901.42 24,901.42\nMantenimiento preventivo de equipo 2 8,705.54 17,411.08\nHospedaje de servidores 1 4,476.72 4,476.72\nRenta de equipo de cómputo 3 5,665.67 16,997.01",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          597.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "63,786.23",
+      "bbox": [
+        [
+          1078.2,
+          639.6,
+          1170.8,
+          661.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "6,378.62",
+      "bbox": [
+        [
+          1089.8,
+          672.9,
+          1170.8,
+          694.8
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "70,164.85",
+      "bbox": [
+        [
+          1038.8,
+          711.2,
+          1170.8,
+          737.5
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          104.2,
+          799.6,
+          416.9,
+          819.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-011"
+    ]
+  },
+  "nota_oculta": null
+}

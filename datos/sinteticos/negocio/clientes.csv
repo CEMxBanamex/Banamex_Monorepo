@@ -1,0 +1,601 @@
+id_cliente,nombre,tipo_persona,rfc,correo_contacto,segmento,entidad_rfc,alta,activo
+C-10001,Bermúdez Logística SA de CV,moral,BER8605273YD,bermde0@correo.com,Empresarial,SCD050920LM8,2016-02-10,true
+C-10002,Molina Comercial SA de CV,moral,MOL5607136Q9,molina1@empresa.com.mx,Personas,SCD050920LM8,2005-04-25,true
+C-10003,Rodrigo René Loya,fisica,RODR990827XQH,rodrig2@ejemplo.mx,Gobierno,GFD960701AB4,2022-08-28,true
+C-10004,Lic. David Vélez,fisica,LICD861105U05,licdav3@correo.com,Gobierno,BDM970315QW2,2003-07-22,true
+C-10005,Mares Comercial SA de CV,moral,MAR821206SXY,maresc4@ejemplo.mx,Empresarial,SCD050920LM8,2007-10-02,true
+C-10006,José Luis Narváez Riojas,fisica,JOSL91011528Z,joslui5@correo.com,Gobierno,GFD960701AB4,2021-12-26,false
+C-10007,Arcelia Laura Vigil,fisica,ARCE671207Z21,arceli6@correo.com,Personas,BDM970315QW2,2026-05-26,true
+C-10008,Marisol Carrión,fisica,MARI8507085HV,mariso7@correo.com,Personas,GFD960701AB4,2022-08-19,true
+C-10009,Mayte Pilar Salas,fisica,MAYT8412274AR,maytep8@correo.com,Gobierno,GFD960701AB4,2013-01-07,true
+C-10010,Mitzy Esperanza Peres,fisica,MITZ710817HDZ,mitzye9@empresa.com.mx,Gobierno,BDM970315QW2,2023-02-08,true
+C-10011,Ing. Micaela Sisneros,fisica,INGM990209TC9,ingmic10@correo.com,Personas,GFD960701AB4,2014-05-14,true
+C-10012,Samuel Garrido Ceballos,fisica,SAMU720616B0M,samuel11@empresa.com.mx,Gobierno,GFD960701AB4,2006-02-06,true
+C-10013,Arroyo Agropecuaria SA de CV,moral,ARR5909108S0,arroyo12@empresa.com.mx,PyME,SCD050920LM8,2014-07-25,true
+C-10014,Susana Candelaria,fisica,SUSA030803BXF,susana13@ejemplo.mx,Gobierno,BDM970315QW2,2016-09-19,true
+C-10015,Portillo Industrial SA de CV,moral,POR6610070MM,portil14 at ejemplo.mx,Gobierno,BDM970315QW2,2021-12-05,true
+C-10016,Rodrígez Logística SA de CV,moral,ROD641001PPE,rodrge15@empresa.com.mx,Gobierno,BDM970315QW2,2021-03-20,true
+C-10017,Óliver Gabino Casas Reyes,fisica,LIVE6211130PH,liverg16@empresa.com.mx,PyME,BDM970315QW2,2023-11-25,true
+C-10018,Yeni Natividad Heredia Valencia,fisica,YENI0507203JK,yenina17@correo.com,Personas,BDM970315QW2,2015-09-11,true
+C-10019,Susana Georgina Ulibarri,fisica,SUSA831228HYE,susana18@ejemplo.mx,Personas,SCD050920LM8,2020-09-05,true
+C-10020,Victoria Roque,fisica,VICT611221820,victor19@ejemplo.mx,Personas,GFD960701AB4,2025-04-23,true
+C-10021,Lucía Débora Lozano,fisica,LUCA940719Y6K,lucadb20@empresa.com.mx,Personas,GFD960701AB4,2012-01-08,true
+C-10022,Jiménez Comercial SA de CV,moral,JIM6104134NM,jimnez21@ejemplo.mx,Personas,GFD960701AB4,2017-02-02,true
+C-10023,Aguirre Comercial SA de CV,moral,AGU901117JE2,aguirr22@ejemplo.mx,Personas,SCD050920LM8,2019-10-08,true
+C-10024,Eduardo Zambrano Reynoso,fisica,EDUA930814CZK,eduard23@correo.com,Personas,GFD960701AB4,2017-03-16,true
+C-10025,Marisela Murillo,fisica,MARI0411266XW,marise24@ejemplo.mx,Personas,BDM970315QW2,2023-09-24,true
+C-10026,Gregorio Ruelas,fisica,GREG840103Z43,gregor25@correo.com,Personas,GFD960701AB4,2009-12-08,true
+C-10027,Robledo Agropecuaria SA de CV,moral,ROB901104DXL,robled26@correo.com,Gobierno,GFD960701AB4,2026-10-06,true
+C-10028,Marisol Puente,fisica,MARI711101FGY,mariso27@empresa.com.mx,Gobierno,BDM970315QW2,2024-07-12,true
+C-10029,Valdez Industrial SA de CV,moral,VAL710717YQR,valdez28@empresa.com.mx,Empresarial,GFD960701AB4,2011-01-22,true
+C-10030,Humberto Mateo Reyna,fisica,HUMB770908M2W,humber29@empresa.com.mx,Personas,GFD960701AB4,2010-12-25,true
+C-10031,Calvillo Logística SA de CV,moral,CAL0509289BN,calvil30@ejemplo.mx,PyME,BDM970315QW2,2014-09-17,true
+C-10032,Vanesa Yolanda Serrato Huerta,fisica,VANE030607823,vanesa31@ejemplo.mx,PyME,BDM970315QW2,2011-09-26,true
+C-10033,Cristal Lorena Roque Barela,fisica,CRIS940521AWT,crista32@empresa.com.mx,Personas,GFD960701AB4,2019-11-27,true
+C-10034,Lic. José Luis Caldera,fisica,LICJ641019BYF,licjos33@correo.com,Personas,GFD960701AB4,2005-09-08,true
+C-10035,Esquivel Agropecuaria SA de CV,moral,ESQ810715TE5,esquiv34@ejemplo.mx,Gobierno,GFD960701AB4,2008-09-07,true
+C-10036,Carolina Margarita Alcaraz,fisica,CARO7701111VL,caroli35@ejemplo.mx,Empresarial,BDM970315QW2,2024-11-18,true
+C-10037,Abel Mauricio Vera,fisica,ABEL700528DV5,abelma36@ejemplo.mx,Gobierno,BDM970315QW2,2010-07-09,true
+C-10038,Antonia Farías,fisica,ANTO8904196VD,antoni37@empresa.com.mx,Empresarial,BDM970315QW2,2016-07-16,true
+C-10039,Gutiérrez Comercial SA de CV,moral,GUT931127FWP,gutirr38@empresa.com.mx,Personas,BDM970315QW2,2018-07-09,true
+C-10040,Wilfrido Alonso Treviño,fisica,WILF831125E4N,wilfri39@empresa.com.mx,Empresarial,GFD960701AB4,2005-01-21,true
+C-10041,Ing. Elias Adame,fisica,INGE890322YE3,ingeli40@correo.com,PyME,SCD050920LM8,2017-11-13,true
+C-10042,Sonia Vergara Velasco,fisica,SONI040525UC8,soniav41@empresa.com.mx,Gobierno,BDM970315QW2,2007-01-01,true
+C-10043,Salazar Industrial SA de CV,moral,SAL670402CE8,salaza42@correo.com,Personas,BDM970315QW2,2010-01-19,true
+C-10044,Cervántez Agropecuaria SA de CV,moral,CER780613S12,cervnt43@correo.com,Gobierno,BDM970315QW2,2023-06-07,true
+C-10045,Elena Rojas,fisica,ELEN050712KY9,elenar44@empresa.com.mx,Personas,BDM970315QW2,2007-09-26,false
+C-10046,Srita. Pilar Santana,fisica,SRIT780614LYX,sritap45@correo.com,Empresarial,GFD960701AB4,2003-08-10,true
+C-10047,López Agropecuaria SA de CV,moral,LPE6002082PC,lpezag46@empresa.com.mx,Personas,BDM970315QW2,2019-02-16,true
+C-10048,Luis Manuel Eloy Cervántez,fisica,LUIS550513MX2,luisma47@empresa.com.mx,Empresarial,BDM970315QW2,2020-06-18,true
+C-10049,Dra. Mayte Patiño,fisica,DRAM741124VSU,dramay48@correo.com,Personas,GFD960701AB4,2021-02-10,true
+C-10050,Orellana Agropecuaria SA de CV,moral,ORE790407YJ9,orella49@empresa.com.mx,Empresarial,BDM970315QW2,2024-07-23,true
+C-10051,Córdova Comercial SA de CV,moral,CRD930814529,crdova50@ejemplo.mx,Personas,BDM970315QW2,2023-12-26,true
+C-10052,Daniela Ocampo,fisica,DANI040427RKV,daniel51@ejemplo.mx,Empresarial,SCD050920LM8,2012-08-06,true
+C-10053,Carlos Ordóñez Benavides,fisica,CARL660711VVA,carlos52@correo.com,Gobierno,SCD050920LM8,2018-02-18,true
+C-10054,Jorge Luis Morales Alvarez,fisica,JORG001227JAQ,jorgel53@empresa.com.mx,Empresarial,BDM970315QW2,2021-04-19,true
+C-10055,Pedro Rolón Menchaca,fisica,PEDR900818U93,pedror54@correo.com,Personas,BDM970315QW2,2023-10-19,true
+C-10056,Lic. Jerónimo Casas,fisica,LICJ701211H9A,licjer55@empresa.com.mx,Gobierno,BDM970315QW2,2024-02-25,true
+C-10057,Salinas Comercial SA de CV,moral,SAL850628GDA,salina56@correo.com,Personas,BDM970315QW2,2010-11-04,true
+C-10058,Olga Rosa de la Rosa Corrales,fisica,OLGA830703FLQ,olgaro57@ejemplo.mx,Personas,GFD960701AB4,2009-12-11,true
+C-10059,Villareal Comercial SA de CV,moral,VIL950425WLJ,villar58@correo.com,Personas,BDM970315QW2,2012-02-21,true
+C-10060,Delia Puente,fisica,DELI9011095M5,deliap59@empresa.com.mx,Personas,GFD960701AB4,2019-07-21,true
+C-10061,Dra. María Cristina Zamora,fisica,DRAM960209XUP,dramar60@correo.com,Empresarial,BDM970315QW2,2008-10-21,true
+C-10062,Armando Trujillo,fisica,ARMA040604M5D,armand61@empresa.com.mx,PyME,GFD960701AB4,2008-04-28,false
+C-10063,Ozuna Logística SA de CV,moral,OZU800118HTP,ozunal62@ejemplo.mx,Personas,BDM970315QW2,2009-12-05,true
+C-10064,Federico Delgadillo Armenta,fisica,FEDE760212RBR,federi63@empresa.com.mx,Empresarial,GFD960701AB4,2003-08-09,true
+C-10065,Tovar Industrial SA de CV,moral,TOV9307156JZ,tovari64@empresa.com.mx,Personas,BDM970315QW2,2015-01-27,false
+C-10066,Arriaga Agropecuaria SA de CV,moral,ARR980409U3E,arriag65@ejemplo.mx,Personas,GFD960701AB4,2008-07-08,true
+C-10067,Sara Cynthia Roybal Almonte,fisica,SARA780211H35,saracy66@empresa.com.mx,Personas,SCD050920LM8,2005-06-04,false
+C-10068,Ceballos Agropecuaria SA de CV,moral,CEB041017NQ2,ceball67@correo.com,Gobierno,GFD960701AB4,2025-01-20,true
+C-10069,Dulce Sierra,fisica,DULC920820LVY,dulces68@correo.com,PyME,BDM970315QW2,2006-12-13,true
+C-10070,Chavarría Industrial SA de CV,moral,CHA590409PMQ,chavar69@ejemplo.mx,Personas,BDM970315QW2,2012-07-07,true
+C-10071,Cruz Logística SA de CV,moral,CRU8111254MG,cruzlo70@correo.com,Personas,SCD050920LM8,2014-03-14,true
+C-10072,Julio Héctor Pizarro Tejada,fisica,JULI710427C9X,julioh71@correo.com,Personas,BDM970315QW2,2024-03-14,true
+C-10073,Angélica Judith Magaña,fisica,ANGL640203F2K,anglic72@correo.com,Personas,SCD050920LM8,2017-12-15,true
+C-10074,Jorge Luis Eric Irizarry Rivera,fisica,JORG670620KF8,jorgel73@correo.com,Personas,BDM970315QW2,2004-06-14,false
+C-10075,Liliana Fabiola Robles Díaz,fisica,LILI981009GVL,lilian74@empresa.com.mx,Personas,BDM970315QW2,2019-03-19,true
+C-10076,Minerva Rosario Rael,fisica,MINE710627KWY,minerv75@ejemplo.mx,Personas,GFD960701AB4,2008-10-28,true
+C-10077,Ramón Ramón Lara,fisica,RAMN740204SZA,ramnra76@ejemplo.mx,Gobierno,GFD960701AB4,2023-11-26,true
+C-10078,Cabrera Agropecuaria SA de CV,moral,CAB800511D5B,cabrer77@correo.com,Empresarial,BDM970315QW2,2005-07-11,true
+C-10079,Gabriel Adame,fisica,GABR730928UW1,gabrie78@ejemplo.mx,Gobierno,BDM970315QW2,2005-08-28,true
+C-10080,Mauro Jesús Pantoja,fisica,MAUR880908BJ1,mauroj79@ejemplo.mx,PyME,SCD050920LM8,2003-02-27,true
+C-10081,Susana Echeverría,fisica,SUSA551017GZ0,susana80@ejemplo.mx,Personas,BDM970315QW2,2005-04-06,true
+C-10082,Amador Industrial SA de CV,moral,AMA830525K6E,amador81@correo.com,Personas,SCD050920LM8,2011-08-27,true
+C-10083,Mora Agropecuaria SA de CV,moral,MOR7005274,moraag82@correo.com,Empresarial,BDM970315QW2,2024-03-14,true
+C-10084,Cortez Logística SA de CV,moral,COR740715EGE,cortez83@correo.com,Personas,BDM970315QW2,2018-04-11,true
+C-10085,Mora Industrial SA de CV,moral,MOR840114YH0,morain84@correo.com,Gobierno,GFD960701AB4,2009-12-27,true
+C-10086,Úrsula Vega,fisica,RSUL570421ZJT,rsulav85@ejemplo.mx,Personas,GFD960701AB4,2022-12-13,true
+C-10087,Dulce Carmona,fisica,DULC890228YU8,dulcec86@empresa.com.mx,Personas,SCD050920LM8,2013-06-11,true
+C-10088,Dra. Noelia Vanegas,fisica,DRAN580518FVA,dranoe87@ejemplo.mx,Personas,BDM970315QW2,2007-07-14,true
+C-10089,Rufino Lozano,fisica,RUFI9208047Y1,rufino88@empresa.com.mx,Empresarial,GFD960701AB4,2018-12-18,false
+C-10090,Dra. Susana Valadez,fisica,DRAS981011TXX,drasus89@empresa.com.mx,Personas,BDM970315QW2,2007-06-26,true
+C-10091,Bruno Guillermo Caldera Pulido,fisica,BRUN570806339,brunog90@correo.com,Personas,BDM970315QW2,2017-03-01,true
+C-10092,Carlos Ángel Moya Escalante,fisica,CARL7109031YS,carlos91@empresa.com.mx,Personas,SCD050920LM8,2025-03-27,true
+C-10093,Caraballo Industrial SA de CV,moral,CAR841126QUN,caraba92@ejemplo.mx,PyME,GFD960701AB4,2016-04-19,true
+C-10094,Graciela Lebrón,fisica,GRAC7708219VA,gracie93@correo.com,PyME,BDM970315QW2,2016-11-20,true
+C-10095,Sra. Florencia Mascareñas,fisica,SRAF770714DR4,sraflo94@empresa.com.mx,PyME,GFD960701AB4,2020-11-10,true
+C-10096,Gregorio Gonzalo Barajas Alcaraz,fisica,GREG960720LP9,gregor95@empresa.com.mx,Gobierno,BDM970315QW2,2010-08-27,true
+C-10097,Esparta Liliana Alejandro,fisica,ESPA750906KB5,espart96@correo.com,Personas,BDM970315QW2,2016-03-13,true
+C-10098,Bernardo Gollum Altamirano,fisica,BERN981003KDZ,bernar97@ejemplo.mx,PyME,SCD050920LM8,2010-01-20,true
+C-10099,Sr. Bernardo Valentín,fisica,SRBE891110CUF,srbern98@empresa.com.mx,PyME,SCD050920LM8,2024-12-04,true
+C-10100,Dra. Graciela Reséndez,fisica,DRAG620817E37,dragra99@correo.com,Gobierno,BDM970315QW2,2012-09-06,true
+C-10101,Lic. Alta  Gracia Páez,fisica,LICA010215GR8,licalt100@empresa.com.mx,Personas,BDM970315QW2,2025-10-26,true
+C-10102,Rebeca Galván Villegas,fisica,REBE720409EMZ,rebeca101@ejemplo.mx,Personas,BDM970315QW2,2003-09-10,true
+C-10103,Lourdes Teresa Casares Noriega,fisica,LOUR701012LPS,lourde102@ejemplo.mx,Empresarial,SCD050920LM8,2005-03-14,false
+C-10104,Sánchez Logística SA de CV,moral,SNC950915T75,snchez103@empresa.com.mx,Personas,BDM970315QW2,2013-10-16,true
+C-10105,Lic. Humberto Moya,fisica,LICH900424KCF,lichum104@ejemplo.mx,Gobierno,BDM970315QW2,2009-02-19,true
+C-10106,Mariano Alva Lerma,fisica,MARI820622YUW,marian105@correo.com,PyME,SCD050920LM8,2017-01-14,true
+C-10107,Menéndez Logística SA de CV,moral,MEN0012062WJ,mennde106@correo.com,Personas,BDM970315QW2,2007-08-01,false
+C-10108,Longoria Industrial SA de CV,moral,LON7206193CX,longor107@correo.com,Personas,BDM970315QW2,2009-01-03,false
+C-10109,Isaac Luis Manuel Matos,fisica,ISAA630706X2Y,isaacl108@ejemplo.mx,Empresarial,GFD960701AB4,2023-09-10,true
+C-10110,Vigil Logística SA de CV,moral,VIG93081912R,vigill109@empresa.com.mx,PyME,GFD960701AB4,2015-12-28,true
+C-10111,Reynaldo Monroy Fajardo,fisica,REYN960419FY3,reynal110@correo.com,Empresarial,BDM970315QW2,2006-04-01,true
+C-10112,Ana Luisa Carreón,fisica,ANAL920527FBR,analui111@empresa.com.mx,Gobierno,SCD050920LM8,2023-06-20,true
+C-10113,Wilfrido Cornelio Casanova Archuleta,fisica,WILF740702XB4,wilfri112@empresa.com.mx,PyME,BDM970315QW2,2020-01-17,true
+C-10114,Ramiro José Zambrano Madrid,fisica,RAMI851224JA3,ramiro113@empresa.com.mx,Personas,GFD960701AB4,2023-05-17,true
+C-10115,Manuel Véliz Castro,fisica,MANU6309099DE,manuel114@empresa.com.mx,Personas,SCD050920LM8,2009-08-24,true
+C-10116,Liliana Olivo Ocasio,fisica,LILI910308Y1U,lilian115@correo.com,Personas,SCD050920LM8,2012-12-21,true
+C-10117,Luis Miguel Gaona,fisica,LUIS921003KT1,luismi116@correo.com,PyME,BDM970315QW2,2004-12-24,true
+C-10118,Espartaco Reynaldo Anaya Toro,fisica,ESPA850626HDX,espart117@ejemplo.mx,Personas,BDM970315QW2,2003-05-13,true
+C-10119,Karla Herrera,fisica,KARL590118S20,karlah118@empresa.com.mx,Empresarial,GFD960701AB4,2024-09-22,true
+C-10120,Cordero Comercial SA de CV,moral,COR680419P09,corder119@correo.com,PyME,GFD960701AB4,2023-08-05,true
+C-10121,Agustín Alemán,fisica,AGUS000218FRY,agustn120@correo.com,Empresarial,BDM970315QW2,2005-07-28,true
+C-10122,Lebrón Logística SA de CV,moral,LEB7204189M0,lebrnl121@ejemplo.mx,Gobierno,GFD960701AB4,2026-07-05,true
+C-10123,Toro Industrial SA de CV,moral,TOR810318Y2D,toroin122@correo.com,PyME,BDM970315QW2,2026-01-04,true
+C-10124,Roque Comercial SA de CV,moral,ROQ851205T,roquec123@correo.com,Gobierno,SCD050920LM8,2009-07-18,false
+C-10125,Estefanía Graciela Chavarría,fisica,ESTE6804108YA,estefa124@empresa.com.mx,Gobierno,BDM970315QW2,2007-03-09,true
+C-10126,Sra. Conchita Uribe,fisica,SRAC630720PCQ,sracon125@correo.com,Gobierno,BDM970315QW2,2014-12-25,true
+C-10127,Archuleta Logística SA de CV,moral,ARC010828D88,archul126@ejemplo.mx,PyME,GFD960701AB4,2018-04-05,true
+C-10128,Estefanía Molina,fisica,ESTE0511159TY,estefa127@ejemplo.mx,Personas,GFD960701AB4,2010-06-01,true
+C-10129,Solís Industrial SA de CV,moral,SOL941014L42,solsin128@correo.com,Empresarial,BDM970315QW2,2011-04-16,true
+C-10130,Ana Luisa Alba Guerra,fisica,ANAL610111XZY,analui129@ejemplo.mx,Personas,GFD960701AB4,2018-02-17,true
+C-10131,Ana Luisa Dulce María Sauceda Corona,fisica,ANAL5503268FC,analui130@correo.com,Personas,GFD960701AB4,2004-07-23,true
+C-10132,Wendolin Isabela Gonzales,fisica,WEND680125SS5,wendol131@correo.com,Personas,SCD050920LM8,2011-02-23,false
+C-10133,Esther Montalvo,fisica,ESTH030620GEM,esther132@ejemplo.mx,PyME,BDM970315QW2,2021-03-27,false
+C-10134,José Manuél Muñoz,fisica,JOSM710803NPN,josman133@ejemplo.mx,Gobierno,BDM970315QW2,2005-10-21,true
+C-10135,Sandra María Cristina Ulibarri Rojo,fisica,SAND0005109XU,sandra134@ejemplo.mx,Empresarial,SCD050920LM8,2007-01-01,true
+C-10136,Vera Logística SA de CV,moral,VER600926G15,veralo135@correo.com,Empresarial,SCD050920LM8,2020-07-18,true
+C-10137,Marrero Industrial SA de CV,moral,MAR980308J72,marrer136@empresa.com.mx,Personas,SCD050920LM8,2025-03-27,true
+C-10138,Eloy Partida,fisica,ELOY6710104JJ,eloypa137@ejemplo.mx,Personas,GFD960701AB4,2026-03-09,true
+C-10139,Omar Abelardo Moreno Solorzano,fisica,OMAR891119U5Y,omarab138@ejemplo.mx,Personas,BDM970315QW2,2006-10-05,true
+C-10140,Alta  Gracia Sandra de León,fisica,ALTA990125M1L,,Empresarial,GFD960701AB4,2025-04-19,true
+C-10141,Bravo Comercial SA de CV,moral,BRA6702038JJ,bravoc140@empresa.com.mx,Personas,SCD050920LM8,2005-05-14,true
+C-10142,Ing. Ricardo Jaimes,fisica,INGR82091131D,ingric141@ejemplo.mx,Gobierno,SCD050920LM8,2020-08-17,true
+C-10143,Bruno Adán Tejeda Gamboa,fisica,BRUN930923E7M,,PyME,BDM970315QW2,2012-11-10,true
+C-10144,Verduzco Industrial SA de CV,moral,VER011004JXR,verduz143@empresa.com.mx,Personas,GFD960701AB4,2026-05-15,true
+C-10145,Sr. Julio César Olivares,fisica,SRJU660224NS4,srjuli144@correo.com,Personas,BDM970315QW2,2024-01-05,true
+C-10146,Tijerina Agropecuaria SA de CV,moral,TIJ8407029U0,tijeri145@ejemplo.mx,PyME,BDM970315QW2,2007-12-15,true
+C-10147,Sara Cotto,fisica,SARA860524WQM,saraco146@empresa.com.mx,Personas,BDM970315QW2,2021-12-16,true
+C-10148,Aurora Briones,fisica,AURO610705JSU,aurora147@empresa.com.mx,Gobierno,SCD050920LM8,2009-05-14,true
+C-10149,Julio Joaquín Trujillo Ibarra,fisica,JULI66110277U,julioj148@correo.com,Personas,BDM970315QW2,2004-10-17,true
+C-10150,Marín Logística SA de CV,moral,MAR020903TBG,marnlo149@correo.com,Gobierno,GFD960701AB4,2017-12-09,true
+C-10151,Silvano Espinal Curiel,fisica,SILV8303205XR,silvan150@ejemplo.mx,Empresarial,SCD050920LM8,2005-05-04,true
+C-10152,Loya Industrial SA de CV,moral,LOY771222G8U,loyain151@ejemplo.mx,PyME,BDM970315QW2,2016-03-24,false
+C-10153,Ing. José Carlos Cervantes,fisica,INGJ95112848E,ingjos152@ejemplo.mx,Personas,BDM970315QW2,2017-02-08,true
+C-10154,Cynthia Ruby Aguirre,fisica,CYNT75030645B,cynthi153@correo.com,PyME,BDM970315QW2,2012-10-05,true
+C-10155,Ing. Lorena Moya,fisica,INGL861126ZV8,inglor154@ejemplo.mx,Personas,BDM970315QW2,2024-08-07,true
+C-10156,Terrazas Agropecuaria SA de CV,moral,TER760119DB0,terraz155@correo.com,Personas,BDM970315QW2,2012-06-04,true
+C-10157,Rafaél Aldo Duarte Mascareñas,fisica,RAFA5707269C4,rafala156@empresa.com.mx,Empresarial,GFD960701AB4,2015-08-05,true
+C-10158,Tirado Agropecuaria SA de CV,moral,TIR981010GRV,tirado157@ejemplo.mx,Personas,BDM970315QW2,2008-11-17,true
+C-10159,Emiliano Aldo Carrión Serrato,fisica,EMIL980419VJS,emilia158@empresa.com.mx,PyME,SCD050920LM8,2009-09-15,false
+C-10160,José Manuél Barela Nazario,fisica,JOSM5501117G8,josman159@ejemplo.mx,Empresarial,BDM970315QW2,2004-03-08,true
+C-10161,Dr. Renato Corrales,fisica,DRRE9707192J6,drrena160@ejemplo.mx,Personas,BDM970315QW2,2018-07-08,true
+C-10162,Lic. Emilia Castro,fisica,LICE760117EA2,licemi161@correo.com,Empresarial,BDM970315QW2,2007-08-11,true
+C-10163,Jerónimo Omar Carbajal,fisica,JERN761025QGR,jernim162@ejemplo.mx,Empresarial,BDM970315QW2,2003-05-16,true
+C-10164,Juan Guillermo Madera,fisica,JUAN740523XJ7,juangu163@correo.com,Gobierno,BDM970315QW2,2007-05-05,true
+C-10165,Jos Nicolás Samaniego,fisica,JOSN640502Z1R,,Empresarial,BDM970315QW2,2018-01-08,true
+C-10166,Rodrigo Rafaél Gurule,fisica,RODR900522951,,Gobierno,BDM970315QW2,2020-12-05,true
+C-10167,Muñoz Agropecuaria SA de CV,moral,MUO560101DJ5,muozag166@correo.com,PyME,GFD960701AB4,2023-08-15,true
+C-10168,Paola Inés Borrego Barrientos,fisica,PAOL0002039,paolai167@ejemplo.mx,Gobierno,BDM970315QW2,2013-02-02,true
+C-10169,Oswaldo Jacinto Jaimes,fisica,OSWA700325BCP,oswald168@empresa.com.mx,PyME,GFD960701AB4,2026-01-21,true
+C-10170,Gastélum Comercial SA de CV,moral,GAS630705AS8,gastlu169@empresa.com.mx,Personas,BDM970315QW2,2023-07-24,true
+C-10171,de la Garza Logística SA de CV,moral,DEL630401AEX,delaga170@correo.com,Personas,GFD960701AB4,2023-04-26,true
+C-10172,Lucía Santillán Valenzuela,fisica,LUCA870222ENM,lucasa171@ejemplo.mx,Personas,BDM970315QW2,2021-12-04,false
+C-10173,Meraz Agropecuaria SA de CV,moral,MER750408KWM,meraza172@empresa.com.mx,PyME,SCD050920LM8,2017-05-23,true
+C-10174,Medrano Industrial SA de CV,moral,MED920910XCA,medran173@empresa.com.mx,Personas,GFD960701AB4,2015-05-18,true
+C-10175,Salcido Agropecuaria SA de CV,moral,SAL881009T0R,salcid174@correo.com,PyME,BDM970315QW2,2005-09-08,true
+C-10176,Graciela Conchita Estrada,fisica,GRAC611012QLP,gracie175@empresa.com.mx,PyME,GFD960701AB4,2007-02-17,true
+C-10177,Dulce María Vanesa Montero Montez,fisica,DULC9003017E3,dulcem176@correo.com,PyME,BDM970315QW2,2023-03-04,true
+C-10178,Parra Agropecuaria SA de CV,moral,PAR5704288XP,parraa177@empresa.com.mx,Empresarial,GFD960701AB4,2011-03-11,true
+C-10179,Ing. Dolores Correa,fisica,INGD880305BAD,,Personas,GFD960701AB4,2009-02-14,true
+C-10180,Quintanilla Comercial SA de CV,moral,QUI76051282Z,quinta179@correo.com,PyME,SCD050920LM8,2005-05-08,true
+C-10181,Srita. Lucía Jasso,fisica,SRIT8803230R3,srital180@correo.com,Personas,BDM970315QW2,2007-04-18,true
+C-10182,Méndez Agropecuaria SA de CV,moral,MND040618RKU,mndeza181@correo.com,Personas,BDM970315QW2,2024-09-24,true
+C-10183,Carvajal Agropecuaria SA de CV,moral,CAR870220HSA,carvaj182@empresa.com.mx,Personas,SCD050920LM8,2013-12-22,true
+C-10184,Estela Rael Irizarry,fisica,ESTE890704P5D,estela183@empresa.com.mx,Personas,GFD960701AB4,2014-10-17,true
+C-10185,Colunga Logística SA de CV,moral,COL720705TBM,colung184@ejemplo.mx,Personas,BDM970315QW2,2023-11-03,true
+C-10186,Rosario Jasso,fisica,ROSA7603172H2,,Empresarial,BDM970315QW2,2007-06-23,true
+C-10187,Jesús Collazo,fisica,JESS651126AG9,jessco186@empresa.com.mx,Gobierno,GFD960701AB4,2008-04-09,true
+C-10188,Blanca Jasso,fisica,BLAN621013P83,blanca187@empresa.com.mx,Empresarial,GFD960701AB4,2017-02-02,true
+C-10189,Lozada Agropecuaria SA de CV,moral,LOZ740712UEX,lozada188@ejemplo.mx,Personas,BDM970315QW2,2011-05-20,true
+C-10190,Ing. Salma Pacheco,fisica,INGS650916S20,ingsal189@empresa.com.mx,Personas,BDM970315QW2,2003-06-22,true
+C-10191,Pabón Logística SA de CV,moral,PAB910221URT,pabnlo190@empresa.com.mx,Empresarial,SCD050920LM8,2023-08-15,true
+C-10192,Alonzo Industrial SA de CV,moral,ALO790116HL7,alonzo191@empresa.com.mx,Personas,GFD960701AB4,2022-04-01,true
+C-10193,Ulloa Industrial SA de CV,moral,ULL901222MB1,ulloai192@correo.com,Personas,SCD050920LM8,2008-04-26,true
+C-10194,Mendoza Agropecuaria SA de CV,moral,MEN871224JGA,mendoz193@ejemplo.mx,Empresarial,BDM970315QW2,2003-05-25,true
+C-10195,Ilse Ariadna Saldaña,fisica,ILSE00010896M,ilsear194@ejemplo.mx,Personas,GFD960701AB4,2011-04-17,true
+C-10196,Minerva Fuentes,fisica,MINE800609H3B,minerv195@empresa.com.mx,Empresarial,SCD050920LM8,2023-08-28,true
+C-10197,Pineda Logística SA de CV,moral,PIN8411281FQ,pineda196@correo.com,Personas,GFD960701AB4,2009-02-24,true
+C-10198,Sessa Menéndez Balderas,fisica,SESS7705070LG,sessam197@empresa.com.mx,Empresarial,GFD960701AB4,2004-01-06,true
+C-10199,Pabón Agropecuaria SA de CV,moral,PAB560607E9H,pabnag198@ejemplo.mx,Empresarial,SCD050920LM8,2020-06-24,true
+C-10200,Abraham Gustavo Valdivia Hernádez,fisica,ABRA561202N,abraha199@ejemplo.mx,Gobierno,BDM970315QW2,2023-03-08,true
+C-10201,Joaquín Santiago Pedroza Rolón,fisica,JOAQ601015N16,joaqun200@correo.com,Gobierno,GFD960701AB4,2018-07-01,true
+C-10202,Ilse Adriana Archuleta Garay,fisica,ILSE751212734,ilsead201@correo.com,Gobierno,BDM970315QW2,2010-08-09,true
+C-10203,Casárez Industrial SA de CV,moral,CAS951117B2X,casrez202@ejemplo.mx,Gobierno,GFD960701AB4,2024-09-18,true
+C-10204,Jiménez Comercial SA de CV,moral,JIM600705PA4,jimnez203@ejemplo.mx,Gobierno,BDM970315QW2,2020-04-19,true
+C-10205,Aida Fuentes Reyna,fisica,AIDA59110842S,aidafu204@empresa.com.mx,Gobierno,BDM970315QW2,2006-02-11,true
+C-10206,Esther Negrón,fisica,ESTH630207A4B,esther205@ejemplo.mx,Personas,SCD050920LM8,2023-07-11,false
+C-10207,Berríos Industrial SA de CV,moral,BER850403XPY,berros206@correo.com,Gobierno,BDM970315QW2,2011-03-05,true
+C-10208,Valadez Agropecuaria SA de CV,moral,VAL960327DQH,valade207@correo.com,Empresarial,BDM970315QW2,2014-01-16,true
+C-10209,René Alba,fisica,RENA99040423Z,renalb208@empresa.com.mx,Personas,BDM970315QW2,2009-02-06,true
+C-10210,Elias Jesús Gaona,fisica,ELIA010203Q6E,eliasj209@correo.com,Gobierno,BDM970315QW2,2011-11-09,true
+C-10211,Rivas Industrial SA de CV,moral,RIV720722XQ4,,Empresarial,BDM970315QW2,2019-03-18,true
+C-10212,Uriel de la Rosa,fisica,URIE590323ZYT,urield211@ejemplo.mx,Empresarial,GFD960701AB4,2004-03-13,true
+C-10213,Mares Logística SA de CV,moral,MAR690814TC9,maresl212@ejemplo.mx,Empresarial,BDM970315QW2,2004-07-22,true
+C-10214,Rufino Luis Manuel Solorio,fisica,RUFI750813MXE,rufino213@ejemplo.mx,Personas,SCD050920LM8,2012-06-24,true
+C-10215,Lic. Carla Cardenas,fisica,LICC001203Z8P,liccar214 at empresa.com.mx,PyME,GFD960701AB4,2018-10-21,true
+C-10216,Héctor Perea Armendáriz,fisica,HCTO990117S2Y,hctorp215@ejemplo.mx,Gobierno,BDM970315QW2,2016-09-18,true
+C-10217,Roberto Porfirio Godoy Rodríguez,fisica,ROBE7410030FF,robert216@ejemplo.mx,PyME,GFD960701AB4,2006-09-12,true
+C-10218,Mondragón Agropecuaria SA de CV,moral,MON660423D78,mondra217@empresa.com.mx,Empresarial,BDM970315QW2,2019-06-21,true
+C-10219,Inés Matías Zepeda,fisica,INSM980417PD0,insmat218@correo.com,Gobierno,BDM970315QW2,2022-11-19,true
+C-10220,Rosado Agropecuaria SA de CV,moral,ROS701108N2J,rosado219@ejemplo.mx,PyME,BDM970315QW2,2007-06-07,true
+C-10221,Lic. Jerónimo Henríquez,fisica,LICJ730723BUP,licjer220@ejemplo.mx,Personas,BDM970315QW2,2009-10-09,true
+C-10222,Óscar Cepeda Alonzo,fisica,SCAR000310WDU,scarce221@correo.com,Gobierno,SCD050920LM8,2012-11-17,false
+C-10223,Itzel Esmeralda Robledo Farías,fisica,ITZE7602075Z3,itzele222@ejemplo.mx,Personas,GFD960701AB4,2024-12-13,true
+C-10224,Esther Sepúlveda Pabón,fisica,ESTH610918P60,esther223@empresa.com.mx,Gobierno,SCD050920LM8,2004-09-03,true
+C-10225,Dr. Santiago Ayala,fisica,DRSA61012716C,drsant224@ejemplo.mx,Personas,BDM970315QW2,2006-01-23,true
+C-10226,Anabel Zoé Saucedo,fisica,ANAB7803078XM,anabel225@correo.com,PyME,BDM970315QW2,2025-10-11,true
+C-10227,Tejada Industrial SA de CV,moral,TEJ6308060GC,tejada226@ejemplo.mx,PyME,BDM970315QW2,,true
+C-10228,Lic. Víctor Bustamante,fisica,LICV960516HFD,licvct227@empresa.com.mx,Personas,GFD960701AB4,2010-02-02,true
+C-10229,Saucedo Logística SA de CV,moral,SAU810618A7Z,sauced228@ejemplo.mx,Empresarial,SCD050920LM8,2009-03-02,true
+C-10230,Perla Meléndez,fisica,PERL810227GRA,perlam229@ejemplo.mx,Personas,SCD050920LM8,2007-02-09,true
+C-10231,Guadalupe Soledad Mojica Murillo,fisica,GUAD73020553J,guadal230@correo.com,Empresarial,BDM970315QW2,2018-05-12,true
+C-10232,Augusto Rolando Delgado Hinojosa,fisica,AUGU550409EZH,august231@ejemplo.mx,Gobierno,SCD050920LM8,2004-05-20,false
+C-10233,Suárez Logística SA de CV,moral,SUR801008NX5,surezl232@correo.com,Empresarial,GFD960701AB4,2025-07-25,true
+C-10234,Judith Caraballo,fisica,JUDI701127V27,judith233@correo.com,Gobierno,GFD960701AB4,2003-08-01,true
+C-10235,Gallegos Agropecuaria SA de CV,moral,GAL920217AAH,galleg234@correo.com,Personas,BDM970315QW2,2021-10-19,true
+C-10236,Miguel Guajardo Fuentes,fisica,MIGU020901UBE,miguel235@empresa.com.mx,Empresarial,BDM970315QW2,2014-05-28,true
+C-10237,Mercedes Mitzy Castro,fisica,MERC8203239U7,merced236@correo.com,Gobierno,BDM970315QW2,2023-11-26,true
+C-10238,Dolores Juárez,fisica,DOLO690313V3A,dolore237@ejemplo.mx,Empresarial,BDM970315QW2,2003-05-05,true
+C-10239,Carla Noemí Melgar Narváez,fisica,CARL981004SH8,carlan238@empresa.com.mx,Personas,SCD050920LM8,2006-02-23,true
+C-10240,Orosco Agropecuaria SA de CV,moral,ORO870312TWR,orosco239@ejemplo.mx,Personas,BDM970315QW2,2023-02-14,true
+C-10241,Tejada Logística SA de CV,moral,TEJ5706156U4,,Personas,BDM970315QW2,2007-09-18,false
+C-10242,Tirado Comercial SA de CV,moral,TIR040206KZB,tirado241@empresa.com.mx,Empresarial,SCD050920LM8,2024-03-05,true
+C-10243,Esparza Logística SA de CV,moral,ESP030203JFA,esparz242@ejemplo.mx,Gobierno,BDM970315QW2,2025-03-26,true
+C-10244,Uriel Rodolfo Corral Colón,fisica,URIE7204271VY,urielr243@correo.com,Gobierno,BDM970315QW2,2026-11-02,true
+C-10245,Salvador Ángel Aragón León,fisica,SALV7508046C1,salvad244@correo.com,PyME,BDM970315QW2,2006-12-04,true
+C-10246,Dr. Darío Jaramillo,fisica,DRDA791107A37,drdaro245@ejemplo.mx,PyME,BDM970315QW2,2006-02-26,true
+C-10247,Verónica Munguía,fisica,VERN89062592Q,vernic246@correo.com,PyME,BDM970315QW2,2022-10-18,true
+C-10248,Maximiliano Enrique Escobar Avilés,fisica,MAXI860224963,maximi247@ejemplo.mx,Empresarial,BDM970315QW2,2024-08-11,true
+C-10249,Elias Luis Saiz Treviño,fisica,ELIA830206Z3G,eliasl248@ejemplo.mx,Empresarial,BDM970315QW2,2009-08-11,true
+C-10250,Isaac García Serrano,fisica,ISAA870208EU4,isaacg249@correo.com,Personas,BDM970315QW2,2012-11-12,true
+C-10251,Natalia Caballero Rivero,fisica,NATA630628G3X,natali250@empresa.com.mx,Gobierno,BDM970315QW2,2017-09-25,true
+C-10252,Palomo Agropecuaria SA de CV,moral,PAL031016MPW,palomo251@ejemplo.mx,Personas,SCD050920LM8,2003-05-26,false
+C-10253,Jerónimo Diego Sauceda Arevalo,fisica,JERN880514SR5,jernim252@correo.com,Empresarial,BDM970315QW2,2009-02-09,false
+C-10254,Abril Ana Luisa Cabrera Morales,fisica,ABRI761010JR3,abrila253@empresa.com.mx,Empresarial,SCD050920LM8,2014-04-04,false
+C-10255,Dra. Hermelinda Amaya,fisica,DRAH800720UX3,draher254@correo.com,Personas,BDM970315QW2,2006-07-10,false
+C-10256,Pascual Eugenio Bustamante Pichardo,fisica,PASC000508ARV,pascua255@empresa.com.mx,Personas,GFD960701AB4,2024-01-14,true
+C-10257,Débora Claudia Guajardo,fisica,DBOR711127D80,dborac256@ejemplo.mx,PyME,BDM970315QW2,2010-01-03,true
+C-10258,Garza Agropecuaria SA de CV,moral,GAR0012102K3,garzaa257@correo.com,Empresarial,GFD960701AB4,2008-02-14,true
+C-10259,Dolores Jaqueline Covarrubias Tello,fisica,DOLO720922ZE3,dolore258@correo.com,Empresarial,BDM970315QW2,2008-09-20,true
+C-10260,Pichardo Agropecuaria SA de CV,moral,PIC760804RHD,pichar259@empresa.com.mx,PyME,GFD960701AB4,2014-09-13,true
+C-10261,María Cristina Isabela Fuentes,fisica,MARA0509210S9,maracr260@ejemplo.mx,Personas,SCD050920LM8,2020-01-15,true
+C-10262,Lic. Rolando Zepeda,fisica,LICR050310H24,licrol261@ejemplo.mx,PyME,BDM970315QW2,2023-09-05,false
+C-10263,Rosario Industrial SA de CV,moral,ROS6010218D7,rosari262@ejemplo.mx,Gobierno,SCD050920LM8,2008-10-20,true
+C-10264,Fidel Federico Carrillo,fisica,FIDE640909L1T,fidelf263@ejemplo.mx,PyME,BDM970315QW2,2017-09-16,true
+C-10265,José Zacarías Cotto,fisica,JOSZ0510067F6,joszac264@ejemplo.mx,Empresarial,BDM970315QW2,2009-09-02,true
+C-10266,Eric Felix Prieto,fisica,ERIC711114GD5,ericfe265@ejemplo.mx,Gobierno,SCD050920LM8,2015-08-25,true
+C-10267,Esparza Comercial SA de CV,moral,ESP710913LN1,esparz266@correo.com,Personas,BDM970315QW2,2018-11-16,true
+C-10268,Porras Logística SA de CV,moral,POR970701QCN,porras267@ejemplo.mx,Empresarial,GFD960701AB4,2015-12-03,true
+C-10269,Roberto Colunga Jiménez,fisica,ROBE710923DCM,robert268@correo.com,Personas,BDM970315QW2,2003-12-21,true
+C-10270,Ing. Leonardo Aguirre,fisica,INGL750615KWY,ingleo269@empresa.com.mx,Empresarial,BDM970315QW2,2013-05-15,true
+C-10271,Miriam María Cristina Laboy Moreno,fisica,MIRI641021J6Y,miriam270@ejemplo.mx,Personas,BDM970315QW2,2023-02-23,true
+C-10272,Carlota Barbara Colón Valencia,fisica,CARL760519STN,carlot271@correo.com,PyME,SCD050920LM8,2020-09-14,true
+C-10273,José Carlos Reséndez,fisica,JOSC951104GH4,joscar272@correo.com,PyME,SCD050920LM8,2019-03-27,true
+C-10274,Ocasio Industrial SA de CV,moral,OCA731018GM3,ocasio273@correo.com,Personas,BDM970315QW2,2004-03-05,true
+C-10275,Lic. Amelia Valencia,fisica,LICA650528R00,licame274@empresa.com.mx,Gobierno,SCD050920LM8,2008-03-14,false
+C-10276,Esparta Berríos Riojas,fisica,ESPA761110D,espart275@empresa.com.mx,PyME,SCD050920LM8,2025-05-04,true
+C-10277,Inés Natividad Sotelo Tamez,fisica,INSN800322T09,insnat276@ejemplo.mx,PyME,BDM970315QW2,2007-08-03,false
+C-10278,Calvillo Agropecuaria SA de CV,moral,CAL580116FAB,calvil277@correo.com,Personas,BDM970315QW2,2005-03-23,true
+C-10279,Ing. Alfonso Blanco,fisica,INGA8311091PB,ingalf278@empresa.com.mx,Gobierno,BDM970315QW2,2025-04-24,true
+C-10280,Sra. Andrea Suárez,fisica,SRAA640906L8N,sraand279@ejemplo.mx,Personas,SCD050920LM8,2012-10-04,true
+C-10281,Regalado Agropecuaria SA de CV,moral,REG660225FRM,regala280@ejemplo.mx,PyME,BDM970315QW2,2004-10-17,true
+C-10282,Valle Comercial SA de CV,moral,VAL771118G7P,vallec281@ejemplo.mx,Empresarial,BDM970315QW2,2021-12-20,true
+C-10283,Juan Carlos Samuel Reyes,fisica,JUAN7203029T4,juanca282@correo.com,Empresarial,SCD050920LM8,2005-06-01,true
+C-10284,Ing. Natalia Alonzo,fisica,INGN76010467M,ingnat283@ejemplo.mx,PyME,BDM970315QW2,2018-12-06,true
+C-10285,Corral Logística SA de CV,moral,COR0109272B5,corral284@empresa.com.mx,Personas,SCD050920LM8,2019-04-05,true
+C-10286,Carla Amador Cantú,fisica,CARL721114DNA,carlaa285@ejemplo.mx,Personas,SCD050920LM8,2020-05-12,true
+C-10287,Arcelia Claudia Téllez,fisica,ARCE571118GHJ,,Personas,GFD960701AB4,2019-08-08,true
+C-10288,Sr. Alonso Batista,fisica,SRAL911222293,sralon287@empresa.com.mx,PyME,BDM970315QW2,2003-12-15,true
+C-10289,Lic. Bianca Mesa,fisica,LICB820427D5Q,licbia288@ejemplo.mx,PyME,GFD960701AB4,2012-01-01,true
+C-10290,Iván Modesto Guardado Medina,fisica,IVNM891212C73,ivnmod289@ejemplo.mx,Personas,SCD050920LM8,2023-04-01,true
+C-10291,Vanesa Elvira Pabón Griego,fisica,VANE860111LCY,vanesa290@correo.com,Personas,SCD050920LM8,2017-06-09,true
+C-10292,Serrano Logística SA de CV,moral,SER610616VB8,serran291@empresa.com.mx,Empresarial,SCD050920LM8,2003-09-23,true
+C-10293,Linda Arguello Sáenz,fisica,LIND580109AMU,lindaa292@correo.com,Personas,BDM970315QW2,2023-07-26,true
+C-10294,Teodoro Enríquez,fisica,TEOD570113Z62,teodor293@empresa.com.mx,Personas,SCD050920LM8,2010-11-10,true
+C-10295,Cynthia Berta Villalobos Rolón,fisica,CYNT580523VXH,cynthi294@correo.com,Personas,BDM970315QW2,2009-10-24,true
+C-10296,Ing. María Teresa Tamayo,fisica,INGM831112PHD,ingmar295@ejemplo.mx,Personas,BDM970315QW2,2020-08-08,true
+C-10297,Pablo Gamez Olivo,fisica,PABL621226J5S,pablog296@empresa.com.mx,Empresarial,GFD960701AB4,2019-02-04,true
+C-10298,Aponte Agropecuaria SA de CV,moral,APO6303112GT,aponte297@ejemplo.mx,PyME,SCD050920LM8,2025-11-24,true
+C-10299,María Elena Cintrón,fisica,MARA960602G5L,marael298@empresa.com.mx,Gobierno,SCD050920LM8,2016-03-12,true
+C-10300,Lozano Logística SA de CV,moral,LOZ000415JKH,lozano299@empresa.com.mx,Personas,BDM970315QW2,2007-07-02,true
+C-10301,Ramiro Martínez,fisica,RAMI550226XYZ,ramiro300@empresa.com.mx,Personas,SCD050920LM8,2009-10-22,true
+C-10302,Jaramillo Comercial SA de CV,moral,JAR700716NVS,jarami301@ejemplo.mx,Personas,BDM970315QW2,2010-09-11,true
+C-10303,Pamela Aldonza Morales,fisica,PAME550109L7H,pamela302@empresa.com.mx,PyME,SCD050920LM8,2007-08-26,true
+C-10304,Zarate Agropecuaria SA de CV,moral,ZAR9511182H9,zarate303@correo.com,Personas,BDM970315QW2,2015-01-13,true
+C-10305,Solís Agropecuaria SA de CV,moral,SOL010227MM3,solsag304@correo.com,Personas,GFD960701AB4,2015-10-02,true
+C-10306,Raúl Cornelio Valladares Negrete,fisica,RALC930209JYD,ralcor305@correo.com,Personas,SCD050920LM8,2018-09-22,true
+C-10307,Gamboa Industrial SA de CV,moral,GAM671019VZM,gamboa306@empresa.com.mx,Gobierno,GFD960701AB4,2022-10-11,true
+C-10308,Sra. Nelly de la Rosa,fisica,SRAN000402JAP,sranel307@correo.com,Personas,GFD960701AB4,2004-10-15,true
+C-10309,Leonor Beatriz Caraballo Pelayo,fisica,LEON80061538Y,leonor308@empresa.com.mx,Personas,BDM970315QW2,2016-06-11,true
+C-10310,Abril Elvira Estrada,fisica,ABRI7511275QC,abrile309@empresa.com.mx,Empresarial,BDM970315QW2,2003-01-11,true
+C-10311,Ávalos Comercial SA de CV,moral,VAL870622JHA,valosc310@empresa.com.mx,Empresarial,BDM970315QW2,2024-12-28,true
+C-10312,Iglesias Industrial SA de CV,moral,IGL890319VJ7,iglesi311@correo.com,Personas,BDM970315QW2,2024-04-12,true
+C-10313,de la O Agropecuaria SA de CV,moral,DEL670407TXQ,delaoa312@ejemplo.mx,PyME,BDM970315QW2,2023-02-09,true
+C-10314,Estela Noriega,fisica,ESTE021001MHP,estela313@correo.com,Personas,BDM970315QW2,2011-08-16,true
+C-10315,Bravo Industrial SA de CV,moral,BRA050614SEA,bravoi314@empresa.com.mx,Empresarial,BDM970315QW2,2025-05-07,true
+C-10316,Dr. Alfonso Gamez,fisica,DRAL6403066KZ,dralfo315@ejemplo.mx,Empresarial,GFD960701AB4,2010-10-17,true
+C-10317,Berta Ramos,fisica,BERT9205114TH,bertar316@empresa.com.mx,Personas,GFD960701AB4,2004-05-08,true
+C-10318,Sonia Aranda,fisica,SONI700217BWG,soniaa317@correo.com,PyME,BDM970315QW2,2018-05-19,true
+C-10319,Moya Agropecuaria SA de CV,moral,MOY8202012RA,moyaag318@ejemplo.mx,Personas,SCD050920LM8,2018-06-09,true
+C-10320,Robles Industrial SA de CV,moral,ROB010402J6E,robles319@ejemplo.mx,Empresarial,BDM970315QW2,2016-11-25,true
+C-10321,Ruby Aragón,fisica,RUBY940914J0U,rubyar320@correo.com,Personas,SCD050920LM8,2003-08-14,true
+C-10322,Óliver Arreola,fisica,LIVE6501216CD,livera321@ejemplo.mx,Empresarial,BDM970315QW2,2016-06-17,true
+C-10323,Sr. Enrique Barraza,fisica,SREN8502177YC,srenri322@ejemplo.mx,Gobierno,GFD960701AB4,2008-07-13,true
+C-10324,Leiva Comercial SA de CV,moral,LEI950812R0R,leivac323@empresa.com.mx,Personas,GFD960701AB4,2026-11-02,false
+C-10325,Abelardo Llamas,fisica,ABEL671002EW4,abelar324@correo.com,PyME,GFD960701AB4,2010-07-20,true
+C-10326,Sra. María Eugenia Huerta,fisica,SRAM970319DLL,sramar325@ejemplo.mx,PyME,BDM970315QW2,2013-07-02,true
+C-10327,Becerra Logística SA de CV,moral,BEC71041065M,becerr326@empresa.com.mx,Empresarial,GFD960701AB4,2014-02-28,true
+C-10328,Clara Trujillo,fisica,CLAR770514FNP,clarat327@empresa.com.mx,Personas,BDM970315QW2,2003-06-22,true
+C-10329,Sierra Agropecuaria SA de CV,moral,SIE90092221T,sierra328@empresa.com.mx,Personas,BDM970315QW2,2026-02-28,true
+C-10330,Lic. Elsa Saldivar,fisica,LICE590308WV9,licels329@correo.com,PyME,SCD050920LM8,2017-02-23,true
+C-10331,Avilés Logística SA de CV,moral,AVI8302078CQ,avilsl330@ejemplo.mx,Personas,GFD960701AB4,2012-06-20,true
+C-10332,Irma Gil,fisica,IRMA701227K6J,irmagi331@ejemplo.mx,PyME,BDM970315QW2,2014-07-26,true
+C-10333,Terán Logística SA de CV,moral,TER031020UKV,ternlo332@ejemplo.mx,Empresarial,SCD050920LM8,2005-07-20,true
+C-10334,María del Carmen Araceli Guerra,fisica,MARA791204GG5,marade333@ejemplo.mx,PyME,GFD960701AB4,2012-07-07,true
+C-10335,Adalberto Pedraza Olvera,fisica,ADAL651213QB6,adalbe334@correo.com,Personas,SCD050920LM8,2011-02-12,true
+C-10336,Araceli Quintana,fisica,ARAC860521EXB,aracel335@correo.com,Empresarial,BDM970315QW2,2013-12-27,true
+C-10337,Domínguez Industrial SA de CV,moral,DOM681113GSW,domngu336@correo.com,Personas,BDM970315QW2,2006-03-27,true
+C-10338,Genaro Emilio Valdivia Feliciano,fisica,GENA781106T83,genaro337@ejemplo.mx,Personas,GFD960701AB4,2021-04-18,true
+C-10339,Santana Comercial SA de CV,moral,SAN901203QBF,santan338@ejemplo.mx,Gobierno,BDM970315QW2,2005-05-28,true
+C-10340,Laura Leiva de la Garza,fisica,LAUR911226BNS,laural339@empresa.com.mx,Empresarial,BDM970315QW2,2013-03-25,true
+C-10341,Rocha Logística SA de CV,moral,ROC6408240KU,rochal340@correo.com,Personas,SCD050920LM8,2004-03-24,true
+C-10342,Caballero Logística SA de CV,moral,CAB98041547Y,caball341@ejemplo.mx,Personas,BDM970315QW2,2004-06-07,true
+C-10343,Jorge Luis Benavídez Cedillo,fisica,JORG971016FV3,jorgel342@empresa.com.mx,Gobierno,GFD960701AB4,2004-04-12,true
+C-10344,Valverde Agropecuaria SA de CV,moral,VAL840903XBY,valver343@ejemplo.mx,PyME,BDM970315QW2,2005-07-16,true
+C-10345,Elvira Rojo,fisica,ELVI6707269MB,elvira344@empresa.com.mx,PyME,BDM970315QW2,2008-03-18,true
+C-10346,Javier Eric Saldaña Urbina,fisica,JAVI051227QSY,javier345@empresa.com.mx,Gobierno,BDM970315QW2,2007-11-25,true
+C-10347,Carrillo Industrial SA de CV,moral,CAR740911ZGN,carril346@ejemplo.mx,Gobierno,GFD960701AB4,2026-03-12,true
+C-10348,Abel Juan Burgos Salinas,fisica,ABEL660623AST,abelju347@empresa.com.mx,Personas,GFD960701AB4,2021-03-03,true
+C-10349,Susana Ofelia Mireles,fisica,SUSA930817UZT,susana348@ejemplo.mx,Empresarial,BDM970315QW2,2024-01-16,true
+C-10350,Sepúlveda Comercial SA de CV,moral,SEP5809070JJ,seplve349@correo.com,Personas,BDM970315QW2,2018-06-14,true
+C-10351,Antonia Villareal Alonso,fisica,ANTO620617KPT,antoni350@ejemplo.mx,Empresarial,SCD050920LM8,2021-05-12,true
+C-10352,Dr. Claudio Ocasio,fisica,DRCL72061232J,drclau351@correo.com,Gobierno,BDM970315QW2,2006-10-06,true
+C-10353,Israel Villegas,fisica,ISRA990503ECH,israel352@empresa.com.mx,Personas,BDM970315QW2,2006-04-15,true
+C-10354,Lic. Conchita Maldonado,fisica,LICC560514CS4,liccon353@empresa.com.mx,Personas,BDM970315QW2,2003-10-01,true
+C-10355,Tapia Comercial SA de CV,moral,TAP800610HUJ,tapiac354@ejemplo.mx,Empresarial,SCD050920LM8,2020-10-18,true
+C-10356,Aldo Monroy del Río,fisica,ALDO900503N5C,aldomo355@correo.com,Personas,SCD050920LM8,2004-10-20,true
+C-10357,Paulina Ariadna Guerra Rodríguez,fisica,PAUL930304KWY,paulin356@empresa.com.mx,Empresarial,SCD050920LM8,2026-01-10,true
+C-10358,Uriel Pascual Romo Carreón,fisica,URIE6604144AR,urielp357@correo.com,Empresarial,SCD050920LM8,2013-02-01,true
+C-10359,Barreto Logística SA de CV,moral,BAR7106141EX,barret358@ejemplo.mx,Personas,BDM970315QW2,2017-10-18,true
+C-10360,Cavazos Comercial SA de CV,moral,CAV640505BQ3,cavazo359@ejemplo.mx,PyME,GFD960701AB4,2016-12-01,true
+C-10361,Acuña Agropecuaria SA de CV,moral,ACU851216DF7,acuaag360@empresa.com.mx,Empresarial,SCD050920LM8,2022-07-25,true
+C-10362,Suárez Comercial SA de CV,moral,SUR001010RV4,surezc361@correo.com,Empresarial,BDM970315QW2,2009-04-01,true
+C-10363,Márquez Agropecuaria SA de CV,moral,MRQ701010DNS,mrquez362@ejemplo.mx,Personas,BDM970315QW2,2012-12-21,true
+C-10364,Lucas Gilberto Almonte Quiroz,fisica,LUCA0310256YT,lucasg363@correo.com,Gobierno,SCD050920LM8,2023-01-20,true
+C-10365,Lucero Agropecuaria SA de CV,moral,LUC600116QWH,lucero364@ejemplo.mx,Personas,GFD960701AB4,2023-10-13,true
+C-10366,Corona Logística SA de CV,moral,COR79051867T,corona365@empresa.com.mx,Personas,SCD050920LM8,2023-05-25,true
+C-10367,Salma Rosario Adame,fisica,SALM940814MSV,salmar366@correo.com,Empresarial,GFD960701AB4,2011-02-10,true
+C-10368,Patricia Blanca Caldera Gaytán,fisica,PATR651111DNT,patric367@correo.com,Empresarial,GFD960701AB4,2026-03-17,true
+C-10369,Meléndez Agropecuaria SA de CV,moral,MEL750805SBR,melnde368@ejemplo.mx,PyME,BDM970315QW2,2009-08-01,true
+C-10370,Quiroz Logística SA de CV,moral,QUI780211VM1,quiroz369 at correo.com,Personas,SCD050920LM8,2004-10-28,true
+C-10371,Juan Carlos Hernán Quiñones,fisica,JUAN880220YBV,juanca370@ejemplo.mx,Personas,SCD050920LM8,2026-01-27,true
+C-10372,Frida Esmeralda Ramírez Partida,fisica,FRID641208LGE,fridae371@correo.com,Empresarial,BDM970315QW2,2025-08-05,true
+C-10373,Francisca Graciela de la Garza Canales,fisica,FRAN020709Q3G,franci372@ejemplo.mx,Gobierno,BDM970315QW2,2014-09-14,false
+C-10374,Lic. Alicia Flores,fisica,LICA7002276FG,licali373@ejemplo.mx,Empresarial,GFD960701AB4,2025-05-13,true
+C-10375,Gallardo Agropecuaria SA de CV,moral,GAL691127KD4,gallar374@ejemplo.mx,Personas,BDM970315QW2,2010-01-10,true
+C-10376,Lic. Francisco Javier Melgar,fisica,LICF840214SD4,licfra375@correo.com,Gobierno,GFD960701AB4,2013-12-24,true
+C-10377,de Jesús Agropecuaria SA de CV,moral,DEJ0507109GB,dejess376@correo.com,Gobierno,SCD050920LM8,2025-10-19,true
+C-10378,Campos Comercial SA de CV,moral,CAM030217SLG,campos377@correo.com,Gobierno,GFD960701AB4,2013-12-02,true
+C-10379,Juan Carlos Cazares,fisica,JUAN920316AT7,juanca378@empresa.com.mx,Personas,SCD050920LM8,2006-05-20,true
+C-10380,Zaragoza Industrial SA de CV,moral,ZAR790417JFC,zarago379@correo.com,PyME,BDM970315QW2,2019-02-14,true
+C-10381,Sessa Terán Ortega,fisica,SESS6504189C1,sessat380@ejemplo.mx,Personas,GFD960701AB4,2010-01-14,true
+C-10382,Víctor Ulloa,fisica,VCTO851224ZUT,,Personas,GFD960701AB4,2014-11-28,true
+C-10383,Madrigal Comercial SA de CV,moral,MAD951026PUV,madrig382@ejemplo.mx,Gobierno,BDM970315QW2,2005-01-28,true
+C-10384,Nancy Ochoa,fisica,NANC7601068LX,nancyo383@correo.com,Personas,GFD960701AB4,2003-05-16,true
+C-10385,Irizarry Agropecuaria SA de CV,moral,IRI750518WSH,irizar384@empresa.com.mx,PyME,BDM970315QW2,2013-09-27,true
+C-10386,Margarita Guerra del Río,fisica,MARG5512158QF,margar385@ejemplo.mx,Personas,SCD050920LM8,2013-07-04,true
+C-10387,Sauceda Logística SA de CV,moral,SAU970217J4W,sauced386@ejemplo.mx,Empresarial,BDM970315QW2,2026-01-09,true
+C-10388,Sr. Zacarías Estévez,fisica,SRZA621226267,,Personas,BDM970315QW2,2004-03-13,false
+C-10389,Dr. Marcos Vera,fisica,DRMA720809AG2,drmarc388@ejemplo.mx,Gobierno,BDM970315QW2,2015-08-16,true
+C-10390,Martín José María Salgado Bahena,fisica,MART571211TMS,martnj389@empresa.com.mx,Personas,BDM970315QW2,2017-04-15,true
+C-10391,Dra. Alta  Gracia Ybarra,fisica,DRAA590703ZGY,draalt390@empresa.com.mx,Empresarial,GFD960701AB4,2019-04-19,true
+C-10392,Ilse Valenzuela,fisica,ILSE7908147ZP,,Personas,SCD050920LM8,2024-05-17,true
+C-10393,Lic. Francisco Javier Téllez,fisica,LICF840213RQA,licfra392@empresa.com.mx,Gobierno,GFD960701AB4,2025-02-12,true
+C-10394,Segura Comercial SA de CV,moral,SEG870408U81,segura393@ejemplo.mx,Personas,BDM970315QW2,2008-05-04,true
+C-10395,Lira Logística SA de CV,moral,LIR690924CLK,liralo394@ejemplo.mx,Empresarial,BDM970315QW2,2017-02-15,true
+C-10396,Santillán Agropecuaria SA de CV,moral,SAN691014EWT,santil395@correo.com,PyME,GFD960701AB4,2013-11-18,true
+C-10397,Irene Ordóñez Sotelo,fisica,IREN820723PQ4,ireneo396@correo.com,Empresarial,BDM970315QW2,2003-05-22,true
+C-10398,Adalberto Pérez,fisica,ADAL790425U0D,adalbe397@ejemplo.mx,Personas,SCD050920LM8,2004-11-14,true
+C-10399,Sotelo Industrial SA de CV,moral,SOT651103JQY,sotelo398@empresa.com.mx,PyME,GFD960701AB4,2016-01-09,true
+C-10400,Julia Rosalia Narváez,fisica,JULI031218U1R,juliar399@ejemplo.mx,Personas,BDM970315QW2,2009-12-16,true
+C-10401,Rolando Viera,fisica,ROLA951206NGP,roland400@ejemplo.mx,Personas,GFD960701AB4,,true
+C-10402,Ocasio Industrial SA de CV,moral,OCA730602849,ocasio401@ejemplo.mx,Personas,BDM970315QW2,2022-11-18,true
+C-10403,Alicia Carbajal Gracia,fisica,ALIC721009677,alicia402@empresa.com.mx,PyME,BDM970315QW2,2018-02-26,true
+C-10404,Eric Salas,fisica,ERIC8611039UF,ericsa403@correo.com,Gobierno,GFD960701AB4,2020-09-21,true
+C-10405,Ing. María José Cotto,fisica,INGM730702VQG,ingmar404@correo.com,Empresarial,BDM970315QW2,2010-09-25,true
+C-10406,Puga Comercial SA de CV,moral,PUG8811191FQ,pugaco405@empresa.com.mx,PyME,BDM970315QW2,2023-07-25,true
+C-10407,Cynthia Niño,fisica,CYNT800424500,cynthi406@ejemplo.mx,Empresarial,GFD960701AB4,2025-01-12,true
+C-10408,Angulo Industrial SA de CV,moral,ANG600112N92,angulo407@empresa.com.mx,Personas,SCD050920LM8,2005-03-23,true
+C-10409,Antonia Campos,fisica,ANTO6809255JS,antoni408@ejemplo.mx,Personas,SCD050920LM8,2011-11-19,false
+C-10410,Flavio Leonardo Castañeda,fisica,FLAV740527M9A,flavio409@ejemplo.mx,PyME,SCD050920LM8,2008-06-07,true
+C-10411,Pilar Inés Sevilla Calvillo,fisica,PILA890422DQL,pilari410@ejemplo.mx,Personas,GFD960701AB4,2021-08-12,true
+C-10412,Elsa Guillermina Márquez,fisica,ELSA771224AEK,elsagu411@correo.com,Personas,BDM970315QW2,2004-01-15,true
+C-10413,Bernardo Barraza Mondragón,fisica,BERN9208182G1,bernar412@empresa.com.mx,Empresarial,SCD050920LM8,2003-11-23,true
+C-10414,Maximiliano Zeferino Pedraza Camacho,fisica,MAXI940915951,maximi413@empresa.com.mx,Personas,BDM970315QW2,2026-06-13,true
+C-10415,Eugenio Rodolfo Ruelas,fisica,EUGE660901QTQ,eugeni414@empresa.com.mx,PyME,GFD960701AB4,2007-07-14,true
+C-10416,Mondragón Logística SA de CV,moral,MON801128YBY,mondra415@correo.com,Gobierno,BDM970315QW2,2013-08-07,true
+C-10417,Srita. Blanca Briseño,fisica,SRIT560811BQP,sritab416 at ejemplo.mx,PyME,GFD960701AB4,2019-08-19,true
+C-10418,Elsa Córdova Quiroz,fisica,ELSA670622LQS,elsacr417@empresa.com.mx,Personas,BDM970315QW2,2013-03-13,true
+C-10419,Asunción Nayeli Piña Ceja,fisica,ASUN991021C0W,asunci418@empresa.com.mx,Personas,GFD960701AB4,2024-11-10,true
+C-10420,Bustos Industrial SA de CV,moral,BUS770317T6D,bustos419@empresa.com.mx,Gobierno,BDM970315QW2,2006-01-08,true
+C-10421,Miguel Piña Barajas,fisica,MIGU800212PEK,miguel420@ejemplo.mx,Gobierno,SCD050920LM8,2024-10-20,true
+C-10422,Marisol Ana María Rangel Roldán,fisica,MARI950114NRW,mariso421@empresa.com.mx,Personas,GFD960701AB4,2017-07-22,true
+C-10423,Asunción Arreola Pantoja,fisica,ASUN020706TCP,asunci422@ejemplo.mx,Gobierno,BDM970315QW2,2026-06-28,true
+C-10424,Marco Antonio Armando Herrera Trejo,fisica,MARC8807093QW,marcoa423@correo.com,Empresarial,BDM970315QW2,2026-07-01,true
+C-10425,Emilia Pineda,fisica,EMIL560610DN1,emilia424@ejemplo.mx,Personas,GFD960701AB4,2018-01-25,true
+C-10426,Jos Enrique Alba,fisica,JOSE9611207YT,josenr425@empresa.com.mx,PyME,GFD960701AB4,2010-02-03,true
+C-10427,Tomás Uriel Maldonado Holguín,fisica,TOMS771126Y7G,tomsur426@ejemplo.mx,Empresarial,BDM970315QW2,2010-10-26,true
+C-10428,Aurora Verónica Gastélum,fisica,AURO711220FCQ,aurora427@ejemplo.mx,Personas,SCD050920LM8,2008-02-02,true
+C-10429,Nava Agropecuaria SA de CV,moral,NAV940204QMZ,navaag428@correo.com,Personas,BDM970315QW2,2019-06-25,true
+C-10430,Luis Benito Vélez,fisica,LUIS660302BF4,luisbe429@empresa.com.mx,Gobierno,SCD050920LM8,2016-10-05,true
+C-10431,Jaime Agropecuaria SA de CV,moral,JAI960818ZTH,jaimea430@ejemplo.mx,Personas,GFD960701AB4,2017-04-16,true
+C-10432,Lourdes Véliz Márquez,fisica,LOUR050926X7V,lourde431@correo.com,Personas,BDM970315QW2,2004-06-19,true
+C-10433,Tomás Soria,fisica,TOMS860103DAY,tomsso432@correo.com,Personas,BDM970315QW2,2019-06-20,true
+C-10434,Raúl Luis Miguel Hernandes Aponte,fisica,RALL680111BSP,rallui433@correo.com,Gobierno,BDM970315QW2,2024-06-06,true
+C-10435,Vaca Comercial SA de CV,moral,VAC681005C6V,vacaco434@correo.com,PyME,BDM970315QW2,2020-04-28,true
+C-10436,Dra. Mitzy Rincón,fisica,DRAM851026AVY,dramit435@empresa.com.mx,Empresarial,BDM970315QW2,2017-09-16,true
+C-10437,López Comercial SA de CV,moral,LPE730804BDS,lpezco436@correo.com,PyME,SCD050920LM8,2020-08-03,true
+C-10438,Pedraza Agropecuaria SA de CV,moral,PED720609WNF,pedraz437@empresa.com.mx,Empresarial,BDM970315QW2,2025-09-06,true
+C-10439,Dr. Silvano Quintanilla,fisica,DRSI760903ACL,drsilv438@correo.com,Empresarial,BDM970315QW2,2009-07-18,true
+C-10440,José Carlos Rafaél Mares Jaimes,fisica,JOSC881203PKY,joscar439@ejemplo.mx,Empresarial,BDM970315QW2,2020-11-06,true
+C-10441,Márquez Logística SA de CV,moral,MRQ770417U3E,mrquez440@empresa.com.mx,Empresarial,GFD960701AB4,2016-05-18,false
+C-10442,Carmona Agropecuaria SA de CV,moral,CAR600801VVS,carmon441@empresa.com.mx,Personas,SCD050920LM8,2013-08-12,true
+C-10443,Srita. Abigail Fajardo,fisica,SRIT8210244TE,sritaa442@correo.com,Personas,SCD050920LM8,2016-03-04,true
+C-10444,Lic. Ilse Matías,fisica,LICI59041591W,licils443@correo.com,Personas,BDM970315QW2,2004-08-06,true
+C-10445,Jonás Lorenzo Pineda,fisica,JONS6411147JT,jonslo444@empresa.com.mx,Gobierno,BDM970315QW2,2014-10-09,true
+C-10446,Riojas Agropecuaria SA de CV,moral,RIO6102280C7,riojas445@empresa.com.mx,Empresarial,BDM970315QW2,2023-08-01,true
+C-10447,Ing. Tania Carbajal,fisica,INGT761218TM1,ingtan446@empresa.com.mx,PyME,GFD960701AB4,2023-07-13,true
+C-10448,Lucía Regalado Viera,fisica,LUCA051005QA8,lucare447@empresa.com.mx,PyME,BDM970315QW2,2025-07-20,true
+C-10449,Ofelia Ocasio Muñiz,fisica,OFEL831012HUA,ofelia448@empresa.com.mx,Empresarial,SCD050920LM8,2020-07-08,true
+C-10450,José Carlos Olvera Montoya,fisica,JOSC850516DQ1,joscar449@correo.com,Personas,SCD050920LM8,2017-07-02,true
+C-10451,Lic. Abraham Murillo,fisica,LICA880120ADM,licabr450@empresa.com.mx,PyME,SCD050920LM8,2020-03-17,true
+C-10452,María Elena Amanda Zavala,fisica,MARA9003078U9,marael451@correo.com,Empresarial,BDM970315QW2,2025-09-22,true
+C-10453,Altamirano Agropecuaria SA de CV,moral,ALT810308G49,altami452@ejemplo.mx,Gobierno,GFD960701AB4,2017-09-27,true
+C-10454,Sr. Claudio Menéndez,fisica,SRCL650225PRC,srclau453@ejemplo.mx,Personas,BDM970315QW2,2019-06-19,false
+C-10455,Esperanza Judith Macías,fisica,ESPE710222GLJ,espera454@correo.com,Personas,GFD960701AB4,2019-08-22,true
+C-10456,Sr. Felix Gamez,fisica,SRFE720911QQK,srfeli455@ejemplo.mx,PyME,BDM970315QW2,2017-08-12,true
+C-10457,Baeza Logística SA de CV,moral,BAE8702240GM,baezal456@ejemplo.mx,Personas,BDM970315QW2,2025-11-15,true
+C-10458,Bernal Industrial SA de CV,moral,BER8106085MH,bernal457@ejemplo.mx,Personas,BDM970315QW2,2015-02-21,true
+C-10459,Ernesto Arroyo,fisica,ERNE720323JCB,ernest458@correo.com,Personas,BDM970315QW2,2017-10-17,true
+C-10460,Navarro Comercial SA de CV,moral,NAV711102XK5,navarr459@ejemplo.mx,Personas,GFD960701AB4,2010-12-22,true
+C-10461,Lic. María Candelaria,fisica,LICM880621DLY,licmar460@correo.com,Personas,GFD960701AB4,2007-04-23,false
+C-10462,Lic. Minerva Ayala,fisica,LICM570825TEK,licmin461@empresa.com.mx,Empresarial,BDM970315QW2,2003-06-17,true
+C-10463,Longoria Logística SA de CV,moral,LON900213WCL,longor462@empresa.com.mx,Personas,BDM970315QW2,2005-12-20,true
+C-10464,Carlos Luis Miguel Girón Carrión,fisica,CARL870213XFL,carlos463@empresa.com.mx,Empresarial,BDM970315QW2,2013-05-22,true
+C-10465,Barrera Industrial SA de CV,moral,BAR890903K59,barrer464@ejemplo.mx,PyME,BDM970315QW2,2012-11-26,true
+C-10466,Cantú Logística SA de CV,moral,CAN651215G9G,cantlo465@empresa.com.mx,Empresarial,GFD960701AB4,2026-11-02,true
+C-10467,Becerra Agropecuaria SA de CV,moral,BEC930708XEG,becerr466@ejemplo.mx,Personas,BDM970315QW2,2013-05-03,true
+C-10468,Ing. Alta  Gracia Chapa,fisica,INGA550411UUM,ingalt467@empresa.com.mx,Gobierno,BDM970315QW2,2023-02-22,true
+C-10469,Quintana Comercial SA de CV,moral,QUI050201CEP,quinta468@ejemplo.mx,Personas,BDM970315QW2,2014-06-23,true
+C-10470,Aldonza Llamas,fisica,ALDO981212BBY,aldonz469@empresa.com.mx,PyME,BDM970315QW2,2003-11-13,true
+C-10471,Paredes Industrial SA de CV,moral,PAR5708270W0,parede470@ejemplo.mx,Gobierno,BDM970315QW2,2021-02-07,true
+C-10472,Nevárez Comercial SA de CV,moral,NEV741227K2W,nevrez471@empresa.com.mx,PyME,SCD050920LM8,2015-10-03,true
+C-10473,Teresa Quintana,fisica,TERE620302ZJ6,teresa472@correo.com,Gobierno,SCD050920LM8,2026-03-09,true
+C-10474,Amador Pedroza,fisica,AMAD781220F9B,amador473@empresa.com.mx,Empresarial,GFD960701AB4,2013-01-15,true
+C-10475,Dr. Gustavo Terán,fisica,DRGU590607YAW,drgust474@correo.com,PyME,SCD050920LM8,2022-06-23,true
+C-10476,Uriel Leonardo Arriaga Barrientos,fisica,URIE660312LGV,,Personas,SCD050920LM8,2026-11-02,true
+C-10477,Olga Lilia Romo Quintana,fisica,OLGA930608HND,olgali476@correo.com,Empresarial,BDM970315QW2,2024-08-16,true
+C-10478,Contreras Comercial SA de CV,moral,CON780912UJ6,contre477@ejemplo.mx,Personas,GFD960701AB4,2007-01-14,true
+C-10479,Hugo Cabrera Cazares,fisica,HUGO931118PPH,hugoca478@ejemplo.mx,PyME,GFD960701AB4,2008-05-13,true
+C-10480,Dalia Estela Ríos,fisica,DALI810417X3D,daliae479@empresa.com.mx,Personas,GFD960701AB4,2012-05-18,true
+C-10481,Rosalia Corona,fisica,ROSA880428HBW,rosali480@correo.com,PyME,GFD960701AB4,2012-07-02,false
+C-10482,Javier Crespo,fisica,JAVI680201ER2,javier481@correo.com,PyME,BDM970315QW2,2016-06-10,true
+C-10483,Sr. Camilo Espinoza,fisica,SRCA821015W61,srcami482@correo.com,Gobierno,GFD960701AB4,2004-03-17,true
+C-10484,Robledo Agropecuaria SA de CV,moral,ROB930521C9U,robled483@ejemplo.mx,Personas,BDM970315QW2,2022-10-11,true
+C-10485,Olvera Agropecuaria SA de CV,moral,OLV910111DXB,olvera484@ejemplo.mx,Empresarial,SCD050920LM8,2025-10-03,true
+C-10486,José Eduardo Julio César Benavídez,fisica,JOSE631009TYT,josedu485@ejemplo.mx,PyME,GFD960701AB4,2026-02-04,true
+C-10487,José Emilio Velázquez Caballero,fisica,JOSE0209185ZB,josemi486@empresa.com.mx,Personas,SCD050920LM8,2014-12-17,true
+C-10488,Lebrón Logística SA de CV,moral,LEB590512C34,lebrnl487@empresa.com.mx,Gobierno,GFD960701AB4,2014-03-19,true
+C-10489,Dulce María Esquivel,fisica,DULC0509268SG,dulcem488@empresa.com.mx,Empresarial,BDM970315QW2,2016-10-12,true
+C-10490,Esparta Cabán Madrigal,fisica,ESPA811124376,espart489@correo.com,PyME,GFD960701AB4,2016-08-11,true
+C-10491,Noemí Carranza,fisica,NOEM650420YLP,noemca490@ejemplo.mx,Personas,BDM970315QW2,2008-01-28,false
+C-10492,Anel Garza,fisica,ANEL580316851,anelga491@empresa.com.mx,Personas,BDM970315QW2,2022-11-03,true
+C-10493,Noelia Irene Chapa de la Rosa,fisica,NOEL5602245A8,noelia492@empresa.com.mx,Personas,GFD960701AB4,2013-01-21,true
+C-10494,Cornejo Industrial SA de CV,moral,COR570406PDN,cornej493@ejemplo.mx,Personas,SCD050920LM8,2020-12-15,true
+C-10495,Rodolfo Hernádez,fisica,RODO020220B0K,rodolf494@correo.com,Empresarial,GFD960701AB4,2025-07-10,true
+C-10496,Casares Industrial SA de CV,moral,CAS7006011E5,casare495@empresa.com.mx,Empresarial,SCD050920LM8,2025-03-15,true
+C-10497,Esmeralda Patricia Rodríguez,fisica,ESME7910199V0,esmera496@ejemplo.mx,PyME,SCD050920LM8,2021-05-07,true
+C-10498,Cynthia Escobedo Domínguez,fisica,CYNT7204220CC,cynthi497@ejemplo.mx,Gobierno,BDM970315QW2,2006-11-19,true
+C-10499,Murillo Logística SA de CV,moral,MUR8011127FL,murill498@empresa.com.mx,Personas,SCD050920LM8,2018-09-25,true
+C-10500,Rojo Logística SA de CV,moral,ROJ650227P,rojolo499@ejemplo.mx,Personas,GFD960701AB4,2022-03-17,true
+C-10501,Teodoro Daniel Llamas,fisica,TEOD8812054AN,teodor500@empresa.com.mx,Gobierno,BDM970315QW2,2016-07-20,true
+C-10502,Amelia Vaca,fisica,AMEL631101CMX,amelia501@empresa.com.mx,Gobierno,BDM970315QW2,2007-05-28,true
+C-10503,Montaño Agropecuaria SA de CV,moral,MON050914T3D,montao502@ejemplo.mx,Gobierno,BDM970315QW2,2025-02-24,true
+C-10504,Gastélum Logística SA de CV,moral,GAS690110Q4R,gastlu503@correo.com,Empresarial,BDM970315QW2,2010-05-12,true
+C-10505,Leal Logística SA de CV,moral,LEA570412D9E,leallo504@empresa.com.mx,Personas,BDM970315QW2,2018-12-07,true
+C-10506,Salma Alma Magaña Coronado,fisica,SALM951105Y5Y,salmaa505@empresa.com.mx,Empresarial,GFD960701AB4,2003-01-21,true
+C-10507,Jasso Industrial SA de CV,moral,JAS730405UQS,jassoi506@ejemplo.mx,Personas,SCD050920LM8,2018-09-15,true
+C-10508,Karina Yeni Candelaria Franco,fisica,KARI741212FN6,karina507@empresa.com.mx,Personas,BDM970315QW2,2007-12-26,true
+C-10509,Maldonado Agropecuaria SA de CV,moral,MAL5807215FA,maldon508@correo.com,PyME,BDM970315QW2,2006-08-25,true
+C-10510,Gregorio Luis Manuel Becerra,fisica,GREG700416GY2,gregor509@empresa.com.mx,PyME,SCD050920LM8,2007-12-24,true
+C-10511,Graciela Eva Lugo Ceja,fisica,GRAC830607XBY,gracie510@correo.com,Gobierno,BDM970315QW2,2026-02-14,true
+C-10512,Armando Lovato Puga,fisica,ARMA720726EFW,armand511@correo.com,Gobierno,BDM970315QW2,2017-12-19,true
+C-10513,Felipe Felipe Toledo,fisica,FELI841114Q5A,felipe512@ejemplo.mx,Empresarial,BDM970315QW2,2003-04-05,true
+C-10514,Alba Agropecuaria SA de CV,moral,ALB911025MCS,albaag513@empresa.com.mx,Gobierno,GFD960701AB4,2013-08-05,true
+C-10515,Jacobo Ferrer Amaya,fisica,JACO6404267CP,jacobo514@correo.com,Empresarial,GFD960701AB4,2003-11-19,true
+C-10516,Ariadna Hernandes Samaniego,fisica,ARIA610809TVS,ariadn515@ejemplo.mx,Personas,GFD960701AB4,2004-08-09,true
+C-10517,Lilia Mesa,fisica,LILI960119M26,liliam516@correo.com,Personas,BDM970315QW2,2014-12-17,true
+C-10518,Rocío Gaona,fisica,ROCO690120FUN,rocoga517@empresa.com.mx,Personas,BDM970315QW2,2013-05-20,true
+C-10519,José Carlos Velásquez Salcedo,fisica,JOSC8111195YK,joscar518@correo.com,Gobierno,BDM970315QW2,2014-01-09,true
+C-10520,Sáenz Agropecuaria SA de CV,moral,SEN840626H43,,Empresarial,BDM970315QW2,2007-11-10,true
+C-10521,Ana María Rosario Monroy,fisica,ANAM960710DNU,anamar520@correo.com,Gobierno,SCD050920LM8,2007-10-16,true
+C-10522,Débora Toro Hernández,fisica,DBOR940316M80,dborat521@correo.com,Gobierno,BDM970315QW2,2013-08-26,true
+C-10523,Vaca Agropecuaria SA de CV,moral,VAC5903182GT,vacaag522@correo.com,Personas,GFD960701AB4,2006-03-26,true
+C-10524,Sosa Agropecuaria SA de CV,moral,SOS8111211A6,sosaag523@empresa.com.mx,Personas,BDM970315QW2,2026-02-18,true
+C-10525,Montañez Comercial SA de CV,moral,MON770418DP3,montae524@correo.com,Personas,SCD050920LM8,2013-07-06,true
+C-10526,Nancy Angélica Alonso,fisica,NANC891001R4V,nancya525@empresa.com.mx,Gobierno,BDM970315QW2,2019-07-15,true
+C-10527,María Elena Trinidad Ávila,fisica,MARA720308NA9,marael526@empresa.com.mx,PyME,BDM970315QW2,2008-06-05,false
+C-10528,Sra. María Eugenia Concepción,fisica,SRAM9009019BZ,sramar527@empresa.com.mx,Personas,GFD960701AB4,2022-03-13,true
+C-10529,Rojas Comercial SA de CV,moral,ROJ6210183YY,rojasc528@correo.com,Personas,GFD960701AB4,2006-11-22,true
+C-10530,Bianca Yeni Moya,fisica,BIAN041215ADX,bianca529@empresa.com.mx,PyME,BDM970315QW2,2026-04-16,true
+C-10531,Guillermo Clemente Guerra,fisica,GUIL950424CUH,guille530@ejemplo.mx,Gobierno,SCD050920LM8,2023-09-19,true
+C-10532,Elena Sessa Franco,fisica,ELEN8503247YQ,elenas531@ejemplo.mx,Personas,BDM970315QW2,2015-11-19,true
+C-10533,Ledesma Logística SA de CV,moral,LED660403H2F,ledesm532@correo.com,Personas,GFD960701AB4,2006-12-19,true
+C-10534,Gallardo Industrial SA de CV,moral,GAL89090545Z,gallar533@ejemplo.mx,Gobierno,BDM970315QW2,2019-02-18,true
+C-10535,Úrsula Adela Casas Arellano,fisica,RSUL050907P72,rsulaa534@correo.com,Gobierno,BDM970315QW2,2005-01-04,true
+C-10536,Suárez Logística SA de CV,moral,SUR9112179GK,surezl535@correo.com,Personas,BDM970315QW2,2009-03-10,true
+C-10537,Roldán Agropecuaria SA de CV,moral,ROL870207EKA,roldna536@ejemplo.mx,Gobierno,SCD050920LM8,2014-08-02,true
+C-10538,Concepción Orta Centeno,fisica,CONC600226QB7,concep537@empresa.com.mx,Personas,BDM970315QW2,2026-11-02,false
+C-10539,Farías Logística SA de CV,moral,FAR6207029B5,farasl538@correo.com,PyME,BDM970315QW2,2020-05-03,false
+C-10540,Dra. Conchita Manzanares,fisica,DRAC020313252,dracon539@correo.com,Personas,BDM970315QW2,2005-09-06,true
+C-10541,Fabiola Lorena Pulido,fisica,FABI8007052GW,fabiol540@empresa.com.mx,Gobierno,SCD050920LM8,2019-10-12,true
+C-10542,Lucía Fernández,fisica,LUCA900701NMG,lucafe541@correo.com,PyME,BDM970315QW2,2020-10-24,true
+C-10543,Burgos Agropecuaria SA de CV,moral,BUR770319EQC,burgos542@correo.com,Empresarial,BDM970315QW2,2010-12-14,false
+C-10544,Josefina Ivonne Galván,fisica,JOSE970309VR6,josefi543@correo.com,Empresarial,GFD960701AB4,2015-05-11,true
+C-10545,Lic. Perla Vega,fisica,LICP0503130N1,licper544@ejemplo.mx,PyME,SCD050920LM8,2022-05-07,true
+C-10546,Estefanía Guadalupe Griego Menéndez,fisica,ESTE741116AVK,estefa545@ejemplo.mx,Personas,BDM970315QW2,2025-12-26,true
+C-10547,Araceli Esquivel,fisica,ARAC870923L69,aracel546@empresa.com.mx,Gobierno,BDM970315QW2,2016-11-20,true
+C-10548,Jasso Agropecuaria SA de CV,moral,JAS8902197,jassoa547@empresa.com.mx,Personas,BDM970315QW2,2019-01-20,true
+C-10549,Aurelio Maximiliano del Valle Garay,fisica,AURE581007NQN,aureli548@empresa.com.mx,Gobierno,SCD050920LM8,2006-02-08,true
+C-10550,Jacinto Palomo,fisica,JACI600407E7L,jacint549@empresa.com.mx,Personas,GFD960701AB4,2014-03-01,true
+C-10551,María Amalia Lara López,fisica,MARA980926VPM,maraam550@empresa.com.mx,Empresarial,BDM970315QW2,2022-02-23,true
+C-10552,Alonso Hernán Rivera,fisica,ALON740113TLV,alonso551@ejemplo.mx,PyME,BDM970315QW2,2020-11-09,true
+C-10553,Victoria Barrera Ontiveros,fisica,VICT810418NRF,victor552@empresa.com.mx,Empresarial,GFD960701AB4,2003-12-27,true
+C-10554,Mercedes Prado,fisica,MERC951111H6F,merced553 at empresa.com.mx,Gobierno,BDM970315QW2,2005-03-07,true
+C-10555,Linda Bustos Casares,fisica,LIND0012200AM,lindab554@empresa.com.mx,Personas,GFD960701AB4,2011-09-04,true
+C-10556,Lemus Agropecuaria SA de CV,moral,LEM801215P2Y,lemusa555@correo.com,PyME,BDM970315QW2,2010-12-25,true
+C-10557,Andrés Ramiro Ceballos,fisica,ANDR990915TGT,andrsr556@ejemplo.mx,Personas,BDM970315QW2,2005-06-08,true
+C-10558,Jerónimo Velázquez,fisica,JERN680106YB7,jernim557@correo.com,Personas,BDM970315QW2,2008-02-19,true
+C-10559,Matías Comercial SA de CV,moral,MAT630507ZWC,matasc558@correo.com,Empresarial,BDM970315QW2,2013-05-22,true
+C-10560,Guillermo Jimínez,fisica,GUIL8809048SS,guille559@ejemplo.mx,Personas,SCD050920LM8,2018-09-09,true
+C-10561,Horacio de la Rosa Valles,fisica,HORA050901R9Q,horaci560@ejemplo.mx,Personas,BDM970315QW2,2007-07-14,true
+C-10562,Lic. Homero Rico,fisica,LICH570711HV4,lichom561@empresa.com.mx,Personas,BDM970315QW2,2022-09-12,true
+C-10563,Yolanda Benavídez,fisica,YOLA780906SN5,yoland562@correo.com,Personas,SCD050920LM8,2005-07-23,true
+C-10564,Camila Jáquez,fisica,CAMI000109HM8,camila563@empresa.com.mx,Personas,BDM970315QW2,2022-02-22,true
+C-10565,Jáquez Industrial SA de CV,moral,JQU821013CS3,jquezi564@ejemplo.mx,Empresarial,SCD050920LM8,2009-10-22,true
+C-10566,Adela Conchita Ornelas,fisica,ADEL760714RWE,adelac565@empresa.com.mx,PyME,SCD050920LM8,2020-11-23,true
+C-10567,Cabán Comercial SA de CV,moral,CAB74080808D,cabnco566@ejemplo.mx,PyME,GFD960701AB4,2024-05-16,true
+C-10568,Nevárez Agropecuaria SA de CV,moral,NEV820512XTR,nevrez567@empresa.com.mx,PyME,SCD050920LM8,2019-01-19,true
+C-10569,Noemí Vanesa Aguilar,fisica,NOEM621109U7G,noemva568@correo.com,Empresarial,GFD960701AB4,2023-07-16,true
+C-10570,Valdivia Agropecuaria SA de CV,moral,VAL7112204EP,valdiv569@correo.com,Empresarial,GFD960701AB4,2003-05-21,true
+C-10571,Armando Baca Alemán,fisica,ARMA810625ST5,armand570@ejemplo.mx,Empresarial,SCD050920LM8,2025-01-15,true
+C-10572,Zeferino Martínez Ceja,fisica,ZEFE871027KVY,zeferi571@ejemplo.mx,Personas,SCD050920LM8,2010-12-08,true
+C-10573,Almaraz Logística SA de CV,moral,ALM720925N3X,almara572@empresa.com.mx,Gobierno,BDM970315QW2,2020-07-25,true
+C-10574,Alonso Logística SA de CV,moral,ALO740324494,alonso573@empresa.com.mx,Gobierno,GFD960701AB4,2006-08-09,true
+C-10575,Saiz Comercial SA de CV,moral,SAI021121NCX,saizco574@empresa.com.mx,Personas,SCD050920LM8,2020-01-24,true
+C-10576,Ávalos Agropecuaria SA de CV,moral,VAL870318TH4,valosa575@empresa.com.mx,Personas,GFD960701AB4,2005-04-10,true
+C-10577,Almanza Comercial SA de CV,moral,ALM5912212Q8,almanz576@correo.com,PyME,GFD960701AB4,2010-03-14,true
+C-10578,Villaseñor Comercial SA de CV,moral,VIL780921SW8,villas577@empresa.com.mx,Personas,BDM970315QW2,2015-11-16,true
+C-10579,Martín Amador Farías,fisica,MART91081538M,martna578@empresa.com.mx,Gobierno,SCD050920LM8,2023-05-04,true
+C-10580,Srita. Marisol Fernández,fisica,SRIT590609J7F,sritam579@correo.com,Personas,BDM970315QW2,2005-12-02,false
+C-10581,Alfonso Niño,fisica,ALFO020621W2T,alfons580@empresa.com.mx,Gobierno,GFD960701AB4,2013-12-04,true
+C-10582,Alma Débora Arce Marrero,fisica,ALMA800527EMW,almadb581@ejemplo.mx,PyME,BDM970315QW2,2021-05-27,true
+C-10583,Martha Romero,fisica,MART050906F21,martha582@ejemplo.mx,Personas,GFD960701AB4,2006-01-20,true
+C-10584,Verónica Mónica Caldera Peres,fisica,VERN0211207J7,vernic583@correo.com,Gobierno,SCD050920LM8,2006-07-07,true
+C-10585,Ángela Aurora Magaña,fisica,NGEL560307FXP,ngelaa584@correo.com,Empresarial,BDM970315QW2,2006-10-16,true
+C-10586,Elvia Isabel Botello,fisica,ELVI7612051D1,elviai585@empresa.com.mx,Personas,BDM970315QW2,2006-09-27,true
+C-10587,Abelardo Esteban Anaya,fisica,ABEL000425YPA,abelar586@empresa.com.mx,Empresarial,GFD960701AB4,2024-05-05,true
+C-10588,Pedro Guajardo,fisica,PEDR05072637E,pedrog587@empresa.com.mx,Personas,GFD960701AB4,2016-05-05,true
+C-10589,Arellano Agropecuaria SA de CV,moral,ARE700107GB2,arella588@empresa.com.mx,PyME,SCD050920LM8,2006-11-13,true
+C-10590,Iván Adame Fonseca,fisica,IVNA0205276NU,ivnada589@correo.com,Personas,GFD960701AB4,2003-08-06,true
+C-10591,Acosta Logística SA de CV,moral,ACO550121N5A,acosta590@empresa.com.mx,Empresarial,BDM970315QW2,2018-07-09,true
+C-10592,Jacinto de la Crúz Orellana,fisica,JACI920208Q7P,jacint591@ejemplo.mx,Personas,BDM970315QW2,2025-10-16,true
+C-10593,Estrada Industrial SA de CV,moral,EST010614FGJ,estrad592@empresa.com.mx,Personas,GFD960701AB4,2026-03-12,true
+C-10594,Araceli Lucía Salcedo Calvillo,fisica,ARAC681226Q7A,aracel593@correo.com,Personas,BDM970315QW2,2010-11-06,true
+C-10595,Irene Domínguez Villareal,fisica,IREN871207ZXM,irened594@correo.com,Gobierno,GFD960701AB4,2012-06-09,true
+C-10596,Guevara Agropecuaria SA de CV,moral,GUE791120PXM,guevar595@empresa.com.mx,Empresarial,BDM970315QW2,2013-03-04,true
+C-10597,Aurelio Chavarría Peralta,fisica,AURE010618AGL,aureli596@correo.com,PyME,BDM970315QW2,2015-10-20,true
+C-10598,Amalia Mercedes Cabán Cornejo,fisica,AMAL841120WCW,amalia597@ejemplo.mx,PyME,BDM970315QW2,2022-06-15,true
+C-10599,Zarate Comercial SA de CV,moral,ZAR000420NEH,zarate598@ejemplo.mx,PyME,BDM970315QW2,2009-03-20,true
+C-10600,Rascón Agropecuaria SA de CV,moral,RAS901222KH8,rascna599@ejemplo.mx,Empresarial,BDM970315QW2,2014-06-26,false

@@ -1,0 +1,241 @@
+{
+  "archivo": "piloto_026.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "receptor_ajeno",
+  "descripcion": "Factura emitida a una empresa fuera del grupo",
+  "layout": "banda",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "5f09d3d27b810f3422aa100d5473e53d26c28a72d17ce66bad4772e0bcef8a57",
+  "tamano_bytes": 2514,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-8476",
+      "fecha": "1 de julio de 2026",
+      "emisor_nombre": "Vera Grupo SAPI de CV",
+      "emisor_rfc": "VGS9607276ET",
+      "emisor_direccion": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "receptor_nombre": "Comercializadora Tercera SA de CV",
+      "receptor_rfc": "TER150610HG3",
+      "moneda": "MXN",
+      "subtotal": "12,705.81",
+      "impuestos": "2,032.93",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "14,738.74",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-01",
+      "subtotal": "12705.81",
+      "impuestos": "2032.93",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "14738.74"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "5,501.68",
+        "importe": "5,501.68"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "1,190.97",
+        "importe": "1,190.97"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "1",
+        "precio_unitario": "6,013.16",
+        "importe": "6,013.16"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 98,
+    "emisor_nombre": 95,
+    "emisor_rfc": 94,
+    "emisor_direccion": 95,
+    "receptor_nombre": 97,
+    "receptor_rfc": 99,
+    "moneda": 91,
+    "subtotal": 90,
+    "impuestos": 91,
+    "tasa_iva": 96,
+    "total": 99,
+    "condiciones_pago": 92
+  },
+  "texto_completo": "Vera Grupo SAPI de CV\nRetorno Farías 464, Nueva San Vicente y las Granadinas\nFACTURA\nEMISOR\nRFC: VGS9607276ET\nNo. de factura: A-8476\nExpedida el 1 de julio de 2026\nFACTURAR A\nComercializadora Tercera SA de CV\nRFC: TER150610HG3\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n1\n5,501.68\n5,501.68\nPapelería y artículos de oficina\n1\n1,190.97\n1,190.97\nMantenimiento preventivo de equipo\n1\n6,013.16\n6,013.16\nSubtotal\n12,705.81\nIVA 16 %\n2,032.93\nTotal\n$ 14,738.74 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Vera Grupo SAPI de CV",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          502.2,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          561.7,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          990.3,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VGS9607276ET",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          310.3,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-8476",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          313.8,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "1 de julio de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          383.3,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Comercializadora Tercera SA de CV",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1028.6,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "TER150610HG3",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          900.1,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 1 5,501.68 5,501.68\nPapelería y artículos de oficina 1 1,190.97 1,190.97\nMantenimiento preventivo de equipo 1 6,013.16 6,013.16",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          602.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "12,705.81",
+      "bbox": [
+        [
+          1078.2,
+          660.4,
+          1170.8,
+          682.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "2,032.93",
+      "bbox": [
+        [
+          1089.8,
+          693.8,
+          1170.8,
+          715.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "14,738.74",
+      "bbox": [
+        [
+          976.3,
+          732.1,
+          1170.8,
+          758.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          83.3,
+          830.8,
+          396.0,
+          850.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-018"
+    ]
+  },
+  "nota_oculta": null
+}

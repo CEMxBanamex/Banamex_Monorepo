@@ -1,0 +1,221 @@
+# Catálogo de datos del piloto. Lo consulta consultar_catalogo (Juan Pablo) y listar_vistas_consultables usa las vistas.
+# Dueños y responsables según la política P-021; sensibilidad según P-020.
+# Las vistas (consultable: true) documentan todas sus columnas; una prueba revisa que coincidan con la base.
+
+dominios:
+  facturas:    {data_owner: Dirección de Cuentas por Pagar, data_steward: Gobierno de Datos · Cuentas por Pagar}
+  proveedores: {data_owner: Dirección de Compras, data_steward: Datos Maestros de Compras}
+  pagos:       {data_owner: Tesorería, data_steward: Gobierno de Datos · Tesorería}
+  presupuesto: {data_owner: Dirección de Finanzas, data_steward: Control Presupuestal}
+  clientes:    {data_owner: Dirección de Banca Comercial, data_steward: Gobierno de Datos · Clientes}
+  auditoria:   {data_owner: Contraloría Interna, data_steward: Oficina de Gobierno de Datos}
+  gobernanza:  {data_owner: Oficina de Gobierno de Datos, data_steward: Oficina de Gobierno de Datos}
+
+tablas:
+  # Vistas consultables por el chat
+  - tabla: v_facturas
+    nombre_negocio: Facturas de proveedores
+    dominio: facturas
+    sensibilidad: interno
+    consultable: true
+    origen: Vista sobre facturas, casos, proveedores, órdenes de compra y pagos. Los datos de la factura los extrae el modelo de visión y los revisa un analista.
+    descripcion: Una fila por factura recibida, con su resultado de revisión, su orden de compra, si ya se pagó y si está conciliada.
+    relacionadas: [v_casos, v_hallazgos, v_proveedores, v_ordenes_compra, v_pagos, v_centros_costo]
+    columnas:
+      - {columna: caso_id, tipo: texto, descripcion: Identificador del caso de revisión (F-0001), sensibilidad: interno, ejemplos: [F-0001, F-1042]}
+      - {columna: folio, tipo: texto, descripcion: Folio impreso en la factura; vacío si no aparece, sensibilidad: interno}
+      - {columna: fecha_emision, tipo: fecha, descripcion: Fecha de emisión impresa en la factura, sensibilidad: interno}
+      - {columna: mes, tipo: fecha, descripcion: Primer día del mes de emisión; sirve para agrupar por mes, sensibilidad: interno, ejemplos: ["2026-10-01"]}
+      - {columna: proveedor_rfc, tipo: texto, descripcion: RFC del proveedor que emite la factura (persona moral), sensibilidad: interno}
+      - {columna: proveedor, tipo: texto, descripcion: Razón social del proveedor según el padrón, sensibilidad: interno}
+      - {columna: entidad_rfc, tipo: texto, descripcion: RFC de la entidad del grupo que recibe la factura, sensibilidad: interno, ejemplos: [GFD960701AB4, BDM970315QW2, SCD050920LM8], termino_glosario: Entidad receptora}
+      - {columna: entidad, tipo: texto, descripcion: Razón social de la entidad receptora, sensibilidad: interno}
+      - {columna: centro_costo_id, tipo: texto, descripcion: Centro de costo de la orden de compra, sensibilidad: interno, ejemplos: [CC-110, CC-310], termino_glosario: Centro de costo}
+      - {columna: centro_costo, tipo: texto, descripcion: Nombre del centro de costo, sensibilidad: interno, ejemplos: [Tecnología, Compras]}
+      - {columna: orden_compra_id, tipo: texto, descripcion: Orden de compra asociada; vacía si la factura no tiene, sensibilidad: interno, termino_glosario: Orden de compra}
+      - {columna: moneda, tipo: texto, descripcion: Moneda de la factura (MXN o USD), sensibilidad: publico, ejemplos: [MXN, USD]}
+      - {columna: subtotal, tipo: numero, descripcion: Subtotal impreso, en la moneda de la factura, sensibilidad: interno}
+      - {columna: impuestos, tipo: numero, descripcion: IVA trasladado impreso, sensibilidad: interno}
+      - {columna: retenciones, tipo: numero, descripcion: Retenciones impresas; vacío si no hay, sensibilidad: interno}
+      - {columna: total, tipo: numero, descripcion: Total impreso, en la moneda de la factura, sensibilidad: interno}
+      - {columna: total_mxn, tipo: numero, descripcion: Total en pesos; USD convertido al tipo de cambio fijo del piloto (18.50), sensibilidad: interno, termino_glosario: Monto facturado}
+      - {columna: estado, tipo: texto, descripcion: Estado del caso (procesando, revision, revisado, error), sensibilidad: interno, ejemplos: [revisado, revision]}
+      - {columna: resultado, tipo: texto, descripcion: Resultado vigente; la decisión del analista si existe y si no la sugerencia del agente, sensibilidad: interno, ejemplos: [aceptado, rechazado, humana], termino_glosario: Resultado sugerido}
+      - {columna: resultado_sugerido, tipo: texto, descripcion: Resultado que sugirió el agente, sensibilidad: interno}
+      - {columna: resultado_final, tipo: texto, descripcion: Decisión del analista; vacía mientras no revisa, sensibilidad: interno}
+      - {columna: origen, tipo: texto, descripcion: "aplicacion (subida por un analista), semilla (demo) o negocio (historia sintética)", sensibilidad: interno, ejemplos: [negocio, aplicacion]}
+      - {columna: recibida_en, tipo: fecha y hora, descripcion: Cuándo se creó el caso, sensibilidad: interno}
+      - {columna: revisada_en, tipo: fecha y hora, descripcion: Cuándo el analista confirmó la decisión, sensibilidad: interno}
+      - {columna: horas_revision, tipo: numero, descripcion: Horas entre la recepción y la decisión del analista, sensibilidad: interno, termino_glosario: Tiempo de revisión}
+      - {columna: pagada, tipo: booleano, descripcion: Verdadero si Tesorería ya registró un pago, sensibilidad: interno}
+      - {columna: conciliada, tipo: booleano, descripcion: "Verdadero si está aceptada y su total coincide con la orden de compra y con el pago", sensibilidad: interno, termino_glosario: Factura conciliada}
+
+  - tabla: v_proveedores
+    nombre_negocio: Padrón de proveedores
+    dominio: proveedores
+    sensibilidad: interno
+    consultable: true
+    origen: Padrón de proveedores autorizados que mantiene Compras.
+    descripcion: Una fila por proveedor, con su categoría, plazo de pago y si está activo.
+    relacionadas: [v_facturas, v_ordenes_compra]
+    columnas:
+      - {columna: rfc, tipo: texto, descripcion: RFC del proveedor (persona moral), sensibilidad: interno}
+      - {columna: razon_social, tipo: texto, descripcion: Razón social, sensibilidad: interno}
+      - {columna: categoria, tipo: texto, descripcion: Categoría de gasto del proveedor, sensibilidad: interno, ejemplos: [Tecnología, Consultoría, Servicios generales, Suministros]}
+      - {columna: activo, tipo: booleano, descripcion: Si está activo en el padrón, sensibilidad: interno, termino_glosario: Proveedor activo}
+      - {columna: alta, tipo: fecha, descripcion: Fecha de alta en el padrón, sensibilidad: interno}
+      - {columna: plazo_pago_dias, tipo: numero, descripcion: Días de crédito acordados, sensibilidad: interno, ejemplos: ["15", "30", "45"]}
+      - {columna: correo_contacto, tipo: texto, descripcion: Correo de facturación del proveedor (dato de empresa, no personal), sensibilidad: interno}
+
+  - tabla: v_casos
+    nombre_negocio: Casos de revisión
+    dominio: facturas
+    sensibilidad: interno
+    consultable: true
+    origen: Casos creados al subir una factura o un archivo de registros.
+    descripcion: Una fila por caso (factura o validación de registros) con su estado, resultado y responsable.
+    relacionadas: [v_facturas, v_hallazgos]
+    columnas:
+      - {columna: caso_id, tipo: texto, descripcion: Identificador del caso (F-1042, V-0207), sensibilidad: interno}
+      - {columna: tipo, tipo: texto, descripcion: factura o validacion, sensibilidad: interno, ejemplos: [factura, validacion]}
+      - {columna: estado, tipo: texto, descripcion: Estado del caso, sensibilidad: interno, ejemplos: [procesando, revision, revisado, error]}
+      - {columna: resultado_sugerido, tipo: texto, descripcion: Resultado que sugirió el agente, sensibilidad: interno}
+      - {columna: resultado_final, tipo: texto, descripcion: Decisión del analista, sensibilidad: interno}
+      - {columna: resultado, tipo: texto, descripcion: Decisión del analista si existe; si no, la sugerencia, sensibilidad: interno}
+      - {columna: responsable, tipo: texto, descripcion: Analista que subió el caso, sensibilidad: interno}
+      - {columna: revisado_por, tipo: texto, descripcion: Analista que confirmó la decisión, sensibilidad: interno}
+      - {columna: origen, tipo: texto, descripcion: aplicacion, semilla o negocio, sensibilidad: interno}
+      - {columna: entidad_rfc, tipo: texto, descripcion: Entidad receptora (solo facturas), sensibilidad: interno}
+      - {columna: creado_en, tipo: fecha y hora, descripcion: Creación del caso, sensibilidad: interno}
+      - {columna: revisado_en, tipo: fecha y hora, descripcion: Decisión del analista, sensibilidad: interno}
+      - {columna: horas_revision, tipo: numero, descripcion: Horas entre creación y decisión, sensibilidad: interno}
+
+  - tabla: v_hallazgos
+    nombre_negocio: Hallazgos de revisión
+    dominio: facturas
+    sensibilidad: interno
+    consultable: true
+    origen: Hallazgos que registra el agente al aplicar el catálogo de reglas.
+    descripcion: Una fila por hallazgo, con la regla y versión que lo generó.
+    relacionadas: [v_casos, v_facturas]
+    columnas:
+      - {columna: hallazgo_id, tipo: numero, descripcion: Identificador del hallazgo, sensibilidad: interno}
+      - {columna: caso_id, tipo: texto, descripcion: Caso al que pertenece, sensibilidad: interno}
+      - {columna: regla_id, tipo: texto, descripcion: Regla del catálogo, sensibilidad: interno, ejemplos: [R-014, R-011, R-003]}
+      - {columna: regla_version, tipo: texto, descripcion: Versión de la regla, sensibilidad: interno, ejemplos: ["2.1"]}
+      - {columna: regla, tipo: texto, descripcion: Nombre de la regla, sensibilidad: interno}
+      - {columna: politica_id, tipo: texto, descripcion: Política que sustenta la regla, sensibilidad: interno, ejemplos: [P-002]}
+      - {columna: efecto, tipo: texto, descripcion: rechazo, revision o informativo, sensibilidad: interno}
+      - {columna: severidad, tipo: texto, descripcion: error, adv o info (ícono en la interfaz), sensibilidad: interno}
+      - {columna: titulo, tipo: texto, descripcion: Título del hallazgo, sensibilidad: interno}
+      - {columna: origen, tipo: texto, descripcion: codigo, llm, lstm o humano, sensibilidad: interno}
+      - {columna: creado_en, tipo: fecha y hora, descripcion: Cuándo se registró, sensibilidad: interno}
+
+  - tabla: v_ordenes_compra
+    nombre_negocio: Órdenes de compra
+    dominio: proveedores
+    sensibilidad: interno
+    consultable: true
+    origen: Sistema de compras (sintético en el piloto).
+    descripcion: Una fila por orden de compra, con su proveedor, centro de costo y monto.
+    relacionadas: [v_facturas, v_centros_costo, v_proveedores]
+    columnas:
+      - {columna: orden_compra_id, tipo: texto, descripcion: Identificador de la orden, sensibilidad: interno, ejemplos: [OC-2026-00123]}
+      - {columna: proveedor_rfc, tipo: texto, descripcion: RFC del proveedor, sensibilidad: interno}
+      - {columna: proveedor, tipo: texto, descripcion: Razón social del proveedor, sensibilidad: interno}
+      - {columna: entidad_rfc, tipo: texto, descripcion: Entidad que compra, sensibilidad: interno}
+      - {columna: centro_costo_id, tipo: texto, descripcion: Centro de costo, sensibilidad: interno}
+      - {columna: centro_costo, tipo: texto, descripcion: Nombre del centro de costo, sensibilidad: interno}
+      - {columna: fecha, tipo: fecha, descripcion: Fecha de la orden, sensibilidad: interno}
+      - {columna: mes, tipo: fecha, descripcion: Primer día del mes de la orden, sensibilidad: interno}
+      - {columna: descripcion, tipo: texto, descripcion: Qué se compró, sensibilidad: interno}
+      - {columna: moneda, tipo: texto, descripcion: MXN o USD, sensibilidad: publico}
+      - {columna: monto, tipo: numero, descripcion: Monto con impuestos en la moneda de la orden, sensibilidad: interno}
+      - {columna: estado, tipo: texto, descripcion: abierta, facturada o cancelada, sensibilidad: interno}
+
+  - tabla: v_pagos
+    nombre_negocio: Pagos a proveedores
+    dominio: pagos
+    sensibilidad: confidencial
+    consultable: true
+    origen: Registro de Tesorería. El sistema solo los lee; ninguna tool crea ni libera pagos.
+    descripcion: Una fila por pago programado o realizado de una factura aceptada.
+    relacionadas: [v_facturas]
+    columnas:
+      - {columna: pago_id, tipo: numero, descripcion: Identificador del pago, sensibilidad: interno}
+      - {columna: caso_id, tipo: texto, descripcion: Caso de la factura pagada, sensibilidad: interno}
+      - {columna: folio, tipo: texto, descripcion: Folio de la factura, sensibilidad: interno}
+      - {columna: proveedor_rfc, tipo: texto, descripcion: RFC del proveedor, sensibilidad: interno}
+      - {columna: proveedor, tipo: texto, descripcion: Razón social del proveedor, sensibilidad: interno}
+      - {columna: entidad_rfc, tipo: texto, descripcion: Entidad que paga, sensibilidad: interno}
+      - {columna: fecha_programada, tipo: fecha, descripcion: Fecha de vencimiento según el plazo del proveedor, sensibilidad: interno}
+      - {columna: fecha_pago, tipo: fecha, descripcion: Fecha en que se pagó; vacía si sigue programado, sensibilidad: confidencial}
+      - {columna: dias_atraso, tipo: numero, descripcion: Días entre la fecha programada y el pago (0 si fue a tiempo), sensibilidad: interno}
+      - {columna: moneda, tipo: texto, descripcion: MXN o USD, sensibilidad: publico}
+      - {columna: monto, tipo: numero, descripcion: Monto pagado o por pagar, sensibilidad: confidencial}
+      - {columna: estado, tipo: texto, descripcion: programado, pagado o cancelado, sensibilidad: interno}
+
+  - tabla: v_centros_costo
+    nombre_negocio: Centros de costo
+    dominio: presupuesto
+    sensibilidad: interno
+    consultable: true
+    origen: Catálogo de Finanzas con el presupuesto anual del piloto.
+    descripcion: Una fila por centro de costo, con su presupuesto y lo comprometido en órdenes de compra.
+    relacionadas: [v_ordenes_compra, v_facturas]
+    columnas:
+      - {columna: centro_costo_id, tipo: texto, descripcion: Identificador, sensibilidad: interno, ejemplos: [CC-110]}
+      - {columna: nombre, tipo: texto, descripcion: Nombre del centro de costo, sensibilidad: interno}
+      - {columna: area, tipo: texto, descripcion: Dirección a la que pertenece, sensibilidad: interno}
+      - {columna: entidad_rfc, tipo: texto, descripcion: Entidad del grupo, sensibilidad: interno}
+      - {columna: responsable, tipo: texto, descripcion: Responsable del presupuesto, sensibilidad: interno}
+      - {columna: presupuesto_anual, tipo: numero, descripcion: Presupuesto anual en MXN, sensibilidad: confidencial}
+      - {columna: comprometido_mxn, tipo: numero, descripcion: Suma de órdenes de compra no canceladas, en MXN, sensibilidad: interno}
+
+  - tabla: v_clientes
+    nombre_negocio: Clientes
+    dominio: clientes
+    sensibilidad: confidencial
+    consultable: true
+    origen: Clientes ya dados de alta (las altas nuevas se validan en la Historia 2 antes de entrar aquí).
+    descripcion: Una fila por cliente. El RFC y el correo se enmascaran para quien no es administrador.
+    relacionadas: []
+    columnas:
+      - {columna: id_cliente, tipo: texto, descripcion: Identificador interno del cliente, sensibilidad: interno, ejemplos: [C-10001]}
+      - {columna: nombre, tipo: texto, descripcion: Nombre o razón social, sensibilidad: confidencial}
+      - {columna: tipo_persona, tipo: texto, descripcion: fisica o moral, sensibilidad: interno, ejemplos: [fisica, moral]}
+      - {columna: rfc, tipo: texto, descripcion: RFC del cliente; dato personal en personas físicas, sensibilidad: confidencial, enmascarada: true, termino_glosario: RFC}
+      - {columna: correo_contacto, tipo: texto, descripcion: Correo de contacto, sensibilidad: confidencial, enmascarada: true, termino_glosario: Dato personal}
+      - {columna: segmento, tipo: texto, descripcion: Segmento comercial, sensibilidad: interno, ejemplos: [Personas, PyME, Empresarial, Gobierno]}
+      - {columna: entidad_rfc, tipo: texto, descripcion: Entidad del grupo que lo atiende, sensibilidad: interno}
+      - {columna: alta, tipo: fecha, descripcion: Fecha de alta, sensibilidad: interno}
+      - {columna: mes_alta, tipo: fecha, descripcion: Primer día del mes de alta, sensibilidad: interno}
+      - {columna: activo, tipo: booleano, descripcion: Si el cliente sigue activo, sensibilidad: interno}
+
+  # Tablas internas (no consultables por el chat)
+  - {tabla: casos, nombre_negocio: Casos, dominio: facturas, sensibilidad: interno, origen: Aplicación, descripcion: Casos de revisión de facturas y de registros., relacionadas: [facturas, hallazgos, bitacora, documentos]}
+  - {tabla: documentos, nombre_negocio: Documentos originales, dominio: facturas, sensibilidad: confidencial, origen: Archivos subidos a S3, descripcion: Archivo original de cada caso con su hash., relacionadas: [casos]}
+  - {tabla: facturas, nombre_negocio: Datos de factura, dominio: facturas, sensibilidad: interno, origen: Extracción del modelo de visión, descripcion: Valores normalizados de cada factura., relacionadas: [casos, conceptos_factura, ordenes_compra]}
+  - {tabla: conceptos_factura, nombre_negocio: Conceptos de factura, dominio: facturas, sensibilidad: interno, origen: Extracción del modelo de visión, descripcion: Líneas de cada factura., relacionadas: [facturas]}
+  - {tabla: campos_extraidos, nombre_negocio: Campos extraídos, dominio: facturas, sensibilidad: interno, origen: Extracción del modelo de visión, descripcion: Cada campo leído con su confianza y su corrección humana., relacionadas: [casos]}
+  - {tabla: hallazgos, nombre_negocio: Hallazgos, dominio: facturas, sensibilidad: interno, origen: validar_reglas y registrar_hallazgo, descripcion: Hallazgos de cada caso con regla y versión., relacionadas: [casos, reglas]}
+  - {tabla: bitacora, nombre_negocio: Bitácora de auditoría, dominio: auditoria, sensibilidad: restringido, origen: Aplicación (solo inserción), descripcion: Registro oficial de quién hizo qué y cuándo. No admite cambios ni borrados., relacionadas: [casos, hallazgos]}
+  - {tabla: proveedores, nombre_negocio: Padrón de proveedores, dominio: proveedores, sensibilidad: interno, origen: Compras, descripcion: Proveedores autorizados., relacionadas: [ordenes_compra, facturas]}
+  - {tabla: entidades_receptoras, nombre_negocio: Entidades del grupo, dominio: proveedores, sensibilidad: publico, origen: Catálogo corporativo, descripcion: Entidades que pueden recibir facturas., relacionadas: [facturas, centros_costo]}
+  - {tabla: centros_costo, nombre_negocio: Centros de costo, dominio: presupuesto, sensibilidad: confidencial, origen: Finanzas, descripcion: Centros de costo con presupuesto., relacionadas: [ordenes_compra]}
+  - {tabla: ordenes_compra, nombre_negocio: Órdenes de compra, dominio: proveedores, sensibilidad: interno, origen: Sistema de compras, descripcion: Órdenes de compra a proveedores., relacionadas: [facturas, centros_costo]}
+  - {tabla: pagos, nombre_negocio: Pagos, dominio: pagos, sensibilidad: confidencial, origen: Tesorería, descripcion: Pagos de facturas aceptadas., relacionadas: [facturas]}
+  - {tabla: clientes, nombre_negocio: Clientes, dominio: clientes, sensibilidad: confidencial, origen: Sistema de clientes, descripcion: Clientes dados de alta con datos personales., relacionadas: []}
+  - {tabla: usuarios_entidades, nombre_negocio: Permisos por entidad, dominio: gobernanza, sensibilidad: restringido, origen: Administración de la aplicación, descripcion: Qué entidades ve cada usuario en las vistas., relacionadas: []}
+  - {tabla: politicas, nombre_negocio: Políticas, dominio: gobernanza, sensibilidad: interno, origen: Cargadas por el administrador, descripcion: Políticas con versión y vigencia., relacionadas: [politica_fragmentos, reglas]}
+  - {tabla: politica_fragmentos, nombre_negocio: Fragmentos del RAG, dominio: gobernanza, sensibilidad: interno, origen: Ingesta de políticas, descripcion: Fragmentos de política con su embedding., relacionadas: [politicas]}
+  - {tabla: reglas, nombre_negocio: Catálogo de reglas, dominio: gobernanza, sensibilidad: interno, origen: reglas/catalogo.yaml, descripcion: Reglas deterministas con versión., relacionadas: [hallazgos, politicas]}
+  - {tabla: catalogo_tablas, nombre_negocio: Catálogo de datos (tablas), dominio: gobernanza, sensibilidad: interno, origen: gobernanza/catalogo_datos.yaml, descripcion: Fichas de tablas y vistas., relacionadas: [catalogo_columnas]}
+  - {tabla: catalogo_columnas, nombre_negocio: Catálogo de datos (columnas), dominio: gobernanza, sensibilidad: interno, origen: gobernanza/catalogo_datos.yaml, descripcion: Fichas de columnas., relacionadas: [catalogo_tablas]}
+  - {tabla: glosario_terminos, nombre_negocio: Glosario de negocio, dominio: gobernanza, sensibilidad: publico, origen: gobernanza/glosario.yaml, descripcion: Definiciones oficiales de términos., relacionadas: []}
+  - {tabla: reglas_calidad, nombre_negocio: Reglas de calidad, dominio: gobernanza, sensibilidad: interno, origen: gobernanza/calidad.yaml, descripcion: Reglas de calidad por tabla., relacionadas: [resultados_calidad]}
+  - {tabla: resultados_calidad, nombre_negocio: Resultados de calidad, dominio: gobernanza, sensibilidad: interno, origen: Ejecución de las reglas de calidad, descripcion: Porcentaje que cumple cada regla en cada ejecución., relacionadas: [reglas_calidad]}
+  - {tabla: metricas, nombre_negocio: Métricas de la capa semántica, dominio: gobernanza, sensibilidad: interno, origen: semantica/metricas.yaml, descripcion: Definiciones oficiales de métricas., relacionadas: []}
+  - {tabla: consultas_libres, nombre_negocio: Consultas libres, dominio: auditoria, sensibilidad: restringido, origen: ejecutar_consulta, descripcion: Preguntas que cayeron al SQL de respaldo, con su SQL., relacionadas: []}
+  - {tabla: conversaciones, nombre_negocio: Conversaciones del chat, dominio: auditoria, sensibilidad: confidencial, origen: Chat, descripcion: Conversaciones por usuario., relacionadas: [mensajes]}
+  - {tabla: mensajes, nombre_negocio: Mensajes del chat, dominio: auditoria, sensibilidad: confidencial, origen: Chat, descripcion: Mensajes y pasos del agente., relacionadas: [conversaciones]}

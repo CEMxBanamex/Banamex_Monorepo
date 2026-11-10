@@ -1,0 +1,262 @@
+{
+  "archivo": "factura_1023.jpg",
+  "grupo": "historico",
+  "caso_id": "F-1023",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "moderna",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "1652608077963c8581e266b14dc6d171662c5721359c8ad2c148431d6154376b",
+  "tamano_bytes": 127275,
+  "fecha_recepcion": "2026-08-10",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "81702106",
+      "fecha": "03/08/2026",
+      "emisor_nombre": "Sierra Suministros S de RL de CV",
+      "emisor_rfc": "SSS060820QE1",
+      "emisor_direccion": "Callejón Suecia 445, Vieja Grecia",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "132,645.96",
+      "impuestos": "21,223.35",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "153,869.31",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-03",
+      "subtotal": "132645.96",
+      "impuestos": "21223.35",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "153869.31"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "3",
+        "precio_unitario": "3,418.72",
+        "importe": "10,256.16"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "2",
+        "precio_unitario": "1,215.10",
+        "importe": "2,430.20"
+      },
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "2",
+        "precio_unitario": "10,210.44",
+        "importe": "20,420.88"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "4",
+        "precio_unitario": "22,732.16",
+        "importe": "90,928.64"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "1",
+        "precio_unitario": "8,610.08",
+        "importe": "8,610.08"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 95,
+    "fecha": 96,
+    "emisor_nombre": 97,
+    "emisor_rfc": 99,
+    "emisor_direccion": 95,
+    "receptor_nombre": 99,
+    "receptor_rfc": 96,
+    "moneda": 95,
+    "subtotal": 90,
+    "impuestos": 95,
+    "tasa_iva": 96,
+    "total": 94,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "SS\nSierra Suministros S de RL de CV\nCallejón Suecia 445, Vieja Grecia\nRFC emisor  SSS060820QE1\nDocumento\nFactura\nSerie y folio\n81702106\nFecha de emisión\n03/08/2026\nMoneda\nMXN\nRECEPTOR\nBanco Demo SA, Institución de Banca Múltiple\nBDM970315QW2\nConcepto\nCant.\nP. unitario\nImporte\nRenta de equipo de cómputo\n3\n3,418.72\n10,256.16\nMantenimiento preventivo de equipo\n2\n1,215.10\n2,430.20\nCapacitación en línea\n2\n10,210.44\n20,420.88\nDesarrollo de reporte analítico\n4\n22,732.16\n90,928.64\nSoporte técnico mensual\n1\n8,610.08\n8,610.08\nSubtotal\n132,645.96\nIVA 16 %\n21,223.35\nTotal\n$ 153,869.31 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          84.4,
+          94.9,
+          199.9,
+          210.4
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Sierra Suministros S de RL de CV",
+      "bbox": [
+        [
+          226.4,
+          95.7,
+          693.8,
+          138.9
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Callejón Suecia 445, Vieja Grecia",
+      "bbox": [
+        [
+          227.5,
+          142.5,
+          507.2,
+          169.7
+        ]
+      ]
+    },
+    "GST": {
+      "text": "SSS060820QE1",
+      "bbox": [
+        [
+          228.3,
+          172.4,
+          476.7,
+          198.8
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1087.3,
+          231.3,
+          1155.6,
+          252.8
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "81702106",
+      "bbox": [
+        [
+          1072.5,
+          262.6,
+          1156.4,
+          284.5
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "03/08/2026",
+      "bbox": [
+        [
+          1062.9,
+          293.7,
+          1157.2,
+          316.0
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1116.0,
+          325.0,
+          1158.1,
+          345.8
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          89.6,
+          278.0,
+          520.7,
+          311.4
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          90.4,
+          316.3,
+          254.2,
+          342.6
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Renta de equipo de cómputo 3 3,418.72 10,256.16\nMantenimiento preventivo de equipo 2 1,215.10 2,430.20\nCapacitación en línea 2 10,210.44 20,420.88\nDesarrollo de reporte analítico 4 22,732.16 90,928.64\nSoporte técnico mensual 1 8,610.08 8,610.08",
+      "bbox": [
+        [
+          93.6,
+          408.7,
+          1166.1,
+          670.6
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "132,645.96",
+      "bbox": [
+        [
+          1063.0,
+          683.6,
+          1167.8,
+          708.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "21,223.35",
+      "bbox": [
+        [
+          1075.5,
+          716.9,
+          1168.7,
+          741.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "153,869.31",
+      "bbox": [
+        [
+          960.8,
+          755.3,
+          1169.8,
+          787.1
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          105.6,
+          874.2,
+          418.7,
+          902.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

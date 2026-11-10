@@ -1,0 +1,281 @@
+[
+  {
+    "archivo": "clientes_octubre.xlsx",
+    "escenario": "correo_faltante",
+    "descripcion": "8 de 120 clientes sin correo (caso V-0207 del frontend)",
+    "hoja": "clientes",
+    "caso_id": "V-0207",
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "rechazado",
+      "reglas": [
+        "R-101"
+      ],
+      "filas": {
+        "R-101": [
+          14,
+          27,
+          33,
+          48,
+          61,
+          79,
+          95,
+          112
+        ]
+      }
+    },
+    "grupo": "demo",
+    "total_registros": 120,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "correo_contacto",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "clientes_septiembre.xlsx",
+    "escenario": "correcto",
+    "descripcion": "Archivo que cumple todas las políticas",
+    "hoja": "clientes",
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "aceptado",
+      "reglas": [],
+      "filas": {}
+    },
+    "grupo": "evaluacion",
+    "total_registros": 80,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "correo_contacto",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "clientes_rfc.csv",
+    "escenario": "rfc_invalido",
+    "descripcion": "3 RFC con estructura inválida",
+    "hoja": null,
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "rechazado",
+      "reglas": [
+        "R-103"
+      ],
+      "filas": {
+        "R-103": [
+          5,
+          18,
+          40
+        ]
+      }
+    },
+    "grupo": "evaluacion",
+    "total_registros": 60,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "correo_contacto",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "clientes_fechas.xlsx",
+    "escenario": "fechas_invalidas",
+    "descripcion": "Fechas de alta inexistentes, futuras y anteriores a 2000",
+    "hoja": "clientes",
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "rechazado",
+      "reglas": [
+        "R-104"
+      ],
+      "filas": {
+        "R-104": [
+          10,
+          22,
+          31,
+          45
+        ]
+      }
+    },
+    "grupo": "evaluacion",
+    "total_registros": 50,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "correo_contacto",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "clientes_duplicados.csv",
+    "escenario": "id_duplicado",
+    "descripcion": "Identificadores repetidos (uno con minúsculas y espacio)",
+    "hoja": null,
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "rechazado",
+      "reglas": [
+        "R-105"
+      ],
+      "filas": {
+        "R-105": [
+          4,
+          12,
+          26,
+          34,
+          39
+        ]
+      }
+    },
+    "grupo": "evaluacion",
+    "total_registros": 40,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "correo_contacto",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "clientes_correo_formato.xlsx",
+    "escenario": "correo_formato",
+    "descripcion": "Correos sin @ o con espacios",
+    "hoja": "clientes",
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "rechazado",
+      "reglas": [
+        "R-102"
+      ],
+      "filas": {
+        "R-102": [
+          7,
+          20
+        ]
+      }
+    },
+    "grupo": "evaluacion",
+    "total_registros": 30,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "correo_contacto",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "clientes_sin_columna.csv",
+    "escenario": "columna_faltante",
+    "descripcion": "Falta la columna correo_contacto",
+    "hoja": null,
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "rechazado",
+      "reglas": [
+        "R-106"
+      ],
+      "filas": {}
+    },
+    "grupo": "evaluacion",
+    "total_registros": 25,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "clientes_alias.xlsx",
+    "escenario": "alias_columnas",
+    "descripcion": "Columnas con nombres alternativos aceptados",
+    "hoja": "clientes",
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "aceptado",
+      "reglas": [],
+      "filas": {}
+    },
+    "grupo": "evaluacion",
+    "total_registros": 45,
+    "columnas": [
+      "numero_cliente",
+      "razon_social",
+      "rfc",
+      "email",
+      "fecha_alta"
+    ]
+  },
+  {
+    "archivo": "clientes_mixto.xlsx",
+    "escenario": "varios_errores",
+    "descripcion": "Varios errores en el mismo archivo",
+    "hoja": "clientes",
+    "caso_id": null,
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": "rechazado",
+      "reglas": [
+        "R-101",
+        "R-103",
+        "R-104",
+        "R-105"
+      ],
+      "filas": {
+        "R-101": [
+          3,
+          9
+        ],
+        "R-103": [
+          16
+        ],
+        "R-104": [
+          61
+        ],
+        "R-105": [
+          41,
+          42
+        ]
+      }
+    },
+    "grupo": "evaluacion",
+    "total_registros": 70,
+    "columnas": [
+      "id_cliente",
+      "nombre",
+      "rfc",
+      "correo_contacto",
+      "alta"
+    ]
+  },
+  {
+    "archivo": "registros_prueba.csv",
+    "escenario": "archivo_ilegible",
+    "caso_id": "V-0206",
+    "grupo": "demo",
+    "descripcion": "Archivo que no se puede leer (caso V-0206 del frontend)",
+    "fecha_recepcion": "2026-11-02",
+    "esperado": {
+      "resultado": null,
+      "estado": "error",
+      "reglas": []
+    }
+  }
+]

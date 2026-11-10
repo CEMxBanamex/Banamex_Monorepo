@@ -1,0 +1,22 @@
+{
+  "archivo": "clientes_septiembre.xlsx",
+  "escenario": "correcto",
+  "descripcion": "Archivo que cumple todas las políticas",
+  "hoja": "clientes",
+  "caso_id": null,
+  "fecha_recepcion": "2026-11-02",
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": [],
+    "filas": {}
+  },
+  "grupo": "evaluacion",
+  "total_registros": 80,
+  "columnas": [
+    "id_cliente",
+    "nombre",
+    "rfc",
+    "correo_contacto",
+    "alta"
+  ]
+}

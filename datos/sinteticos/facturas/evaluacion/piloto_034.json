@@ -1,0 +1,247 @@
+{
+  "archivo": "piloto_034.pdf",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "moneda_no_admitida",
+  "descripcion": "Factura en EUR",
+  "layout": "banda",
+  "formato": "pdf_escaneado",
+  "paginas": 1,
+  "sha256": "f838154314feafd9214c8dcde7652a078a84f42afa207969b83eb852bd7c0c68",
+  "tamano_bytes": 104149,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "A-5830",
+      "fecha": "23 de agosto de 2026",
+      "emisor_nombre": "Vélez Suministros SAPI de CV",
+      "emisor_rfc": "VSS140321VBZ",
+      "emisor_direccion": "Ampliación San Luis Potosí 295, San Francisca los bajos",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "EUR",
+      "subtotal": "68,908.32",
+      "impuestos": "11,025.33",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "79,933.65",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-08-23",
+      "subtotal": "68908.32",
+      "impuestos": "11025.33",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "79933.65"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "1,413.74",
+        "importe": "1,413.74"
+      },
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "1",
+        "precio_unitario": "13,373.66",
+        "importe": "13,373.66"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "2",
+        "precio_unitario": "9,160.54",
+        "importe": "18,321.08"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "3",
+        "precio_unitario": "11,933.28",
+        "importe": "35,799.84"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 91,
+    "fecha": 90,
+    "emisor_nombre": 94,
+    "emisor_rfc": 91,
+    "emisor_direccion": 97,
+    "receptor_nombre": 92,
+    "receptor_rfc": 96,
+    "moneda": 91,
+    "subtotal": 94,
+    "impuestos": 92,
+    "tasa_iva": 92,
+    "total": 91,
+    "condiciones_pago": 95
+  },
+  "texto_completo": "Vélez Suministros SAPI de CV\nAmpliación San Luis Potosí 295, San Francisca los bajos\nFACTURA\nEMISOR\nRFC: VSS140321VBZ\nNo. de factura: A-5830\nExpedida el 23 de agosto de 2026\nFACTURAR A\nBanco Demo SA, Institución de Banca Múltiple\nRFC: BDM970315QW2\nMoneda: EUR\nConcepto\nCant.\nP. unitario\nImporte\nPapelería y artículos de oficina\n1\n1,413.74\n1,413.74\nServicio de consultoría\n1\n13,373.66\n13,373.66\nDesarrollo de reporte analítico\n2\n9,160.54\n18,321.08\nHospedaje de servidores\n3\n11,933.28\n35,799.84\nSubtotal\n68,908.32\nIVA 16 %\n11,025.33\nTotal\n$ 79,933.65 EUR\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Vélez Suministros SAPI de CV",
+      "bbox": [
+        [
+          101.2,
+          50.4,
+          639.7,
+          102.9
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Ampliación San Luis Potosí 295, San Francisca los bajos",
+      "bbox": [
+        [
+          100.1,
+          113.3,
+          574.7,
+          144.6
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1007.9,
+          69.3,
+          1210.3,
+          118.0
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VSS140321VBZ",
+      "bbox": [
+        [
+          116.9,
+          278.8,
+          323.5,
+          305.6
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "A-5830",
+      "bbox": [
+        [
+          116.1,
+          312.0,
+          326.2,
+          339.1
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "23 de agosto de 2026",
+      "bbox": [
+        [
+          115.3,
+          345.3,
+          431.9,
+          375.0
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          704.3,
+          293.2,
+          1135.4,
+          325.6
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          703.4,
+          326.5,
+          921.5,
+          353.7
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "EUR",
+      "bbox": [
+        [
+          702.6,
+          359.8,
+          833.9,
+          384.9
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Papelería y artículos de oficina 1 1,413.74 1,413.74\nServicio de consultoría 1 13,373.66 13,373.66\nDesarrollo de reporte analítico 2 9,160.54 18,321.08\nHospedaje de servidores 3 11,933.28 35,799.84",
+      "bbox": [
+        [
+          88.0,
+          430.3,
+          1200.9,
+          653.3
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "68,908.32",
+      "bbox": [
+        [
+          1080.7,
+          708.8,
+          1173.8,
+          732.9
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "11,025.33",
+      "bbox": [
+        [
+          1079.8,
+          742.1,
+          1172.9,
+          766.2
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "79,933.65",
+      "bbox": [
+        [
+          979.7,
+          778.0,
+          1172.0,
+          808.9
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          81.9,
+          854.7,
+          395.0,
+          882.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-005"
+    ]
+  },
+  "nota_oculta": null
+}

@@ -1,0 +1,198 @@
+# Capa semántica: definiciones oficiales de métricas (las usa obtener_metrica, de Mario).
+# El SQL lo arma el código con estas piezas; el modelo solo elige la métrica, las dimensiones y los filtros.
+# Todas leen de vistas consultables, así que respetan la seguridad por fila del rol del usuario.
+#
+# Cada métrica: vista, expresion (agregado), filtro_base (opcional), columna_fecha (para fecha_desde/fecha_hasta),
+# dimensiones permitidas (nombre -> expresión) y filtros permitidos (nombre -> columna y operador).
+version: "1.0"
+dueno: Oficina de Gobierno de Datos
+
+dimensiones_facturas: &dim_facturas
+  proveedor: proveedor
+  mes: mes
+  entidad: entidad
+  centro_costo: centro_costo
+  moneda: moneda
+  resultado: resultado
+filtros_facturas: &filtros_facturas
+  proveedor: {columna: [proveedor, proveedor_rfc], operador: contiene}
+  entidad: {columna: [entidad, entidad_rfc], operador: contiene}
+  centro_costo: {columna: [centro_costo, centro_costo_id], operador: contiene}
+  moneda: {columna: [moneda], operador: igual}
+  resultado: {columna: [resultado], operador: igual}
+
+metricas:
+  monto_facturado:
+    etiqueta: Monto facturado
+    definicion: Suma del total de las facturas no rechazadas, en pesos (USD al tipo de cambio fijo de 18.50).
+    unidad: MXN
+    vista: v_facturas
+    expresion: sum(total_mxn)
+    filtro_base: resultado IS DISTINCT FROM 'rechazado'
+    columna_fecha: fecha_emision
+    dimensiones: *dim_facturas
+    filtros: *filtros_facturas
+    paso: Calculando monto facturado
+
+  numero_facturas:
+    etiqueta: Número de facturas
+    definicion: Cantidad de facturas recibidas, sin importar su resultado.
+    unidad: facturas
+    vista: v_facturas
+    expresion: count(*)
+    columna_fecha: fecha_emision
+    dimensiones: *dim_facturas
+    filtros: *filtros_facturas
+    paso: Contando facturas
+
+  facturas_rechazadas:
+    etiqueta: Facturas rechazadas
+    definicion: Cantidad de facturas cuyo resultado vigente es Rechazado (decisión del analista o, si no hay, sugerencia del agente).
+    unidad: facturas
+    vista: v_facturas
+    expresion: count(*)
+    filtro_base: resultado = 'rechazado'
+    columna_fecha: fecha_emision
+    dimensiones: *dim_facturas
+    filtros: *filtros_facturas
+    paso: Contando facturas rechazadas
+
+  tasa_rechazo:
+    etiqueta: Tasa de rechazo
+    definicion: Porcentaje de facturas con resultado Rechazado sobre el total de facturas.
+    unidad: "%"
+    vista: v_facturas
+    expresion: round(100.0 * count(*) FILTER (WHERE resultado = 'rechazado') / nullif(count(*), 0), 2)
+    columna_fecha: fecha_emision
+    dimensiones: *dim_facturas
+    filtros: *filtros_facturas
+    paso: Calculando tasa de rechazo
+
+  tasa_conciliacion:
+    etiqueta: Tasa de conciliación
+    definicion: Porcentaje de facturas aceptadas que están conciliadas (total igual a la orden de compra y al pago).
+    unidad: "%"
+    vista: v_facturas
+    expresion: round(100.0 * count(*) FILTER (WHERE conciliada) / nullif(count(*), 0), 2)
+    filtro_base: resultado = 'aceptado'
+    columna_fecha: fecha_emision
+    dimensiones: *dim_facturas
+    filtros: *filtros_facturas
+    paso: Calculando tasa de conciliación
+
+  tiempo_promedio_revision:
+    etiqueta: Tiempo promedio de revisión
+    definicion: Promedio de horas entre la recepción de una factura y la decisión del analista.
+    unidad: horas
+    vista: v_facturas
+    expresion: round(avg(horas_revision), 2)
+    filtro_base: revisada_en IS NOT NULL
+    columna_fecha: fecha_emision
+    dimensiones: *dim_facturas
+    filtros: *filtros_facturas
+    paso: Calculando tiempo promedio de revisión
+
+  facturas_por_regla:
+    etiqueta: Facturas con hallazgo por regla
+    definicion: Cantidad de casos distintos con al menos un hallazgo de cada regla del catálogo.
+    unidad: facturas
+    vista: v_hallazgos
+    expresion: count(DISTINCT caso_id)
+    columna_fecha: creado_en
+    dimensiones:
+      regla: regla_id || ' · ' || regla
+      efecto: efecto
+      mes: date_trunc('month', creado_en)::date
+    filtros:
+      regla: {columna: [regla_id, regla], operador: contiene}
+      efecto: {columna: [efecto], operador: igual}
+    paso: Contando hallazgos por regla
+
+  casos_pendientes:
+    etiqueta: Casos pendientes
+    definicion: Casos que siguen procesándose o esperan la decisión de un analista.
+    unidad: casos
+    vista: v_casos
+    expresion: count(*)
+    filtro_base: estado IN ('procesando', 'revision')
+    columna_fecha: creado_en
+    dimensiones:
+      tipo: tipo
+      responsable: responsable
+      estado: estado
+    filtros:
+      tipo: {columna: [tipo], operador: igual}
+      responsable: {columna: [responsable], operador: contiene}
+    paso: Contando casos pendientes
+
+  monto_pagado:
+    etiqueta: Monto pagado
+    definicion: Suma de los pagos realizados por Tesorería, en pesos (USD a 18.50).
+    unidad: MXN
+    vista: v_pagos
+    expresion: sum(monto * CASE WHEN moneda = 'USD' THEN 18.50 ELSE 1 END)
+    filtro_base: estado = 'pagado'
+    columna_fecha: fecha_pago
+    dimensiones:
+      proveedor: proveedor
+      mes: date_trunc('month', fecha_pago)::date
+      entidad: entidad_rfc
+    filtros:
+      proveedor: {columna: [proveedor, proveedor_rfc], operador: contiene}
+      entidad: {columna: [entidad_rfc], operador: contiene}
+    paso: Calculando monto pagado
+
+  pagos_a_tiempo:
+    etiqueta: Pagos a tiempo
+    definicion: Porcentaje de pagos realizados a más tardar en su fecha programada.
+    unidad: "%"
+    vista: v_pagos
+    expresion: round(100.0 * count(*) FILTER (WHERE dias_atraso = 0) / nullif(count(*), 0), 2)
+    filtro_base: estado = 'pagado'
+    columna_fecha: fecha_pago
+    dimensiones:
+      proveedor: proveedor
+      mes: date_trunc('month', fecha_pago)::date
+      entidad: entidad_rfc
+    filtros:
+      proveedor: {columna: [proveedor, proveedor_rfc], operador: contiene}
+      entidad: {columna: [entidad_rfc], operador: contiene}
+    paso: Calculando pagos a tiempo
+
+  monto_comprometido:
+    etiqueta: Monto comprometido
+    definicion: Suma de órdenes de compra no canceladas, en pesos (USD a 18.50).
+    unidad: MXN
+    vista: v_ordenes_compra
+    expresion: sum(monto * CASE WHEN moneda = 'USD' THEN 18.50 ELSE 1 END)
+    filtro_base: estado <> 'cancelada'
+    columna_fecha: fecha
+    dimensiones:
+      proveedor: proveedor
+      centro_costo: centro_costo
+      mes: mes
+      entidad: entidad_rfc
+    filtros:
+      proveedor: {columna: [proveedor, proveedor_rfc], operador: contiene}
+      centro_costo: {columna: [centro_costo, centro_costo_id], operador: contiene}
+      entidad: {columna: [entidad_rfc], operador: contiene}
+    paso: Calculando monto comprometido
+
+  clientes_activos:
+    etiqueta: Clientes activos
+    definicion: Cantidad de clientes dados de alta que siguen activos.
+    unidad: clientes
+    vista: v_clientes
+    expresion: count(*)
+    filtro_base: activo
+    columna_fecha: alta
+    dimensiones:
+      segmento: segmento
+      entidad: entidad_rfc
+      tipo_persona: tipo_persona
+      mes_alta: mes_alta
+    filtros:
+      segmento: {columna: [segmento], operador: igual}
+      entidad: {columna: [entidad_rfc], operador: contiene}
+      tipo_persona: {columna: [tipo_persona], operador: igual}
+    paso: Contando clientes activos

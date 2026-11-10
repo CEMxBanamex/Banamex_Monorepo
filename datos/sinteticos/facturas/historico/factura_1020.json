@@ -1,0 +1,233 @@
+{
+  "archivo": "factura_1020.jpg",
+  "grupo": "historico",
+  "caso_id": "F-1020",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "cd39bed8a1ecabc1969599a029689803de528c212147b032f03043ebc7b3cc6a",
+  "tamano_bytes": 115077,
+  "fecha_recepcion": "2026-07-20",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 1684",
+      "fecha": "16/07/2026",
+      "emisor_nombre": "Bermúdez Consultores SAPI de CV",
+      "emisor_rfc": "BCS091217EXF",
+      "emisor_direccion": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "66,451.90",
+      "impuestos": "10,632.30",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "77,084.20",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-16",
+      "subtotal": "66451.90",
+      "impuestos": "10632.30",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "77084.20"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "10",
+        "precio_unitario": "5,808.19",
+        "importe": "58,081.90"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "1",
+        "precio_unitario": "8,370.00",
+        "importe": "8,370.00"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 97,
+    "fecha": 96,
+    "emisor_nombre": 91,
+    "emisor_rfc": 91,
+    "emisor_direccion": 93,
+    "receptor_nombre": 98,
+    "receptor_rfc": 97,
+    "moneda": 95,
+    "subtotal": 99,
+    "impuestos": 92,
+    "tasa_iva": 91,
+    "total": 95,
+    "condiciones_pago": 93
+  },
+  "texto_completo": "Bermúdez Consultores SAPI de CV\nRFC BCS091217EXF\nAvenida Nuevo León 825, San Fabiola de la Montaña\nFACTURA\nFolio B 1684\nFecha 16/07/2026\nReceptor\nBanco Demo SA, Institución de Banca Múltiple\nRFC BDM970315QW2\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n10\n5,808.19\n58,081.90\nLicencia anual de software\n1\n8,370.00\n8,370.00\nSubtotal\n66,451.90\nIVA 16 %\n10,632.30\nTotal\n$ 77,084.20\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Bermúdez Consultores SAPI de CV",
+      "bbox": [
+        [
+          89.4,
+          98.0,
+          645.6,
+          144.4
+        ]
+      ]
+    },
+    "GST": {
+      "text": "BCS091217EXF",
+      "bbox": [
+        [
+          90.4,
+          152.8,
+          292.2,
+          178.8
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "bbox": [
+        [
+          91.0,
+          175.9,
+          585.8,
+          208.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1015.0,
+          90.9,
+          1156.5,
+          124.4
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 1684",
+      "bbox": [
+        [
+          1039.9,
+          135.0,
+          1157.2,
+          159.3
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "16/07/2026",
+      "bbox": [
+        [
+          989.5,
+          164.2,
+          1157.8,
+          189.5
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          93.2,
+          285.5,
+          524.3,
+          316.3
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          93.8,
+          319.2,
+          306.0,
+          345.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          94.4,
+          350.0,
+          227.9,
+          374.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 10 5,808.19 58,081.90\nLicencia anual de software 1 8,370.00 8,370.00",
+      "bbox": [
+        [
+          95.6,
+          391.2,
+          1164.5,
+          533.9
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "66,451.90",
+      "bbox": [
+        [
+          1072.8,
+          553.7,
+          1165.8,
+          577.5
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "10,632.30",
+      "bbox": [
+        [
+          1073.4,
+          587.0,
+          1166.5,
+          610.8
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "77,084.20",
+      "bbox": [
+        [
+          1034.8,
+          625.3,
+          1167.4,
+          654.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          102.3,
+          729.1,
+          415.3,
+          755.3
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

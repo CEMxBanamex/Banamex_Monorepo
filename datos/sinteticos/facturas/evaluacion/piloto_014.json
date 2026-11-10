@@ -1,0 +1,264 @@
+{
+  "archivo": "piloto_014.jpg",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "total_no_cuadra",
+  "descripcion": "El total impreso no es subtotal + impuestos",
+  "layout": "moderna",
+  "formato": "jpg",
+  "paginas": 1,
+  "sha256": "1a2fb46fcc256e45a7c7eef4e65d6413c1f1c9684fb0ab0b6cea292079f778bc",
+  "tamano_bytes": 125637,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "B 167",
+      "fecha": "23/07/2026",
+      "emisor_nombre": "Casanova Servicios SAPI de CV",
+      "emisor_rfc": "CSS171128GQ2",
+      "emisor_direccion": "Periférico Chiapas 515, Vieja República Democrática Popular Lao",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "95,815.82",
+      "impuestos": "15,330.53",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "111,246.35",
+      "condiciones_pago": "Pago a 45 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-23",
+      "subtotal": "95815.82",
+      "impuestos": "15330.53",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "111246.35"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "3",
+        "precio_unitario": "6,936.61",
+        "importe": "20,809.83"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "1",
+        "precio_unitario": "10,775.99",
+        "importe": "10,775.99"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "10",
+        "precio_unitario": "4,553.25",
+        "importe": "45,532.50"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "4",
+        "precio_unitario": "2,134.81",
+        "importe": "8,539.24"
+      },
+      {
+        "descripcion": "Traducción de documentos",
+        "cantidad": "2",
+        "precio_unitario": "5,079.13",
+        "importe": "10,158.26"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 95,
+    "fecha": 91,
+    "emisor_nombre": 96,
+    "emisor_rfc": 94,
+    "emisor_direccion": 98,
+    "receptor_nombre": 90,
+    "receptor_rfc": 97,
+    "moneda": 98,
+    "subtotal": 98,
+    "impuestos": 92,
+    "tasa_iva": 90,
+    "total": 99,
+    "condiciones_pago": 96
+  },
+  "texto_completo": "CS\nCasanova Servicios SAPI de CV\nPeriférico Chiapas 515, Vieja República Democrática Popular Lao\nRFC emisor  CSS171128GQ2\nDocumento\nFactura\nSerie y folio\nB 167\nFecha de emisión\n23/07/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nServicio de limpieza\n3\n6,936.61\n20,809.83\nSoporte técnico mensual\n1\n10,775.99\n10,775.99\nHospedaje de servidores\n10\n4,553.25\n45,532.50\nServicio de cafetería\n4\n2,134.81\n8,539.24\nTraducción de documentos\n2\n5,079.13\n10,158.26\nSubtotal\n95,815.82\nIVA 16 %\n15,330.53\nTotal\n$ 111,246.35 MXN\nCondiciones de pago: Pago a 45 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          102.9,
+          84.1,
+          215.6,
+          196.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Casanova Servicios SAPI de CV",
+      "bbox": [
+        [
+          244.5,
+          97.4,
+          687.1,
+          128.8
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Periférico Chiapas 515, Vieja República Democrática Popular Lao",
+      "bbox": [
+        [
+          244.6,
+          138.9,
+          791.7,
+          159.6
+        ]
+      ]
+    },
+    "GST": {
+      "text": "CSS171128GQ2",
+      "bbox": [
+        [
+          244.6,
+          168.6,
+          495.8,
+          188.7
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1102.0,
+          244.4,
+          1169.8,
+          264.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "B 167",
+      "bbox": [
+        [
+          1119.8,
+          275.7,
+          1169.8,
+          295.5
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "23/07/2026",
+      "bbox": [
+        [
+          1076.1,
+          306.9,
+          1169.9,
+          326.8
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1128.3,
+          338.2,
+          1170.0,
+          358.0
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          103.2,
+          275.4,
+          422.7,
+          297.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          103.3,
+          306.9,
+          256.1,
+          329.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de limpieza 3 6,936.61 20,809.83\nSoporte técnico mensual 1 10,775.99 10,775.99\nHospedaje de servidores 10 4,553.25 45,532.50\nServicio de cafetería 4 2,134.81 8,539.24\nTraducción de documentos 2 5,079.13 10,158.26",
+      "bbox": [
+        [
+          103.5,
+          421.9,
+          1170.5,
+          657.2
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "95,815.82",
+      "bbox": [
+        [
+          1078.0,
+          696.9,
+          1170.6,
+          719.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "15,330.53",
+      "bbox": [
+        [
+          1078.0,
+          730.2,
+          1170.7,
+          752.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "111,246.35",
+      "bbox": [
+        [
+          962.3,
+          768.6,
+          1170.7,
+          795.2
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 45 días",
+      "bbox": [
+        [
+          104.3,
+          868.7,
+          417.0,
+          889.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-014"
+    ]
+  },
+  "nota_oculta": null
+}

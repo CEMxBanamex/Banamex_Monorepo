@@ -1,0 +1,264 @@
+{
+  "archivo": "piloto_012.png",
+  "grupo": "evaluacion",
+  "caso_id": null,
+  "escenario": "total_no_cuadra",
+  "descripcion": "El total impreso no es subtotal + impuestos",
+  "layout": "moderna",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "3f0333fccf72a83c67da838f62adf9801bd0525374e13102b6b652cc0db99ea7",
+  "tamano_bytes": 114688,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "62282276",
+      "fecha": "21/07/2026",
+      "emisor_nombre": "Bermúdez Consultores SAPI de CV",
+      "emisor_rfc": "BCS091217EXF",
+      "emisor_direccion": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "receptor_nombre": "Grupo Financiero Demo SA de CV",
+      "receptor_rfc": "GFD960701AB4",
+      "moneda": "MXN",
+      "subtotal": "159,900.55",
+      "impuestos": "25,584.09",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "185,884.64",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-07-21",
+      "subtotal": "159900.55",
+      "impuestos": "25584.09",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "185884.64"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "5",
+        "precio_unitario": "19,485.14",
+        "importe": "97,425.70"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "1",
+        "precio_unitario": "25,827.34",
+        "importe": "25,827.34"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "4",
+        "precio_unitario": "7,436.81",
+        "importe": "29,747.24"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "2,275.34",
+        "importe": "2,275.34"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "4,624.93",
+        "importe": "4,624.93"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 94,
+    "fecha": 90,
+    "emisor_nombre": 95,
+    "emisor_rfc": 94,
+    "emisor_direccion": 92,
+    "receptor_nombre": 94,
+    "receptor_rfc": 96,
+    "moneda": 98,
+    "subtotal": 95,
+    "impuestos": 94,
+    "tasa_iva": 92,
+    "total": 92,
+    "condiciones_pago": 97
+  },
+  "texto_completo": "BC\nBermúdez Consultores SAPI de CV\nAvenida Nuevo León 825, San Fabiola de la Montaña\nRFC emisor  BCS091217EXF\nDocumento\nFactura\nSerie y folio\n62282276\nFecha de emisión\n21/07/2026\nMoneda\nMXN\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n5\n19,485.14\n97,425.70\nDesarrollo de reporte analítico\n1\n25,827.34\n25,827.34\nMantenimiento preventivo de equipo\n4\n7,436.81\n29,747.24\nPapelería y artículos de oficina\n1\n2,275.34\n2,275.34\nHospedaje de servidores\n1\n4,624.93\n4,624.93\nSubtotal\n159,900.55\nIVA 16 %\n25,584.09\nTotal\n$ 185,884.64 MXN\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "LOGO": {
+      "text": "",
+      "bbox": [
+        [
+          104.2,
+          83.3,
+          216.7,
+          195.8
+        ]
+      ]
+    },
+    "SELLER_NAME": {
+      "text": "Bermúdez Consultores SAPI de CV",
+      "bbox": [
+        [
+          245.8,
+          97.5,
+          732.0,
+          128.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+      "bbox": [
+        [
+          245.8,
+          139.2,
+          690.9,
+          158.9
+        ]
+      ]
+    },
+    "GST": {
+      "text": "BCS091217EXF",
+      "bbox": [
+        [
+          245.8,
+          168.3,
+          493.8,
+          188.0
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1103.1,
+          245.4,
+          1170.8,
+          265.1
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "62282276",
+      "bbox": [
+        [
+          1087.4,
+          276.7,
+          1170.8,
+          296.4
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "21/07/2026",
+      "bbox": [
+        [
+          1077.0,
+          307.9,
+          1170.8,
+          327.6
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          1129.2,
+          339.2,
+          1170.8,
+          358.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Grupo Financiero Demo SA de CV",
+      "bbox": [
+        [
+          104.2,
+          275.0,
+          423.7,
+          296.9
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "GFD960701AB4",
+      "bbox": [
+        [
+          104.2,
+          306.2,
+          257.0,
+          328.1
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Servicio de consultoría 5 19,485.14 97,425.70\nDesarrollo de reporte analítico 1 25,827.34 25,827.34\nMantenimiento preventivo de equipo 4 7,436.81 29,747.24\nPapelería y artículos de oficina 1 2,275.34 2,275.34\nHospedaje de servidores 1 4,624.93 4,624.93",
+      "bbox": [
+        [
+          104.2,
+          422.9,
+          1170.8,
+          656.2
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "159,900.55",
+      "bbox": [
+        [
+          1066.6,
+          697.9,
+          1170.8,
+          719.8
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "25,584.09",
+      "bbox": [
+        [
+          1078.2,
+          731.2,
+          1170.8,
+          753.1
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "185,884.64",
+      "bbox": [
+        [
+          962.4,
+          769.6,
+          1170.8,
+          795.8
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          104.2,
+          868.3,
+          416.9,
+          888.0
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-014"
+    ]
+  },
+  "nota_oculta": null
+}

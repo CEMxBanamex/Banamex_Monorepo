@@ -1,0 +1,31 @@
+{
+  "archivo": "clientes_fechas.xlsx",
+  "escenario": "fechas_invalidas",
+  "descripcion": "Fechas de alta inexistentes, futuras y anteriores a 2000",
+  "hoja": "clientes",
+  "caso_id": null,
+  "fecha_recepcion": "2026-11-02",
+  "esperado": {
+    "resultado": "rechazado",
+    "reglas": [
+      "R-104"
+    ],
+    "filas": {
+      "R-104": [
+        10,
+        22,
+        31,
+        45
+      ]
+    }
+  },
+  "grupo": "evaluacion",
+  "total_registros": 50,
+  "columnas": [
+    "id_cliente",
+    "nombre",
+    "rfc",
+    "correo_contacto",
+    "alta"
+  ]
+}

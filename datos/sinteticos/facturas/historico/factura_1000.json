@@ -1,0 +1,239 @@
+{
+  "archivo": "factura_1000.png",
+  "grupo": "historico",
+  "caso_id": "F-1000",
+  "escenario": "correcta",
+  "descripcion": "",
+  "layout": "clasica",
+  "formato": "png",
+  "paginas": 1,
+  "sha256": "3fa7af7c90bcfcfdcd20fa9bc6a14f4f0360a85a976bb67bbe25ba03bfcaa1f6",
+  "tamano_bytes": 97486,
+  "fecha_recepcion": "2026-03-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": "FAC-002023",
+      "fecha": "13/02/2026",
+      "emisor_nombre": "Salinas Tecnología S de RL de CV",
+      "emisor_rfc": "STS020102K59",
+      "emisor_direccion": "Privada Sur López 302, San Fabiola de la Montaña",
+      "receptor_nombre": "Banco Demo SA, Institución de Banca Múltiple",
+      "receptor_rfc": "BDM970315QW2",
+      "moneda": "MXN",
+      "subtotal": "149,987.56",
+      "impuestos": "23,998.01",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "173,985.57",
+      "condiciones_pago": "Pago a 30 días"
+    },
+    "normalizados": {
+      "fecha": "2026-02-13",
+      "subtotal": "149987.56",
+      "impuestos": "23998.01",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "173985.57"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Auditoría de seguridad informática",
+        "cantidad": "4",
+        "precio_unitario": "22,262.59",
+        "importe": "89,050.36"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "3",
+        "precio_unitario": "2,537.50",
+        "importe": "7,612.50"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "5",
+        "precio_unitario": "10,664.94",
+        "importe": "53,324.70"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 94,
+    "fecha": 91,
+    "emisor_nombre": 91,
+    "emisor_rfc": 98,
+    "emisor_direccion": 99,
+    "receptor_nombre": 95,
+    "receptor_rfc": 95,
+    "moneda": 97,
+    "subtotal": 99,
+    "impuestos": 99,
+    "tasa_iva": 90,
+    "total": 95,
+    "condiciones_pago": 99
+  },
+  "texto_completo": "Salinas Tecnología S de RL de CV\nRFC STS020102K59\nPrivada Sur López 302, San Fabiola de la Montaña\nFACTURA\nFolio FAC-002023\nFecha 13/02/2026\nReceptor\nBanco Demo SA, Institución de Banca Múltiple\nRFC BDM970315QW2\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nAuditoría de seguridad informática\n4\n22,262.59\n89,050.36\nLicencia anual de software\n3\n2,537.50\n7,612.50\nSoporte técnico mensual\n5\n10,664.94\n53,324.70\nSubtotal\n149,987.56\nIVA 16 %\n23,998.01\nTotal\n$ 173,985.57\nCondiciones de pago: Pago a 30 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Salinas Tecnología S de RL de CV",
+      "bbox": [
+        [
+          104.2,
+          98.3,
+          643.2,
+          133.3
+        ]
+      ]
+    },
+    "GST": {
+      "text": "STS020102K59",
+      "bbox": [
+        [
+          104.2,
+          145.8,
+          299.9,
+          167.7
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Privada Sur López 302, San Fabiola de la Montaña",
+      "bbox": [
+        [
+          104.2,
+          175.0,
+          576.6,
+          196.9
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "FACTURA",
+      "bbox": [
+        [
+          1029.9,
+          101.7,
+          1170.8,
+          132.3
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "FAC-002023",
+      "bbox": [
+        [
+          1001.8,
+          145.8,
+          1170.8,
+          167.7
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "13/02/2026",
+      "bbox": [
+        [
+          1002.9,
+          175.0,
+          1170.8,
+          196.9
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Banco Demo SA, Institución de Banca Múltiple",
+      "bbox": [
+        [
+          104.2,
+          283.3,
+          534.9,
+          305.2
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "BDM970315QW2",
+      "bbox": [
+        [
+          104.2,
+          312.5,
+          316.0,
+          334.4
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          104.2,
+          341.7,
+          237.3,
+          363.5
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Auditoría de seguridad informática 4 22,262.59 89,050.36\nLicencia anual de software 3 2,537.50 7,612.50\nSoporte técnico mensual 5 10,664.94 53,324.70",
+      "bbox": [
+        [
+          104.2,
+          402.1,
+          1170.8,
+          560.4
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "149,987.56",
+      "bbox": [
+        [
+          1066.6,
+          602.1,
+          1170.8,
+          624.0
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "23,998.01",
+      "bbox": [
+        [
+          1078.2,
+          635.4,
+          1170.8,
+          657.3
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "173,985.57",
+      "bbox": [
+        [
+          1024.9,
+          673.8,
+          1170.8,
+          700.0
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 30 días",
+      "bbox": [
+        [
+          104.2,
+          762.1,
+          416.9,
+          781.8
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "aceptado",
+    "reglas": []
+  },
+  "nota_oculta": null
+}

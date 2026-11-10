@@ -1,0 +1,229 @@
+{
+  "archivo": "demo_nota_credito.pdf",
+  "grupo": "demo",
+  "caso_id": null,
+  "escenario": "demo_sin_politica",
+  "descripcion": "Para subir en vivo: nota de crédito sin política aplicable",
+  "layout": "banda",
+  "formato": "pdf",
+  "paginas": 1,
+  "sha256": "b287a9e8ef157086040d04545c09848d4bf8ba527e10e9cd74bb52761abefa94",
+  "tamano_bytes": 2413,
+  "fecha_recepcion": "2026-11-02",
+  "copia_de": null,
+  "verdad": {
+    "tipo_documento": "nota_credito",
+    "campos": {
+      "folio": "11247751",
+      "fecha": "29 de octubre de 2026",
+      "emisor_nombre": "Vera Grupo SAPI de CV",
+      "emisor_rfc": "VGS9607276ET",
+      "emisor_direccion": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "receptor_nombre": "Servicios Corporativos Demo SA de CV",
+      "receptor_rfc": "SCD050920LM8",
+      "moneda": "MXN",
+      "subtotal": "9,735.30",
+      "impuestos": "1,557.65",
+      "tasa_iva": "IVA 16 %",
+      "retenciones": null,
+      "total": "11,292.95",
+      "condiciones_pago": "Pago a 15 días"
+    },
+    "normalizados": {
+      "fecha": "2026-10-29",
+      "subtotal": "9735.30",
+      "impuestos": "1557.65",
+      "tasa_iva": "0.16",
+      "retenciones": "0.00",
+      "total": "11292.95"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "2",
+        "precio_unitario": "4,867.65",
+        "importe": "9,735.30"
+      }
+    ]
+  },
+  "lectura_simulada": {},
+  "confianza_simulada": {
+    "folio": 99,
+    "fecha": 99,
+    "emisor_nombre": 95,
+    "emisor_rfc": 96,
+    "emisor_direccion": 98,
+    "receptor_nombre": 91,
+    "receptor_rfc": 96,
+    "moneda": 92,
+    "subtotal": 91,
+    "impuestos": 90,
+    "tasa_iva": 94,
+    "total": 91,
+    "condiciones_pago": 90
+  },
+  "texto_completo": "Vera Grupo SAPI de CV\nRetorno Farías 464, Nueva San Vicente y las Granadinas\nNOTA DE CRÉDITO\nEMISOR\nRFC: VGS9607276ET\nNo. de factura: 11247751\nExpedida el 29 de octubre de 2026\nFACTURAR A\nServicios Corporativos Demo SA de CV\nRFC: SCD050920LM8\nMoneda: MXN\nConcepto\nCant.\nP. unitario\nImporte\nSoporte técnico mensual\n2\n4,867.65\n9,735.30\nSubtotal\n9,735.30\nIVA 16 %\n1,557.65\nTotal\n$ 11,292.95 MXN\nCondiciones de pago: Pago a 15 días",
+  "anotacion_fatura": {
+    "SELLER_NAME": {
+      "text": "Vera Grupo SAPI de CV",
+      "bbox": [
+        [
+          83.3,
+          63.8,
+          502.2,
+          103.1
+        ]
+      ]
+    },
+    "SELLER_ADDRESS": {
+      "text": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+      "bbox": [
+        [
+          83.3,
+          126.7,
+          561.7,
+          146.4
+        ]
+      ]
+    },
+    "TITLE": {
+      "text": "NOTA DE CRÉDITO",
+      "bbox": [
+        [
+          805.1,
+          60.4,
+          1191.7,
+          104.2
+        ]
+      ]
+    },
+    "GST": {
+      "text": "VGS9607276ET",
+      "bbox": [
+        [
+          104.2,
+          291.7,
+          310.3,
+          313.5
+        ]
+      ]
+    },
+    "NUMBER": {
+      "text": "11247751",
+      "bbox": [
+        [
+          104.2,
+          325.0,
+          339.3,
+          346.9
+        ]
+      ]
+    },
+    "DATE": {
+      "text": "29 de octubre de 2026",
+      "bbox": [
+        [
+          104.2,
+          358.3,
+          427.3,
+          380.2
+        ]
+      ]
+    },
+    "BUYER": {
+      "text": "Servicios Corporativos Demo SA de CV",
+      "bbox": [
+        [
+          691.7,
+          291.7,
+          1058.7,
+          313.5
+        ]
+      ]
+    },
+    "BUYER_TAX_ID": {
+      "text": "SCD050920LM8",
+      "bbox": [
+        [
+          691.7,
+          325.0,
+          900.1,
+          346.9
+        ]
+      ]
+    },
+    "CURRENCY": {
+      "text": "MXN",
+      "bbox": [
+        [
+          691.7,
+          358.3,
+          824.8,
+          380.2
+        ]
+      ]
+    },
+    "TABLE": {
+      "text": "Soporte técnico mensual 2 4,867.65 9,735.30",
+      "bbox": [
+        [
+          83.3,
+          443.8,
+          1191.7,
+          527.1
+        ]
+      ]
+    },
+    "SUB_TOTAL": {
+      "text": "9,735.30",
+      "bbox": [
+        [
+          1089.8,
+          585.4,
+          1170.8,
+          607.3
+        ]
+      ]
+    },
+    "TAX": {
+      "text": "1,557.65",
+      "bbox": [
+        [
+          1089.8,
+          618.8,
+          1170.8,
+          640.6
+        ]
+      ]
+    },
+    "TOTAL": {
+      "text": "11,292.95",
+      "bbox": [
+        [
+          976.3,
+          657.1,
+          1170.8,
+          683.3
+        ]
+      ]
+    },
+    "CONDITIONS": {
+      "text": "Condiciones de pago: Pago a 15 días",
+      "bbox": [
+        [
+          83.3,
+          755.8,
+          396.0,
+          775.5
+        ]
+      ]
+    }
+  },
+  "esperado": {
+    "resultado": "humana",
+    "reglas": [
+      "R-031"
+    ]
+  },
+  "nota_oculta": null
+}
