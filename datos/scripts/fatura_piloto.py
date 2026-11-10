@@ -33,13 +33,46 @@ MAPA = {
 }
 
 
+MONTOS = {"subtotal", "impuestos", "total", "descuento", "saldo"}
+RE_ETIQUETA = {
+    "folio": re.compile(r"^invoice\s*(?:number|id|#)?\s*[:#]?\s*", re.I),
+    "fecha": re.compile(r"^[^:]*:\s*"),
+    "fecha_vencimiento": re.compile(r"^[^:]*:\s*"),
+    "receptor_nombre": re.compile(r"^(?:buyer|bill[ _]to)\s*:\s*", re.I),
+}
+
+
+def limpiar(campo: str, texto: str):
+    """Deja solo el valor que el modelo debe leer: FATURA guarda la etiqueta impresa junto al valor
+    ('Invoice Date: 26-Jul-2009', 'TOTAL : 447.04 USD', 'TAX:VAT (4.17%): 12.21 EUR')."""
+    t = " ".join(str(texto).split())
+    if not t:
+        return None
+    if campo in MONTOS:
+        numeros = re.findall(r"\d[\d,]*(?:\.\d+)?", t)
+        return numeros[-1] if numeros else None
+    if campo in RE_ETIQUETA:
+        if campo == "receptor_nombre":
+            t = str(texto).strip().splitlines()[0].strip()
+        t = RE_ETIQUETA[campo].sub("", t).strip()
+    return t or None
+
+
+def moneda(texto: str):
+    m = re.search(r"\b(USD|EUR|MXN)\b", str(texto))
+    return m.group(1) if m else None
+
+
 def clase(nombre: str) -> str:
     return re.sub(r"[\s\-]+", "_", str(nombre).strip().upper())
 
 
 def instancias(raiz: Path) -> list[tuple[Path, Path]]:
     """Empareja cada imagen con su anotación en formato original (busca la carpeta sin importar el nombre exacto)."""
-    imagenes = {p.stem: p for p in raiz.rglob("*.jpg")}
+    # FATURA trae cada factura dos veces (images/ y colored_images/); se usa images/, el conjunto principal.
+    imagenes = {}
+    for p in sorted(raiz.rglob("*.jpg"), key=lambda p: p.parent.name != "images"):
+        imagenes.setdefault(p.stem, p)
     anotaciones = {}
     for p in raiz.rglob("*.json"):
         ruta = str(p).lower()
@@ -70,17 +103,20 @@ def objetos(crudo) -> list[tuple[str, str, list]]:
 
 def convertir(img: Path, ann: Path) -> dict:
     crudo = json.loads(ann.read_text(encoding="utf-8"))
-    campos, cajas = {}, {}
+    campos, impreso, cajas = {}, {}, {}
     for c, texto, bbox in objetos(crudo):
         if isinstance(texto, list):
             texto = " ".join(map(str, texto))
         cajas.setdefault(c, {"text": texto, "bbox": bbox})
         if c in MAPA and MAPA[c] not in campos:
-            campos[MAPA[c]] = str(texto).strip() or None
+            campos[MAPA[c]] = limpiar(MAPA[c], texto)
+            impreso[MAPA[c]] = str(texto).strip()
+        if c in ("TOTAL", "SUB_TOTAL") and "moneda" not in campos and moneda(texto):
+            campos["moneda"] = moneda(texto)
     m = re.match(r"(Template\d+)", img.stem, re.IGNORECASE)
     return {
         "archivo": img.name, "grupo": "fatura", "caso_id": None, "escenario": "fatura", "plantilla": m.group(1) if m else "desconocida",
-        "verdad": {"tipo_documento": "factura", "campos": campos, "normalizados": {}, "conceptos": []},
+        "verdad": {"tipo_documento": "factura", "campos": campos, "texto_impreso": impreso, "normalizados": {}, "conceptos": []},
         "anotacion_fatura": cajas, "esperado": {"resultado": None, "reglas": []},
         "fuente": "FATURA (Limam, Dhiaf y Kessentini, 2023), CC BY 4.0",
     }

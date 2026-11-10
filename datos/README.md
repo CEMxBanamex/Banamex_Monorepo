@@ -110,6 +110,8 @@ python scripts/fatura_piloto.py revisar --fatura ~/Descargas/FATURA
 python scripts/fatura_piloto.py seleccionar --fatura ~/Descargas/FATURA --por-plantilla 2   # 100 facturas, 2 por plantilla
 ```
 
+En `verdad.campos` queda solo el valor (`26-Jul-2009`, `447.04`), sin la etiqueta impresa que FATURA guarda junto a él; el texto completo queda en `verdad.texto_impreso`. Las imágenes salen de `images/` (no de `colored_images/`).
+
 La selección queda en `sinteticos/fatura_piloto/` (ignorada por git) con la anotación convertida a nuestro formato. Las facturas de FATURA no son CFDI (no traen RFC del receptor ni moneda), así que sirven para medir la extracción por campo; las reglas se miden con nuestras facturas.
 
 ## Evaluación
