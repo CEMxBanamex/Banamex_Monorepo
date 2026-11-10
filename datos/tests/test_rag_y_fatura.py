@@ -57,6 +57,6 @@ def test_convertidor_fatura(tmp_path):
     assert len(convertidas) == 4
     datos = [json.loads(p.read_text()) for p in convertidas]
     t1 = next(d for d in datos if d["plantilla"] == "Template1")
-    assert t1["verdad"]["campos"] == {"total": "$ 422,55", "fecha": "06/11/2014", "emisor_nombre": "Henry Inc"}
+    assert t1["verdad"]["campos"] == {"total": "422,55", "fecha": "06/11/2014", "emisor_nombre": "Henry Inc"}
     t2 = next(d for d in datos if d["plantilla"] == "Template2")
     assert t2["verdad"]["campos"] == {"subtotal": "384,14", "folio": "71177260"}

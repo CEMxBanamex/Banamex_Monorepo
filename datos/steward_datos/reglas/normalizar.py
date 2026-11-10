@@ -10,6 +10,8 @@ MESES = {
     "may": 5, "mayo": 5, "jun": 6, "junio": 6, "jul": 7, "julio": 7, "ago": 8, "agosto": 8,
     "sep": 9, "sept": 9, "septiembre": 9, "oct": 10, "octubre": 10, "nov": 11, "noviembre": 11,
     "dic": 12, "diciembre": 12,
+    "jan": 1, "january": 1, "february": 2, "march": 3, "apr": 4, "april": 4, "june": 6, "july": 7,
+    "aug": 8, "august": 8, "september": 9, "october": 10, "november": 11, "dec": 12, "december": 12,
 }
 
 RE_RFC = re.compile(r"^([A-ZÑ&]{3,4})(\d{2})(\d{2})(\d{2})([A-Z0-9]{3})$")
@@ -57,7 +59,7 @@ def tasa(texto) -> Optional[Decimal]:
 
 
 def fecha(texto) -> Optional[date]:
-    """DD/MM/AAAA, AAAA-MM-DD, DD-MM-AAAA, '12 mar 2026', '12 de marzo de 2026'."""
+    """DD/MM/AAAA, AAAA-MM-DD, DD-MM-AAAA, '12 mar 2026', '12 de marzo de 2026', '26-Jul-2009', 'Jul 26, 2009'."""
     if vacio(texto):
         return None
     if isinstance(texto, date):
@@ -68,10 +70,14 @@ def fecha(texto) -> Optional[date]:
             return date(int(m[1]), int(m[2]), int(m[3]))
         if m := re.fullmatch(r"(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{4})", s):
             return date(int(m[3]), int(m[2]), int(m[1]))
-        if m := re.fullmatch(r"(\d{1,2})\s+(?:de\s+)?([a-záéíóú]+)\.?\s+(?:de\s+)?(\d{4})", s):
+        if m := re.fullmatch(r"(\d{1,2})[\s\-]+(?:de\s+)?([a-záéíóú]+)\.?[\s\-]+(?:de\s+)?(\d{4})", s):
             mes = MESES.get(sin_acentos(m[2]))
             if mes:
                 return date(int(m[3]), mes, int(m[1]))
+        if m := re.fullmatch(r"([a-z]+)\.?\s+(\d{1,2}),?\s+(\d{4})", s):
+            mes = MESES.get(m[1])
+            if mes:
+                return date(int(m[3]), mes, int(m[2]))
     except ValueError:
         return None
     return None
