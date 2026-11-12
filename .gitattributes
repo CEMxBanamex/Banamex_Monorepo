@@ -5,3 +5,12 @@ datos/evaluacion/*.csv binary
 *.png binary
 *.jpg binary
 *.xlsx binary
+
+# Scripts y archivos que leen bash, make, psql o Docker: siempre LF, aunque se editen en Windows
+*.sh text eol=lf
+*.sql text eol=lf
+Makefile text eol=lf
+Dockerfile text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+.env.example text eol=lf
