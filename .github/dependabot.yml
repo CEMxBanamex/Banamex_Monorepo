@@ -1,0 +1,49 @@
+# Actualizaciones semanales de dependencias. Todas van hacia dev, nunca directo a main.
+# Se agrupan por ecosistema para que llegue un PR por grupo y no uno por paquete.
+version: 2
+updates:
+  - package-ecosystem: pip
+    directories:
+      - /datos
+      - /backend
+      - /backend/grafo_casos
+      - /mcp
+    schedule:
+      interval: weekly
+    target-branch: dev
+    open-pull-requests-limit: 3
+    groups:
+      python:
+        patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    target-branch: dev
+    open-pull-requests-limit: 3
+    groups:
+      frontend:
+        patterns: ["*"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    target-branch: dev
+    open-pull-requests-limit: 2
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directories:
+      - /backend
+      - /mcp
+    schedule:
+      interval: weekly
+    target-branch: dev
+    open-pull-requests-limit: 2
+    groups:
+      docker:
+        patterns: ["*"]
