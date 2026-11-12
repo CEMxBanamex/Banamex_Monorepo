@@ -12,14 +12,16 @@ from datos.steward_datos.contratos import FacturaExtraida
 
 RAIZ = Path(__file__).resolve().parents[2]
 TOOL = "extraer_campos_factura_demo"
+# El paquete del servidor vive en mcp/steward_mcp/; la carpeta mcp/ no se importa para no chocar con el SDK `mcp`.
+RUTAS = os.pathsep.join(filter(None, [str(RAIZ / "mcp"), os.environ.get("PYTHONPATH")]))
 
 
 async def probar_analista():
     params = StdioServerParameters(
         command=sys.executable,
-        args=["-m", "agentes.servidor"],
+        args=["-m", "steward_mcp.servidor"],
         cwd=RAIZ,
-        env={**os.environ, "AUTH_MODE": "dev", "MCP_DEV_ROL": "analista"},
+        env={**os.environ, "PYTHONPATH": RUTAS, "AUTH_MODE": "dev", "MCP_DEV_ROL": "analista"},
     )
     async with stdio_client(params) as (lector, escritor):
         async with ClientSession(lector, escritor) as cliente:
@@ -48,9 +50,9 @@ async def probar_analista():
 async def probar_rol():
     params = StdioServerParameters(
         command=sys.executable,
-        args=["-m", "agentes.servidor"],
+        args=["-m", "steward_mcp.servidor"],
         cwd=RAIZ,
-        env={**os.environ, "AUTH_MODE": "dev", "MCP_DEV_ROL": "administrador"},
+        env={**os.environ, "PYTHONPATH": RUTAS, "AUTH_MODE": "dev", "MCP_DEV_ROL": "administrador"},
     )
     async with stdio_client(params) as (lector, escritor):
         async with ClientSession(lector, escritor) as cliente:

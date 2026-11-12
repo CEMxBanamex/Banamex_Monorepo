@@ -2,20 +2,22 @@
 
 Ejemplo de desarrollo con el SDK MCP de Python 1.x y transporte stdio. El cliente inicia el servidor como subproceso. No se abre un puerto; no se necesita Ollama, base de datos, AWS ni una factura real.
 
+> **Estructura (2026-11-11):** este código estaba en `agentes/`. El paquete del servidor es `mcp/steward_mcp/` y sus pruebas están en `mcp/tests/`. La carpeta `mcp/` no lleva `__init__.py` ni se importa, para no chocar con el SDK `mcp`; el servidor se ejecuta desde la raíz con `mcp/` en `PYTHONPATH` (`python -m steward_mcp.servidor`). Las pruebas ya lo configuran solas.
+
 ## Prueba local en Windows
 
 Desde la raíz del monorepo, con el entorno virtual y las dependencias de Datos ya instalados:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r .\agentes\requirements.txt
-.\.venv\Scripts\python.exe -m unittest discover -s agentes/tests -v
+.\.venv\Scripts\python.exe -m pip install -r .\mcp\requirements.txt
+.\.venv\Scripts\python.exe -m unittest discover -s mcp/tests -v
 ```
 
 Las pruebas arrancan el servidor, negocian la sesión MCP, listan las herramientas y hacen llamadas reales por stdio. El resultado esperado es `Ran 2 tests` y `OK`.
 
 ## Convención para copiar
 
-- Una herramienta por archivo en `agentes/tools/`; registrar cada una en `servidor.py`.
+- Una herramienta por archivo en `mcp/steward_mcp/tools/`; registrar cada una en `mcp/steward_mcp/servidor.py`.
 - Tipar entrada y salida con Pydantic. La demo acepta `entrada.documento_id` y devuelve el contrato compartido `FacturaExtraida` para `DEMO-001`. Los campos sin datos se omiten.
 - Obtener el rol del contexto proporcionado por el servidor. En este ejemplo local, el proceso requiere `AUTH_MODE=dev` y `MCP_DEV_ROL=analista` o `administrador`. La demo permite solo `analista` para demostrar la verificación. Esta configuración no autentica usuarios; al conectar un servidor de red habrá que validar el JWT y establecer el contexto por solicitud.
 - Comunicar errores esperados con `ToolError` y un código estable. La demo usa `ROL_NO_AUTORIZADO` y `DOCUMENTO_NO_ENCONTRADO`; el cliente recibe `isError=true`.

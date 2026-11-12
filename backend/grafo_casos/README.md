@@ -17,13 +17,15 @@ al analista; la identidad, los permisos y la persistencia quedan para la
 integración. La comparación aritmética es una regla de demostración, no la
 validación completa del proyecto.
 
+> **Estructura (2026-11-11):** este código estaba en `agentes/grafo_casos/`; ahora vive en `backend/grafo_casos/`.
+
 ## Ejecutar las pruebas en Windows
 
 Desde la raíz del monorepo, con el entorno virtual ya creado:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r .\agentes\grafo_casos\requirements.txt
-.\.venv\Scripts\python.exe -B -m unittest discover -s agentes/grafo_casos/tests -v
+.\.venv\Scripts\python.exe -m pip install -r .\backend\grafo_casos\requirements.txt
+.\.venv\Scripts\python.exe -B -m unittest discover -s backend/grafo_casos/tests -v
 ```
 
 Resultado esperado: `Ran 3 tests` y `OK`. Se comprueba la pausa sin decisión,

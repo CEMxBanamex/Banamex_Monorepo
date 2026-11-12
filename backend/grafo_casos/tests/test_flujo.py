@@ -2,7 +2,7 @@ import unittest
 
 from pydantic import ValidationError
 
-from agentes.grafo_casos.flujo import FlujoCasos
+from backend.grafo_casos.flujo import FlujoCasos
 
 
 class TestFlujoCasos(unittest.TestCase):
