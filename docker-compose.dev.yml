@@ -1,0 +1,175 @@
+# Entorno local: PostgreSQL + pgvector, S3 local, backend y servidor MCP con recarga en caliente.
+# El frontend corre fuera de Docker (npm run dev en frontend/).
+#
+#   cp .env.example .env
+#   docker compose -f docker-compose.dev.yml up -d --build
+#
+# Tareas (perfil "tareas", se ejecutan con run): migraciones, carga y pruebas. Ver el Makefile y el README.
+name: dsa
+
+x-backend: &imagen-backend
+  build:
+    context: .
+    dockerfile: backend/Dockerfile
+  image: dsa-backend:local
+  # El código se monta desde tu copia del repo; la imagen solo aporta Python y las dependencias.
+  volumes:
+    - .:/app
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.1-pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Copia .env.example a .env}
+      POSTGRES_DB: ${POSTGRES_DB:-dsa_local}
+      POSTGRES_DB_PRUEBAS: ${POSTGRES_DB_PRUEBAS:-dsa_pruebas}
+      CLAVE_MIGRACIONES: ${CLAVE_MIGRACIONES:?Copia .env.example a .env}
+      CLAVE_BACKEND: ${CLAVE_BACKEND:?Copia .env.example a .env}
+      CLAVE_MCP: ${CLAVE_MCP:?Copia .env.example a .env}
+      CLAVE_CONSULTAS: ${CLAVE_CONSULTAS:?Copia .env.example a .env}
+      CLAVE_CARGA: ${CLAVE_CARGA:?Copia .env.example a .env}
+    volumes:
+      - pgdatos:/var/lib/postgresql/data
+      - ./db/roles:/db/roles:ro
+      - ./db/local/inicializar.sh:/docker-entrypoint-initdb.d/10-inicializar.sh:ro
+    ports:
+      - "127.0.0.1:${POSTGRES_PUERTO:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # S3 local. MinIO dejó de publicar imágenes en Docker Hub; SeaweedFS expone la misma API de S3.
+  # Sin usuarios configurados acepta cualquier credencial (solo local).
+  s3:
+    image: chrislusf/seaweedfs:3.97
+    restart: unless-stopped
+    command: ["server", "-dir=/data", "-ip=s3", "-ip.bind=0.0.0.0", "-s3", "-master.volumeSizeLimitMB=256"]
+    volumes:
+      - s3datos:/data
+    ports:
+      - "127.0.0.1:${S3_PUERTO:-8333}:8333"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8333/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  # Crea el bucket y termina. Si ya existe, no hace nada.
+  s3-bucket:
+    image: chrislusf/seaweedfs:3.97
+    depends_on:
+      s3:
+        condition: service_healthy
+    environment:
+      S3_BUCKET: ${S3_BUCKET:?Copia .env.example a .env}
+    entrypoint: ["/bin/sh", "-c"]
+    command: ['echo "s3.bucket.create -name $${S3_BUCKET}" | weed shell -master=s3:9333 -filer=s3:8888']
+    restart: "no"
+
+  mcp:
+    build:
+      context: .
+      dockerfile: mcp/Dockerfile
+    image: dsa-mcp:local
+    restart: unless-stopped
+    command: ["watchfiles", "--filter", "python", "python -m steward_mcp.servidor", "mcp", "datos/steward_datos"]
+    environment:
+      AUTH_MODE: ${AUTH_MODE:-dev}
+      MCP_DEV_ROL: ${MCP_DEV_ROL:-analista}
+      DATABASE_URL: ${MCP_DATABASE_URL:?Copia .env.example a .env}
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+      EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}
+    volumes:
+      - .:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:${MCP_PUERTO:-8001}:8001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  backend:
+    <<: *imagen-backend
+    restart: unless-stopped
+    command: ["uvicorn", "backend.api.main:app", "--host", "0.0.0.0", "--port", "8000",
+              "--reload", "--reload-dir", "backend", "--reload-dir", "datos/steward_datos"]
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Copia .env.example a .env}
+      CONSULTAS_DATABASE_URL: ${CONSULTAS_DATABASE_URL:?Copia .env.example a .env}
+      AUTH_MODE: ${AUTH_MODE:-dev}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+      EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}
+      MCP_URL: ${MCP_URL:-http://mcp:8001/mcp}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      S3_BUCKET: ${S3_BUCKET:?Copia .env.example a .env}
+      S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:-}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      # Credenciales falsas para el S3 local (boto3 exige firmar). En AWS se usa el perfil de la instancia.
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+      COGNITO_USER_POOL_ID: ${COGNITO_USER_POOL_ID:-}
+      COGNITO_CLIENT_ID: ${COGNITO_CLIENT_ID:-}
+    ports:
+      - "127.0.0.1:${BACKEND_PUERTO:-8000}:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mcp:
+        condition: service_healthy
+      s3-bucket:
+        condition: service_completed_successfully
+
+  # --- Tareas: docker compose -f docker-compose.dev.yml run --rm <servicio> ---------------------------------------
+  migraciones:
+    <<: *imagen-backend
+    profiles: ["tareas"]
+    environment:
+      DATABASE_URL: ${MIGRACIONES_DATABASE_URL:?Copia .env.example a .env}
+    command: ["alembic", "-c", "db/migrations/alembic.ini", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  carga:
+    <<: *imagen-backend
+    profiles: ["tareas"]
+    environment:
+      DATABASE_URL: ${CARGA_DATABASE_URL:?Copia .env.example a .env}
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+      EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}
+    command: ["python", "db/semillas/cargar_semilla.py", "--embeddings"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  pruebas:
+    <<: *imagen-backend
+    profiles: ["tareas"]
+    environment:
+      DATABASE_URL_PRUEBAS: ${DATABASE_URL_PRUEBAS:?Copia .env.example a .env}
+      EMBEDDING_PROVEEDOR: falso
+    command: ["sh", "-c", "cd datos && python -m pytest -q -p no:cacheprovider && cd .. && python -m unittest discover -s backend/tests && python -m unittest discover -s backend/grafo_casos/tests"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  pruebas-mcp:
+    image: dsa-mcp:local
+    profiles: ["tareas"]
+    environment:
+      MCP_TRANSPORT: stdio
+    volumes:
+      - .:/app
+    command: ["python", "-m", "unittest", "discover", "-s", "mcp/tests", "-v"]
+
+volumes:
+  pgdatos:
+  s3datos:

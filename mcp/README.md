@@ -10,8 +10,11 @@ Desde la raíz del monorepo, con el entorno virtual y las dependencias de Datos 
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r .\mcp\requirements.txt
+.\.venv\Scripts\python.exe -m pip install -e .\datos
 .\.venv\Scripts\python.exe -m unittest discover -s mcp/tests -v
 ```
+
+`pip install -e .\datos` instala `steward_datos` en modo editable: el servidor lo importa como `steward_datos`, igual que el resto del repo. Con Docker no hace falta: `make test` (o `docker compose -f docker-compose.dev.yml run --rm pruebas-mcp`) corre estas mismas pruebas.
 
 Las pruebas arrancan el servidor, negocian la sesión MCP, listan las herramientas y hacen llamadas reales por stdio. El resultado esperado es `Ran 2 tests` y `OK`.
 
@@ -24,3 +27,7 @@ Las pruebas arrancan el servidor, negocian la sesión MCP, listan las herramient
 - Emitir pasos breves mediante `ctx.report_progress`. El cliente debe solicitar progreso y luego puede mostrar los mensajes en el chat. La demo no implementa todavía el puente al frontend.
 
 El nombre `extraer_campos_factura_demo` distingue la respuesta fija del extractor real. La firma definitiva y el transporte de integración quedan sujetos a la revisión S1-06.
+
+## En contenedor (entorno local y AWS)
+
+`mcp/Dockerfile` arranca el mismo servidor con `MCP_TRANSPORT=streamable-http`: escucha en el puerto 8001, ruta `/mcp`, solo dentro de la red de Docker (en local también en `127.0.0.1:8001`). Sin `MCP_TRANSPORT` sigue siendo stdio, como en las pruebas. `MCP_ALLOWED_HOSTS` limita los encabezados `Host` aceptados (protección contra DNS rebinding). El backend lo encuentra en `MCP_URL`.

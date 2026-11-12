@@ -8,6 +8,7 @@ MVP de un sistema multiagente que ayuda a los analistas de Banamex a revisar doc
 
 ## Tabla de contenido
 
+0. [Levantar en local](#levantar-en-local)
 1. [El problema](#el-problema)
 2. [La solución](#la-solución)
 3. [Arquitectura](#arquitectura)
@@ -18,6 +19,62 @@ MVP de un sistema multiagente que ayuda a los analistas de Banamex a revisar doc
 8. [Seguridad](#seguridad)
 9. [Decisiones de diseño](#decisiones-de-diseño)
 10. [Pendientes](#pendientes)
+
+---
+
+## Levantar en local
+
+Necesitas **Docker Desktop** (o Docker Engine con Compose v2) y Git. Para el frontend, Node.js 20 o superior. No hace falta Python ni PostgreSQL en tu máquina: todo corre en contenedores.
+
+```bash
+git clone https://github.com/<ORG>/<REPO>.git && cd <REPO>
+make up        # crea .env si no existe, construye y levanta postgres, s3, mcp y backend
+make migrate   # aplica las migraciones como steward_migraciones
+make datos     # carga los datos sintéticos como steward_carga
+```
+
+Listo cuando `curl http://localhost:8000/api/health` responde `{"status":"ok"}`. El frontend corre aparte:
+
+```bash
+cd frontend && npm ci && npm run dev   # http://localhost:5173
+```
+
+**Windows sin WSL (o sin `make`).** Cada objetivo es un comando de Docker Compose; córrelos en PowerShell desde la raíz del repo:
+
+| `make` | Equivalente con Docker Compose |
+|---|---|
+| (primera vez) | `copy .env.example .env` |
+| `make up` | `docker compose -f docker-compose.dev.yml up -d --build --wait` |
+| `make migrate` | `docker compose -f docker-compose.dev.yml run --rm migraciones` |
+| `make datos` | `docker compose -f docker-compose.dev.yml run --rm carga` |
+| `make test` | `docker compose -f docker-compose.dev.yml run --rm pruebas` y después `docker compose -f docker-compose.dev.yml run --rm pruebas-mcp` |
+| `make logs` | `docker compose -f docker-compose.dev.yml logs -f --tail=100` |
+| `make down` | `docker compose -f docker-compose.dev.yml down` |
+| `make reset-db` | `docker compose -f docker-compose.dev.yml down -v`, luego `up`, `migrate` y `datos` (también borra el S3 local) |
+| `make lint` | `docker run --rm -v "${PWD}:/io" -w /io ghcr.io/astral-sh/ruff:0.14.0 check datos backend mcp` |
+
+**Qué queda corriendo** (solo en `127.0.0.1`; los puertos se cambian en `.env`):
+
+| Servicio | Puerto | Para qué |
+|---|---|---|
+| `backend` | 8000 | FastAPI. Se recarga al guardar cambios en `backend/` o `datos/steward_datos/` |
+| `mcp` | 8001 | Servidor MCP por HTTP en `/mcp`. Se recarga al guardar cambios en `mcp/` o `datos/steward_datos/` |
+| `postgres` | 5432 | PostgreSQL 16 + pgvector. Bases `dsa_local` (la aplicación) y `dsa_pruebas` (desechable, para `make test`) |
+| `s3` | 8333 | S3 local (SeaweedFS) con el bucket `dsa-local` |
+
+**Usuarios de la base.** Igual que en AWS, cada componente entra con su propio usuario (`steward_backend`, `steward_mcp`, `steward_consultas`, `steward_migraciones`, `steward_carga`). Los crea [`db/roles/`](db/roles), el mismo SQL que se usa en RDS, con las contraseñas locales de `.env`. Para entrar con DBeaver o pgAdmin: `localhost:5432`, base `dsa_local`, usuario `postgres` y la contraseña `POSTGRES_PASSWORD` de tu `.env`.
+
+**Ollama.** `make datos` funciona sin GPU porque `.env.example` trae `EMBEDDING_PROVEEDOR=falso` (vectores deterministas). Para usar modelos reales, cambia en `.env`:
+
+- `OLLAMA_BASE_URL=http://host.docker.internal:11434` si Ollama corre en tu propia máquina;
+- `OLLAMA_BASE_URL=http://<nombre-o-IP-de-Tailscale>:11434` para usar una laptop con GPU del equipo (necesitas Tailscale y acceso a esa máquina);
+- `EMBEDDING_PROVEEDOR=ollama` para generar embeddings reales con `embeddinggemma:300m`, y luego `make reset-db`.
+
+**Problemas comunes.**
+
+- *`La base ya tiene casos`* al correr `make datos`: la semilla solo se carga en una base recién migrada. Usa `make reset-db`.
+- *Cambiaste una contraseña en `.env` y ya no conecta:* las contraseñas se aplican al crear el volumen. Usa `make reset-db`.
+- *Puerto ocupado:* cambia `POSTGRES_PUERTO`, `BACKEND_PUERTO`, `MCP_PUERTO` o `S3_PUERTO` en `.env`.
 
 ---
 

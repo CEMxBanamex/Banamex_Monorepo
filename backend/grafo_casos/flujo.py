@@ -6,7 +6,7 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.types import Command, interrupt
 from pydantic import BaseModel, ConfigDict, Field
 
-from datos.steward_datos.contratos import FacturaExtraida, Resultado
+from steward_datos.contratos import FacturaExtraida, Resultado
 
 from .herramientas_demo import extraer_factura_demo, redactar_demo, validar_factura_demo
 

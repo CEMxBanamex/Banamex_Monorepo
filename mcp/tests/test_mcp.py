@@ -8,7 +8,7 @@ from pathlib import Path
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-from datos.steward_datos.contratos import FacturaExtraida
+from steward_datos.contratos import FacturaExtraida
 
 RAIZ = Path(__file__).resolve().parents[2]
 TOOL = "extraer_campos_factura_demo"

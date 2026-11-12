@@ -1,7 +1,7 @@
 """Herramientas simuladas para una factura de prueba."""
 from decimal import Decimal
 
-from datos.steward_datos.contratos import CampoLeido, FacturaExtraida, Resultado
+from steward_datos.contratos import CampoLeido, FacturaExtraida, Resultado
 
 
 def extraer_factura_demo() -> FacturaExtraida:

@@ -25,6 +25,7 @@ Desde la raíz del monorepo, con el entorno virtual ya creado:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r .\backend\grafo_casos\requirements.txt
+.\.venv\Scripts\python.exe -m pip install -e .\datos
 .\.venv\Scripts\python.exe -B -m unittest discover -s backend/grafo_casos/tests -v
 ```
 

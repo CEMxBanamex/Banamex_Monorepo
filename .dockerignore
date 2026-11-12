@@ -1,0 +1,22 @@
+# El contexto de build es la raíz del repo; los Dockerfiles solo copian datos/, backend/ y mcp/.
+.git
+.github
+.claude
+.env
+.env.*
+!.env.example
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.ruff_cache
+**/*.egg-info
+**/.venv
+**/node_modules
+frontend
+resources
+docs
+infra
+deploy
+db
+datos/tests
+datos/evaluacion
