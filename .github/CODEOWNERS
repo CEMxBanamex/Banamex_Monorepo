@@ -1,4 +1,5 @@
-# Dueños por carpeta. En los PR hacia main, GitHub pide la aprobación de un dueño de lo que cambió.
+# Dueños por carpeta. GitHub les pide revisión automáticamente cuando un PR toca sus archivos.
+# Por ahora es solo una sugerencia: la aprobación de un dueño no es obligatoria (ver scripts/github/configurar-repo.sh).
 #
 # Para que una persona cuente como dueña necesita permiso de escritura en el repo.
 # La última regla que coincide con un archivo es la que gana, por eso lo general va arriba.

@@ -103,8 +103,10 @@ ruleset "dev" "$(cat <<JSON
 JSON
 )"
 
-# main: PR obligatorio con 1 aprobación de un code owner, se descartan aprobaciones viejas, CI obligatorio,
+# main: PR obligatorio con 1 aprobación de cualquier integrante, se descartan aprobaciones viejas, CI obligatorio,
 # solo merge commit, sin force push ni borrado. Que el PR venga de dev lo revisa el job origen-main del CI.
+# La revisión obligatoria de code owners queda apagada para no frenar al equipo: CODEOWNERS solo sugiere a quién
+# pedirle revisión. Para exigirla, cambia require_code_owner_review a true y vuelve a correr el script.
 ruleset "main" "$(cat <<JSON
 {
   "name": "main",
@@ -117,7 +119,7 @@ ruleset "main" "$(cat <<JSON
     {"type": "pull_request", "parameters": {
       "required_approving_review_count": 1,
       "dismiss_stale_reviews_on_push": true,
-      "require_code_owner_review": true,
+      "require_code_owner_review": false,
       "require_last_push_approval": false,
       "required_review_thread_resolution": false,
       "allowed_merge_methods": ["merge"]
