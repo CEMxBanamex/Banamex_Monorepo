@@ -19,3 +19,19 @@ SELECT format('REVOKE CONNECT ON DATABASE %I FROM PUBLIC', current_database()) \
 SELECT format('GRANT CONNECT ON DATABASE %I TO %s', current_database(),
               'steward_migraciones, steward_backend, steward_mcp, steward_consultas, steward_carga, equipo_lectura, equipo_datos')
 \gexec
+
+-- Seguridad por fila: las vistas leen app.rol y app.usuario. Si steward_consultas pudiera ejecutar set_config,
+-- un SELECT de consulta libre podría cambiarse el rol. La migración 0003 intenta quitar el permiso, pero quien
+-- migra (steward_migraciones) no es dueño de la función y su REVOKE no tiene efecto; por eso se hace aquí.
+-- La aplicación fija el contexto con SET LOCAL y no depende de set_config.
+REVOKE EXECUTE ON FUNCTION pg_catalog.set_config(text, text, boolean) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION pg_catalog.set_config(text, text, boolean)
+  TO steward_migraciones, steward_backend, steward_mcp, equipo_lectura, equipo_datos;
+
+-- En RDS el usuario maestro tampoco es dueño de la función: el REVOKE puede no aplicar. Se avisa en vez de fallar.
+DO $$
+BEGIN
+  IF has_function_privilege('steward_consultas', 'pg_catalog.set_config(text, text, boolean)', 'EXECUTE') THEN
+    RAISE WARNING 'steward_consultas todavía puede ejecutar set_config en %: la seguridad por fila depende de la validación del SQL en ejecutar_consulta.', current_database();
+  END IF;
+END $$;
