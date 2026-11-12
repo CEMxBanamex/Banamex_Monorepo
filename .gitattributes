@@ -1,5 +1,5 @@
 # Archivos generados que deben viajar byte por byte (PDF con xref, CSV con CRLF, el CSV ilegible de V-0206)
-datos/sinteticos/** binary
+db/semillas/sinteticos/** binary
 datos/evaluacion/*.csv binary
 *.pdf binary
 *.png binary
