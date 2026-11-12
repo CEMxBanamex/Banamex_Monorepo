@@ -1,4 +1,4 @@
-"""Servidor MCP de desarrollo. Ejecutar desde la raíz: python -m agentes.servidor."""
+"""Servidor MCP de desarrollo. Ejecutar desde la raíz, con mcp/ en PYTHONPATH: python -m steward_mcp.servidor."""
 import os
 
 from mcp.server.fastmcp import FastMCP
