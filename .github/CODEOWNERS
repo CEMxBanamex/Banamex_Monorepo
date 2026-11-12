@@ -1,39 +1,38 @@
 # Dueños por carpeta. En los PR hacia main, GitHub pide la aprobación de un dueño de lo que cambió.
 #
-# PENDIENTE (Juan Pablo): reemplaza cada USUARIO_... por el usuario real de GitHub, con su @ (por ejemplo @octocat).
-# Mientras una línea tenga un usuario que no existe, GitHub la marca como error y la ignora; el resto sigue valiendo.
+# Para que una persona cuente como dueña necesita permiso de escritura en el repo.
 # La última regla que coincide con un archivo es la que gana, por eso lo general va arriba.
 
 # Todo lo que no tenga dueño más específico
-*                         @USUARIO_JUAN_PABLO
+*                         @MasterJuan579
 
 # Datos: esquema, migraciones, semillas, reglas, políticas y evaluación
-/datos/                   @USUARIO_IRIS @USUARIO_MARIO
-/db/migrations/           @USUARIO_IRIS @USUARIO_MARIO
-/db/semillas/             @USUARIO_IRIS @USUARIO_MARIO
-/docs/datos/              @USUARIO_IRIS @USUARIO_MARIO
+/datos/                   @Iris-Giselle-Balderas-Arreola @oropeza-m
+/db/migrations/           @Iris-Giselle-Balderas-Arreola @oropeza-m
+/db/semillas/             @Iris-Giselle-Balderas-Arreola @oropeza-m
+/docs/datos/              @Iris-Giselle-Balderas-Arreola @oropeza-m
 
 # Agentes y modelos: grafos y servidor MCP
-/backend/                 @USUARIO_CARLOS_DELGADO @USUARIO_CARLOS_RAMOS
-/mcp/                     @USUARIO_CARLOS_DELGADO @USUARIO_CARLOS_RAMOS
+/backend/                 @CDV-97 @Cmrg80
+/mcp/                     @CDV-97 @Cmrg80
 
 # Frontend
-/frontend/                @USUARIO_YAEL @USUARIO_MAURICIO
+/frontend/                @yaelgl @VictorinoStylo
 
 # Contratos: los revisa quien los consume y quien los implementa
-/contracts/               @USUARIO_JUAN_PABLO @USUARIO_CARLOS_DELGADO @USUARIO_YAEL
+/contracts/               @MasterJuan579 @CDV-97 @yaelgl
 
 # Infraestructura, CI/CD y roles de la base
-/.github/                 @USUARIO_JUAN_PABLO
-/infra/                   @USUARIO_JUAN_PABLO
-/deploy/                  @USUARIO_JUAN_PABLO
-/scripts/                 @USUARIO_JUAN_PABLO
-/db/roles/                @USUARIO_JUAN_PABLO
-/db/local/                @USUARIO_JUAN_PABLO
-/docs/ci-cd/              @USUARIO_JUAN_PABLO
-/backend/Dockerfile       @USUARIO_JUAN_PABLO
-/mcp/Dockerfile           @USUARIO_JUAN_PABLO
-/backend/api/main.py      @USUARIO_JUAN_PABLO @USUARIO_YAEL @USUARIO_MAURICIO
-/docker-compose.dev.yml   @USUARIO_JUAN_PABLO
-/Makefile                 @USUARIO_JUAN_PABLO
-/.env.example             @USUARIO_JUAN_PABLO
+/.github/                 @MasterJuan579
+/infra/                   @MasterJuan579
+/deploy/                  @MasterJuan579
+/scripts/                 @MasterJuan579
+/db/roles/                @MasterJuan579
+/db/local/                @MasterJuan579
+/docs/ci-cd/              @MasterJuan579
+/backend/Dockerfile       @MasterJuan579
+/mcp/Dockerfile           @MasterJuan579
+/backend/api/main.py      @MasterJuan579 @yaelgl @VictorinoStylo
+/docker-compose.dev.yml   @MasterJuan579
+/Makefile                 @MasterJuan579
+/.env.example             @MasterJuan579
