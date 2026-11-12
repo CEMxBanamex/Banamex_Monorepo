@@ -253,4 +253,4 @@ Ninguno de estos cambios requiere modificar la lógica del agente.
 
 ## Frente de Datos
 
-El esquema de la base, los datos sintéticos del piloto (facturas y registros con su verdad de referencia), las políticas, el catálogo de reglas, el RAG y las tools de datos del MCP están en [`datos/`](datos/README.md). Documentación: [esquema y diagrama ER](docs/datos/esquema.md), [contratos de las tools](docs/datos/contratos_tools.md) y [catálogo de reglas](docs/datos/catalogo_reglas.md).
+El esquema de la base, los datos sintéticos del piloto (facturas y registros con su verdad de referencia), las políticas, el catálogo de reglas, el RAG y las tools de datos del MCP están en [`datos/`](datos/README.md). Las migraciones están en [`db/migrations/`](db/migrations) y las semillas con los datos sintéticos en [`db/semillas/`](db/semillas). Documentación: [esquema y diagrama ER](docs/datos/esquema.md), [contratos de las tools](docs/datos/contratos_tools.md) y [catálogo de reglas](docs/datos/catalogo_reglas.md).

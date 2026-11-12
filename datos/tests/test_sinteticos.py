@@ -9,7 +9,7 @@ from steward_datos.reglas.motor import Contexto, validar_factura, validar_regist
 from steward_datos.sinteticos import anotaciones, contexto_para, factura_desde_anotacion, leer_tabla, registros
 
 if not (CARPETA_SINTETICOS / "facturas").exists():
-    pytest.skip("Genera los datos con scripts/generar_facturas.py y generar_registros.py", allow_module_level=True)
+    pytest.skip("Genera los datos con db/semillas/generar_facturas.py y generar_registros.py", allow_module_level=True)
 
 FACTURAS = list(anotaciones())
 REGISTROS = list(registros())

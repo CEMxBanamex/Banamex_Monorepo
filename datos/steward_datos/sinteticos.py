@@ -1,4 +1,4 @@
-"""Lectura de los datos sintéticos generados por scripts/generar_*.py."""
+"""Lectura de los datos sintéticos generados por db/semillas/generar_*.py."""
 import csv
 import json
 from datetime import date

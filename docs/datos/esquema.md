@@ -1,6 +1,6 @@
 # Esquema de la base de datos
 
-Tareas 0.3.1 a 0.3.5. Fuente de verdad: [`datos/steward_datos/db/models.py`](../../datos/steward_datos/db/models.py) y la migración [`0001_esquema_inicial.py`](../../datos/alembic/versions/0001_esquema_inicial.py).
+Tareas 0.3.1 a 0.3.5. Fuente de verdad: [`datos/steward_datos/db/models.py`](../../datos/steward_datos/db/models.py) y la migración [`0001_esquema_inicial.py`](../../db/migrations/versions/0001_esquema_inicial.py).
 
 ## Diagrama entidad-relación
 
@@ -255,7 +255,7 @@ Las **vistas consultables** (`v_facturas`, `v_proveedores`, `v_casos`, `v_hallaz
 | `politicas.historia` NULL = ambas | P-011 (RFC) aplica a facturas y a registros. |
 | `modelo_embedding` en cada fragmento | `buscar_politicas` filtra por el modelo configurado, así nunca compara vectores de modelos distintos. |
 | `mensajes.pasos` en JSONB | Guarda tal cual la línea de pasos que mostró el chat (eventos SSE), para reconstruir la conversación. |
-| Checkpoints de LangGraph fuera del esquema | Los crea `PostgresSaver.setup()`; `alembic/env.py` los ignora al autogenerar. |
+| Checkpoints de LangGraph fuera del esquema | Los crea `PostgresSaver.setup()`; `db/migrations/env.py` los ignora al autogenerar. |
 
 ## Permisos (mínimo privilegio)
 

@@ -1,0 +1,6 @@
+# Mismas reglas que datos/; las migraciones y los datos generados tienen sus excepciones.
+extend = "../datos/pyproject.toml"
+extend-exclude = ["semillas/sinteticos"]
+
+[lint.per-file-ignores]
+"migrations/versions/*" = ["E501"]

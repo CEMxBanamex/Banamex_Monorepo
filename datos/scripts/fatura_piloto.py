@@ -5,7 +5,7 @@
       Cuenta imágenes, plantillas y frecuencia de clases (sirve para documentar 0.4.1).
 3. python scripts/fatura_piloto.py seleccionar --fatura /ruta/a/FATURA --por-plantilla 2
       Elige N imágenes por plantilla (estratificado, con semilla fija), copia imagen + anotación convertida
-      a datos/sinteticos/fatura_piloto/ y escribe seleccion.csv.
+      a db/semillas/sinteticos/fatura_piloto/ y escribe seleccion.csv.
 
 Las facturas de FATURA no son CFDI: no traen RFC del receptor ni moneda, así que se usan para medir la
 extracción por campo (4.3.1). Las reglas se miden con nuestras facturas sintéticas (casos_referencia_*.json).

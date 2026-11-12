@@ -1,4 +1,4 @@
-"""Carga de los datos de negocio sintéticos (scripts/generar_negocio.py) en la base."""
+"""Carga de los datos de negocio sintéticos (db/semillas/generar_negocio.py) en la base."""
 import csv
 import json
 from datetime import date, datetime, timedelta

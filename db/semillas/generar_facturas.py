@@ -1,6 +1,6 @@
 """Genera facturas sintéticas con errores intencionales y su verdad de referencia (tareas 1.4.2, 1.4.3, 4.5.1, 4.7.1).
 
-Salida en datos/sinteticos/:
+Salida en db/semillas/sinteticos/:
   catalogos/proveedores.csv, catalogos/entidades_receptoras.csv
   facturas/historico/   facturas ya procesadas que se cargan como semilla (antecedentes para duplicados y para el chat)
   facturas/evaluacion/  casos del piloto: se suben como casos nuevos y se comparan contra la verdad de referencia
@@ -8,7 +8,7 @@ Salida en datos/sinteticos/:
   facturas/<grupo>/<archivo>.json   anotación de cada factura (verdad, anotación estilo FATURA, resultado esperado)
   casos_referencia.json / casos_referencia.csv  índice de todos los casos con su resultado esperado
 
-Uso:  python scripts/generar_facturas.py [--semilla 2026]
+Uso:  python db/semillas/generar_facturas.py [--semilla 2026]
 Es determinista: la misma semilla produce los mismos archivos.
 """
 import argparse
@@ -32,7 +32,7 @@ from reportlab.lib.colors import Color, HexColor, black, white
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
-RAIZ = Path(__file__).resolve().parent.parent
+RAIZ = Path(__file__).resolve().parents[2] / "datos"  # steward_datos vive en datos/
 sys.path.insert(0, str(RAIZ))
 from steward_datos.config import CARPETA_SINTETICOS  # noqa: E402
 
