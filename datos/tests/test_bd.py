@@ -76,6 +76,21 @@ def test_registrar_hallazgo_y_bitacora_inmutable():
             s.execute(text("UPDATE bitacora SET detalle = 'alterado' WHERE id = :i"), {"i": r.evento_id})
 
 
+def test_consultar_bitacora():
+    from steward_datos.contratos import ConsultarBitacoraEntrada
+    from steward_datos.tools.consultar_bitacora import consultar_bitacora
+
+    r = consultar_bitacora(ConsultarBitacoraEntrada(caso_id="F-1042"))
+    assert r.total > 0
+    assert all(e.caso_id == "F-1042" for e in r.eventos)
+
+    r_actor = consultar_bitacora(ConsultarBitacoraEntrada(actor_nombre="Ana"))
+    assert all("Ana" in e.actor_nombre for e in r_actor.eventos)
+
+    r_accion = consultar_bitacora(ConsultarBitacoraEntrada(accion="regla_aplicada"))
+    assert all(e.accion == "regla_aplicada" for e in r_accion.eventos)
+
+
 def test_ingesta_de_nueva_version_cierra_la_anterior():
     from steward_datos.db.models import Politica
     from steward_datos.db.sesion import sesion
