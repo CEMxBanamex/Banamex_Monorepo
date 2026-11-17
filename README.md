@@ -67,7 +67,7 @@ cd frontend && npm ci && npm run dev   # http://localhost:5173
 **Ollama.** `make datos` funciona sin GPU porque `.env.example` trae `EMBEDDING_PROVEEDOR=falso` (vectores deterministas). Para usar modelos reales, cambia en `.env`:
 
 - `OLLAMA_BASE_URL=http://host.docker.internal:11434` si Ollama corre en tu propia máquina;
-- `OLLAMA_BASE_URL=http://<nombre-o-IP-de-Tailscale>:11434` para usar una laptop con GPU del equipo (necesitas Tailscale y acceso a esa máquina);
+- `OLLAMA_BASE_URL=http://<IP-de-Tailscale>:11434` para usar una laptop con GPU del equipo (cómo entrar a la red de Tailscale: [`docs/ci-cd/tailscale.md`](docs/ci-cd/tailscale.md));
 - `EMBEDDING_PROVEEDOR=ollama` para generar embeddings reales con `embeddinggemma:300m`, y luego `make reset-db`.
 
 **Problemas comunes.**
