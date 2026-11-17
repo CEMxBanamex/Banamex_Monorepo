@@ -150,6 +150,20 @@ services:
       postgres:
         condition: service_healthy
 
+  # Vacía las tablas y vuelve a cargar (make datos-recargar). Usa al dueño del esquema porque pausa el trigger de
+  # solo inserción de la bitácora, algo que steward_carga no puede hacer.
+  recarga:
+    <<: *imagen-backend
+    profiles: ["tareas"]
+    environment:
+      DATABASE_URL: ${MIGRACIONES_DATABASE_URL:?Copia .env.example a .env}
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+      EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}
+    command: ["python", "db/semillas/cargar_semilla.py", "--embeddings", "--reiniciar"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   pruebas:
     <<: *imagen-backend
     profiles: ["tareas"]

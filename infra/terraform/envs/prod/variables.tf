@@ -14,6 +14,21 @@ variable "dominio" {
   type        = string
 }
 
+variable "github_repo" {
+  description = "Repo de GitHub como <org>/<repo>. La EC2 baja de ahí los archivos de deploy/ al crearse."
+  type        = string
+}
+
+variable "image_registry" {
+  description = "Registro de las imágenes, en minúsculas: ghcr.io/<org>/<repo>. Las imágenes son <registro>/backend y <registro>/mcp."
+  type        = string
+
+  validation {
+    condition     = var.image_registry == lower(var.image_registry)
+    error_message = "GHCR exige el nombre en minúsculas."
+  }
+}
+
 variable "instance_type" {
   description = "Tipo de la instancia EC2 (x86_64)."
   type        = string
