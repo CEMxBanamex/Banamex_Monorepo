@@ -6,7 +6,7 @@
 COMPOSE := docker compose -f docker-compose.dev.yml
 RUFF    := docker run --rm -v "$(CURDIR)":/io -w /io ghcr.io/astral-sh/ruff:0.14.0
 
-.PHONY: help up down logs ps migrate datos reset-db test lint fmt
+.PHONY: help up down logs ps migrate datos datos-recargar reset-db test lint fmt
 
 help: ## Lista los objetivos
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-10s %s\n", $$1, $$2}'
@@ -32,6 +32,9 @@ migrate: .env ## Aplica las migraciones como steward_migraciones
 
 datos: .env ## Carga los datos sintéticos como steward_carga (base recién migrada)
 	$(COMPOSE) run --rm carga
+
+datos-recargar: .env ## Vacía las tablas y vuelve a cargar los datos sintéticos (sin borrar la base)
+	$(COMPOSE) run --rm recarga
 
 reset-db: .env ## Borra la base, la recrea, migra y carga datos
 	$(COMPOSE) rm -s -f -v postgres

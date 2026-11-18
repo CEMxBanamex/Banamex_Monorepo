@@ -1,0 +1,13 @@
+# HTTPS de la API. API_HOST es api-dev.<DOMINIO> o api.<DOMINIO> (viene de SSM, vía .env).
+# Caddy pide el certificado a Let's Encrypt por el puerto 80 y redirige HTTP a HTTPS.
+{$API_HOST} {
+	reverse_proxy backend:8000 {
+		# El chat responde con SSE: cada evento se manda en cuanto llega, sin esperar a llenar un búfer.
+		flush_interval -1
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}

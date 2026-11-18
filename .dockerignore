@@ -17,6 +17,7 @@ resources
 docs
 infra
 deploy
-db
+db/local
+db/roles
 datos/tests
 datos/evaluacion
