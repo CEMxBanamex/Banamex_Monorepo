@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 RAIZ = Path(__file__).resolve().parent.parent
+REPO = RAIZ.parent  # migraciones en db/migrations/ y semillas en db/semillas/
 sys.path.insert(0, str(RAIZ))
 os.environ.setdefault("EMBEDDING_PROVEEDOR", "falso")
 if os.getenv("DATABASE_URL_PRUEBAS"):
@@ -33,5 +34,5 @@ def base_lista():
     with create_engine(url, isolation_level="AUTOCOMMIT").connect() as c:
         c.execute(text("DROP SCHEMA public CASCADE; CREATE SCHEMA public"))
     env = {**os.environ, "DATABASE_URL": url, "EMBEDDING_PROVEEDOR": "falso"}
-    subprocess.run(["alembic", "upgrade", "head"], cwd=RAIZ, env=env, check=True, capture_output=True)
-    subprocess.run([sys.executable, "scripts/cargar_semilla.py", "--embeddings"], cwd=RAIZ, env=env, check=True, capture_output=True)
+    subprocess.run(["alembic", "-c", str(REPO / "db" / "migrations" / "alembic.ini"), "upgrade", "head"], cwd=REPO, env=env, check=True, capture_output=True)
+    subprocess.run([sys.executable, str(REPO / "db" / "semillas" / "cargar_semilla.py"), "--embeddings"], cwd=REPO, env=env, check=True, capture_output=True)

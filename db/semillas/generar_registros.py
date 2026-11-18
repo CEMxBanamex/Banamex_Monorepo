@@ -1,6 +1,6 @@
 """Genera archivos de registros de clientes para la Historia 2, con errores intencionales y verdad de referencia.
 
-Salida en datos/sinteticos/registros/: un .xlsx o .csv por caso y un .json con lo esperado.
+Salida en db/semillas/sinteticos/registros/: un .xlsx o .csv por caso y un .json con lo esperado.
 clientes_octubre.xlsx reproduce el caso V-0207 del frontend (8 de 120 sin correo, filas 14, 27, 33, 48, 61, 79, 95 y 112).
 registros_prueba.csv reproduce V-0206: un archivo que no se puede leer.
 """
@@ -17,7 +17,7 @@ from pathlib import Path
 from faker import Faker
 from openpyxl import Workbook
 
-RAIZ = Path(__file__).resolve().parent.parent
+RAIZ = Path(__file__).resolve().parents[2] / "datos"  # steward_datos vive en datos/
 sys.path.insert(0, str(RAIZ))
 from steward_datos.config import CARPETA_SINTETICOS  # noqa: E402
 

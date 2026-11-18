@@ -1,0 +1,4 @@
+# Dependencias propias del backend. Las de steward_datos están en datos/requirements.txt
+# y las del grafo de casos en backend/grafo_casos/requirements.txt (los Dockerfiles instalan las tres).
+fastapi>=0.110
+uvicorn[standard]>=0.30

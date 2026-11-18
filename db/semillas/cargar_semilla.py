@@ -1,4 +1,4 @@
-"""Carga los datos semilla en la base (tarea 1.4.4). Requiere la migración aplicada (alembic upgrade head).
+"""Carga los datos semilla en la base (tarea 1.4.4). Requiere la migración aplicada (alembic -c db/migrations/alembic.ini upgrade head).
 
 Carga, en este orden:
   1. Padrón de proveedores y entidades receptoras (sinteticos/catalogos/).
@@ -13,7 +13,7 @@ Carga, en este orden:
 
 Los casos de sinteticos/facturas/evaluacion/ NO se cargan: se suben por la aplicación durante la evaluación.
 
-Uso:  python scripts/cargar_semilla.py [--embeddings] [--reiniciar]
+Uso:  python db/semillas/cargar_semilla.py [--embeddings] [--reiniciar]
 """
 import argparse
 import csv
@@ -25,7 +25,7 @@ from zoneinfo import ZoneInfo
 
 from sqlalchemy import text
 
-RAIZ = Path(__file__).resolve().parent.parent
+RAIZ = Path(__file__).resolve().parents[2] / "datos"  # steward_datos vive en datos/
 sys.path.insert(0, str(RAIZ))
 from steward_datos.config import CARPETA_POLITICAS, CARPETA_SINTETICOS  # noqa: E402
 from steward_datos.db.models import (  # noqa: E402
@@ -95,7 +95,7 @@ def main():
     ap.add_argument("--reiniciar", action="store_true", help="Vacía las tablas antes de cargar")
     args = ap.parse_args()
     if not (CARPETA_SINTETICOS / "facturas" / "demo").exists() or not (CARPETA_SINTETICOS / "negocio").exists():
-        sys.exit("Primero genera los datos: python scripts/generar_facturas.py, generar_registros.py y generar_negocio.py")
+        sys.exit("Primero genera los datos: python db/semillas/generar_facturas.py, generar_registros.py y generar_negocio.py (en db/semillas/)")
 
     with sesion() as s:
         if not args.reiniciar and s.execute(text("SELECT count(*) FROM casos")).scalar():

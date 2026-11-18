@@ -4,6 +4,8 @@ Responsables: Iris Balderas y Mario Oropeza. Según el reparto del vault del equ
 
 ## Inicio rápido
 
+> **Estructura (2026-11-11):** las migraciones viven en [`db/migrations/`](../db/migrations) y las semillas con sus datos sintéticos en [`db/semillas/`](../db/semillas). El paquete `steward_datos`, las reglas, las políticas, la gobernanza, la evaluación y las pruebas siguen aquí. Los comandos de abajo se corren desde `datos/`.
+
 ```bash
 cd datos
 pip install -r requirements.txt
@@ -12,17 +14,17 @@ pip install -r requirements.txt
 docker run -d --name steward-db -e POSTGRES_PASSWORD=steward -p 5432:5432 pgvector/pgvector:pg16
 export DATABASE_URL=postgresql+psycopg://postgres:steward@localhost:5432/postgres
 
-alembic upgrade head                                   # esquema (0001) y negocio, gobernanza y vistas (0002)
-python scripts/cargar_semilla.py --embeddings          # catálogos, reglas, políticas, histórico y casos demo (1.4.4)
+alembic -c ../db/migrations/alembic.ini upgrade head                                   # esquema (0001) y negocio, gobernanza y vistas (0002)
+python ../db/semillas/cargar_semilla.py --embeddings          # catálogos, reglas, políticas, histórico y casos demo (1.4.4)
 pytest                                                 # pruebas unitarias; las de integración necesitan DATABASE_URL_PRUEBAS
 ```
 
 Sin GPU, usa `EMBEDDING_PROVEEDOR=falso` para generar vectores de prueba. Con Ollama, configura `OLLAMA_URL`, `EMBEDDING_MODELO` y `EMBEDDING_DIM` si cambian (por defecto `embeddinggemma:300m`, 768 dimensiones, el modelo que eligió Carlos Delgado en el vault). **Cambiar la dimensión requiere una migración nueva.**
 
-Los datos sintéticos ya están generados en `sinteticos/`. Para regenerarlos (son deterministas con la semilla 2026):
+Los datos sintéticos ya están generados en `../db/semillas/sinteticos/`. Para regenerarlos (son deterministas con la semilla 2026):
 
 ```bash
-python scripts/generar_facturas.py && python scripts/generar_registros.py && python scripts/generar_negocio.py
+python ../db/semillas/generar_facturas.py && python ../db/semillas/generar_registros.py && python ../db/semillas/generar_negocio.py
 python scripts/generar_docs.py   # regenera docs/datos/ a partir de los YAML
 ```
 
@@ -34,10 +36,10 @@ python scripts/generar_docs.py   # regenera docs/datos/ a partir de los YAML
 | 0.3.5 Diagrama ER | [`docs/datos/esquema.md`](../docs/datos/esquema.md) |
 | 0.4.1–0.4.2 FATURA | `scripts/fatura_piloto.py` (revisar y seleccionar; ver abajo) |
 | 0.7.2 Firmas de las tools | `steward_datos/contratos.py` y [`docs/datos/contratos_tools.md`](../docs/datos/contratos_tools.md) |
-| 1.4.1 Migración | `alembic/versions/0001_esquema_inicial.py` |
-| 1.4.2 Casos con errores | `sinteticos/facturas/`, `sinteticos/registros/` (generadores en `scripts/`) |
-| 1.4.3 Verdad de referencia | Un `.json` junto a cada archivo, más `sinteticos/casos_referencia_*.json` |
-| 1.4.4 Carga semilla | `scripts/cargar_semilla.py` |
+| 1.4.1 Migración | `../db/migrations/versions/0001_esquema_inicial.py` |
+| 1.4.2 Casos con errores | `../db/semillas/sinteticos/facturas/`, `../db/semillas/sinteticos/registros/` (generadores en `../db/semillas/`) |
+| 1.4.3 Verdad de referencia | Un `.json` junto a cada archivo, más `../db/semillas/sinteticos/casos_referencia_*.json` |
+| 1.4.4 Carga semilla | `../db/semillas/cargar_semilla.py` |
 | 1.5.1–1.5.2 Políticas | `politicas/*.md` |
 | 1.5.3 Catálogo de reglas | `reglas/catalogo.yaml` y [`docs/datos/catalogo_reglas.md`](../docs/datos/catalogo_reglas.md) |
 | 2.1.1 Fragmentación | `steward_datos/rag/fragmentar.py` |
@@ -50,8 +52,8 @@ python scripts/generar_docs.py   # regenera docs/datos/ a partir de los YAML
 | 3.2.1 `POST /politicas` | `steward_datos/api/politicas.py` (router para montar en el backend) |
 | 4.3.1–4.3.3 Evaluación | `scripts/evaluar.py`, plantilla `evaluacion/linea_base_manual.csv` |
 | 4.5.1 Inyección en factura | Escenarios `inyeccion_visible` e `inyeccion_oculta`, regla R-030 |
-| 4.7.1 Casos de la demo | `sinteticos/facturas/demo/` y la semilla (ver guion abajo) |
-| Chat · tablas de negocio | `ordenes_compra`, `pagos`, `centros_costo`, `clientes` (migración 0002), datos en `sinteticos/negocio/` |
+| 4.7.1 Casos de la demo | `../db/semillas/sinteticos/facturas/demo/` y la semilla (ver guion abajo) |
+| Chat · tablas de negocio | `ordenes_compra`, `pagos`, `centros_costo`, `clientes` (migración 0002), datos en `../db/semillas/sinteticos/negocio/` |
 | Chat · vistas y seguridad por fila | Vistas `v_*` en la migración 0002; [`docs/datos/vistas_y_catalogo.md`](../docs/datos/vistas_y_catalogo.md) |
 | Chat · catálogo de datos | `gobernanza/catalogo_datos.yaml` (lo lee `consultar_catalogo`, de Juan Pablo) |
 | Chat · glosario | `gobernanza/glosario.yaml`, [`docs/datos/glosario.md`](../docs/datos/glosario.md) |
@@ -67,7 +69,7 @@ python scripts/generar_docs.py   # regenera docs/datos/ a partir de los YAML
 
 ## Datos de negocio (consultas del chat)
 
-`scripts/generar_negocio.py` crea 12 meses (nov. 2025 a oct. 2026) de operación sintética: 960 facturas ya revisadas (casos `F-0001` a `F-0960`, `origen = negocio`, sin archivo), 861 órdenes de compra, 8 centros de costo en 3 entidades, pagos de Tesorería y 600 clientes. La semilla les aplica el mismo motor de reglas, así que las métricas por regla salen de hallazgos reales. Hay errores a propósito (totales que no cuadran, IVA mal calculado, folios repetidos, pagos tardíos, clientes sin correo) para que las reglas de calidad tengan algo que medir.
+`../db/semillas/generar_negocio.py` crea 12 meses (nov. 2025 a oct. 2026) de operación sintética: 960 facturas ya revisadas (casos `F-0001` a `F-0960`, `origen = negocio`, sin archivo), 861 órdenes de compra, 8 centros de costo en 3 entidades, pagos de Tesorería y 600 clientes. La semilla les aplica el mismo motor de reglas, así que las métricas por regla salen de hallazgos reales. Hay errores a propósito (totales que no cuadran, IVA mal calculado, folios repetidos, pagos tardíos, clientes sin correo) para que las reglas de calidad tengan algo que medir.
 
 Usuarios de desarrollo y sus entidades (`usuarios_entidades`): `dev-ana` (Grupo Financiero y Banco Demo, más la entidad de prueba), `dev-luis` (Servicios Corporativos), `dev-diego` (todas) y `dev-admin` (administrador, ve todo).
 
@@ -112,7 +114,7 @@ python scripts/fatura_piloto.py seleccionar --fatura ~/Descargas/FATURA --por-pl
 
 En `verdad.campos` queda solo el valor (`26-Jul-2009`, `447.04`), sin la etiqueta impresa que FATURA guarda junto a él; el texto completo queda en `verdad.texto_impreso`. Las imágenes salen de `images/` (no de `colored_images/`).
 
-La selección queda en `sinteticos/fatura_piloto/` (ignorada por git) con la anotación convertida a nuestro formato. Las facturas de FATURA no son CFDI (no traen RFC del receptor ni moneda), así que sirven para medir la extracción por campo; las reglas se miden con nuestras facturas.
+La selección queda en `../db/semillas/sinteticos/fatura_piloto/` (ignorada por git) con la anotación convertida a nuestro formato. Las facturas de FATURA no son CFDI (no traen RFC del receptor ni moneda), así que sirven para medir la extracción por campo; las reglas se miden con nuestras facturas.
 
 ## Evaluación
 
@@ -140,7 +142,7 @@ Con los embeddings falsos (sin GPU) el RAG da acierto@1 de 70 % y acierto@5 de 9
 1. **Bandeja**: F-1040, F-1041, F-1042, V-0206 y V-0207 ya cargados por la semilla.
 2. **F-1042** (Historia 1): diferencia de 400.00 en el total (R-014) y fecha leída con 62 % (R-003) → Requiere revisión humana. La bitácora muestra la corrección de la fecha a 12/08/2026.
 3. **V-0207** (Historia 2): 8 clientes sin correo (R-101, política P-007) → Rechazado.
-4. **En vivo**: subir `sinteticos/facturas/demo/demo_inyeccion.pdf`. El agente no obedece la instrucción y reporta R-030.
+4. **En vivo**: subir `../db/semillas/sinteticos/facturas/demo/demo_inyeccion.pdf`. El agente no obedece la instrucción y reporta R-030.
 5. **En vivo**: subir `demo_nota_credito.pdf` → "No se encontró una regla aplicable" (R-031).
 6. **Chat**: "¿Qué facturas no cuadran en el total?" (`buscar_facturas` con R-014) y "¿Qué tolerancia permite la política?" (`buscar_politicas`, cita P-002 v2.0 §5).
 7. **Chat · analista de datos**: "¿Cuánto nos facturó cada proveedor en octubre?" (`obtener_metrica` monto_facturado por proveedor) y lo mismo como `dev-luis`, que solo ve su entidad.

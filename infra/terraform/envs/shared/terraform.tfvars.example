@@ -1,0 +1,16 @@
+# Copia este archivo a terraform.tfvars (no se versiona) y pon los valores reales.
+dominio = "<DOMINIO>"
+
+# IP públicas del equipo que pueden usar la API mientras no haya login (formato CIDR, /32 para una sola IP).
+allowed_cidrs_dev  = ["203.0.113.10/32"]
+allowed_cidrs_prod = ["203.0.113.10/32"]
+
+# Correo(s) para las alertas de gasto.
+presupuesto_emails = ["<CORREO>"]
+
+# Cierre del 24 de noviembre: descomenta estas líneas y aplica.
+# db_publica              = false
+# db_allowed_cidrs        = []
+# enable_cognito          = true
+# cognito_dominio_prefijo = "<PREFIJO-UNICO>"
+# allowed_cidrs_prod      = ["0.0.0.0/0"]

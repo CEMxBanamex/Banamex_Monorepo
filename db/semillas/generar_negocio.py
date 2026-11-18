@@ -1,6 +1,6 @@
 """Genera los datos de negocio sintéticos para las consultas del chat (capa semántica y vistas consultables).
 
-Salida en datos/sinteticos/negocio/:
+Salida en db/semillas/sinteticos/negocio/:
   centros_costo.csv, proveedores_detalle.csv, ordenes_compra.csv, clientes.csv, usuarios_entidades.csv
   facturas_negocio.jsonl  12 meses de facturas (nov. 2025 a oct. 2026) ya revisadas, sin archivo, con su orden de compra,
                           la decisión del analista cuando hubo revisión humana y el pago de Tesorería.
@@ -8,7 +8,7 @@ Salida en datos/sinteticos/negocio/:
 Las facturas se cargan como casos con origen "negocio" (IDs F-0001 a F-0960) y la semilla les aplica el mismo motor de
 reglas que al resto, así que las métricas por regla salen de hallazgos reales.
 
-Uso:  python scripts/generar_negocio.py [--semilla 2026]
+Uso:  python db/semillas/generar_negocio.py [--semilla 2026]
 """
 import argparse
 import csv
@@ -21,7 +21,7 @@ from pathlib import Path
 
 from faker import Faker
 
-RAIZ = Path(__file__).resolve().parent.parent
+RAIZ = Path(__file__).resolve().parents[2] / "datos"  # steward_datos vive en datos/
 sys.path.insert(0, str(RAIZ))
 from steward_datos.config import CARPETA_SINTETICOS  # noqa: E402
 
