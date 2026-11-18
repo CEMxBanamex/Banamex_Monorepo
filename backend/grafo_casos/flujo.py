@@ -38,7 +38,13 @@ def validador(estado: EstadoCaso) -> dict:
 
 
 def redactor(estado: EstadoCaso) -> dict:
-    return {"explicacion": redactar_demo(estado["motivo"])}
+    from .redactor import redactar_explicacion_caso
+    caso_id = estado.get("caso_id", "caso-1")
+    resultado = estado.get("resultado_sugerido", "humana")
+    motivo = estado.get("motivo", "")
+    hallazgos = estado.get("hallazgos", [])
+    explicacion, _ = redactar_explicacion_caso(caso_id, resultado, motivo, hallazgos)
+    return {"explicacion": explicacion}
 
 
 def revision_analista(estado: EstadoCaso) -> dict:
