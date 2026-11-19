@@ -156,6 +156,37 @@ class RegistrarHallazgoSalida(BaseModel):
     evento_id: int
 
 
+# consultar_bitacora (Yael)
+
+
+class EventoBitacoraDetalle(BaseModel):
+    id: str  # EV-3112
+    fecha: datetime
+    caso_id: Optional[str] = None
+    actor_tipo: str
+    actor_nombre: str
+    accion: str
+    tono: str
+    detalle: str
+    regla: Optional[str] = None
+    datos: Optional[dict] = None
+
+
+class ConsultarBitacoraEntrada(BaseModel):
+    caso_id: Optional[str] = None
+    actor_nombre: Optional[str] = None
+    accion: Optional[str] = None
+    fecha_desde: Optional[datetime] = None
+    fecha_hasta: Optional[datetime] = None
+    limite: int = Field(50, ge=1, le=200)
+
+
+class ConsultarBitacoraSalida(BaseModel):
+    eventos: list[EventoBitacoraDetalle]
+    total: int
+    paso: str = "Revisando la bitácora…"
+
+
 # consultar_caso
 
 
