@@ -7,8 +7,10 @@ import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from backend.api.chat_provisional import router as chat_router
 
 app = FastAPI(title="Data Steward Agéntico")
+app.include_router(chat_router)
 
 origenes = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
 if origenes:
