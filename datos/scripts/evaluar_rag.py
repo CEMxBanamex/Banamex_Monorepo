@@ -2,6 +2,7 @@
 
 Uso:  python scripts/evaluar_rag.py [--k 5] [--fecha 2026-11-02]
       python scripts/evaluar_rag.py --calibrar     # recomienda RAG_UMBRAL_SIMILITUD para el modelo configurado
+      python scripts/evaluar_rag.py --calibrar --sin-bd   # igual, sin PostgreSQL: solo necesita Ollama
 Requiere la semilla cargada con --embeddings y el mismo modelo de embeddings configurado.
 Las preguntas con `esperado: null` no tienen política: deben quedar debajo del umbral.
 """
@@ -21,8 +22,51 @@ from steward_datos.rag.embeddings import nombre_modelo  # noqa: E402
 from steward_datos.tools.buscar_politicas import buscar_politicas, umbral_similitud  # noqa: E402
 
 
+class _IndiceLocal:
+    """Lo mismo que hace la ingesta + buscar_politicas, en memoria: fragmenta datos/politicas, embebe con el
+    modelo configurado y filtra por vigencia, estado y tipo. Para calibrar sin PostgreSQL."""
+
+    def __init__(self):
+        import math
+        from steward_datos.rag.embeddings import embeber
+        from steward_datos.rag.fragmentar import fragmentar, leer_politica
+        self._embeber, self._math = embeber, math
+        self.items = []
+        for ruta in sorted((RAIZ / "politicas").glob("*.md")):
+            meta, cuerpo = leer_politica(ruta.read_text(encoding="utf-8"))
+            if meta.estado != "borrador":
+                self.items += [(meta, f) for f in fragmentar(meta, cuerpo)]
+        self.vectores = embeber([f.texto for _, f in self.items])
+
+    def buscar(self, consulta, k, fecha, tipo=None):
+        from types import SimpleNamespace
+        q = self._embeber([consulta])[0]
+        nq = self._math.sqrt(sum(x * x for x in q))
+        filas = []
+        for (meta, f), v in zip(self.items, self.vectores):
+            if meta.vigente_desde > fecha or (meta.vigente_hasta and meta.vigente_hasta < fecha):
+                continue
+            if tipo and meta.tipo != tipo:
+                continue
+            sim = sum(a * b for a, b in zip(q, v)) / (nq * self._math.sqrt(sum(x * x for x in v)))
+            filas.append(SimpleNamespace(politica_id=meta.id, version=meta.version, seccion=f.seccion, similitud=round(sim, 4)))
+        filas.sort(key=lambda x: -x.similitud)
+        filas = [f for f in filas[:k] if f.similitud >= umbral_similitud()]
+        return SimpleNamespace(fragmentos=filas, sin_resultados=not filas)
+
+
+_LOCAL = None
+
+
+def _sesion():
+    from contextlib import nullcontext
+    return nullcontext() if _LOCAL is not None else sesion()
+
+
 def _buscar(s, p, k, fecha_defecto):
     fecha = date.fromisoformat(str(p.get("fecha", fecha_defecto)))
+    if _LOCAL is not None:
+        return _LOCAL.buscar(p["pregunta"], k, fecha, p.get("tipo"))
     return buscar_politicas(BuscarPoliticasEntrada(consulta=p["pregunta"], k=k, fecha=fecha, tipo=p.get("tipo")), s)
 
 
@@ -35,7 +79,7 @@ def evaluar(preguntas, k, fecha):
     negativas = [p for p in preguntas if not p.get("esperado")]
     top1 = topk = 0
     rr = 0.0
-    with sesion() as s:
+    with _sesion() as s:
         for p in positivas:
             r = _buscar(s, p, k, fecha)
             pos = _posicion(r, p["esperado"])
@@ -62,7 +106,7 @@ def calibrar(preguntas, k, fecha):
     """Sin umbral, mide la similitud del fragmento correcto (positivas) y la del mejor fragmento (negativas)."""
     os.environ["RAG_UMBRAL_SIMILITUD"] = "-1"
     sim_pos, sim_neg, perdidas = [], [], 0
-    with sesion() as s:
+    with _sesion() as s:
         for p in preguntas:
             r = _buscar(s, p, k, fecha)
             if p.get("esperado"):
@@ -109,8 +153,12 @@ def main():
     ap.add_argument("--fecha", type=date.fromisoformat, default=date(2026, 11, 2))
     ap.add_argument("--preguntas", type=Path, default=RAIZ / "evaluacion" / "preguntas_rag.yaml")
     ap.add_argument("--calibrar", action="store_true")
+    ap.add_argument("--sin-bd", action="store_true", help="fragmenta y embebe las políticas en memoria; no usa PostgreSQL")
     args = ap.parse_args()
     preguntas = yaml.safe_load(args.preguntas.read_text(encoding="utf-8"))["preguntas"]
+    if args.sin_bd:
+        global _LOCAL
+        _LOCAL = _IndiceLocal()
     (calibrar if args.calibrar else evaluar)(preguntas, args.k, args.fecha)
 
 
