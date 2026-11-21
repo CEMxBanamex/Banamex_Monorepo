@@ -2,6 +2,11 @@
 
 from fastapi import APIRouter
 from pydantic import BaseModel, ConfigDict, Field
+import asyncio
+from collections.abc import AsyncIterator
+from typing import Literal
+
+from fastapi.responses import StreamingResponse
 
 router = APIRouter(prefix="/api/chat", tags=["Chat provisional"])
 
@@ -37,4 +42,70 @@ def consultar_chat(consulta: ConsultaChat) -> RespuestaChat:
         ),
         caso_id=consulta.caso_id,
         simulado=True,
+    )
+class PasoChat(BaseModel):
+    """Formato propuesto para los pasos visibles del chat."""
+
+    id: str
+    texto: str
+    detalle: str | None = None
+    estado: Literal["pendiente", "en_curso", "completado", "error"]
+
+
+def formar_evento(
+    nombre: str,
+    contenido: PasoChat | RespuestaChat,
+) -> str:
+    """Convierte los datos al formato de un evento SSE."""
+
+    return f"event: {nombre}\ndata: {contenido.model_dump_json()}\n\n"
+
+
+@router.post(
+    "/consulta/stream",
+    response_class=StreamingResponse,
+    responses={
+        200: {
+            "description": "Eventos simulados de paso y respuesta.",
+            "content": {"text/event-stream": {}},
+        }
+    },
+)
+async def consultar_chat_stream(
+    consulta: ConsultaChat,
+) -> StreamingResponse:
+    """Simula progreso y respuesta, sin consultar herramientas ni IA."""
+
+    async def generar_eventos() -> AsyncIterator[str]:
+        yield formar_evento(
+            "paso",
+            PasoChat(
+                id="demo-1",
+                texto="Preparando ejemplo",
+                detalle="Paso simulado para probar la interfaz.",
+                estado="en_curso",
+            ),
+        )
+
+        await asyncio.sleep(0.5)
+
+        yield formar_evento(
+            "paso",
+            PasoChat(
+                id="demo-1",
+                texto="Preparando ejemplo",
+                detalle="La preparación simulada terminó.",
+                estado="completado",
+            ),
+        )
+
+        yield formar_evento(
+            "respuesta",
+            consultar_chat(consulta),
+        )
+
+    return StreamingResponse(
+        generar_eventos(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache"},
     )
