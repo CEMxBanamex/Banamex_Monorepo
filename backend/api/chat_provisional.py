@@ -1,12 +1,12 @@
 """Borrador de contrato del chat: respuestas fijas, sin IA ni base de datos."""
 
-from fastapi import APIRouter
-from pydantic import BaseModel, ConfigDict, Field
 import asyncio
 from collections.abc import AsyncIterator
 from typing import Literal
 
+from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel, ConfigDict, Field
 
 router = APIRouter(prefix="/api/chat", tags=["Chat provisional"])
 
@@ -43,6 +43,8 @@ def consultar_chat(consulta: ConsultaChat) -> RespuestaChat:
         caso_id=consulta.caso_id,
         simulado=True,
     )
+
+
 class PasoChat(BaseModel):
     """Formato propuesto para los pasos visibles del chat."""
 
