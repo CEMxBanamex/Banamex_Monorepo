@@ -66,7 +66,7 @@ Devuelve HTTP 200 con:
 
 
 
-\## POST /api/chat/consulta/stream
+\## POST /api/chat/stream
 
 
 

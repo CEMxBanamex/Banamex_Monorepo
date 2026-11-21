@@ -47,18 +47,21 @@ class TestChatProvisional(unittest.TestCase):
 
         rutas = [
             "/api/chat/consulta",
-            "/api/chat/consulta/stream",
+            "/api/chat/stream",
         ]
 
         for ruta in rutas:
             for entrada in entradas:
                 with self.subTest(ruta=ruta, entrada=entrada):
-                    respuesta = self.client.post(ruta, json=entrada)
+                    respuesta = self.client.post(
+                        ruta,
+                        json=entrada,
+                    )
                     self.assertEqual(respuesta.status_code, 422)
 
     def test_eventos_sse(self):
         respuesta = self.client.post(
-            "/api/chat/consulta/stream",
+            "/api/chat/stream",
             json={
                 "mensaje": "Mostrar un ejemplo",
                 "caso_id": "F-1042",
@@ -71,15 +74,21 @@ class TestChatProvisional(unittest.TestCase):
                 "text/event-stream"
             )
         )
-        self.assertEqual(respuesta.headers["cache-control"], "no-cache")
+        self.assertEqual(
+            respuesta.headers["cache-control"],
+            "no-cache",
+        )
         self.assertTrue(respuesta.text.endswith("\n\n"))
 
         eventos = []
+
         for bloque in respuesta.text.strip().split("\n\n"):
             campos = {}
+
             for linea in bloque.splitlines():
                 clave, valor = linea.split(":", 1)
                 campos[clave] = valor.strip()
+
             eventos.append(
                 (campos["event"], json.loads(campos["data"]))
             )
@@ -99,3 +108,48 @@ class TestChatProvisional(unittest.TestCase):
         self.assertEqual(final["caso_id"], "F-1042")
         self.assertIs(final["simulado"], True)
         self.assertTrue(final["respuesta"].strip())
+
+    def test_listar_conversaciones(self):
+        respuesta = self.client.get(
+            "/api/chat/conversaciones"
+        )
+
+        self.assertEqual(respuesta.status_code, 200)
+        conversaciones = respuesta.json()
+        self.assertEqual(len(conversaciones), 1)
+        self.assertEqual(
+            conversaciones[0]["id"],
+            "demo-conversacion-1",
+        )
+        self.assertIs(
+            conversaciones[0]["simulado"],
+            True,
+        )
+
+    def test_historial_de_conversacion(self):
+        respuesta = self.client.get(
+            "/api/chat/conversaciones/"
+            "demo-conversacion-1/mensajes"
+        )
+
+        self.assertEqual(respuesta.status_code, 200)
+        historial = respuesta.json()
+        self.assertEqual(
+            historial["conversacion_id"],
+            "demo-conversacion-1",
+        )
+        self.assertEqual(
+            [
+                mensaje["rol"]
+                for mensaje in historial["mensajes"]
+            ],
+            ["usuario", "asistente"],
+        )
+        self.assertIs(historial["simulado"], True)
+
+    def test_historial_inexistente(self):
+        respuesta = self.client.get(
+            "/api/chat/conversaciones/no-existe/mensajes"
+        )
+
+        self.assertEqual(respuesta.status_code, 404)
