@@ -46,6 +46,7 @@ module "s3" {
   env             = local.env
   allowed_origins = [local.frontend, "http://localhost:5173"]
   force_destroy   = var.s3_force_destroy
+  region          = var.region
 }
 
 module "ssm" {
@@ -77,9 +78,9 @@ module "ssm" {
       embedding_proveedor = "ollama"
     },
     # Solo existen cuando shared se aplicó con enable_cognito = true (un parámetro String no puede estar vacío).
-    local.shared.cognito_user_pool_id == null ? {} : {
-      cognito_user_pool_id = local.shared.cognito_user_pool_id
-      cognito_client_id    = local.shared.cognito_client_id
+    try(local.shared.cognito_user_pool_id, null) == null ? {} : {
+      cognito_user_pool_id = try(local.shared.cognito_user_pool_id, null)
+      cognito_client_id    = try(local.shared.cognito_client_id, null)
     }
   )
 }
