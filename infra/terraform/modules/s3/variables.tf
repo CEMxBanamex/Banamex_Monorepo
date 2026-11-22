@@ -19,3 +19,9 @@ variable "force_destroy" {
   type        = bool
   default     = false
 }
+
+variable "region" {
+  description = "Región de AWS donde se crea el bucket (la del proveedor)."
+  type        = string
+  default     = "us-east-1"
+}
