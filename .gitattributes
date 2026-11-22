@@ -14,3 +14,6 @@ Dockerfile text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
 .env.example text eol=lf
+
+# Politicas: mismos bytes al cargarlas como texto y al subirlas por API.
+datos/politicas/*.md text eol=lf
