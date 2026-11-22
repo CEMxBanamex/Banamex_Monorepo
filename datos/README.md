@@ -133,7 +133,15 @@ python scripts/evaluar_validador.py respuestas --archivo salidas.jsonl
 
 Prompts de los agentes de los que somos dueños: [`agentes/gobernanza.md`](agentes/gobernanza.md) (Mario) y [`agentes/validador.md`](agentes/validador.md) (Iris). Las preguntas de prueba del agente de gobernanza están en `evaluacion/preguntas_gobernanza.yaml` (35, con su fuente esperada).
 
-Con los embeddings falsos (sin GPU) el RAG da acierto@1 de 70 % y acierto@5 de 95 %; hay que repetirlo con el modelo real y usarlo para calibrar `RAG_UMBRAL_SIMILITUD`.
+Con los embeddings falsos (sin GPU) el RAG da acierto@1 de 70 % y acierto@5 de 95 %.
+
+**Calibración con el modelo real** (21 nov. 2026, `embeddinggemma:300m` en la GTX 1650 de Mario, `--calibrar --sin-bd`): las 27 preguntas con política encuentran su fragmento sin umbral (similitud mínima 0.30, mediana 0.63); la mejor similitud de las 6 preguntas sin política es 0.37. Con el umbral anterior (0.30), 2 de esas 6 devolvían un fragmento que no aplica. **Valor fijado: `RAG_UMBRAL_SIMILITUD=0.37`** (acierto 96 %, preguntas sin política rechazadas 100 %). Es un conjunto chico: recalibrar si cambia el modelo o llegan las políticas reales de Banamex.
+
+`--sin-bd` fragmenta y embebe las políticas en memoria con los mismos filtros que `buscar_politicas` (vigencia, estado y tipo), así que solo necesita Ollama:
+
+```bash
+EMBEDDING_PROVEEDOR=ollama python scripts/evaluar_rag.py --calibrar --sin-bd     # en PowerShell: $env:EMBEDDING_PROVEEDOR="ollama"
+```
 
 `linea_base_manual.csv` es la plantilla para medir la línea base (4.3.3): un analista revisa los mismos casos a mano y anota segundos y errores encontrados.
 

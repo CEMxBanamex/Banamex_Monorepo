@@ -49,20 +49,30 @@ terraform -chdir=envs/shared init -backend-config="bucket=$TF_STATE_BUCKET"
 terraform -chdir=envs/shared plan -out=shared.tfplan
 terraform -chdir=envs/shared apply shared.tfplan
 
-# 3. dev (y prod más adelante, igual pero con envs/prod)
+# 3. Bases, roles y usuarios en RDS, con sus contraseñas en SSM (desde la raíz del repo)
+(cd ../.. && scripts/db/crear-bases.sh)
+
+# 4. Llave de Tailscale para las EC2 (tag:aws, reusable, no efímera; ver docs/ci-cd/tailscale.md)
+read -rsp "Llave de Tailscale para AWS: " LLAVE && echo
+aws ssm put-parameter --overwrite --type SecureString --name /dsa/shared/tailscale_authkey --value "$LLAVE"
+unset LLAVE
+
+# 5. dev (y prod más adelante, igual pero con envs/prod)
 terraform -chdir=envs/dev init -backend-config="bucket=$TF_STATE_BUCKET"
-terraform -chdir=envs/dev plan -var="state_bucket=$TF_STATE_BUCKET" -out=dev.tfplan
+terraform -chdir=envs/dev plan -out=dev.tfplan
 terraform -chdir=envs/dev apply dev.tfplan
 ```
+
+**Los pasos 3 y 4 van antes del 5:** la EC2 ejecuta `deploy/user-data.sh` solo la primera vez que arranca. Si la llave o las contraseñas todavía no existen, el servicio `dsa-arranque` vuelve a intentarlo en cada encendido del lab, pero es más simple tenerlas listas.
 
 Después de aplicar `dev` o `prod`:
 
 1. `terraform -chdir=envs/dev output registro_dns` dice qué **registro A** crear en el registrador del dominio.
-2. Los parámetros de SSM que quedaron con el valor `CAMBIAR` se llenan con la CLI, por ejemplo:
+2. La URL de Ollama (IP de Tailscale de la laptop con el modelo) se pone con la CLI; Terraform no vuelve a tocar ese valor:
    ```bash
-   aws ssm put-parameter --overwrite --type SecureString --name /dsa/dev/database_url --value '<CADENA-DE-CONEXION>'
+   aws ssm put-parameter --overwrite --type String --name /dsa/dev/ollama_base_url --value 'http://100.x.y.z:11434'
    ```
-   Terraform no vuelve a tocar esos valores.
+3. `/dsa/dev/image_tag` lo escribe `deploy/deploy.sh` en cada despliegue. Las cadenas de conexión no van en SSM: `deploy/generar-env.sh` las arma en la EC2 con `db_host`, `db_port`, `db_name` y las contraseñas de `/dsa/shared/db/`.
 
 ## Cuidar los créditos
 

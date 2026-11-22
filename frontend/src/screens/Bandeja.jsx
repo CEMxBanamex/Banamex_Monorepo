@@ -1,26 +1,73 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Plus, Search, ChevronDown, Calendar, Loader, Eye, TriangleAlert, Check,
   ArrowDown, Inbox, CircleAlert, RotateCw,
 } from 'lucide-react'
 import { Estado, Resultado, Banner } from '../components.jsx'
 import { CASOS } from '../data.js'
-
-const STATS = [
-  [Loader, 'Procesando', 'var(--info)'],
-  [Eye, 'En revisión', 'var(--texto)'],
-  [TriangleAlert, 'Requieren revisión humana', 'var(--adv)'],
-  [Check, 'Revisados hoy', 'var(--exito)'],
-]
+import { obtenerCasos } from '../api.js'
 
 export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariante }) {
   const [buscar, setBuscar] = useState('')
-  const casos = variante === 'vacio' ? [] : CASOS
-  const filtrados = casos.filter((c) =>
-    `${c.id} ${c.archivo}`.toLowerCase().includes(buscar.toLowerCase()))
+  const [casos, setCasos] = useState([])
+  const [metricas, setMetricas] = useState(null)
+  const [cargando, setCargando] = useState(variante === 'cargando')
+  const [errorCarga, setErrorCarga] = useState(variante === 'error')
+  const [filtroEstado, setFiltroEstado] = useState('todos')
+  const [filtroTipo, setFiltroTipo] = useState('todos')
+  const [filtroResultado, setFiltroResultado] = useState('todos')
+
+  useEffect(() => {
+    if (variante === 'vacio') {
+      setCasos([])
+      setCargando(false)
+      setErrorCarga(false)
+      return
+    }
+    if (variante === 'cargando') {
+      setCargando(true)
+      setErrorCarga(false)
+      return
+    }
+    if (variante === 'error') {
+      setErrorCarga(true)
+      setCargando(false)
+      return
+    }
+
+    let cancelado = false
+    setCargando(true)
+    setErrorCarga(false)
+
+    obtenerCasos()
+      .then((data) => {
+        if (!cancelado) {
+          setCasos(data.casos || [])
+          setMetricas(data.metricas || null)
+          setCargando(false)
+        }
+      })
+      .catch((err) => {
+        if (!cancelado) {
+          console.warn('API no disponible, usando datos de respaldo:', err)
+          setCasos(CASOS)
+          setCargando(false)
+        }
+      })
+
+    return () => { cancelado = true }
+  }, [variante])
+
+  const filtrados = casos.filter((c) => {
+    const coincideTexto = `${c.id} ${c.archivo}`.toLowerCase().includes(buscar.toLowerCase())
+    const coincideEstado = filtroEstado === 'todos' || c.estado === filtroEstado
+    const coincideTipo = filtroTipo === 'todos' || c.tipo === filtroTipo
+    const coincideResultado = filtroResultado === 'todos' || c.resultado === filtroResultado
+    return coincideTexto && coincideEstado && coincideTipo && coincideResultado
+  })
 
   let contenido
-  if (variante === 'cargando') {
+  if (cargando) {
     contenido = (
       <div className="esqueleto">
         {[0, 1, 2, 3, 4].map((i) => (
@@ -28,13 +75,15 @@ export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariant
         ))}
       </div>
     )
-  } else if (variante === 'error') {
+  } else if (errorCarga) {
     contenido = (
       <div style={{ padding: 24, display: 'grid', gap: 16, justifyItems: 'start' }}>
         <Banner tipo="error" icono={CircleAlert}>
           <b>No pudimos cargar los casos</b><br />Revisa tu conexión e inténtalo de nuevo.
         </Banner>
-        <button className="btn" onClick={() => setVariante('normal')}><RotateCw size={18} />Reintentar</button>
+        <button className="btn" onClick={() => { setErrorCarga(false); setVariante('normal') }}>
+          <RotateCw size={18} />Reintentar
+        </button>
       </div>
     )
   } else if (casos.length === 0) {
@@ -78,7 +127,18 @@ export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariant
     )
   }
 
-  const n = variante === 'normal' ? 1 : 0
+  const statProcesando = metricas?.procesando ?? casos.filter((c) => c.estado === 'procesando').length
+  const statEnRevision = metricas?.en_revision ?? casos.filter((c) => c.estado === 'revision').length
+  const statHumana = casos.filter((c) => c.resultado === 'humana').length
+  const statRevisados = metricas?.revisados ?? casos.filter((c) => c.estado === 'revisado').length
+
+  const statsDinamicos = [
+    [Loader, 'Procesando', 'var(--info)', statProcesando],
+    [Eye, 'En revisión', 'var(--texto)', statEnRevision],
+    [TriangleAlert, 'Requieren revisión humana', 'var(--adv)', statHumana],
+    [Check, 'Revisados hoy', 'var(--exito)', statRevisados],
+  ]
+
   return (
     <main className="main">
       <div className="cabecera">
@@ -90,10 +150,10 @@ export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariant
       </div>
 
       <div className="stats">
-        {STATS.map(([Icono, texto, color]) => (
+        {statsDinamicos.map(([Icono, texto, color, valor]) => (
           <div className="tarjeta stat" key={texto}>
             <div className="t" style={{ color }}><Icono size={20} />{texto}</div>
-            <div className="n num">{variante === 'cargando' ? '–' : n}</div>
+            <div className="n num">{cargando ? '–' : valor}</div>
           </div>
         ))}
       </div>
@@ -104,9 +164,24 @@ export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariant
             <Search size={18} color="var(--texto-2)" />
             <input placeholder="Buscar por ID o archivo" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
           </label>
-          <button className="select">Estado: todos <ChevronDown size={16} /></button>
-          <button className="select">Tipo de revisión: todos <ChevronDown size={16} /></button>
-          <button className="select">Resultado sugerido: todos <ChevronDown size={16} /></button>
+          <button
+            className="select"
+            onClick={() => setFiltroEstado((e) => (e === 'todos' ? 'revision' : e === 'revision' ? 'revisado' : e === 'revisado' ? 'procesando' : 'todos'))}
+          >
+            Estado: {filtroEstado} <ChevronDown size={16} />
+          </button>
+          <button
+            className="select"
+            onClick={() => setFiltroTipo((t) => (t === 'todos' ? 'Factura' : t === 'Factura' ? 'Validación con políticas' : 'todos'))}
+          >
+            Tipo: {filtroTipo} <ChevronDown size={16} />
+          </button>
+          <button
+            className="select"
+            onClick={() => setFiltroResultado((r) => (r === 'todos' ? 'humana' : r === 'humana' ? 'aceptado' : r === 'aceptado' ? 'rechazado' : 'todos'))}
+          >
+            Resultado: {filtroResultado} <ChevronDown size={16} />
+          </button>
           <button className="select"><Calendar size={16} />Últimos 7 días</button>
         </div>
         {contenido}

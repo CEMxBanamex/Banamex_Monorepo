@@ -1,0 +1,91 @@
+# Despliegue en una EC2 (dev o prod). Vive en /opt/dsa junto con su .env, que genera generar-env.sh desde SSM.
+# No se usa a mano: lo levantan arranque.sh (en cada encendido) y deploy.sh (en cada despliegue).
+#
+#   IMAGE_TAG=<version> docker compose up -d                       # servicios
+#   docker compose --profile tareas run --rm migraciones           # migraciones (deploy.sh)
+#   docker compose --profile tareas run --rm carga                 # primera carga de datos sintéticos
+#   docker compose --profile tareas run --rm recarga               # vaciar y volver a cargar los datos
+name: dsa
+
+x-logs: &logs
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+x-backend: &imagen-backend
+  image: ${IMAGE_REGISTRY:?Falta IMAGE_REGISTRY en .env}/backend:${IMAGE_TAG:?Falta IMAGE_TAG}
+  env_file: .env
+  <<: *logs
+
+services:
+  # HTTPS: Caddy obtiene y renueva solo el certificado de Let's Encrypt para API_HOST.
+  caddy:
+    image: caddy:2.10.2-alpine
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PUERTO:-80}:80"
+      - "${HTTPS_PUERTO:-443}:443"
+    environment:
+      API_HOST: ${API_HOST:?Falta API_HOST en .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      # El certificado vive aquí: si se pierde, Let's Encrypt limita cuántos se pueden pedir por semana.
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+    <<: *logs
+
+  backend:
+    <<: *imagen-backend
+    restart: unless-stopped
+    environment:
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+    # Solo en la propia máquina: el health check de deploy.sh. Desde fuera se entra por Caddy.
+    ports:
+      - "127.0.0.1:${BACKEND_PUERTO:-8000}:8000"
+    depends_on:
+      mcp:
+        condition: service_healthy
+
+  mcp:
+    image: ${IMAGE_REGISTRY}/mcp:${IMAGE_TAG}
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: ${MCP_DATABASE_URL:?Falta MCP_DATABASE_URL en .env}
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+      MCP_DEV_ROL: ${MCP_DEV_ROL:-analista}
+    <<: *logs
+
+  # --- Tareas: no corren solas, se lanzan con run --------------------------------------------------------------
+  migraciones:
+    <<: *imagen-backend
+    profiles: ["tareas"]
+    environment:
+      DATABASE_URL: ${MIGRACIONES_DATABASE_URL:?Falta MIGRACIONES_DATABASE_URL en .env}
+    command: ["alembic", "-c", "db/migrations/alembic.ini", "upgrade", "head"]
+
+  # Primera carga de los datos sintéticos (falla si la base ya tiene casos).
+  carga:
+    <<: *imagen-backend
+    profiles: ["tareas"]
+    environment:
+      DATABASE_URL: ${CARGA_DATABASE_URL:?Falta CARGA_DATABASE_URL en .env}
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+    command: ["python", "db/semillas/cargar_semilla.py", "--embeddings"]
+
+  # Vacía las tablas y vuelve a cargar. Usa al dueño del esquema porque pausa el trigger de solo inserción de la bitácora.
+  recarga:
+    <<: *imagen-backend
+    profiles: ["tareas"]
+    environment:
+      DATABASE_URL: ${MIGRACIONES_DATABASE_URL}
+      OLLAMA_URL: ${OLLAMA_BASE_URL:-}
+    command: ["python", "db/semillas/cargar_semilla.py", "--embeddings", "--reiniciar"]
+
+volumes:
+  caddy_data:
+  caddy_config:

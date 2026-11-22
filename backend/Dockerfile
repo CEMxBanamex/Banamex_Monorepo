@@ -27,6 +27,9 @@ WORKDIR /app
 COPY --from=dependencias /opt/venv /opt/venv
 COPY datos/ datos/
 COPY backend/ backend/
+# Migraciones y datos sintéticos: deploy.sh migra y la carga de datos corre con esta misma imagen.
+COPY db/migrations/ db/migrations/
+COPY db/semillas/ db/semillas/
 USER steward
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=3s --start-period=20s --retries=3 \

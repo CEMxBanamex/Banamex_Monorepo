@@ -228,6 +228,16 @@ def crear_router(get_usuario_actual: Callable) -> APIRouter:
     @router.post("", response_model=CrearCasoSalida, status_code=201)
     def crear_caso(entrada: CrearCasoEntrada, usuario=Depends(get_usuario_actual)):
         nuevo_id = f"F-104{len(CASOS_MOCK) + 1}"
+        CASOS_MOCK.insert(0, {
+            "id": nuevo_id,
+            "archivo": entrada.archivo,
+            "tipo": entrada.tipo,
+            "estado": "procesando",
+            "resultado": "humana",
+            "fecha": datetime.now().strftime("%d %b %Y"),
+            "responsable": getattr(usuario, "nombre", "Ana López"),
+            "variante": "normal",
+        })
         return CrearCasoSalida(
             id=nuevo_id,
             estado="procesando",
@@ -240,6 +250,32 @@ def crear_router(get_usuario_actual: Callable) -> APIRouter:
         nuevo_estado = "revisado"
         evento_id = f"EV-31{len(CASOS_MOCK) + 10}"
         resultado_final = entrada.resultado or ("aceptado" if entrada.accion == "confirmar" else "humana")
+
+        # Actualizar caso en memoria
+        for c in CASOS_MOCK:
+            if c["id"] == caso_id_upper:
+                c["estado"] = nuevo_estado
+                c["resultado"] = resultado_final
+                break
+
+        # Registrar evento de auditoría en la bitácora
+        try:
+            from .bitacora import EVENTOS_MOCK
+            nombre_u = getattr(usuario, "nombre", "Ana López")
+            iniciales = "".join(p[0] for p in nombre_u.split()[:2]).upper() if nombre_u else "AL"
+            EVENTOS_MOCK.insert(0, {
+                "id": evento_id,
+                "fecha": datetime.now().strftime("%d %b %Y · %H:%M"),
+                "caso": caso_id_upper,
+                "quien": nombre_u,
+                "ini": iniciales,
+                "accion": "Confirmación" if entrada.accion == "confirmar" else "Escalamiento",
+                "tono": "exito" if resultado_final == "aceptado" else ("error" if resultado_final == "rechazado" else "adv"),
+                "detalle": f"Decisión {entrada.accion}: resultado {resultado_final}. {entrada.comentario or ''}".strip(),
+                "regla": None,
+            })
+        except Exception:
+            pass
 
         return DecisionCasoSalida(
             caso_id=caso_id_upper,
