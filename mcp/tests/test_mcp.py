@@ -27,7 +27,14 @@ async def probar_analista():
         async with ClientSession(lector, escritor) as cliente:
             await cliente.initialize()
             tools = await cliente.list_tools()
-            assert [tool.name for tool in tools.tools] == [TOOL]
+            esperadas = {
+                TOOL,
+                "obtener_metrica",
+                "consultar_glosario",
+                "consultar_calidad",
+                "validar_reglas",
+            }
+            assert {tool.name for tool in tools.tools} == esperadas
             pasos = []
 
             async def registrar_paso(progreso, total, mensaje):

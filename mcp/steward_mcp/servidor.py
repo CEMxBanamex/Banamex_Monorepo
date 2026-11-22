@@ -5,14 +5,15 @@ from mcp.server.fastmcp import FastMCP
 from mcp.server.transport_security import TransportSecuritySettings
 
 from steward_datos.contratos import ContextoUsuario
+from steward_datos.mcp_registro import registrar_tools_datos
 from .tools.extraer_campos_factura_demo import registrar
 
 
 def crear_servidor(usuario: ContextoUsuario) -> FastMCP:
     servidor = FastMCP("data-steward-dev")
     registrar(servidor, usuario)
+    registrar_tools_datos(servidor, solo_propias=True)
     return servidor
-
 
 def main() -> None:
     if os.getenv("AUTH_MODE") != "dev":
