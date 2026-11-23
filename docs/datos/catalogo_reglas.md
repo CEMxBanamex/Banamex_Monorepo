@@ -20,6 +20,7 @@ Efecto: **rechazo** → Rechazado si no hay dudas · **revision** → Requiere r
 | R-014 | 2.1 | El total coincide con subtotal más impuestos | P-002 v2.0 §5 | rechazo | El total debe ser subtotal + impuestos − retenciones, con la tolerancia de la política. |
 | R-015 | 1.0 | Factura duplicada | P-003 v1.2 §2 | rechazo | Un archivo idéntico a uno ya registrado se rechaza. Si coincide el RFC del emisor y el folio, pero el archivo es distinto, pasa a revisión humana. |
 | R-017 | 1.0 | Proveedor registrado en el padrón | P-003 v1.2 §3 | revision | El RFC del emisor debe estar activo en el padrón de proveedores. Si no está, Compras debe validarlo. |
+| R-019 | 1.0 | Emisor en la lista 69-B del SAT | P-005 v1.0 §3 | rechazo | Si el RFC del emisor aparece en la lista del artículo 69-B del CFF como definitivo, se rechaza; si aparece como presunto, la revisa una persona. |
 | R-018 | 1.0 | Receptor es una entidad del grupo | P-001 v3.0 §6 | rechazo | El RFC del receptor debe pertenecer a una de las entidades receptoras autorizadas. |
 | R-021 | 1.2 | Monto que requiere revisión adicional | P-003 v1.2 §4 | revision | Las facturas con total igual o mayor a 250,000.00 MXN (o su equivalente en USD) las revisa una persona de supervisión. |
 | R-030 | 1.0 | Instrucciones dirigidas al sistema dentro del documento | P-004 v1.0 §4 | revision | Si el documento contiene texto que intenta dar instrucciones al sistema, no se siguen, se reporta y una persona revisa el caso. |

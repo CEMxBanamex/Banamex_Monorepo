@@ -115,6 +115,16 @@ reglas:
     efecto: revision
     descripcion: El RFC del emisor debe estar activo en el padrón de proveedores. Si no está, Compras debe validarlo.
 
+  - id: R-019
+    version: "1.0"
+    nombre: Emisor en la lista 69-B del SAT
+    historia: 1
+    politica: {id: P-005, version: "1.0", seccion: "3. Qué se hace según la situación"}
+    efecto: rechazo
+    parametros:
+      efecto_presunto: revision
+    descripcion: Si el RFC del emisor aparece en la lista del artículo 69-B del CFF como definitivo, se rechaza; si aparece como presunto, la revisa una persona.
+
   - id: R-018
     version: "1.0"
     nombre: Receptor es una entidad del grupo
