@@ -102,8 +102,8 @@ jobs:
         run: vercel build --token="$VERCEL_TOKEN"
       - name: Deploy y alias dev.<DOMINIO>
         run: |
-          # --debug (va a stderr, no cambia la URL capturada): temporal, para ver por qué falla el despliegue en
-          # Actions con un "Error:" vacío. Quitarlo cuando quede resuelto. GitHub enmascara los secretos en el log.
-          url="$(vercel deploy --prebuilt --debug --token="$VERCEL_TOKEN")"
+          url="$(vercel deploy --prebuilt --token="$VERCEL_TOKEN")"
           echo "Despliegue: $url"
-          vercel alias set "$url" "dev.$DOMINIO" --token="$VERCEL_TOKEN"
+          # vercel alias no toma la cuenta de VERCEL_ORG_ID como deploy: sin --scope, con un token limitado a la
+          # cuenta falla con "User not found".
+          vercel alias set "$url" "dev.$DOMINIO" --scope "$VERCEL_ORG_ID" --token="$VERCEL_TOKEN"
