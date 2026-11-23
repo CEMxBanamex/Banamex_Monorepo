@@ -20,6 +20,7 @@ Por ejemplo, etiqueta="RFC" (no "Emisor RFC"), etiqueta="IVA 16 %" (no "Impuesto
 No confundas una etiqueta ausente con un valor ausente: un nombre o dirección puede estar en el encabezado
 sin etiqueta; en ese caso copia su línea completa como valor y usa etiqueta=null.
 El emisor es quien emite la factura; el receptor es el destinatario. Distingue ambos bloques y sus RFC.
+En campos.*_rfc.valor escribe solo el identificador, sin la palabra RFC ni los dos puntos.
 Si no hay evidencia del valor, valor=null. No inventes etiquetas ni dejes vacío un dato claramente visible.
 DISCOUNT es descuento: nunca lo uses como impuestos. SUBTOTAL no es TOTAL. No deduzcas un total.
 No completes RFC, folios, fechas, moneda o importes con números cercanos ni con conocimiento general.
@@ -34,10 +35,10 @@ DESCRIPCIONES_CAMPOS = {
     "folio": "Número de factura junto a Folio, Invoice number o equivalente.",
     "fecha": "Fecha impresa de emisión, sin convertir ni corregir.",
     "emisor_nombre": "Nombre del emisor en el encabezado; si no tiene etiqueta, etiqueta=null y valor=línea completa.",
-    "emisor_rfc": "RFC del emisor en su bloque; copiar etiqueta literal RFC, no Emisor RFC.",
+    "emisor_rfc": "Solo el identificador RFC del emisor, sin prefijo RFC; etiqueta literal RFC, no Emisor RFC.",
     "emisor_direccion": "Dirección del emisor; sin etiqueta, etiqueta=null y valor=línea completa.",
     "receptor_nombre": "Nombre en el bloque Receptor; usar Receptor si esa es la etiqueta impresa.",
-    "receptor_rfc": "RFC del bloque Receptor; copiar etiqueta literal RFC, no Receptor RFC.",
+    "receptor_rfc": "Solo el identificador RFC del receptor, sin prefijo RFC; etiqueta literal RFC, no Receptor RFC.",
     "moneda": "Código o nombre de moneda explícito, sin inferirlo a partir del símbolo $.",
     "subtotal": "Importe impreso de Subtotal, sin calcularlo.",
     "impuestos": "Importe del impuesto junto a IVA, VAT o Tax; copiar esa etiqueta literal, incluyendo su tasa si aparece.",
@@ -60,12 +61,22 @@ def _filtrar_evidencia(factura: FacturaExtraida):
     transcripcion = _texto(factura.texto_completo or "")
     lineas = {_texto(linea) for linea in (factura.texto_completo or "").splitlines() if linea.strip()}
     for nombre, campo in factura.campos.items():
+        # Separar una etiqueta pegada al identificador solo cuando ambos ya están
+        # transcritos. No modificar letras, dígitos o longitud del RFC leído.
+        if nombre in {"emisor_rfc", "receptor_rfc"}:
+            prefijo = re.fullmatch(r"\s*(RFC)\s*:?\s+([A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3})\s*",
+                                  campo.valor or "", re.IGNORECASE)
+            if prefijo and _texto(campo.valor) in transcripcion:
+                campo.valor, campo.etiqueta = prefijo.group(2), prefijo.group(1)
         valor, etiqueta = _texto(campo.valor or ""), _texto(campo.etiqueta or "")
         soportado = bool(valor and etiqueta and valor in transcripcion and etiqueta in transcripcion)
         # Nombres y dirección pueden ocupar una línea sin etiqueta. No extender esta
         # excepción a RFC o importes, ni aceptar valores parciales de otra línea.
-        if nombre in {"emisor_nombre", "emisor_direccion", "receptor_nombre"} and not etiqueta:
+        if (nombre in {"emisor_nombre", "emisor_direccion", "receptor_nombre"}
+                and (not etiqueta or etiqueta not in transcripcion)):
             soportado = bool(valor and valor in lineas)
+            if soportado:
+                campo.etiqueta = None
         if nombre == "impuestos":
             soportado = soportado and bool(re.search(r"\b(iva|vat|tax|taxes|impuestos?)\b", etiqueta))
             soportado = soportado and not re.search(r"discount|descuento|retencion|withhold", etiqueta)

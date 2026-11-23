@@ -27,6 +27,9 @@ El prompt incluye el mismo esquema enviado en `format`, con las descripciones po
 al modelo, y pide valores y etiquetas literales para distinguir emisor y receptor.
 Un filtro exige valor y etiqueta presentes en la transcripción. Solo nombres y dirección del emisor
 pueden carecer de etiqueta si su valor coincide con una línea completa de la transcripción.
+Si Gemma inventa una etiqueta para esas líneas, se elimina la etiqueta y se conserva el valor literal.
+Un prefijo `RFC` pegado a un identificador se separa solo cuando ambos están transcritos;
+no se corrigen caracteres ni se completa un RFC.
 En impuestos exige etiqueta de impuesto y rechaza descuentos/retenciones; en total
 rechaza etiquetas de subtotal. La confianza y las coordenadas se guardan como null.
 La transcripción también proviene de Gemma: la consistencia textual no prueba que la imagen se haya

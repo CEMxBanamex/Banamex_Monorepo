@@ -83,10 +83,29 @@ class TestExtraccion(unittest.TestCase):
         factura = self.extraer({"campos": {
             "folio": {"valor": "X-10", "etiqueta": "Folio"},
             "emisor_nombre": {"valor": "Empresa", "etiqueta": None},
-            "receptor_nombre": {"valor": "Cliente Ejemplo", "etiqueta": "Receptor Nombre"},
+            "receptor_nombre": {"valor": "Cliente", "etiqueta": "Receptor Nombre"},
             "total": {"valor": "116.00", "etiqueta": None},
             "emisor_rfc": {"valor": "AAA010101AAA", "etiqueta": None},
         }, "texto_completo": "Folio X-10\nEmpresa Ejemplo\nCliente Ejemplo\nRFC AAA010101AAA\nTotal 116.00"})
         self.assertEqual(factura.campos["folio"].valor, "X-10")
         for nombre in ("emisor_nombre", "receptor_nombre", "total", "emisor_rfc"):
             self.assertIsNone(factura.campos[nombre].valor)
+
+    def test_conserva_encabezado_completo_sin_inventar_etiqueta(self):
+        factura = self.extraer({"campos": {
+            "emisor_nombre": {"valor": "Proveedor Ejemplo SA", "etiqueta": "Emisor"},
+            "emisor_direccion": {"valor": "Calle Ejemplo 15", "etiqueta": "Dirección"},
+        }, "texto_completo": "Proveedor Ejemplo SA\nCalle Ejemplo 15"})
+        self.assertEqual(factura.campos["emisor_nombre"].valor, "Proveedor Ejemplo SA")
+        self.assertEqual(factura.campos["emisor_direccion"].valor, "Calle Ejemplo 15")
+        self.assertTrue(all(c.etiqueta is None for c in factura.campos.values()))
+
+    def test_separa_prefijo_rfc_solo_si_esta_transcrito(self):
+        factura = self.extraer({"campos": {
+            "folio": {"valor": "F-5", "etiqueta": "Folio"},
+            "emisor_rfc": {"valor": "RFC AAA010101AAA", "etiqueta": "Emisor RFC"},
+            "receptor_rfc": {"valor": "RFC BBB020202BBB", "etiqueta": "RFC"},
+        }, "texto_completo": "Folio F-5\nRFC AAA010101AAA"})
+        self.assertEqual(factura.campos["emisor_rfc"].valor, "AAA010101AAA")
+        self.assertEqual(factura.campos["emisor_rfc"].etiqueta, "RFC")
+        self.assertIsNone(factura.campos["receptor_rfc"].valor)
