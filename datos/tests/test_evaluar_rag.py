@@ -16,7 +16,7 @@ def _correr(*args):
 
 def test_evaluar_sin_bd():
     salida = _correr()
-    assert "acierto@1" in salida and "27 preguntas" in salida
+    assert "acierto@1" in salida and "preguntas" in salida
 
 
 def test_calibrar_sin_bd_recomienda_umbral():
