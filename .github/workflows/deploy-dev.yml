@@ -102,8 +102,14 @@ jobs:
         run: vercel build --token="$VERCEL_TOKEN"
       - name: Deploy y alias dev.<DOMINIO>
         run: |
+          set -o pipefail
           url="$(vercel deploy --prebuilt --token="$VERCEL_TOKEN")"
           echo "Despliegue: $url"
-          # vercel alias no toma la cuenta de VERCEL_ORG_ID como deploy: sin --scope, con un token limitado a la
-          # cuenta falla con "User not found".
-          vercel alias set "$url" "dev.$DOMINIO" --scope "$VERCEL_ORG_ID" --token="$VERCEL_TOKEN"
+          # El alias se asigna con la API REST y no con "vercel alias": ese comando siempre carga el usuario
+          # (/v2/user), que un token limitado a la cuenta no puede leer ("User not found", aun con --scope).
+          api="https://api.vercel.com"
+          id="$(curl -sS --fail-with-body -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "$api/v13/deployments/${url#https://}?teamId=$VERCEL_ORG_ID" | jq -r .id)"
+          curl -sS --fail-with-body -X POST -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" -d "{\"alias\":\"dev.$DOMINIO\"}" \
+            "$api/v2/deployments/$id/aliases?teamId=$VERCEL_ORG_ID" | jq -r '"Alias: https://" + .alias'
