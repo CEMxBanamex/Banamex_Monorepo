@@ -61,3 +61,28 @@ class TestExtraccion(unittest.TestCase):
         self.archivo.write_text("documento inválido")
         with self.assertRaises(ErrorExtraccion):
             extraer_campos_factura(str(self.archivo))
+
+    def test_etiquetas_literales_y_encabezado_sin_etiqueta(self):
+        factura = self.extraer({"campos": {
+            "emisor_nombre": {"valor": "Empresa Ejemplo SA", "etiqueta": None},
+            "emisor_direccion": {"valor": "Calle Prueba 10", "etiqueta": None},
+            "receptor_nombre": {"valor": "Cliente Ejemplo SA", "etiqueta": "Receptor"},
+            "emisor_rfc": {"valor": "AAA010101AAA", "etiqueta": "RFC"},
+            "impuestos": {"valor": "16.00", "etiqueta": "IVA 16 %"},
+            "total": {"valor": "116.00", "etiqueta": "Total"},
+        }, "texto_completo": "Empresa Ejemplo SA\nRFC AAA010101AAA\nCalle Prueba 10\n"
+           "Receptor\nCliente Ejemplo SA\nIVA 16 % 16.00\nTotal 116.00"})
+        self.assertTrue(all(c.valor is not None for c in factura.campos.values()))
+        self.assertIsNone(factura.campos["emisor_nombre"].etiqueta)
+
+    def test_excepcion_sin_etiqueta_no_admite_importes_ni_textos_parciales(self):
+        factura = self.extraer({"campos": {
+            "folio": {"valor": "X-10", "etiqueta": "Folio"},
+            "emisor_nombre": {"valor": "Empresa", "etiqueta": None},
+            "receptor_nombre": {"valor": "Cliente Ejemplo", "etiqueta": "Receptor Nombre"},
+            "total": {"valor": "116.00", "etiqueta": None},
+            "emisor_rfc": {"valor": "AAA010101AAA", "etiqueta": None},
+        }, "texto_completo": "Folio X-10\nEmpresa Ejemplo\nCliente Ejemplo\nRFC AAA010101AAA\nTotal 116.00"})
+        self.assertEqual(factura.campos["folio"].valor, "X-10")
+        for nombre in ("emisor_nombre", "receptor_nombre", "total", "emisor_rfc"):
+            self.assertIsNone(factura.campos[nombre].valor)

@@ -23,8 +23,10 @@ este recorrido no usa el servidor MCP ni necesita esperar la fusión del PR #19.
 
 ## Evidencia de extracción y límites
 
-El prompt pide valores y etiquetas literales. Un filtro descarta valores sin etiqueta y transcripción
-coincidentes; en impuestos exige etiqueta de impuesto y rechaza descuentos/retenciones; en total
+El prompt pide valores y etiquetas literales, con instrucciones por campo para distinguir emisor y receptor.
+Un filtro exige valor y etiqueta presentes en la transcripción. Solo nombres y dirección del emisor
+pueden carecer de etiqueta si su valor coincide con una línea completa de la transcripción.
+En impuestos exige etiqueta de impuesto y rechaza descuentos/retenciones; en total
 rechaza etiquetas de subtotal. La confianza y las coordenadas se guardan como null.
 La transcripción también proviene de Gemma: la consistencia textual no prueba que la imagen se haya
 leído correctamente. Todos los casos se pausan, incluso cuando las reglas sugieren aceptación.
