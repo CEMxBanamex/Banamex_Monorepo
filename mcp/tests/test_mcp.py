@@ -8,7 +8,7 @@ from pathlib import Path
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-from steward_datos.contratos import FacturaExtraida
+from steward_datos.contratos import FacturaExtraida, MetricaNoDisponible
 
 RAIZ = Path(__file__).resolve().parents[2]
 TOOL = "extraer_campos_factura_demo"
@@ -27,14 +27,19 @@ async def probar_analista():
         async with ClientSession(lector, escritor) as cliente:
             await cliente.initialize()
             tools = await cliente.list_tools()
-            esperadas = {
-                TOOL,
-                "obtener_metrica",
-                "consultar_glosario",
-                "consultar_calidad",
-                "validar_reglas",
+            assert {tool.name for tool in tools.tools} == {
+                TOOL, "consultar_caso", "buscar_facturas", "obtener_metrica",
+                "consultar_glosario", "consultar_calidad", "validar_reglas",
             }
-            assert {tool.name for tool in tools.tools} == esperadas
+            # Una métrica desconocida exige contexto antes de devolver el catálogo,
+            # sin necesitar PostgreSQL. Sin usuario_actual esta llamada falla.
+            metrica = await cliente.call_tool(
+                "obtener_metrica", {"entrada": {"metrica": "metrica_inexistente_s3_37"}}
+            )
+            assert not metrica.isError, metrica.content
+            no_disponible = MetricaNoDisponible.model_validate(metrica.structuredContent["result"])
+            assert no_disponible.metricas_disponibles
+            assert "No existe la métrica" in no_disponible.motivo
             pasos = []
 
             async def registrar_paso(progreso, total, mensaje):

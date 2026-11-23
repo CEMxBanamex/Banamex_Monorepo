@@ -34,6 +34,10 @@ No hay balanceador ni certificado de ACM: el HTTPS lo da **Caddy** en cada EC2 c
 1. Enciende el lab y copia sus credenciales a `~/.aws/credentials` (cambian en cada sesión). Comprueba con `aws sts get-caller-identity`. Si un comando falla con `ExpiredToken`, vuelve a copiarlas.
 2. En cada raíz de `envs/`, copia `terraform.tfvars.example` a `terraform.tfvars` y pon los valores reales. Los `.tfvars` no se versionan.
 
+**Restricciones del lab que ya están resueltas en el código:**
+- Una SCP del lab niega `s3:GetBucketObjectLockConfiguration`, y el recurso `aws_s3_bucket` la lee siempre (falla con `AccessDenied`). Por eso los buckets (`bootstrap` y `modules/s3`) se crean y se borran con la CLI de AWS desde un `terraform_data`, y Terraform los lee con el data source `aws_s3_bucket` y administra su configuración. Hace falta la CLI de AWS en la máquina que aplica.
+- Si una llamada a Secrets Manager tarda minutos o falla con `Signature expired`, la red anuncia IPv6 pero no lo enruta: la CLI prueba primero las direcciones IPv6 del endpoint. Agrega `--cli-connect-timeout 3` o desactiva IPv6 en esa red.
+
 ## Orden de aplicación
 
 Cada bloque se corre desde `infra/terraform/`. Revisa siempre el `plan` antes de aplicar.

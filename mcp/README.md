@@ -18,6 +18,18 @@ Desde la raíz del monorepo, con el entorno virtual y las dependencias de Datos 
 
 Las pruebas arrancan el servidor, negocian la sesión MCP, listan las herramientas y hacen llamadas reales por stdio. El resultado esperado es `Ran 2 tests` y `OK`.
 
+## Contexto del usuario y herramientas de Datos (S3-37)
+
+`crear_servidor(usuario)` fija `usuario_actual` antes de registrar las herramientas. En este servidor de desarrollo
+el usuario es fijo por proceso (`MCP_DEV_USUARIO` y `MCP_DEV_ROL`). El contexto se hereda en las tareas que atienden
+las llamadas MCP. Un servidor con usuarios distintos debe establecer y restablecer el contexto por petición tras
+validar la identidad; esta configuración de desarrollo no sustituye esa autenticación.
+
+Se registran las cuatro herramientas propias de Datos junto con la demo, `consultar_caso` y `buscar_facturas`.
+La prueba por stdio llama a `obtener_metrica` con una métrica inexistente y comprueba la respuesta tipada con el
+catálogo disponible. Esa ruta exige contexto del usuario antes de devolver el catálogo y permite detectar la
+regresión sin PostgreSQL ni GPU. No verifica consultas de métricas contra una base de datos.
+
 ## Convención para copiar
 
 - Una herramienta por archivo en `mcp/steward_mcp/tools/`; registrar cada una en `mcp/steward_mcp/servidor.py`.

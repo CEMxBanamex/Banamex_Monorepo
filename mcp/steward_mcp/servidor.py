@@ -4,16 +4,23 @@ import os
 from mcp.server.fastmcp import FastMCP
 from mcp.server.transport_security import TransportSecuritySettings
 
+from steward_datos.contexto import usuario_actual
 from steward_datos.contratos import ContextoUsuario
 from steward_datos.mcp_registro import registrar_tools_datos
 from .tools.extraer_campos_factura_demo import registrar
+from .tools.consultar_caso import registrar as registrar_casos
+from .tools.buscar_facturas import registrar as registrar_facturas
 
 
 def crear_servidor(usuario: ContextoUsuario) -> FastMCP:
+    usuario_actual.set(usuario)
     servidor = FastMCP("data-steward-dev")
     registrar(servidor, usuario)
     registrar_tools_datos(servidor, solo_propias=True)
+    registrar_casos(servidor, usuario)
+    registrar_facturas(servidor, usuario)
     return servidor
+
 
 def main() -> None:
     if os.getenv("AUTH_MODE") != "dev":
@@ -21,7 +28,7 @@ def main() -> None:
     rol = os.getenv("MCP_DEV_ROL")
     if rol not in ("analista", "administrador"):
         raise SystemExit("Configurar MCP_DEV_ROL como analista o administrador.")
-    usuario = ContextoUsuario(usuario_id="dev-local", rol=rol)
+    usuario = ContextoUsuario(usuario_id=os.getenv("MCP_DEV_USUARIO", "dev-local"), rol=rol)
     servidor = crear_servidor(usuario)
     # Por omisión stdio (pruebas y cliente como subproceso). En contenedor, MCP_TRANSPORT=streamable-http
     # expone http://<host>:MCP_PORT/mcp solo dentro de la red de Docker; MCP_ALLOWED_HOSTS evita el DNS rebinding.
