@@ -7,6 +7,7 @@ import httpx
 from PIL import Image
 
 from backend.grafo_casos.extraccion import ErrorExtraccion, extraer_campos_factura
+from steward_datos.contratos import CAMPOS_FACTURA
 
 
 class TestExtraccion(unittest.TestCase):
@@ -21,6 +22,11 @@ class TestExtraccion(unittest.TestCase):
             entrada = json.loads(request.content)
             self.assertTrue(entrada["images"])
             self.assertEqual(entrada["options"]["temperature"], 0)
+            esquema = entrada["format"]
+            self.assertIn("campos", esquema["required"])
+            self.assertIn("texto_completo", esquema["required"])
+            self.assertEqual(set(esquema["properties"]["campos"]["required"]), set(CAMPOS_FACTURA))
+            self.assertEqual(set(esquema["$defs"]["CampoLeido"]["required"]), {"valor", "etiqueta"})
             return httpx.Response(200, json={"done": True, "response": json.dumps(salida), **envoltura})
         with httpx.Client(base_url="http://ollama", transport=httpx.MockTransport(responder)) as cliente:
             return extraer_campos_factura(str(self.archivo), cliente=cliente)
@@ -45,7 +51,7 @@ class TestExtraccion(unittest.TestCase):
         self.assertIsNone(factura.campos["total"].valor)
 
     def test_rechaza_respuestas_vacias_y_truncadas(self):
-        for salida, envoltura in [({"campos": {}}, {}),
+        for salida, envoltura in [({"campos": {}, "texto_completo": "Folio 23175403 Total 134,494.76"}, {}),
                                   ({"campos": {"total": {"valor": "1"}}}, {"done_reason": "length"}),
                                   ({"campos": {"desconocido": {"valor": "1"}}}, {})]:
             with self.subTest(salida=salida), self.assertRaises(ErrorExtraccion):
