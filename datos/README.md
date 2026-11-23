@@ -156,6 +156,8 @@ EMBEDDING_PROVEEDOR=ollama python scripts/evaluar_rag.py --calibrar --sin-bd    
 7. **Chat · analista de datos**: "¿Cuánto nos facturó cada proveedor en octubre?" (`obtener_metrica` monto_facturado por proveedor) y lo mismo como `dev-luis`, que solo ve su entidad.
 8. **Chat · gobernanza**: "¿Qué significa factura conciliada?" (`consultar_glosario`), "¿Qué reglas de calidad aplican a la tabla de facturas?" (`consultar_calidad`: 3 de 5 no alcanzan su umbral) y "¿El RFC es dato sensible?" (`buscar_politicas` tipo gobernanza → P-020 §3).
 
+Las 8 preguntas del chat para la demo de la semana 3 (5 de gobernanza y 3 de casos, con su respuesta esperada) están en `evaluacion/preguntas_demo.yaml`; `tests/test_preguntas_demo.py` revisa sus cifras contra la semilla.
+
 ## Integración con los otros frentes
 
 - **Infraestructura**: el `requirements.txt` va en las imágenes de `backend` y `mcp`; ambas necesitan el paquete `steward_datos`. El usuario de base `steward_mcp` solo necesita lectura más `INSERT` en `hallazgos` y `bitacora`. Los archivos se suben a S3 en `casos/<caso_id>/<archivo>` y `politicas/<archivo>`.
