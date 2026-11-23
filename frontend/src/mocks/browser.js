@@ -86,6 +86,10 @@ const handlers = [
             : 'Esta es una respuesta simulada del Asistente. La conexión con las herramientas y el modelo de IA se realizará después.',
           caso_id: entrada.caso_id ?? null,
           simulado: true,
+          tipo: 'informacion_general',
+          fuentes: entrada.mensaje.trim().toLowerCase() === 'fuentes'
+            ? ['Fuente ficticia para probar la pantalla, sin respaldo documental real.']
+            : [],
           duracion_ms: Math.round(performance.now() - inicio),
         })
 

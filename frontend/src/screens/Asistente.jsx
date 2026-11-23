@@ -64,6 +64,7 @@ export default function Asistente({ casoId = null }) {
         pregunta: texto,
         pasos: [],
         respuesta: '',
+        fuentes: [],
         error: '',
         terminado: false,
         abierto: false,
@@ -120,7 +121,10 @@ export default function Asistente({ casoId = null }) {
       }
 
       if (tipo === 'respuesta') {
-        if (typeof contenido.respuesta !== 'string') {
+        if (typeof contenido.respuesta !== 'string' ||
+            !['datos', 'politicas', 'informacion_general', 'mixta'].includes(contenido.tipo) ||
+            (contenido.fuentes !== undefined && (!Array.isArray(contenido.fuentes) ||
+              !contenido.fuentes.every((fuente) => typeof fuente === 'string')))) {
           throw new Error('El servidor envió una respuesta inválida.')
         }
 
@@ -129,6 +133,7 @@ export default function Asistente({ casoId = null }) {
         actualizar(id, (turno) => ({
           ...turno,
           respuesta: contenido.respuesta,
+          fuentes: contenido.fuentes ?? [],
           duracion: Number.isFinite(contenido.duracion_ms)
             ? contenido.duracion_ms
             : null,
@@ -314,6 +319,16 @@ export default function Asistente({ casoId = null }) {
                 <div className="asistente-respuesta">
                   <strong>Asistente · simulación</strong>
                   <p>{turno.respuesta}</p>
+                  {turno.fuentes.length > 0 && (
+                    <section aria-label="Fuentes de la respuesta">
+                      <strong>Fuentes</strong>
+                      <ul>
+                        {turno.fuentes.map((fuente, indice) => (
+                          <li key={`${indice}-${fuente}`}>{fuente}</li>
+                        ))}
+                      </ul>
+                    </section>
+                  )}
                 </div>
               )}
 
