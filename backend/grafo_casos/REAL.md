@@ -123,7 +123,11 @@ Definir `GRAFO_DATABASE_URL_PRUEBAS` solo para esa base antes de ejecutar `unitt
 Usa extracción controlada y herramientas/guardado reales; verifica un hallazgo/evento por regla,
 pausa sin resultado final y cierre idempotente con un solo evento de confirmación.
 
-Para cerrar S3-11 todavía se necesita evidencia de una ejecución local completa con Gemma,
+Para cerrar S3-11 se requiere evidencia de una ejecución local completa con Gemma,
 revisión humana y PostgreSQL, y después verificar el recorrido en dev con el equipo.
 Guardar la fecha, el commit, las versiones, el proveedor de embeddings y los archivos de evidencia.
 Medir precisión de extracción y clasificación por lote corresponde a S3-13.
+
+La [prueba local F-9005 del 23 de noviembre de 2026](../../docs/evidencias/s3-11/F-9005/README.md)
+incluye pausa, decisión humana y cierre confirmado en PostgreSQL. Se conserva el error
+de lectura del RFC y la limitación de embeddings de prueba; la verificación en dev sigue pendiente.
