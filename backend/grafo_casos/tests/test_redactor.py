@@ -52,6 +52,24 @@ class TestRedactorHallazgos(unittest.TestCase):
         self.assertEqual(len(res["hallazgos_redactados"]), 2)
         self.assertIn("analista de cuentas por pagar", exp)
 
+    def test_redactor_sin_politica_marca_revision_humana(self):
+        hallazgos = [
+            {
+                "regla_id": "R-999",
+                "titulo": "Regla sin política vinculada",
+                "evidencia": "página 2",
+            }
+        ]
+        explicacion, detalles = redactar_explicacion_caso(
+            caso_id="F-1099",
+            resultado_sugerido="aceptado",
+            motivo="Prueba",
+            hallazgos=hallazgos,
+        )
+        self.assertNotIn("P-XXX", explicacion)
+        self.assertIn("requiere revisión humana", explicacion)
+        self.assertIn("HUMANA", explicacion)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,7 +6,7 @@ subida de casos y registro de decisión humana.
 from datetime import datetime
 from typing import Callable, Literal, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
 # --- Modelos Pydantic (Contratos de Casos) ---
@@ -126,11 +126,26 @@ class DecisionCasoSalida(BaseModel):
 # --- Datos Fijos / Mocks para Stubs (Fase 0/1) ---
 
 CASOS_MOCK: list[dict] = [
-    {"id": "F-1042", "archivo": "factura_1042.pdf", "tipo": "Factura", "estado": "revision", "resultado": "humana", "fecha": "26 oct 2026", "responsable": "Ana López", "variante": "normal"},
-    {"id": "F-1041", "archivo": "factura_1041.png", "tipo": "Factura", "estado": "revisado", "resultado": "aceptado", "fecha": "26 oct 2026", "responsable": "Ana López", "variante": "sinHallazgos"},
-    {"id": "F-1040", "archivo": "factura_1040.jpg", "tipo": "Factura", "estado": "revisado", "resultado": "rechazado", "fecha": "25 oct 2026", "responsable": "Luis Ortega", "variante": "normal"},
-    {"id": "V-0207", "archivo": "clientes_octubre.xlsx", "tipo": "Validación con políticas", "estado": "procesando", "resultado": None, "fecha": "26 oct 2026", "responsable": "Diego Ruiz"},
-    {"id": "V-0206", "archivo": "registros_prueba.csv", "tipo": "Validación con políticas", "estado": "error", "resultado": None, "fecha": "25 oct 2026", "responsable": "Diego Ruiz", "variante": "error"},
+    {
+        "id": "F-1042", "archivo": "factura_1042.pdf", "tipo": "Factura", "estado": "revision",
+        "resultado": "humana", "fecha": "26 oct 2026", "responsable": "Ana López", "variante": "normal",
+    },
+    {
+        "id": "F-1041", "archivo": "factura_1041.png", "tipo": "Factura", "estado": "revisado",
+        "resultado": "aceptado", "fecha": "26 oct 2026", "responsable": "Ana López", "variante": "sinHallazgos",
+    },
+    {
+        "id": "F-1040", "archivo": "factura_1040.jpg", "tipo": "Factura", "estado": "revisado",
+        "resultado": "rechazado", "fecha": "25 oct 2026", "responsable": "Luis Ortega", "variante": "normal",
+    },
+    {
+        "id": "V-0207", "archivo": "clientes_octubre.xlsx", "tipo": "Validación con políticas", "estado": "procesando",
+        "resultado": None, "fecha": "26 oct 2026", "responsable": "Diego Ruiz",
+    },
+    {
+        "id": "V-0206", "archivo": "registros_prueba.csv", "tipo": "Validación con políticas", "estado": "error",
+        "resultado": None, "fecha": "25 oct 2026", "responsable": "Diego Ruiz", "variante": "error",
+    },
 ]
 
 DETALLES_MOCK: dict[str, dict] = {
@@ -160,9 +175,18 @@ DETALLES_MOCK: dict[str, dict] = {
             },
         ],
         "eventos": [
-            {"id": "EV-3104", "fecha": "26 oct 2026 · 10:15", "quien": "Agente", "accion": "Regla aplicada", "tono": "info", "detalle": "El total no coincide con subtotal más impuestos", "regla": "R-014 · v2.1"},
-            {"id": "EV-3103", "fecha": "26 oct 2026 · 10:15", "quien": "Agente", "accion": "Regla aplicada", "tono": "info", "detalle": "Fecha leída con baja confianza (62 %)", "regla": "R-003 · v1.0"},
-            {"id": "EV-3102", "fecha": "26 oct 2026 · 10:14", "quien": "Agente", "accion": "Extracción de datos", "tono": "info", "detalle": "6 campos extraídos de factura_1042.pdf"},
+            {
+                "id": "EV-3104", "fecha": "26 oct 2026 · 10:15", "quien": "Agente", "accion": "Regla aplicada",
+                "tono": "info", "detalle": "El total no coincide con subtotal más impuestos", "regla": "R-014 · v2.1",
+            },
+            {
+                "id": "EV-3103", "fecha": "26 oct 2026 · 10:15", "quien": "Agente", "accion": "Regla aplicada",
+                "tono": "info", "detalle": "Fecha leída con baja confianza (62 %)", "regla": "R-003 · v1.0",
+            },
+            {
+                "id": "EV-3102", "fecha": "26 oct 2026 · 10:14", "quien": "Agente",
+                "accion": "Extracción de datos", "tono": "info", "detalle": "6 campos extraídos de factura_1042.pdf",
+            },
         ],
     }
 }

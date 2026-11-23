@@ -8,11 +8,9 @@ para la pausa (interrupt) de revisión del analista.
 from typing import Optional
 
 from steward_datos.contratos import (
-    Efecto,
     HallazgoOut,
     RegistrarHallazgoEntrada,
     Resultado,
-    Severidad,
 )
 
 
@@ -45,41 +43,52 @@ def redactar_explicacion_caso(
 
     # Si hay hallazgos estructurados
     bloques_texto = []
+    hay_hallazgo_sin_politica = False
     for h in hallazgos:
-        regla = h.get("regla_id", "R-XXX")
-        version = h.get("regla_version", "1.0")
-        politica = h.get("politica_id", "P-XXX")
+        regla = h.get("regla_id")
+        version = h.get("regla_version")
+        politica = h.get("politica_id")
         seccion = h.get("politica_seccion", "")
         titulo = h.get("titulo", "Discrepancia detectada")
         cifras = h.get("cifras", [])
         evidencia = h.get("evidencia", "documento")
 
-        cita_politica = f"sustentada en {politica}" if politica else ""
-        if seccion:
-            cita_politica += f" ({seccion})"
+        partes_cita = []
+        if regla:
+            partes_cita.append(f"Regla {regla}" + (f" v{version}" if version else ""))
+        if politica:
+            cita_pol = f"sustentada en {politica}"
+            if seccion:
+                cita_pol += f" ({seccion})"
+            partes_cita.append(cita_pol)
+        else:
+            hay_hallazgo_sin_politica = True
+            partes_cita.append("Sin política aplicable (requiere revisión humana)")
 
+        cita_str = " · ".join(partes_cita)
         cifras_str = ""
         if cifras:
             cifras_formateadas = [f"{etiqueta}: {valor}" for etiqueta, valor in cifras]
             cifras_str = f" [{', '.join(cifras_formateadas)}]"
 
         texto_hallazgo = (
-            f"• {titulo}: Regla {regla} v{version} {cita_politica}. "
+            f"• {titulo}: {cita_str}. "
             f"Evidencia en {evidencia}.{cifras_str}"
         )
         bloques_texto.append(texto_hallazgo)
 
         detalles_redactados.append({
-            "regla_id": regla,
-            "regla_version": version,
-            "politica_id": politica,
+            "regla_id": regla or "",
+            "regla_version": version or "",
+            "politica_id": politica or "",
             "titulo": titulo,
             "cifras": cifras,
             "evidencia": evidencia,
         })
 
+    resultado_final_sugerido = "humana" if hay_hallazgo_sin_politica else resultado_sugerido
     sintesis = (
-        f"Se sugiere '{resultado_sugerido.upper()}' para el caso {caso_id} debido a los siguientes hallazgos:\n"
+        f"Se sugiere '{resultado_final_sugerido.upper()}' para el caso {caso_id} debido a los siguientes hallazgos:\n"
         + "\n".join(bloques_texto)
         + "\nEl analista de cuentas por pagar debe verificar las evidencias y registrar la decisión final."
     )

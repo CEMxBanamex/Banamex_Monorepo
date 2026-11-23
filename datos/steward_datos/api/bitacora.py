@@ -6,7 +6,7 @@ acción y fechas, paginación y detalle para filas expandibles.
 from typing import Callable, Literal, Optional
 
 from fastapi import APIRouter, Depends, Query
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 # --- Modelos Pydantic (Contratos de Bitácora) ---
 

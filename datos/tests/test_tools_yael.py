@@ -9,7 +9,7 @@ from steward_datos.contratos import (
     HallazgoOut,
     RegistrarHallazgoEntrada,
 )
-from steward_datos.db.models import Caso, EventoBitacora, Hallazgo, Regla
+from steward_datos.db.models import EventoBitacora
 from steward_datos.tools.consultar_bitacora import consultar_bitacora
 from steward_datos.tools.registrar_hallazgo import registrar_hallazgo
 
@@ -40,6 +40,20 @@ def test_consultar_bitacora_filtrado():
     assert resultado.eventos[0].actor_nombre == "Ana López"
     assert resultado.eventos[0].regla == "R-003 · v1.0"
     assert resultado.paso == "Revisando la bitácora…"
+
+
+def test_consultar_bitacora_permisos_analista():
+    mock_session = MagicMock()
+    # Simular que el caso no está permitido en v_casos
+    mock_session.execute.return_value.scalar_one_or_none.return_value = None
+
+    from steward_datos.contratos import ContextoUsuario
+    usuario_analista = ContextoUsuario(rol="analista", usuario_id="analista-1")
+    entrada = ConsultarBitacoraEntrada(caso_id="F-PROHIBIDO", limite=10)
+
+    resultado = consultar_bitacora(entrada, usuario=usuario_analista, s=mock_session)
+    assert resultado.total == 0
+    assert len(resultado.eventos) == 0
 
 
 def test_registrar_hallazgo_validaciones():

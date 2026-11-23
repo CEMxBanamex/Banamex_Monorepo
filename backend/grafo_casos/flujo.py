@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from steward_datos.contratos import FacturaExtraida, Resultado
 
-from .herramientas_demo import extraer_factura_demo, redactar_demo, validar_factura_demo
+from .herramientas_demo import extraer_factura_demo, validar_factura_demo
 
 
 class DecisionAnalista(BaseModel):
