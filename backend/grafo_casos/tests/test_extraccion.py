@@ -23,6 +23,10 @@ class TestExtraccion(unittest.TestCase):
             self.assertTrue(entrada["images"])
             self.assertEqual(entrada["options"]["temperature"], 0)
             esquema = entrada["format"]
+            esquema_visible = json.loads(entrada["prompt"].split("ESQUEMA_JSON:\n", 1)[1])
+            self.assertEqual(esquema_visible, esquema)
+            for campo in CAMPOS_FACTURA:
+                self.assertTrue(esquema_visible["properties"]["campos"]["properties"][campo]["description"])
             self.assertIn("campos", esquema["required"])
             self.assertIn("texto_completo", esquema["required"])
             self.assertEqual(set(esquema["properties"]["campos"]["required"]), set(CAMPOS_FACTURA))

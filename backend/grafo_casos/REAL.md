@@ -23,7 +23,8 @@ este recorrido no usa el servidor MCP ni necesita esperar la fusión del PR #19.
 
 ## Evidencia de extracción y límites
 
-El prompt pide valores y etiquetas literales, con instrucciones por campo para distinguir emisor y receptor.
+El prompt incluye el mismo esquema enviado en `format`, con las descripciones por campo visibles
+al modelo, y pide valores y etiquetas literales para distinguir emisor y receptor.
 Un filtro exige valor y etiqueta presentes en la transcripción. Solo nombres y dirección del emisor
 pueden carecer de etiqueta si su valor coincide con una línea completa de la transcripción.
 En impuestos exige etiqueta de impuesto y rechaza descuentos/retenciones; en total

@@ -100,8 +100,13 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None)
     esquema["required"] = list(dict.fromkeys([*esquema.get("required", []), "campos", "texto_completo"]))
     esquema["$defs"]["CampoLeido"]["required"] = ["valor", "etiqueta"]
     modelo = os.getenv("VISION_MODELO", "gemma3:4b")
+    # format limita la estructura; incluir también el esquema en el prompt hace
+    # visibles al modelo las instrucciones semánticas específicas de cada campo.
+    prompt = (PROMPT + "\nClaves de campos: " + ", ".join(CAMPOS_FACTURA)
+              + "\nDevuelve un JSON que siga este esquema. Lee las descripciones de cada campo."
+              + "\nESQUEMA_JSON:\n" + json.dumps(esquema, ensure_ascii=False))
     payload = {
-        "model": modelo, "prompt": PROMPT + "\nClaves de campos: " + ", ".join(CAMPOS_FACTURA),
+        "model": modelo, "prompt": prompt,
         "images": [base64.b64encode(datos).decode("ascii")],
         "stream": False, "format": esquema,
         "options": {"temperature": 0, "seed": 42, "num_ctx": 8192, "num_predict": 4096},
