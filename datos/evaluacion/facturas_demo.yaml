@@ -3,11 +3,13 @@
 # No usar factura_1041.png (F-1041 del mockup): ya está en la base y sale rechazada por duplicado (R-015).
 # Cada archivo solo puede subirse una vez por base: en el ensayo y en la demo, R-015 marca el segundo intento.
 # Por eso cada escenario tiene un respaldo con el mismo resultado.
+# En dev la app entra como dev-ana (analista): el receptor de cada factura debe ser una de sus entidades
+# (GFD960701AB4, BDM970315QW2 o CPR180301KJ7); si no, el caso no aparece en su bandeja ni en el chat.
 
 facturas:
   - escenario: correcta
-    archivo: piloto_001.png
-    respaldo: piloto_003.png
+    archivo: piloto_003.png
+    respaldo: piloto_005.png
     resultado: aceptado
     reglas: []
     que_mostrar: Sin hallazgos; el analista confirma.
@@ -30,3 +32,4 @@ facturas:
     reglas: [R-003]
     que_mostrar: Escaneo borroso; la lectura baja del 80 % y se manda a revisión humana en vez de rechazar.
     requiere: que extraer_campos_factura devuelva confianza por campo (S3-11); sin ella R-003 solo avisa.
+    aviso: el respaldo es de Servicios Corporativos Demo, que dev-ana no ve; usarlo solo con el administrador.
