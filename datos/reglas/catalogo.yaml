@@ -18,7 +18,7 @@ reglas:
     version: "1.2"
     nombre: Campos obligatorios de la factura
     historia: 1
-    politica: {id: P-001, version: "3.0", seccion: "3. Datos obligatorios"}
+    politica: {id: P-001, version: "4.0", seccion: "3. Datos obligatorios"}
     efecto: rechazo
     descripcion: La factura debe mostrar folio, fecha, nombre y RFC del emisor, nombre y RFC del receptor, subtotal, impuestos, total y moneda.
     parametros:
@@ -50,7 +50,7 @@ reglas:
     version: "1.1"
     nombre: Fecha de emisión válida
     historia: 1
-    politica: {id: P-001, version: "3.0", seccion: "4. Fecha de emisión"}
+    politica: {id: P-001, version: "4.0", seccion: "4. Fecha de emisión"}
     efecto: rechazo
     descripcion: La fecha de emisión no puede ser posterior a la fecha de recepción ni tener más de 365 días de antigüedad.
     parametros:
@@ -60,7 +60,7 @@ reglas:
     version: "1.0"
     nombre: Moneda admitida
     historia: 1
-    politica: {id: P-001, version: "3.0", seccion: "5. Moneda"}
+    politica: {id: P-001, version: "4.0", seccion: "5. Moneda"}
     efecto: revision
     descripcion: Solo se procesan facturas en MXN o USD. Cualquier otra moneda la revisa Tesorería.
     parametros:
@@ -70,7 +70,7 @@ reglas:
     version: "1.0"
     nombre: Los conceptos suman el subtotal
     historia: 1
-    politica: {id: P-002, version: "2.0", seccion: "3. Conceptos y subtotal"}
+    politica: {id: P-002, version: "3.0", seccion: "3. Conceptos y subtotal"}
     efecto: rechazo
     descripcion: La suma de los importes de los conceptos debe ser igual al subtotal, con la tolerancia de la política.
     parametros:
@@ -80,7 +80,7 @@ reglas:
     version: "2.0"
     nombre: Impuestos calculados con una tasa admitida
     historia: 1
-    politica: {id: P-002, version: "2.0", seccion: "4. Tasas de IVA"}
+    politica: {id: P-002, version: "3.0", seccion: "4. Tasas de IVA"}
     efecto: rechazo
     descripcion: Los impuestos deben ser el subtotal por una tasa admitida de IVA (16 %, 8 % o 0 %).
     parametros:
@@ -91,7 +91,7 @@ reglas:
     version: "2.1"
     nombre: El total coincide con subtotal más impuestos
     historia: 1
-    politica: {id: P-002, version: "2.0", seccion: "5. Total de la factura"}
+    politica: {id: P-002, version: "3.0", seccion: "5. Total de la factura"}
     efecto: rechazo
     descripcion: El total debe ser subtotal + impuestos − retenciones, con la tolerancia de la política.
     parametros:
@@ -129,7 +129,7 @@ reglas:
     version: "1.0"
     nombre: Receptor es una entidad del grupo
     historia: 1
-    politica: {id: P-001, version: "3.0", seccion: "6. Receptor"}
+    politica: {id: P-001, version: "4.0", seccion: "6. Receptor"}
     efecto: rechazo
     descripcion: El RFC del receptor debe pertenecer a una de las entidades receptoras autorizadas.
 
@@ -155,7 +155,7 @@ reglas:
     version: "1.0"
     nombre: Tipo de documento sin política aplicable
     historia: 1
-    politica: {id: P-001, version: "3.0", seccion: "2. Alcance"}
+    politica: {id: P-001, version: "4.0", seccion: "2. Alcance"}
     efecto: revision
     descripcion: Esta política solo cubre facturas de proveedores. Notas de crédito, recibos y otros documentos requieren revisión humana.
     parametros:

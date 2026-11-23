@@ -2,22 +2,29 @@
 # `fecha` sirve para probar la vigencia: la misma pregunta en 2025 debe traer P-002 v1.0.
 preguntas:
   - pregunta: ¿Qué tolerancia se permite cuando el total no coincide con subtotal más impuestos?
-    esperado: {politica: P-002, version: "2.0", regla: R-014}
+    esperado: {politica: P-002, version: "3.0", regla: R-014}
   - pregunta: ¿Cuál era la tolerancia para el total de una factura en 2025?
     fecha: 2025-06-01
     esperado: {politica: P-002, version: "1.0"}
+  - pregunta: ¿Qué tolerancia se permitía en el total de una factura en octubre de 2026?
+    fecha: 2026-10-15
+    esperado: {politica: P-002, version: "2.0"}
+  - pregunta: ¿Qué artículo del Código Fiscal establece los requisitos de una factura?
+    esperado: {politica: P-001, version: "4.0"}
+  - pregunta: ¿Qué es el Anexo 20 y qué tiene que ver con el cálculo del subtotal y los impuestos?
+    esperado: {politica: P-002, version: "3.0"}
   - pregunta: ¿Qué tasas de IVA se aceptan en una factura?
-    esperado: {politica: P-002, version: "2.0", regla: R-011}
+    esperado: {politica: P-002, version: "3.0", regla: R-011}
   - pregunta: ¿Qué datos obligatorios debe tener una factura de proveedor?
-    esperado: {politica: P-001, version: "3.0", regla: R-001}
+    esperado: {politica: P-001, version: "4.0", regla: R-001}
   - pregunta: ¿Se puede recibir una factura con fecha futura o de hace más de un año?
-    esperado: {politica: P-001, version: "3.0", regla: R-004}
+    esperado: {politica: P-001, version: "4.0", regla: R-004}
   - pregunta: ¿En qué monedas se procesan las facturas?
-    esperado: {politica: P-001, version: "3.0", regla: R-005}
+    esperado: {politica: P-001, version: "4.0", regla: R-005}
   - pregunta: ¿Qué pasa si la factura está dirigida a una empresa que no es del grupo?
-    esperado: {politica: P-001, version: "3.0", regla: R-018}
+    esperado: {politica: P-001, version: "4.0", regla: R-018}
   - pregunta: ¿Qué hago con una nota de crédito?
-    esperado: {politica: P-001, version: "3.0", regla: R-031}
+    esperado: {politica: P-001, version: "4.0", regla: R-031}
   - pregunta: ¿Cómo se tratan las facturas duplicadas o con el mismo folio?
     esperado: {politica: P-003, version: "1.2", regla: R-015}
   - pregunta: El proveedor no aparece en el padrón, ¿se rechaza la factura?
