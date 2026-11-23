@@ -33,8 +33,6 @@ Toda factura debe mostrar de forma legible los siguientes datos (regla **R-001 v
 - Subtotal, impuestos trasladados y total.
 - Moneda.
 
-Estos datos son los que el piloto revisa de los requisitos del artículo 29-A del Código Fiscal de la Federación (fracciones I, II, III, IV y VII). Los demás requisitos de ese artículo, como el régimen fiscal del emisor, el código postal y el uso fiscal del receptor o el sello digital, no los revisa el piloto.
-
 Si falta cualquiera de estos datos, la factura no cumple la política y se sugiere el resultado Rechazado. El RFC del emisor y del receptor se valida además contra la estructura definida en la política P-011 (regla **R-002 v2.0**).
 
 ## 4. Fecha de emisión
@@ -55,13 +53,7 @@ El RFC del receptor debe corresponder a una de las entidades receptoras autoriza
 - Los casos que requieren revisión adicional (duplicados, proveedores fuera del padrón y montos altos) se rigen por P-003.
 - Los umbrales de lectura automatizada y el tratamiento de contenido sospechoso se rigen por P-004.
 
-## 8. Fundamento
+## 8. Fundamento y cambios respecto a la versión 3.0
 
-- Código Fiscal de la Federación, artículo 29-A: requisitos que debe contener una factura electrónica (CFDI), entre ellos el RFC, nombre y régimen fiscal del emisor (fracción I), el folio y los sellos digitales (fracción II), el lugar y la fecha de expedición (fracción III), el RFC, nombre, código postal y uso fiscal del receptor (fracción IV) y el importe total con sus impuestos y la forma de pago (fracción VII). Desde la reforma publicada en el DOF el 7 de noviembre de 2025, la fracción IX exige además que la factura ampare operaciones reales (ver P-005).
-- Anexo 20 de la Resolución Miscelánea Fiscal, versión 4.0 del CFDI: estándar técnico que define los campos del comprobante (Folio, Fecha, Emisor, Receptor, SubTotal, Total, Moneda) y los catálogos que deben usarse, como el de monedas.
-
-## 9. Cambios respecto a la versión 3.0
-
-- Se agrega el fundamento: artículo 29-A del Código Fiscal de la Federación y Anexo 20 (CFDI 4.0).
-- La sección 3 indica qué requisitos del artículo 29-A revisa el piloto y cuáles no.
-- Las reglas y los datos obligatorios no cambian.
+- Los requisitos de la factura electrónica (CFDI) salen del artículo 29-A del Código Fiscal de la Federación y del Anexo 20 de la Resolución Miscelánea Fiscal, versión 4.0. Los datos de la sección 3 corresponden a las fracciones I, II, III, IV y VII de ese artículo; los demás requisitos no los revisa el piloto. Desde el 7 nov. 2025, la fracción IX exige además que la factura ampare operaciones reales (ver P-005).
+- Los datos obligatorios y las reglas no cambian respecto a la versión 3.0.

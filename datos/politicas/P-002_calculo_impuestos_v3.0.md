@@ -40,12 +40,7 @@ Si los impuestos no corresponden a ninguna tasa admitida, la factura no cumple l
 
 El total debe ser igual al subtotal más los impuestos trasladados, menos las retenciones si las hay (regla **R-014 v2.1**). Cuando el total impreso no coincide, se reportan el total esperado, el total encontrado y la diferencia, y se sugiere el resultado Rechazado, salvo que alguno de los datos se haya leído con baja confianza, en cuyo caso una persona debe verificarlo (ver P-004).
 
-## 6. Fundamento
+## 6. Fundamento y cambios respecto a la versión 2.0
 
-- Código Fiscal de la Federación, artículo 29-A: la factura debe señalar la cantidad, unidad y descripción de los bienes o servicios (fracción V), el valor unitario (fracción VI) y el importe total, con los impuestos trasladados desglosados por tasa y los impuestos retenidos (fracción VII).
-- Anexo 20 de la Resolución Miscelánea Fiscal, versión 4.0 del CFDI: define el importe de cada concepto, el SubTotal como la suma de esos importes, el total de impuestos trasladados y retenidos, y el Total del comprobante. Las comprobaciones de las secciones 3 a 5 siguen esa misma relación entre campos.
-
-## 7. Cambios respecto a la versión 2.0
-
-- Se agrega el fundamento: artículo 29-A del Código Fiscal de la Federación y Anexo 20 (CFDI 4.0).
-- La tolerancia, las tasas admitidas y las reglas no cambian.
+- Las comprobaciones de importes de la factura electrónica (CFDI) siguen el artículo 29-A, fracciones V a VII, del Código Fiscal de la Federación y el Anexo 20 de la Resolución Miscelánea Fiscal, versión 4.0.
+- La tolerancia, las tasas de IVA y las reglas no cambian respecto a la versión 2.0.
