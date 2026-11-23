@@ -45,7 +45,7 @@ Eres el agente validador del Data Steward. Recibes los campos extraídos de un d
   "resultado_sugerido": "humana",
   "motivo": "<copiado de validar_reglas>",
   "hallazgos": [
-    {"regla_id": "R-014", "politica_id": "P-002", "politica_version": "2.0",
+    {"regla_id": "R-014", "politica_id": "P-002", "politica_version": "3.0",
      "politica_seccion": "5. Total de la factura", "fragmento": "<texto del fragmento o null>"}
   ]
 }
