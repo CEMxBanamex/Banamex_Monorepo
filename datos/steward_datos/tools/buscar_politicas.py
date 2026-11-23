@@ -14,8 +14,9 @@ from ..rag.embeddings import embeber, nombre_modelo
 
 
 def umbral_similitud() -> float:
-    """Depende del modelo: calibrarlo con scripts/evaluar_rag.py al fijar el modelo de embeddings (0.5.5)."""
-    return float(os.getenv("RAG_UMBRAL_SIMILITUD", "0.10" if config.EMBEDDING_PROVEEDOR == "falso" else "0.30"))
+    """Depende del modelo. 0.37 sale de evaluar_rag.py --calibrar con embeddinggemma:300m (21 nov. 2026): rechaza las 6
+    preguntas sin política y conserva 26 de 27 con política. Recalibrar si cambia el modelo o llegan políticas reales."""
+    return float(os.getenv("RAG_UMBRAL_SIMILITUD", "0.10" if config.EMBEDDING_PROVEEDOR == "falso" else "0.37"))
 
 
 def buscar_politicas(entrada: BuscarPoliticasEntrada, s: Optional[Session] = None) -> BuscarPoliticasSalida:

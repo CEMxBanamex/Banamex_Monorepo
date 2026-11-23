@@ -136,4 +136,4 @@ registrar_tools_datos(mcp)
 - Validador como nodo de código (`steward_datos.validador.preparar_para_redactor`) en lugar de agente con LLM: ver `datos/agentes/validador.md`.
 - `buscar_politicas` aplica el umbral de similitud aunque se filtre por regla; con el modelo real podría descartar la sección exacta. Propuesta: no aplicar el umbral cuando viene `reglas`.
 - Si `validar_reglas` debe llamar a `registrar_hallazgo` por su cuenta o si el grafo guarda todo al final con `guardar_resultado` (propuesta: lo segundo, en un solo paso, para que un caso no quede con hallazgos a medias).
-- Umbral de similitud del RAG (`RAG_UMBRAL_SIMILITUD`) con `embeddinggemma:300m`: en la prueba de Carlos Delgado las similitudes correctas fueron de 0.39 a 0.56, así que el valor por defecto de 0.30 hay que calibrarlo con `scripts/evaluar_rag.py --calibrar`.
+- Umbral de similitud del RAG (`RAG_UMBRAL_SIMILITUD`) con `embeddinggemma:300m`: calibrado el 21 nov. con `scripts/evaluar_rag.py --calibrar`: valor por defecto **0.37** (ver `datos/README.md`).

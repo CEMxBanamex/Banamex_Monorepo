@@ -82,6 +82,7 @@ services:
     environment:
       AUTH_MODE: ${AUTH_MODE:-dev}
       MCP_DEV_ROL: ${MCP_DEV_ROL:-analista}
+      MCP_DEV_USUARIO: ${MCP_DEV_USUARIO:-dev-local}
       DATABASE_URL: ${MCP_DATABASE_URL:?Copia .env.example a .env}
       OLLAMA_URL: ${OLLAMA_BASE_URL:-}
       EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}

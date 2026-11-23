@@ -42,10 +42,11 @@ DB_SSLMODE="${DB_SSLMODE:-require}"
 
 if [ -z "${MASTER_PASSWORD:-}" ]; then
   secreto="$(terraform -chdir="$SHARED" output -raw rds_master_secret_arn)"
-  mapfile -t maestro < <(aws secretsmanager get-secret-value --secret-id "$secreto" --query SecretString --output text \
+  # Sin mapfile: el bash de macOS es 3.2.
+  { IFS= read -r MASTER_USER && IFS= read -r MASTER_PASSWORD; } < <(aws secretsmanager get-secret-value \
+    --secret-id "$secreto" --query SecretString --output text \
     | python3 -c 'import json, sys; d = json.load(sys.stdin); print(d["username"]); print(d["password"])')
-  MASTER_USER="${maestro[0]}" MASTER_PASSWORD="${maestro[1]}"
-  unset maestro secreto
+  unset secreto
 fi
 : "${MASTER_USER:?Falta MASTER_USER}"
 log "conectando a $DB_HOST:$DB_PORT como $MASTER_USER (sslmode=$DB_SSLMODE)."
@@ -78,33 +79,35 @@ clave_de() {
   printf '%s' "$clave"
 }
 
-declare -A clave=()
+# Sin arreglos asociativos (el bash de macOS es 3.2): cada contraseña va en una variable CLAVE_<nombre>.
+guardar_clave() { printf -v "CLAVE_$1" '%s' "$2"; }
+clave() { local var="CLAVE_$1"; printf '%s' "${!var}"; }
+
 for rol in "${ROLES_SERVICIO[@]}"; do
-  clave[$rol]="$(clave_de "/dsa/shared/db/$rol")"
+  guardar_clave "$rol" "$(clave_de "/dsa/shared/db/$rol")"
 done
-declare -A clave_personal=()
 for persona in "${INTEGRANTES_LECTURA[@]}" "${INTEGRANTES_DATOS[@]}"; do
-  clave_personal[$persona]="$(clave_de "/dsa/shared/db/personal/$persona")"
+  guardar_clave "$persona" "$(clave_de "/dsa/shared/db/personal/$persona")"
 done
 
 # --- 1. Roles de servicio y grupos (de toda la instancia) ------------------------------------------------------------
 log "roles de servicio y grupos (db/roles/01_roles.sql)."
 {
   for rol in "${ROLES_SERVICIO[@]}"; do
-    printf '\\set clave_%s %s\n' "${rol#steward_}" "${clave[$rol]}"
+    printf '\\set clave_%s %s\n' "${rol#steward_}" "$(clave "$rol")"
   done
   echo '\i /roles/01_roles.sql'
 } | psql_como "$MASTER_USER" "$MASTER_PASSWORD" postgres
 
 # --- 2. Usuarios personales -------------------------------------------------------------------------------------------
-log "usuarios personales: ${#clave_personal[@]}."
+log "usuarios personales: $((${#INTEGRANTES_LECTURA[@]} + ${#INTEGRANTES_DATOS[@]}))."
 {
   echo '\set ON_ERROR_STOP on'
   for persona in "${INTEGRANTES_LECTURA[@]}" "${INTEGRANTES_DATOS[@]}"; do
     grupo=equipo_lectura
     for d in "${INTEGRANTES_DATOS[@]}"; do [ "$d" = "$persona" ] && grupo=equipo_datos; done
     printf "SELECT format('CREATE ROLE %%I LOGIN', '%s') WHERE NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = '%s')\n\\\\gexec\n" "$persona" "$persona"
-    printf "SELECT format('ALTER ROLE %%I PASSWORD %%L', '%s', '%s')\n\\\\gexec\n" "$persona" "${clave_personal[$persona]}"
+    printf "SELECT format('ALTER ROLE %%I PASSWORD %%L', '%s', '%s')\n\\\\gexec\n" "$persona" "$(clave "$persona")"
     printf "GRANT %s TO %s;\n" "$grupo" "$persona"
   done
 } | psql_como "$MASTER_USER" "$MASTER_PASSWORD" postgres
@@ -119,7 +122,7 @@ for base in "${BASES[@]}"; do
   # Permisos de la carga y de los grupos del equipo; equipo_datos solo escribe en dev.
   escribe=false
   [ "$base" = "dsa_dev" ] && escribe=true
-  psql_como steward_migraciones "${clave[steward_migraciones]}" "$base" \
+  psql_como steward_migraciones "$(clave steward_migraciones)" "$base" \
     -v equipo_datos_escribe="$escribe" -f /roles/03_permisos.sql
 done
 
