@@ -1,5 +1,8 @@
 # Grafo de casos simulado (S1-28)
 
+El [flujo real del piloto (S3-11)](REAL.md) conecta Ollama, las herramientas de Datos,
+el guardado en PostgreSQL y la decisión humana. Esta página describe la demo sin servicios.
+
 `FlujoCasos.procesar_caso(caso_id)` ejecuta extractor, validador y redactor
 con herramientas simuladas. El ejemplo lee un subtotal de 100.00 MXN, impuestos
 de 16.00 MXN y un total de 120.00 MXN. El validador calcula 116.00 MXN y sugiere
