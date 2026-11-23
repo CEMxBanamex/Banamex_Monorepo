@@ -1,5 +1,8 @@
 # Grafo de casos simulado (S1-28)
 
+La [convención de agentes (S3-12)](../../docs/agentes/convencion.md) explica cómo usar
+este grafo como referencia para prompts, contratos, herramientas, errores, pasos y pruebas.
+
 `FlujoCasos.procesar_caso(caso_id)` ejecuta extractor, validador y redactor
 con herramientas simuladas. El ejemplo lee un subtotal de 100.00 MXN, impuestos
 de 16.00 MXN y un total de 120.00 MXN. El validador calcula 116.00 MXN y sugiere
