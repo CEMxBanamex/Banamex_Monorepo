@@ -40,9 +40,10 @@ def test_casos_citan_reglas_del_catalogo(p):
 @pytest.mark.bd
 @pytest.mark.usefixtures("base_lista")
 @pytest.mark.parametrize("p", [p for p in DEMO if p["tipo"] == "casos"], ids=lambda p: p["id"])
-def test_casos_coinciden_con_la_semilla(p):
-    from steward_datos.tools.consultas_chat import consultar_caso
-    c = consultar_caso(p["caso"])
+def test_casos_coinciden_con_la_semilla_y_los_ve_dev_ana(p):
+    from steward_datos.contratos import ContextoUsuario
+    from steward_datos.tools.consultas_chat_seguras import consultar_caso
+    c = consultar_caso(p["caso"], ContextoUsuario(usuario_id="dev-ana", rol="analista"))
     assert c.resultado_sugerido == p["resultado_sugerido"]
     hallazgos = [h for h in c.hallazgos if h.titulo != "Prueba"]  # test_bd registra uno de prueba en F-1041
     assert sorted(h.regla_id for h in hallazgos) == p["reglas"]

@@ -1,6 +1,7 @@
 # Preguntas del chat para la demo (S3-20, dueño: Mario). Van al guion de la demo (S3-24).
-# Las de gobernanza salen de preguntas_gobernanza.yaml (ref) y las de casos usan los casos sembrados F-1040 a F-1042,
-# que existen en cualquier base sembrada aunque se suban facturas en el ensayo.
+# Las de gobernanza salen de preguntas_gobernanza.yaml (ref) y las de casos usan casos sembrados que existen en cualquier
+# base sembrada aunque se suban facturas en el ensayo. En dev el chat entra como dev-ana (analista), así que los casos
+# deben ser de sus entidades: F-1040 y F-1041 son de Servicios Corporativos Demo (dev-luis) y no los ve.
 # Las cifras son las de la semilla (corte de calidad del 2 nov. 2026); tests/test_preguntas_demo.py las revisa contra la base.
 
 preguntas:
@@ -58,15 +59,14 @@ preguntas:
 
   - id: D-6
     tipo: casos
-    caso: F-1040
-    pregunta: ¿Por qué la factura F-1040 se mandó a revisión?
+    caso: F-0936
+    pregunta: ¿Por qué se rechazó la factura F-0936?
     respuesta_esperada: >
-      Por dos hallazgos. R-014: el total impreso es 381,170.41 MXN, pero subtotal más impuestos da 379,670.41; la
-      diferencia es de 1,500.00. R-021: el total es mayor a 250,000.00 MXN, así que lo revisa supervisión. El caso se
-      escaló a supervisión y el resultado final fue Rechazado.
-    resultado_sugerido: humana
-    reglas: [R-014, R-021]
-    cifras_r014: {esperado: "379,670.41", encontrado: "381,170.41", diferencia: "1,500.00"}
+      Porque el total no cuadra (R-014): el total impreso es 29,585.36 MXN, pero subtotal más impuestos da 29,385.36;
+      la diferencia es de 200.00, mayor a la tolerancia de 0.05. El agente sugirió Rechazado y Ana López lo confirmó.
+    resultado_sugerido: rechazado
+    reglas: [R-014]
+    cifras_r014: {esperado: "29,385.36", encontrado: "29,585.36", diferencia: "200.00"}
 
   - id: D-7
     tipo: casos
@@ -83,10 +83,10 @@ preguntas:
 
   - id: D-8
     tipo: casos
-    caso: F-1041
-    pregunta: ¿Por qué se aceptó la factura F-1041?
+    caso: F-1027
+    pregunta: ¿Por qué se aceptó la factura F-1027?
     respuesta_esperada: >
-      Porque no incumple ninguna regla: 68,292.90 de subtotal más 10,926.86 de impuestos da el total de 79,219.76 MXN.
+      Porque no incumple ninguna regla: 13,994.05 de subtotal más 2,239.05 de impuestos da el total de 16,233.10 MXN.
       El agente sugirió Aceptado y el analista confirmó ese resultado.
     resultado_sugerido: aceptado
     reglas: []
