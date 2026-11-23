@@ -152,9 +152,11 @@ EMBEDDING_PROVEEDOR=ollama python scripts/evaluar_rag.py --calibrar --sin-bd    
 3. **V-0207** (Historia 2): 8 clientes sin correo (R-101, política P-007) → Rechazado.
 4. **En vivo**: subir `../db/semillas/sinteticos/facturas/demo/demo_inyeccion.pdf`. El agente no obedece la instrucción y reporta R-030.
 5. **En vivo**: subir `demo_nota_credito.pdf` → "No se encontró una regla aplicable" (R-031).
-6. **Chat**: "¿Qué facturas no cuadran en el total?" (`buscar_facturas` con R-014) y "¿Qué tolerancia permite la política?" (`buscar_politicas`, cita P-002 v2.0 §5).
+6. **Chat**: "¿Qué facturas no cuadran en el total?" (`buscar_facturas` con R-014) y "¿Qué tolerancia permite la política?" (`buscar_politicas`, cita P-002 v3.0 §5).
 7. **Chat · analista de datos**: "¿Cuánto nos facturó cada proveedor en octubre?" (`obtener_metrica` monto_facturado por proveedor) y lo mismo como `dev-luis`, que solo ve su entidad.
 8. **Chat · gobernanza**: "¿Qué significa factura conciliada?" (`consultar_glosario`), "¿Qué reglas de calidad aplican a la tabla de facturas?" (`consultar_calidad`: 3 de 5 no alcanzan su umbral) y "¿El RFC es dato sensible?" (`buscar_politicas` tipo gobernanza → P-020 §3).
+
+Las 8 preguntas del chat para la demo de la semana 3 (5 de gobernanza y 3 de casos, con su respuesta esperada) están en `evaluacion/preguntas_demo.yaml`; `tests/test_preguntas_demo.py` revisa sus cifras contra la semilla.
 
 ## Integración con los otros frentes
 

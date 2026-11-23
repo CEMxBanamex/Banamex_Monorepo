@@ -171,3 +171,37 @@ def test_r003_sin_confianza_puede_exigir_revision():
     r = validar_factura("F-1", factura(_conf={"total": None}),
                         Contexto(proveedores_activos=PROV, entidades_receptoras=ENT, fecha_recepcion=HOY), cat)
     assert r.resultado_sugerido == "humana" and reglas(r) == ["R-003"]
+
+
+@pytest.mark.parametrize("rfc, situacion, resultado", [
+    ("EFO150101AB1", "definitivo", "rechazado"),
+    ("PRE160202CD2", "presunto", "humana"),
+    ("DES170303EF3", "desvirtuado", "aceptado"),
+    ("PDE200115AB3", None, "aceptado"),
+])
+def test_r019_lista_69b(rfc, situacion, resultado):
+    lista = {"EFO150101AB1": "definitivo", "PRE160202CD2": "presunto", "DES170303EF3": "desvirtuado"}
+    ctx = Contexto(proveedores_activos=PROV | {rfc}, entidades_receptoras=ENT, lista_69b=lista, fecha_recepcion=HOY)
+    r = validar_factura("F-1", factura(emisor_rfc=rfc), ctx)
+    assert r.resultado_sugerido == resultado
+    assert "R-019@1.0" in r.reglas_evaluadas
+    h = [x for x in r.hallazgos if x.regla_id == "R-019"]
+    assert len(h) == (1 if situacion in ("definitivo", "presunto") else 0)
+    if h:
+        assert h[0].politica_id == "P-005" and h[0].campos == ["emisor_rfc"]
+
+
+def test_r019_sin_lista_no_se_evalua():
+    r = validar_factura("F-1", factura(), Contexto(proveedores_activos=PROV, entidades_receptoras=ENT, fecha_recepcion=HOY))
+    assert not any(c.startswith("R-019") for c in r.reglas_evaluadas)
+
+
+def test_lista_69b_de_prueba(tmp_path):
+    from steward_datos.reglas.lista_69b import cargar_lista_69b
+    lista = cargar_lista_69b()
+    assert lista["EFO150101AB1"] == "definitivo" and lista["PRE160202CD2"] == "presunto"
+    assert cargar_lista_69b(tmp_path / "no_existe.csv") == {}
+    malo = tmp_path / "mala.csv"
+    malo.write_text("rfc,nombre,situacion,fecha_publicacion\nAAA010101AA1,X,sospechoso,2026-01-01\n", encoding="utf-8")
+    with pytest.raises(ValueError):
+        cargar_lista_69b(malo)

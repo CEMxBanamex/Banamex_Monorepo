@@ -6,8 +6,8 @@ version: "3.0"
 historia: 1
 area_responsable: Cuentas por Pagar
 vigente_desde: 2026-01-15
-vigente_hasta: null
-estado: vigente
+vigente_hasta: 2026-10-31
+estado: reemplazada
 ---
 
 # P-001 · Recepción y validación de facturas de proveedores
