@@ -8,6 +8,8 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
+from contratos.eventos_sse import PasoEvent, RespuestaEvent
+
 router = APIRouter(prefix="/api/chat", tags=["Chat provisional"])
 
 
@@ -23,40 +25,25 @@ class ConsultaChat(BaseModel):
     caso_id: str | None = Field(default=None, min_length=1, max_length=100)
 
 
-class RespuestaChat(BaseModel):
-    """Respuesta de ejemplo, pendiente de revisión del equipo."""
-
-    respuesta: str
-    caso_id: str | None
-    simulado: bool
-
-
-@router.post("/consulta", response_model=RespuestaChat)
-def consultar_chat(consulta: ConsultaChat) -> RespuestaChat:
+@router.post("/consulta", response_model=RespuestaEvent)
+def consultar_chat(consulta: ConsultaChat) -> RespuestaEvent:
     """Devuelve una respuesta fija para probar el contrato del chat."""
 
-    return RespuestaChat(
+    return RespuestaEvent(
         respuesta=(
             "Esta es una respuesta de prueba del chat. "
             "Todavía no se consultan casos, políticas ni modelos de IA."
         ),
         caso_id=consulta.caso_id,
         simulado=True,
+        tipo="informacion_general",
+        fuentes=[],
     )
-
-
-class PasoChat(BaseModel):
-    """Formato propuesto para los pasos visibles del chat."""
-
-    id: str
-    texto: str
-    detalle: str | None = None
-    estado: Literal["pendiente", "en_curso", "completado", "error"]
 
 
 def formar_evento(
     nombre: str,
-    contenido: PasoChat | RespuestaChat,
+    contenido: PasoEvent | RespuestaEvent,
 ) -> str:
     """Convierte los datos al formato de un evento SSE."""
 
@@ -81,7 +68,7 @@ async def consultar_chat_stream(
     async def generar_eventos() -> AsyncIterator[str]:
         yield formar_evento(
             "paso",
-            PasoChat(
+            PasoEvent(
                 id="demo-1",
                 texto="Preparando ejemplo",
                 detalle="Paso simulado para probar la interfaz.",
@@ -93,7 +80,7 @@ async def consultar_chat_stream(
 
         yield formar_evento(
             "paso",
-            PasoChat(
+            PasoEvent(
                 id="demo-1",
                 texto="Preparando ejemplo",
                 detalle="La preparación simulada terminó.",
@@ -111,6 +98,8 @@ async def consultar_chat_stream(
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache"},
     )
+
+
 class ConversacionChat(BaseModel):
     """Conversación de ejemplo para construir la interfaz."""
 

@@ -4,6 +4,7 @@ import unittest
 from fastapi.testclient import TestClient
 
 from backend.api.main import app
+from contratos.eventos_sse import PasoEvent, RespuestaEvent
 
 
 class TestChatProvisional(unittest.TestCase):
@@ -22,6 +23,9 @@ class TestChatProvisional(unittest.TestCase):
 
         self.assertEqual(respuesta.status_code, 200)
         datos = respuesta.json()
+        RespuestaEvent.model_validate(datos)
+        self.assertEqual(datos['tipo'], 'informacion_general')
+        self.assertEqual(datos['fuentes'], [])
         self.assertEqual(datos["caso_id"], "F-1042")
         self.assertIs(datos["simulado"], True)
         self.assertTrue(datos["respuesta"].strip())
@@ -101,6 +105,11 @@ class TestChatProvisional(unittest.TestCase):
         primero = eventos[0][1]
         segundo = eventos[1][1]
         final = eventos[2][1]
+        PasoEvent.model_validate(primero)
+        PasoEvent.model_validate(segundo)
+        RespuestaEvent.model_validate(final)
+        self.assertEqual(final['tipo'], 'informacion_general')
+        self.assertEqual(final['fuentes'], [])
 
         self.assertEqual(primero["id"], segundo["id"])
         self.assertEqual(primero["estado"], "en_curso")
