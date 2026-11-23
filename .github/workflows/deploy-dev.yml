@@ -102,6 +102,8 @@ jobs:
         run: vercel build --token="$VERCEL_TOKEN"
       - name: Deploy y alias dev.<DOMINIO>
         run: |
-          url="$(vercel deploy --prebuilt --token="$VERCEL_TOKEN")"
+          # --debug (va a stderr, no cambia la URL capturada): temporal, para ver por qué falla el despliegue en
+          # Actions con un "Error:" vacío. Quitarlo cuando quede resuelto. GitHub enmascara los secretos en el log.
+          url="$(vercel deploy --prebuilt --debug --token="$VERCEL_TOKEN")"
           echo "Despliegue: $url"
           vercel alias set "$url" "dev.$DOMINIO" --token="$VERCEL_TOKEN"
