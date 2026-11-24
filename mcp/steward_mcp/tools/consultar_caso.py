@@ -1,6 +1,7 @@
 """Registro de consultar_caso con contexto fijado por el servidor."""
 from functools import partial
 
+from ..identidad import resolver_usuario
 from anyio import to_thread
 from mcp.server.fastmcp import Context
 from mcp.server.fastmcp.exceptions import ToolError
@@ -16,10 +17,11 @@ class EntradaCaso(BaseModel):
     caso_id: str = Field(min_length=1, max_length=100)
 
 
-def registrar(servidor, usuario):
+def registrar(servidor):
     @servidor.tool()
     async def consultar_caso(entrada: EntradaCaso, ctx: Context) -> CasoOut:
         """Consulta datos y evidencias de un caso permitido. Solo lectura; no cambia decisiones."""
+        usuario = resolver_usuario(ctx)
         await ctx.report_progress(0, 1, "Consultando caso")
         try:
             resultado = await to_thread.run_sync(partial(consultar, entrada.caso_id, usuario=usuario))

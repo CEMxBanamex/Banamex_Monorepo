@@ -3,6 +3,7 @@ from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.fastmcp.exceptions import ToolError
 from pydantic import BaseModel, ConfigDict
 
+from ..identidad import resolver_usuario
 from steward_datos.contratos import CampoLeido, ContextoUsuario, FacturaExtraida
 
 
@@ -12,10 +13,12 @@ class EntradaDemo(BaseModel):
     documento_id: str
 
 
-def registrar(servidor: FastMCP, usuario: ContextoUsuario) -> None:
+def registrar(servidor: FastMCP) -> None:
     @servidor.tool()
     async def extraer_campos_factura_demo(entrada: EntradaDemo, ctx: Context) -> FacturaExtraida:
         """Devuelve la extracción fija de DEMO-001 para probar el flujo local."""
+        usuario = resolver_usuario(ctx)
+
         if usuario.rol != "analista":
             raise ToolError("ROL_NO_AUTORIZADO: la herramienta demo requiere rol analista.")
         if entrada.documento_id != "DEMO-001":

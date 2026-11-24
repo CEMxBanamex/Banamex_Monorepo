@@ -1,7 +1,9 @@
-"""Grafo de chat con enrutamiento y herramientas falsas."""
+"""Grafo asíncrono de chat con ejecución autenticada de herramientas MCP."""
 
+import json
+import re
 from time import perf_counter
-from typing import Iterator
+from typing import Any, AsyncIterator
 
 from langgraph.graph import END, START, StateGraph
 
@@ -11,106 +13,186 @@ from contratos.eventos_sse import (
     RespuestaEvent,
     TipoRespuesta,
 )
+from steward_datos.contratos import ContextoUsuario
 
+from backend.api.cliente_mcp import ClienteMCP
 from .estado import EstadoChat, RolUsuario
 from .enrutador import clasificar_dominio
 from .herramientas_demo import (
-    buscar_politicas,
-    consultar_datos,
-    consultar_casos,
     responder_general,
     responder_fuera_alcance,
 )
 
 
-HERRAMIENTAS = {
-    "gobernanza": buscar_politicas,
-    "consultas": consultar_datos,
-    "casos": consultar_casos,
-}
+def _texto_resultado_mcp(resultado: Any) -> str:
+    """Convierte la respuesta estructurada de MCP en texto legible."""
 
+    datos = getattr(resultado, "structuredContent", None)
 
+    if datos is None:
+        datos = getattr(resultado, "structured_content", None)
 
-def ejecutar_dominios(estado: EstadoChat) -> dict:
-    """Ejecuta los dominios correspondientes y combina sus resultados."""
+    if datos is not None:
+        return json.dumps(datos, ensure_ascii=False, indent=2, default=str)
 
-    dominio = estado["dominio"]
-    pregunta = estado["pregunta"]
-    dominios = estado.get("dominios_objetivo", [])
+    contenidos = getattr(resultado, "content", None) or []
+    textos = [
+        elemento.text
+        for elemento in contenidos
+        if hasattr(elemento, "text")
+    ]
 
-    if dominio in ("general", "fuera_de_alcance"):
-        if dominios:
-            raise ValueError(
-                f"El dominio {dominio} no debe tener dominios objetivo."
+    if textos:
+        salida = "\n".join(textos)
+
+        try:
+            return json.dumps(
+                json.loads(salida),
+                ensure_ascii=False,
+                indent=2,
+                default=str,
             )
+        except (ValueError, TypeError):
+            return salida
 
-        if dominio == "general":
-            resultado = responder_general(pregunta)
-        else:
-            resultado = responder_fuera_alcance(pregunta)
+    return "La herramienta terminó sin devolver contenido."
 
-        resultados = [resultado]
 
+
+def _formatear_resultado_calidad(resultado: Any) -> str:
+    """Resume las reglas de calidad devueltas por MCP."""
+
+    datos = getattr(resultado, "structuredContent", None)
+
+    if datos is None:
+        datos = getattr(resultado, "structured_content", None)
+
+    if not isinstance(datos, dict):
+        return _texto_resultado_mcp(resultado)
+
+    reglas = datos.get("reglas") or []
+    tablas = datos.get("tablas_con_reglas") or []
+
+    dimensiones = sorted({
+        regla.get("dimension")
+        for regla in reglas
+        if isinstance(regla, dict) and regla.get("dimension")
+    })
+
+    incumplidas = [
+        regla for regla in reglas
+        if isinstance(regla, dict)
+        and regla.get("cumple_umbral") is False
+    ]
+
+    lineas = [
+        "Resultados de calidad de datos",
+        f"Reglas evaluadas: {len(reglas)}",
+        f"Tablas evaluadas: {', '.join(map(str, tablas)) if tablas else 'No especificadas'}",
+        f"Dimensiones registradas: {', '.join(dimensiones) if dimensiones else 'No especificadas'}",
+        f"Reglas que no cumplen su umbral: {len(incumplidas)}",
+    ]
+
+    if incumplidas:
+        lineas.extend(["", "Reglas que requieren atenci?n:"])
+
+        for regla in incumplidas:
+            lineas.append(
+                f"- {regla.get('regla_id', 'Sin ID')} "
+                f"[{regla.get('tabla', 'Sin tabla')}]: "
+                f"{regla.get('descripcion', 'Sin descripci?n')} "
+                f"Resultado: {regla.get('porcentaje', 'No disponible')}% "
+                f"(umbral: {regla.get('umbral', 'No disponible')}%)."
+            )
     else:
-        if not dominios or len(dominios) > 2:
-            raise ValueError(
-                "Debe haber uno o dos dominios objetivo."
-            )
+        lineas.append("Todas las reglas cumplen su umbral.")
 
-        dominios_invalidos = [
-            objetivo
-            for objetivo in dominios
-            if objetivo not in HERRAMIENTAS
-        ]
+    lineas.extend([
+        "",
+        "Nota: estos resultados describen las reglas registradas; "
+        "no constituyen una definici?n conceptual oficial del glosario.",
+    ])
 
-        if dominios_invalidos:
-            raise ValueError(
-                f"Dominios no soportados: {dominios_invalidos}"
-            )
+    return "\n".join(lineas)
 
-        if dominio == "mixta":
-            if len(dominios) != 2 or len(set(dominios)) != 2:
-                raise ValueError(
-                    "Una intención mixta debe tener exactamente "
-                    "dos dominios objetivo diferentes."
-                )
+def _extraer_termino(pregunta: str) -> str:
+    """Extrae el término solicitado para una consulta del glosario."""
 
-        elif dominio in HERRAMIENTAS:
-            if dominios != [dominio]:
-                raise ValueError(
-                    f"El dominio {dominio} debe coincidir "
-                    "con su único dominio objetivo."
-                )
-
-        else:
-            raise ValueError(f"Dominio no soportado: {dominio}")
-
-        resultados = []
-
-        for dominio_objetivo in dominios:
-            herramienta = HERRAMIENTAS[dominio_objetivo]
-            resultados.append(herramienta(pregunta))
-
-    respuesta = "\n\n".join(
-        resultado["respuesta"] for resultado in resultados
+    patron = (
+        r"(?:que significa|qué significa|definicion de|definición de|"
+        r"define|glosario de)\s+(.+?)\s*[?.!]*$"
     )
+    coincidencia = re.search(patron, pregunta.strip(), re.IGNORECASE)
 
-    fuentes = list(dict.fromkeys(
-        fuente
-        for resultado in resultados
-        for fuente in resultado["fuentes"]
-    ))
+    if coincidencia:
+        return coincidencia.group(1).strip()
 
-    return {
-        "resultados_dominio": resultados,
-        "dominios_ejecutados": [
-            resultado["dominio"]
-            for resultado in resultados
-            if resultado["dominio"] in HERRAMIENTAS
-        ],
-        "respuesta": respuesta,
-        "fuentes": fuentes,
-    }
+    return pregunta.strip()
+
+
+def _seleccionar_herramienta(
+    dominio: str,
+    pregunta: str,
+    caso_id: str | None,
+) -> tuple[str | None, dict[str, Any], str | None]:
+    """Selecciona una herramienta MCP para un único dominio."""
+
+    texto = pregunta.lower()
+
+    if dominio == "gobernanza":
+        if any(
+            frase in texto
+            for frase in (
+                "calidad de datos",
+                "dimensiones de calidad",
+                "dimension de calidad",
+                "reglas de calidad",
+            )
+        ):
+            return "consultar_calidad", {}, None
+
+        if any(
+            palabra in texto
+            for palabra in ("glosario", "significa", "definici?n", "definicion")
+        ):
+            return (
+                "consultar_glosario",
+                {"termino": _extraer_termino(pregunta)},
+                None,
+            )
+
+        if "calidad" in texto or "regla" in texto:
+            return "consultar_calidad", {}, None
+
+        return (
+            "buscar_politicas",
+            {"entrada": {"consulta": pregunta}},
+            None,
+        )
+
+    if dominio == "casos":
+        if "factura" in texto:
+            return (
+                "buscar_facturas",
+                {"entrada": {"limite": 20}},
+                None,
+            )
+
+        if not caso_id or not caso_id.strip():
+            return (
+                None,
+                {},
+                "Para consultar un caso necesito su identificador. "
+                "Indícame el caso_id para continuar.",
+            )
+
+        return (
+            "consultar_caso",
+            {"entrada": {"caso_id": caso_id.strip()}},
+            None,
+        )
+
+    raise ValueError(f"Dominio no soportado: {dominio}")
 
 
 def obtener_tipo_respuesta(estado: EstadoChat) -> TipoRespuesta:
@@ -121,23 +203,22 @@ def obtener_tipo_respuesta(estado: EstadoChat) -> TipoRespuesta:
     if dominio == "gobernanza":
         return TipoRespuesta.POLITICAS
 
-    if dominio in ("consultas", "casos"):
+    if dominio == "casos":
         return TipoRespuesta.DATOS
-
-    if dominio == "mixta":
-        return TipoRespuesta.MIXTA
 
     return TipoRespuesta.INFORMACION_GENERAL
 
 
 class FlujoChat:
-    """Orquestador del grafo de chat."""
+    """Orquestador asíncrono del grafo de chat."""
 
-    def __init__(self):
+    def __init__(self, cliente_mcp: ClienteMCP | None = None):
+        self._cliente_mcp = cliente_mcp or ClienteMCP()
+
         grafo = StateGraph(EstadoChat)
 
         grafo.add_node("enrutador", clasificar_dominio)
-        grafo.add_node("ejecutor", ejecutar_dominios)
+        grafo.add_node("ejecutor", self._ejecutar_dominios)
 
         grafo.add_edge(START, "enrutador")
         grafo.add_edge("enrutador", "ejecutor")
@@ -145,16 +226,111 @@ class FlujoChat:
 
         self._grafo = grafo.compile()
 
+    async def _ejecutar_dominios(self, estado: EstadoChat) -> dict:
+        """Ejecuta los dominios y combina los resultados."""
 
-    def stream_chat(
+        dominio = estado["dominio"]
+        pregunta = estado["pregunta"]
+        dominios = estado.get("dominios_objetivo", [])
+
+        if dominio in ("general", "fuera_de_alcance"):
+            if dominios:
+                raise ValueError(
+                    f"El dominio {dominio} no debe tener dominios objetivo."
+                )
+
+            if dominio == "general":
+                resultado = responder_general(pregunta)
+            else:
+                resultado = responder_fuera_alcance(pregunta)
+
+            return {
+                "resultados_dominio": [resultado],
+                "dominios_ejecutados": [],
+                "respuesta": resultado["respuesta"],
+                "fuentes": [],
+                "simulado": True,
+            }
+
+        dominios_validos = {"gobernanza", "casos"}
+
+        if dominio not in dominios_validos:
+            raise ValueError(f"Dominio no soportado: {dominio}")
+
+        if dominios != [dominio]:
+            raise ValueError(
+                f"El dominio {dominio} debe coincidir con su único dominio objetivo."
+            )
+
+        usuario = ContextoUsuario(
+            usuario_id=estado["usuario_id"],
+            rol=estado["rol"],
+        )
+
+        resultados = []
+        fuentes = []
+        ejecutados = []
+        respuestas = []
+
+        for dominio_objetivo in dominios:
+            herramienta, argumentos, aviso = _seleccionar_herramienta(
+                dominio_objetivo,
+                pregunta,
+                estado.get("caso_id"),
+            )
+
+            if aviso:
+                resultados.append({
+                    "dominio": dominio_objetivo,
+                    "respuesta": aviso,
+                    "fuentes": [],
+                    "ejecutado": False,
+                })
+                respuestas.append(aviso)
+                continue
+
+            resultado_mcp = await self._cliente_mcp.ejecutar(
+                herramienta,
+                argumentos,
+                usuario,
+            )
+
+            respuesta = _texto_resultado_mcp(resultado_mcp)
+
+            if herramienta == "consultar_calidad":
+                respuesta = _formatear_resultado_calidad(resultado_mcp)
+
+            resultados.append({
+                "dominio": dominio_objetivo,
+                "herramienta": herramienta,
+                "respuesta": respuesta,
+                "fuentes": [herramienta],
+                "ejecutado": True,
+            })
+
+            respuestas.append(
+                f"Resultado de {herramienta}:\n{respuesta}"
+            )
+            fuentes.append(herramienta)
+            ejecutados.append(dominio_objetivo)
+
+        return {
+            "resultados_dominio": resultados,
+            "dominios_ejecutados": ejecutados,
+            "respuesta": "\n\n".join(respuestas),
+            "fuentes": list(dict.fromkeys(fuentes)),
+            "simulado": False,
+        }
+
+    async def astream_chat(
         self,
         pregunta: str,
         usuario_id: str,
         rol: RolUsuario,
         historial: list[dict] | None = None,
         caso_id: str | None = None,
-    ) -> Iterator[PasoEvent | RespuestaEvent]:
-        """Ejecuta el chat y emite eventos tipados."""
+    ) -> AsyncIterator[PasoEvent | RespuestaEvent]:
+        """Ejecuta el grafo y emite eventos tipados de manera asíncrona."""
 
         if not isinstance(pregunta, str) or not pregunta.strip():
             raise ValueError("La pregunta debe ser texto no vacío.")
@@ -167,7 +343,7 @@ class FlujoChat:
 
         inicio = perf_counter()
 
-        estado = {
+        estado: EstadoChat = {
             "pregunta": pregunta.strip(),
             "usuario_id": usuario_id.strip(),
             "rol": rol,
@@ -184,7 +360,7 @@ class FlujoChat:
                 estado=EstadoPaso.EN_CURSO,
             )
 
-            for actualizacion in self._grafo.stream(
+            async for actualizacion in self._grafo.astream(
                 estado,
                 stream_mode="updates",
             ):
@@ -193,6 +369,7 @@ class FlujoChat:
 
                     if nodo == "enrutador":
                         etapa_actual = "ejecutor"
+
                         yield PasoEvent(
                             id="enrutador",
                             texto="Clasificando solicitud",
@@ -208,14 +385,14 @@ class FlujoChat:
                     elif nodo == "ejecutor":
                         yield PasoEvent(
                             id="ejecutor",
-                            texto="Consultando información",
+                            texto="Consulta terminada",
                             estado=EstadoPaso.COMPLETADO,
                         )
 
             yield RespuestaEvent(
                 respuesta=estado["respuesta"],
                 caso_id=caso_id,
-                simulado=True,
+                simulado=estado.get("simulado", False),
                 duracion_ms=int((perf_counter() - inicio) * 1000),
                 tipo=obtener_tipo_respuesta(estado),
                 fuentes=estado.get("fuentes", []),
