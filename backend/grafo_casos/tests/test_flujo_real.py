@@ -97,7 +97,7 @@ class TestFlujoReal(unittest.TestCase):
         # Incluso si las reglas sugieren aceptar, una lectura pendiente no lo habilita.
         with patch.object(self.tools, "validar", return_value=ResultadoValidacion(
                 caso_id="F-9201", reglas_evaluadas=[], hallazgos=[],
-                resultado_sugerido="aceptado", motivo="Fixture de reglas conforme")) as validar, \
+                resultado_sugerido="aceptado", motivo="Todos los campos se leyeron con buena confianza")) as validar, \
                 patch("backend.grafo_casos.flujo_real.extraer_campos_factura", return_value=factura) as extraer:
             flujo = FlujoCasosReal(self.usuario, herramientas=self.tools, revisar_lecturas=True)
             pausa = flujo.procesar_caso("F-9201", str(self.archivo))
@@ -109,6 +109,9 @@ class TestFlujoReal(unittest.TestCase):
         self.assertEqual(pausa["resultado"]["resultado_sugerido"], "humana")
         self.assertEqual(pausa["__interrupt__"][0].value["resultado_sugerido"], "humana")
         self.assertIn("folio: 'F-8'", pausa["explicacion"])
+        self.assertNotIn("buena confianza", pausa["explicacion"])
+        self.assertIn("No se dispone de confianza calibrada", pausa["explicacion"])
+        self.assertIn("buena confianza", pausa["resultado_reglas"]["motivo"])
         self.assertIn("revision_evidencia", self.tools.revisiones[0])
         self.assertEqual(self.tools.guardados[0][2]["resultado_sugerido"], "humana")
         self.assertEqual(self.tools.cerrados, [])

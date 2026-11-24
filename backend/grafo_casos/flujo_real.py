@@ -110,7 +110,8 @@ class FlujoCasosReal:
             # Conservar su sugerencia original sin presentarla como decisión verificada.
             revision = {**datos, "resultado_sugerido": "humana",
                         "motivo": "Revisión humana requerida: lecturas conservadas sin verificación visual. "
-                                  "Las reglas se calcularon sobre esas lecturas. " + datos["motivo"]}
+                                  "Las reglas se calcularon sobre esas lecturas; sus hallazgos deben "
+                                  "contrastarse con el documento original. No se dispone de confianza calibrada."}
             return {"resultado": revision, "resultado_reglas": datos}
         return {"resultado": datos}
 

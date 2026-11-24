@@ -114,3 +114,20 @@ real de PostgreSQL o una evaluación de precisión sobre el corpus.
 Pendiente: ejecución en Windows con Ollama y la base local, inspección de
 `pausa.json`, explicación y bitácora. No desplegar este experimento por defecto
 ni comparar sus métricas con las históricas como si fueran la misma configuración.
+
+### Manejo de entrada agotada y redacción
+
+La ejecución Windows F-9401 con Qwen llegó a la pausa tras guardar sus lecturas,
+incluidos subtotal e impuestos, y mostró los avisos de evidencia. Falló después
+con EOFError porque el intérprete recibía el propio programa por la entrada estándar
+(`@'…'@ | python -`), por lo que input() no podía recibir una decisión. El piloto
+ahora maneja EOF sin cerrar el caso ni generar final.json, tanto al pedir decisión
+como al pedir motivo. Para una decisión interactiva se debe invocar el módulo
+desde la terminal, sin alimentar el código del programa por una tubería.
+
+Se elimina de la explicación experimental la copia literal del motivo original
+de las reglas: podía afirmar «buena confianza» aun cuando todos los campos tenían
+confianza nula. Ese motivo original queda solo en resultado_reglas para auditoría;
+la explicación publicada indica explícitamente que no hay confianza calibrada.
+Validación: 43 pruebas aprobadas y una integración PostgreSQL omitida (44 total),
+incluyendo EOF en ambos puntos y preservación de pausa.json sin reanudar el grafo.

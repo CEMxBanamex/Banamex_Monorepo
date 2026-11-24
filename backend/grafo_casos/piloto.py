@@ -35,13 +35,22 @@ def main():
     print(estado["explicacion"])
     print("El caso está en revisión. Comprueba el documento original antes de decidir.")
     while True:
-        resultado = input("Decisión (aceptado/rechazado; salir conserva revisión): ").strip().lower()
+        try:
+            resultado = input("Decisión (aceptado/rechazado; salir conserva revisión): ").strip().lower()
+        except EOFError:
+            print("\nNo hay entrada interactiva. El caso se conserva para revisión sin decisión final.")
+            print(f"Evidencia: {(carpeta / 'pausa.json').resolve()}")
+            return
         if resultado == "salir":
             print("La base conserva el resultado para revisión. Esta pausa en memoria termina con el proceso.")
             return
         if resultado not in {"aceptado", "rechazado"}:
             continue
-        motivo = input("Motivo de tu decisión: ").strip()
+        try:
+            motivo = input("Motivo de tu decisión: ").strip()
+        except EOFError:
+            print("\nNo se recibió un motivo. El caso se conserva para revisión sin decisión final.")
+            return
         if motivo:
             break
     final = flujo.reanudar_caso(args.caso, {"resultado": resultado, "motivo": motivo})
