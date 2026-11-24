@@ -1,3 +1,8 @@
+async def eventos_async(elementos):
+    for elemento in elementos:
+        yield elemento
+
+
 """Pruebas de integración: usar exclusivamente una base desechable."""
 
 import os
@@ -73,12 +78,12 @@ class TestHistorialPostgres(unittest.TestCase):
         self.assertEqual([m["rol"] for m in mensajes], ["usuario", "asistente"])
         self.assertEqual(len(mensajes[1]["pasos"]), 4)
         with patch("backend.api.chat_stream.FlujoChat") as flujo:
-            flujo.return_value.stream_chat.return_value = iter([
+            flujo.return_value.astream_chat.return_value = eventos_async([
                 RespuestaEvent(respuesta="Segundo turno", tipo="informacion_general", simulado=True),
             ])
             r = self.cli.post("/api/chat/stream", json={"mensaje": "Continua", "conversacion_id": identificador})
             self.assertIn("event: respuesta", r.text)
-            historial = flujo.return_value.stream_chat.call_args.kwargs["historial"]
+            historial = flujo.return_value.astream_chat.call_args.kwargs["historial"]
             self.assertEqual(historial[0], {"role": "user", "content": "Hola"})
             self.assertEqual(len(historial), 2)
         self.assertEqual(len(self.cli.get(ruta).json()["mensajes"]), 4)
@@ -122,7 +127,7 @@ class TestHistorialPostgres(unittest.TestCase):
     def test_api_error_de_grafo_no_guarda_exito(self):
         identificador = self.crear_por_api()
         with patch("backend.api.chat_stream.FlujoChat") as flujo:
-            flujo.return_value.stream_chat.side_effect = RuntimeError("fallo simulado")
+            flujo.return_value.astream_chat.side_effect = RuntimeError("fallo simulado")
             r = self.cli.post("/api/chat/stream", json={"mensaje": "Hola", "conversacion_id": identificador})
         self.assertNotIn("event: respuesta", r.text)
         self.assertEqual(self.cli.get(f"/api/chat/conversaciones/{identificador}/mensajes").json()["mensajes"], [])

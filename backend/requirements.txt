@@ -1,6 +1,9 @@
-# Dependencias propias del backend. Las de steward_datos están en datos/requirements.txt
+# Dependencias propias del backend. Las de steward_datos estÃ¡n en datos/requirements.txt
 # y las del grafo de casos en backend/grafo_casos/requirements.txt (los Dockerfiles instalan las tres).
 fastapi>=0.110
 uvicorn[standard]>=0.30
 # URL prefirmada de subida a S3 (backend/api/subidas.py).
 boto3>=1.34
+
+# JWT validation for Amazon Cognito
+PyJWT[crypto]>=2.10,<3
