@@ -14,10 +14,11 @@ from steward_datos.validador import preparar_para_redactor
 
 
 class HerramientasReales:
-    def __init__(self, usuario: ContextoUsuario):
+    def __init__(self, usuario: ContextoUsuario, *, sesiones=None):
         if usuario.rol != "analista":
             raise PermissionError("Solo un analista puede procesar y decidir casos.")
         self.usuario = usuario
+        self._sesion = sesiones if sesiones is not None else sesion
 
     def _caso(self, s, caso_id: str) -> Caso:
         caso = s.scalar(select(Caso).where(Caso.id == caso_id).with_for_update())
@@ -26,7 +27,7 @@ class HerramientasReales:
         return caso
 
     def iniciar(self, caso_id: str) -> str:
-        with sesion() as s:
+        with self._sesion() as s:
             if s.get(Caso, caso_id) is not None:
                 raise ValueError("El caso ya existe; usar un identificador nuevo.")
             thread = uuid.uuid4()
@@ -39,7 +40,7 @@ class HerramientasReales:
             return str(thread)
 
     def validar(self, caso_id: str, factura: dict, sha256: str, fecha: str):
-        with sesion() as s:
+        with self._sesion() as s:
             self._caso(s, caso_id)
             entrada = ValidarReglasEntrada(caso_id=caso_id, historia=1,
                                           factura=FacturaExtraida.model_validate(factura),
@@ -47,7 +48,7 @@ class HerramientasReales:
             return validar_reglas(entrada, s)
 
     def politicas(self, resultado: dict, fecha: str):
-        with sesion() as s:
+        with self._sesion() as s:
             r = ResultadoValidacion.model_validate(resultado)
             self._caso(s, r.caso_id)
             ids = {}
@@ -67,7 +68,7 @@ class HerramientasReales:
             return salida.model_dump(mode="json"), ids
 
     def guardar(self, caso_id: str, factura: dict, resultado: dict, explicacion: str, fragmentos: dict):
-        with sesion() as s:
+        with self._sesion() as s:
             caso = self._caso(s, caso_id)
             if caso.estado == "revision":
                 return  # reejecución del nodo tras un checkpoint fallido
@@ -80,7 +81,7 @@ class HerramientasReales:
             # guardar_resultado usa registrar_hallazgo dentro de esta misma transacción.
 
     def cerrar(self, caso_id: str, decision: dict):
-        with sesion() as s:
+        with self._sesion() as s:
             caso = self._caso(s, caso_id)
             if caso.estado == "revisado":
                 anterior = s.scalar(select(EventoBitacora).where(
@@ -99,7 +100,7 @@ class HerramientasReales:
                                  detalle=decision["motivo"], datos=decision))
 
     def error(self, caso_id: str):
-        with sesion() as s:
+        with self._sesion() as s:
             caso = self._caso(s, caso_id)
             if caso.estado != "procesando":
                 return

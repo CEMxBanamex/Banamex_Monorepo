@@ -93,11 +93,12 @@ jobs:
             datos/requirements.txt
             backend/requirements.txt
             backend/grafo_casos/requirements.txt
+            backend/grafo_casos/requirements-evaluacion.txt
             mcp/requirements.txt
       - name: Instalar dependencias
         run: |
           pip install -r datos/requirements.txt -r backend/requirements.txt \
-            -r backend/grafo_casos/requirements.txt -r mcp/requirements.txt \
+            -r backend/grafo_casos/requirements-evaluacion.txt -r mcp/requirements.txt \
             ruff==0.14.0 mypy
       - name: Roles y base de pruebas (los mismos scripts de db/roles/)
         run: |

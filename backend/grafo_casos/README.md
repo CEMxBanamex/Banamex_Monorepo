@@ -34,3 +34,7 @@ Desde la raíz del monorepo, con el entorno virtual ya creado:
 
 Resultado esperado: `Ran 3 tests` y `OK`. Se comprueba la pausa sin decisión,
 la reanudación con una decisión válida y el aislamiento por identificador.
+## Evaluación S3-13
+
+Ver [EVALUACION.md](EVALUACION.md) para ejecutar el corpus completo con Gemma,
+medir extracción y clasificación y generar evidencia sin mezclar casos de evaluación con la aplicación.
