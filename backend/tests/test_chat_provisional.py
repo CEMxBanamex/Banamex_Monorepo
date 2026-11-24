@@ -218,12 +218,26 @@ class TestChatProvisional(unittest.TestCase):
         self.assertEqual(eventos[-1][1]["estado"], "error")
 
     def test_no_hay_rutas_stream_duplicadas(self):
-        rutas = [
-            ruta
-            for ruta in app.routes
-            if getattr(ruta, "path", None) == "/api/chat/stream"
-            and "POST" in getattr(ruta, "methods", set())
-        ]
+        rutas = []
+
+        for ruta in app.routes:
+            recorrer = getattr(ruta, "effective_route_contexts", None)
+
+            if callable(recorrer):
+                for contexto in recorrer():
+                    if (
+                        contexto.path_format == "/api/chat/stream"
+                        and "POST"
+                        in getattr(contexto.original_route, "methods", set())
+                    ):
+                        rutas.append(contexto)
+
+            elif (
+                getattr(ruta, "path", None) == "/api/chat/stream"
+                and "POST" in getattr(ruta, "methods", set())
+            ):
+                rutas.append(ruta)
+
         self.assertEqual(len(rutas), 1)
 
     def test_listar_conversaciones_provisionales(self):
