@@ -159,3 +159,7 @@ Después de instalar las dependencias actualizadas, probar con Docker y Ollama a
 Usar un identificador nuevo si F-9101 ya existe. Inspeccionar el PDF original antes de decidir;
 conservar la salida aunque haya errores de lectura. Después corresponde comprobar las cuatro
 facturas de la demo y sus respaldos con el equipo en dev.
+
+La [prueba PDF F-9101 en Windows](../../docs/evidencias/pdf/F-9101/README.md)
+confirma llegada a revisión con un PDF de dos páginas. Conserva errores de extracción
+y la limitación de ubicaciones de página generadas por el motor de reglas.
