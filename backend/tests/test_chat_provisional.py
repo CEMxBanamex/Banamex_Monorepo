@@ -1,8 +1,3 @@
-async def eventos_async(elementos):
-    for elemento in elementos:
-        yield elemento
-
-
 import json
 import os
 import unittest
@@ -29,6 +24,11 @@ def leer_eventos(texto):
         )
 
     return eventos
+
+
+async def eventos_async(elementos):
+    for elemento in elementos:
+        yield elemento
 
 
 class TestChatProvisional(unittest.TestCase):

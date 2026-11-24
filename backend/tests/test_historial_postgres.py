@@ -1,8 +1,3 @@
-async def eventos_async(elementos):
-    for elemento in elementos:
-        yield elemento
-
-
 """Pruebas de integración: usar exclusivamente una base desechable."""
 
 import os
@@ -27,6 +22,11 @@ from steward_datos.db.models import Base, Mensaje
 
 
 URL = os.getenv("CHAT_DATABASE_URL_PRUEBAS")
+
+
+async def eventos_async(elementos):
+    for elemento in elementos:
+        yield elemento
 
 
 @unittest.skipUnless(URL, "Requiere CHAT_DATABASE_URL_PRUEBAS de una base desechable")
