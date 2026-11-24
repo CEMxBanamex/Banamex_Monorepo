@@ -47,7 +47,7 @@ def redactar_explicacion_caso(
     for h in hallazgos:
         regla = h.get("regla_id")
         version = h.get("regla_version")
-        politica = h.get("politica_id")
+        politica = (h.get("politica_id") or "").strip()
         seccion = h.get("politica_seccion", "")
         titulo = h.get("titulo", "Discrepancia detectada")
         cifras = h.get("cifras", [])
@@ -116,11 +116,16 @@ def ejecutar_redactor(
         from steward_datos.tools.registrar_hallazgo import registrar_hallazgo
 
         for h in hallazgos:
+            regla = (h.get("regla_id") or "").strip()
+            version = (h.get("regla_version") or "").strip()
+            politica = (h.get("politica_id") or "").strip()
+            if not (regla and version and politica):
+                continue
             try:
                 hallazgo_obj = HallazgoOut(
-                    regla_id=h.get("regla_id", "R-014"),
-                    regla_version=h.get("regla_version", "2.1"),
-                    politica_id=h.get("politica_id", "P-002"),
+                    regla_id=regla,
+                    regla_version=version,
+                    politica_id=politica,
                     efecto=h.get("efecto", "revision"),
                     severidad=h.get("severidad", "adv"),
                     titulo=h.get("titulo", "Hallazgo del redactor"),

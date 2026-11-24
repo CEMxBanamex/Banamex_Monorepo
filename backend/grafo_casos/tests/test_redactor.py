@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 from backend.grafo_casos.redactor import ejecutar_redactor, redactar_explicacion_caso
 
@@ -69,6 +70,20 @@ class TestRedactorHallazgos(unittest.TestCase):
         self.assertNotIn("P-XXX", explicacion)
         self.assertIn("requiere revisión humana", explicacion)
         self.assertIn("HUMANA", explicacion)
+
+
+    @patch("steward_datos.tools.registrar_hallazgo.registrar_hallazgo")
+    def test_redactor_no_registra_citas_inventadas(self, registrar):
+        resultado = ejecutar_redactor(
+            caso_id="F-1099",
+            resultado_sugerido="aceptado",
+            motivo="Prueba",
+            hallazgos=[{"regla_id": "R-014", "regla_version": "2.1", "politica_id": " "}],
+            registrar_en_bd=True,
+        )
+        registrar.assert_not_called()
+        self.assertEqual(resultado["eventos_bitacora"], [])
+        self.assertIn("requiere revisión humana", resultado["explicacion"])
 
 
 if __name__ == "__main__":

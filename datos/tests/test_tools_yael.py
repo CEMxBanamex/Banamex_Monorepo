@@ -6,6 +6,7 @@ import pytest
 
 from steward_datos.contratos import (
     ConsultarBitacoraEntrada,
+    ContextoUsuario,
     HallazgoOut,
     RegistrarHallazgoEntrada,
 )
@@ -30,11 +31,14 @@ def test_consultar_bitacora_filtrado():
         datos={"antes": "12/03/2026", "despues": "12/08/2026"},
     )
     mock_session.scalars.return_value.all.return_value = [evento1]
+    mock_session.execute.return_value.scalar_one.return_value = 3
 
-    entrada = ConsultarBitacoraEntrada(caso_id="F-1042", actor_nombre="Ana", limite=10)
-    resultado = consultar_bitacora(entrada, s=mock_session)
+    entrada = ConsultarBitacoraEntrada(caso_id="F-1042", actor_nombre="Ana%_!", limite=1)
+    admin = ContextoUsuario(rol="administrador", usuario_id="admin-prueba")
+    resultado = consultar_bitacora(entrada, usuario=admin, s=mock_session)
 
-    assert resultado.total == 1
+    assert resultado.total == 3
+    assert "%Ana!%!_!!%" in mock_session.scalars.call_args.args[0].compile().params.values()
     assert resultado.eventos[0].id == "EV-3108"
     assert resultado.eventos[0].caso_id == "F-1042"
     assert resultado.eventos[0].actor_nombre == "Ana López"
@@ -44,16 +48,22 @@ def test_consultar_bitacora_filtrado():
 
 def test_consultar_bitacora_permisos_analista():
     mock_session = MagicMock()
-    # Simular que el caso no está permitido en v_casos
-    mock_session.execute.return_value.scalar_one_or_none.return_value = None
+    mock_session.execute.return_value.scalar_one.return_value = 0
+    mock_session.scalars.return_value.all.return_value = []
 
-    from steward_datos.contratos import ContextoUsuario
     usuario_analista = ContextoUsuario(rol="analista", usuario_id="analista-1")
     entrada = ConsultarBitacoraEntrada(caso_id="F-PROHIBIDO", limite=10)
 
     resultado = consultar_bitacora(entrada, usuario=usuario_analista, s=mock_session)
     assert resultado.total == 0
-    assert len(resultado.eventos) == 0
+    assert resultado.eventos == []
+    assert "FROM v_casos" in str(mock_session.execute.call_args.args[0])
+    assert "FROM v_casos" in str(mock_session.scalars.call_args.args[0])
+
+
+def test_consultar_bitacora_requiere_usuario():
+    with pytest.raises(PermissionError, match="Falta el contexto"):
+        consultar_bitacora(ConsultarBitacoraEntrada())
 
 
 def test_registrar_hallazgo_validaciones():

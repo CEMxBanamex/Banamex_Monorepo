@@ -77,17 +77,18 @@ def test_registrar_hallazgo_y_bitacora_inmutable():
 
 
 def test_consultar_bitacora():
-    from steward_datos.contratos import ConsultarBitacoraEntrada
+    from steward_datos.contratos import ConsultarBitacoraEntrada, ContextoUsuario
     from steward_datos.tools.consultar_bitacora import consultar_bitacora
 
-    r = consultar_bitacora(ConsultarBitacoraEntrada(caso_id="F-1042"))
+    admin = ContextoUsuario(rol="administrador", usuario_id="admin-prueba")
+    r = consultar_bitacora(ConsultarBitacoraEntrada(caso_id="F-1042"), usuario=admin)
     assert r.total > 0
     assert all(e.caso_id == "F-1042" for e in r.eventos)
 
-    r_actor = consultar_bitacora(ConsultarBitacoraEntrada(actor_nombre="Ana"))
+    r_actor = consultar_bitacora(ConsultarBitacoraEntrada(actor_nombre="Ana"), usuario=admin)
     assert all("Ana" in e.actor_nombre for e in r_actor.eventos)
 
-    r_accion = consultar_bitacora(ConsultarBitacoraEntrada(accion="regla_aplicada"))
+    r_accion = consultar_bitacora(ConsultarBitacoraEntrada(accion="regla_aplicada"), usuario=admin)
     assert all(e.accion == "regla_aplicada" for e in r_accion.eventos)
 
 
@@ -136,7 +137,7 @@ def test_tools_se_registran_en_mcp():
     registrar_tools_datos(mcp)
     nombres = {t.name for t in anyio.run(mcp.list_tools)}
     assert nombres == {"obtener_metrica", "consultar_glosario", "consultar_calidad", "validar_reglas", "buscar_politicas",
-                       "registrar_hallazgo", "consultar_caso", "buscar_facturas"}
+                       "registrar_hallazgo", "consultar_bitacora", "consultar_caso", "buscar_facturas"}
     propias = Servidor("prueba2")
     registrar_tools_datos(propias, solo_propias=True)
     assert {t.name for t in anyio.run(propias.list_tools)} == {"obtener_metrica", "consultar_glosario", "consultar_calidad", "validar_reglas"}
