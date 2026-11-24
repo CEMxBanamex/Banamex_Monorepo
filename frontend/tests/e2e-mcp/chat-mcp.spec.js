@@ -12,7 +12,7 @@ for (const caso of [false, true]) {
     const panel = page.getByRole('region', { name: 'Asistente de consultas' })
     const apertura = page.waitForResponse(r => r.url().endsWith('/api/chat/conversaciones') && r.request().method() === 'POST')
     const transmision = page.waitForResponse(r => r.url().endsWith('/api/chat/stream') && r.request().method() === 'POST')
-    const pregunta = caso ? 'Consulta el detalle del caso' : 'Consulta las reglas de calidad de datos'
+    const pregunta = caso ? '¿Por qué se rechazó la factura F-1042?' : 'Consulta las reglas de calidad de datos'
     await panel.getByLabel('Tu pregunta').fill(pregunta)
     await panel.getByRole('button', { name: 'Enviar', exact: true }).click()
     const creada = await apertura
