@@ -66,6 +66,7 @@ export default function Asistente({ casoId = null }) {
         pregunta: texto,
         pasos: [],
         respuesta: '',
+        simulado: true,
         fuentes: [],
         error: '',
         terminado: false,
@@ -135,6 +136,7 @@ export default function Asistente({ casoId = null }) {
         actualizar(id, (turno) => ({
           ...turno,
           respuesta: contenido.respuesta,
+          simulado: contenido.simulado !== false,
           fuentes: contenido.fuentes ?? [],
           duracion: Number.isFinite(contenido.duracion_ms)
             ? contenido.duracion_ms
@@ -344,7 +346,7 @@ export default function Asistente({ casoId = null }) {
 
               {turno.respuesta && (
                 <div className="asistente-respuesta">
-                  <strong>Asistente · simulación</strong>
+                  <strong>{turno.simulado ? 'Asistente · simulación' : 'Asistente'}</strong>
                   <p>{turno.respuesta}</p>
                   {turno.fuentes.length > 0 && (
                     <section aria-label="Fuentes de la respuesta">
