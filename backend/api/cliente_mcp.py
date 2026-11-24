@@ -4,11 +4,11 @@
 import os
 
 import httpx
-from mcp import ClientSession
 from mcp.client.streamable_http import streamable_http_client
-
 from steward_datos.contratos import ContextoUsuario
 from steward_datos.credencial_interna import crear_credencial
+
+from mcp import ClientSession
 
 
 class ErrorMCP(Exception):
@@ -41,37 +41,33 @@ class ClienteMCP:
             async with httpx.AsyncClient(
                 headers=headers,
                 timeout=30.0,
-            ) as cliente_http:
+            ) as cliente_http, streamable_http_client(
+                self.url,
+                http_client=cliente_http,
+            ) as (lectura, escritura, _), ClientSession(
+                lectura,
+                escritura,
+            ) as sesion:
 
-                async with streamable_http_client(
-                    self.url,
-                    http_client=cliente_http,
-                ) as (lectura, escritura, _):
+                await sesion.initialize()
 
-                    async with ClientSession(
-                        lectura,
-                        escritura,
-                    ) as sesion:
+                resultado = await sesion.call_tool(
+                    herramienta,
+                    argumentos,
+                )
 
-                        await sesion.initialize()
+                if resultado.isError:
+                    mensajes = [
+                        contenido.text
+                        for contenido in (resultado.content or [])
+                        if hasattr(contenido, "text")
+                    ]
+                    raise ErrorMCP(
+                        f"Error en herramienta {herramienta}: "
+                        + " | ".join(mensajes)
+                    )
 
-                        resultado = await sesion.call_tool(
-                            herramienta,
-                            argumentos,
-                        )
-
-                        if resultado.isError:
-                            mensajes = [
-                                contenido.text
-                                for contenido in (resultado.content or [])
-                                if hasattr(contenido, "text")
-                            ]
-                            raise ErrorMCP(
-                                f"Error en herramienta {herramienta}: "
-                                + " | ".join(mensajes)
-                            )
-
-                        return resultado
+                return resultado
 
         except ErrorMCP:
             raise

@@ -8,7 +8,6 @@ import jwt
 from fastapi import Header, HTTPException
 from jwt import PyJWKClient, PyJWTError
 from jwt.exceptions import PyJWKClientError
-
 from steward_datos.contratos import ContextoUsuario
 
 ROLES_VALIDOS = {"analista", "administrador"}

@@ -1,15 +1,16 @@
 """Registro de consultar_caso con contexto fijado por el servidor."""
 from functools import partial
 
-from ..identidad import resolver_usuario
 from anyio import to_thread
 from mcp.server.fastmcp import Context
 from mcp.server.fastmcp.exceptions import ToolError
 from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy.exc import SQLAlchemyError
-
 from steward_datos.contratos import CasoOut
-from steward_datos.tools.consultas_chat_seguras import CasoNoDisponible, consultar_caso as consultar
+from steward_datos.tools.consultas_chat_seguras import CasoNoDisponible
+from steward_datos.tools.consultas_chat_seguras import consultar_caso as consultar
+
+from ..identidad import resolver_usuario
 
 
 class EntradaCaso(BaseModel):

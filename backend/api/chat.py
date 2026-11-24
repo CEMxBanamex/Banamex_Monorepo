@@ -3,15 +3,16 @@
 import json
 import logging
 from collections.abc import AsyncIterator
+from typing import Annotated
 
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
+from steward_datos.contratos import ContextoUsuario
 
 from backend.api.autenticacion import resolver_usuario
 from backend.grafo_chat.flujo import FlujoChat
 from contratos.eventos_sse import EventoSSE
-from steward_datos.contratos import ContextoUsuario
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +65,7 @@ async def _generar_eventos(
 @router.post("/stream")
 async def transmitir_chat(
     solicitud: SolicitudChat,
-    usuario: ContextoUsuario = Depends(resolver_usuario),
+    usuario: Annotated[ContextoUsuario, Depends(resolver_usuario)],
 ) -> StreamingResponse:
     """Transmite el progreso y la respuesta del agente mediante SSE."""
 

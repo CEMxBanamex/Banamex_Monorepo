@@ -8,9 +8,9 @@ from unittest.mock import patch
 
 import jwt
 from fastapi import HTTPException
+from steward_datos.contratos import ContextoUsuario
 
 from backend.api.autenticacion import resolver_usuario
-from steward_datos.contratos import ContextoUsuario
 
 
 class TestAutenticacion(unittest.TestCase):
@@ -28,8 +28,7 @@ class TestAutenticacion(unittest.TestCase):
         self.assertEqual(usuario.rol, "analista")
 
     def test_peticion_sin_encabezados(self):
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}):
-            with self.assertRaises(HTTPException) as contexto:
+        with patch.dict(os.environ, {"AUTH_MODE": "dev"}), self.assertRaises(HTTPException) as contexto:
                 resolver_usuario(
                     authorization=None,
                     x_usuario=None,
@@ -39,8 +38,7 @@ class TestAutenticacion(unittest.TestCase):
         self.assertEqual(contexto.exception.status_code, 401)
 
     def test_rol_invalido_en_modo_dev(self):
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}):
-            with self.assertRaises(HTTPException) as contexto:
+        with patch.dict(os.environ, {"AUTH_MODE": "dev"}), self.assertRaises(HTTPException) as contexto:
                 resolver_usuario(
                     authorization=None,
                     x_usuario="dev-ana",
@@ -58,13 +56,12 @@ class TestAutenticacion(unittest.TestCase):
                 "COGNITO_USER_POOL_ID": "us-east-1_test",
                 "COGNITO_CLIENT_ID": "client-test",
             },
-        ):
-            with self.assertRaises(HTTPException) as contexto:
-                resolver_usuario(
-                    authorization=None,
-                    x_usuario=None,
-                    x_rol=None,
-                )
+        ), self.assertRaises(HTTPException) as contexto:
+            resolver_usuario(
+                authorization=None,
+                x_usuario=None,
+                x_rol=None,
+            )
 
         self.assertEqual(contexto.exception.status_code, 401)
 
@@ -121,13 +118,12 @@ class TestAutenticacion(unittest.TestCase):
                 "COGNITO_USER_POOL_ID": "us-east-1_test",
                 "COGNITO_CLIENT_ID": "client-test",
             },
-        ):
-            with self.assertRaises(HTTPException) as contexto:
-                resolver_usuario(
-                    authorization="Bearer token-invalido",
-                    x_usuario=None,
-                    x_rol=None,
-                )
+        ), self.assertRaises(HTTPException) as contexto:
+            resolver_usuario(
+                authorization="Bearer token-invalido",
+                x_usuario=None,
+                x_rol=None,
+            )
 
         self.assertEqual(contexto.exception.status_code, 401)
 
@@ -151,13 +147,12 @@ class TestAutenticacion(unittest.TestCase):
                 "COGNITO_USER_POOL_ID": "us-east-1_test",
                 "COGNITO_CLIENT_ID": "client-test",
             },
-        ):
-            with self.assertRaises(HTTPException) as contexto:
-                resolver_usuario(
-                    authorization="Bearer token-falso",
-                    x_usuario=None,
-                    x_rol=None,
-                )
+        ), self.assertRaises(HTTPException) as contexto:
+            resolver_usuario(
+                authorization="Bearer token-falso",
+                x_usuario=None,
+                x_rol=None,
+            )
 
         self.assertEqual(contexto.exception.status_code, 403)
 

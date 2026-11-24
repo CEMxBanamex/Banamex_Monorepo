@@ -2,9 +2,9 @@
 from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.fastmcp.exceptions import ToolError
 from pydantic import BaseModel, ConfigDict
+from steward_datos.contratos import CampoLeido, FacturaExtraida
 
 from ..identidad import resolver_usuario
-from steward_datos.contratos import CampoLeido, ContextoUsuario, FacturaExtraida
 
 
 class EntradaDemo(BaseModel):

@@ -6,9 +6,9 @@ import os
 from mcp.server.fastmcp import FastMCP
 from mcp.server.transport_security import TransportSecuritySettings
 
-from .tools.extraer_campos_factura_demo import registrar
-from .tools.consultar_caso import registrar as registrar_casos
 from .tools.buscar_facturas import registrar as registrar_facturas
+from .tools.consultar_caso import registrar as registrar_casos
+from .tools.extraer_campos_factura_demo import registrar
 from .tools.gobernanza import registrar as registrar_gobernanza
 
 

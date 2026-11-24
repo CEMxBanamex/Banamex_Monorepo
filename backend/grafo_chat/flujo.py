@@ -2,25 +2,26 @@
 
 import json
 import re
+from collections.abc import AsyncIterator
 from time import perf_counter
-from typing import Any, AsyncIterator
+from typing import Any
 
 from langgraph.graph import END, START, StateGraph
+from steward_datos.contratos import ContextoUsuario
 
+from backend.api.cliente_mcp import ClienteMCP
 from contratos.eventos_sse import (
     EstadoPaso,
     PasoEvent,
     RespuestaEvent,
     TipoRespuesta,
 )
-from steward_datos.contratos import ContextoUsuario
 
-from backend.api.cliente_mcp import ClienteMCP
-from .estado import EstadoChat, RolUsuario
 from .enrutador import clasificar_dominio
+from .estado import EstadoChat, RolUsuario
 from .herramientas_demo import (
-    responder_general,
     responder_fuera_alcance,
+    responder_general,
 )
 
 
@@ -109,8 +110,7 @@ def _formatear_resultado_calidad(resultado: Any) -> str:
 
     lineas.extend([
         "",
-        "Nota: estos resultados describen las reglas registradas; "
-        "no constituyen una definici?n conceptual oficial del glosario.",
+        "Nota: estos resultados describen las reglas registradas; no constituyen una definici?n conceptual oficial del glosario.",
     ])
 
     return "\n".join(lineas)
@@ -182,8 +182,7 @@ def _seleccionar_herramienta(
             return (
                 None,
                 {},
-                "Para consultar un caso necesito su identificador. "
-                "Indícame el caso_id para continuar.",
+                "Para consultar un caso necesito su identificador. Indícame el caso_id para continuar.",
             )
 
         return (

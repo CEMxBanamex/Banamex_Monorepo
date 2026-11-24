@@ -4,6 +4,8 @@ import unittest
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
 
+from steward_datos.contratos import ContextoUsuario
+
 from backend.grafo_chat.flujo import FlujoChat
 from contratos.eventos_sse import (
     EstadoPaso,
@@ -11,7 +13,6 @@ from contratos.eventos_sse import (
     RespuestaEvent,
     TipoRespuesta,
 )
-from steward_datos.contratos import ContextoUsuario
 
 
 class TestFlujoChat(unittest.IsolatedAsyncioTestCase):

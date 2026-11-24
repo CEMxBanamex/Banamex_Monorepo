@@ -42,16 +42,15 @@ class TestChatAPI(unittest.TestCase):
                 fuentes=["buscar_politicas"],
             )
 
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}):
-            with patch(
-                "backend.api.chat.flujo_chat.astream_chat",
-                side_effect=eventos_falsos,
-            ):
-                response = self.client.post(
-                    self.url,
-                    json={"pregunta": "Consulta las políticas"},
-                    headers=self.headers,
-                )
+        with patch.dict(os.environ, {"AUTH_MODE": "dev"}), patch(
+            "backend.api.chat.flujo_chat.astream_chat",
+            side_effect=eventos_falsos,
+        ):
+            response = self.client.post(
+                self.url,
+                json={"pregunta": "Consulta las políticas"},
+                headers=self.headers,
+            )
 
         self.assertEqual(response.status_code, 200)
         self.assertIn("text/event-stream", response.headers["content-type"])
@@ -116,16 +115,15 @@ class TestChatAPI(unittest.TestCase):
             )
             raise RuntimeError("Error interno de prueba")
 
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}):
-            with patch(
-                "backend.api.chat.flujo_chat.astream_chat",
-                side_effect=eventos_con_error,
-            ):
-                response = self.client.post(
-                    self.url,
-                    json={"pregunta": "Consulta las políticas"},
-                    headers=self.headers,
-                )
+        with patch.dict(os.environ, {"AUTH_MODE": "dev"}), patch(
+            "backend.api.chat.flujo_chat.astream_chat",
+            side_effect=eventos_con_error,
+        ):
+            response = self.client.post(
+                self.url,
+                json={"pregunta": "Consulta las políticas"},
+                headers=self.headers,
+            )
 
         self.assertEqual(response.status_code, 200)
         self.assertIn("event: error", response.text)

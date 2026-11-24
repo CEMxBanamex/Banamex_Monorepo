@@ -5,10 +5,10 @@ import sys
 import unittest
 from pathlib import Path
 
-from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-
 from steward_datos.contratos import FacturaExtraida
+
+from mcp import ClientSession, StdioServerParameters
 
 RAIZ = Path(__file__).resolve().parents[2]
 TOOL = "extraer_campos_factura_demo"
@@ -29,8 +29,10 @@ async def probar_analista():
             "MCP_DEV_ROL": "analista",
         },
     )
-    async with stdio_client(params) as (lector, escritor):
-        async with ClientSession(lector, escritor) as cliente:
+    async with (
+        stdio_client(params) as (lector, escritor),
+        ClientSession(lector, escritor) as cliente,
+    ):
             await cliente.initialize()
             tools = await cliente.list_tools()
             nombres = {tool.name for tool in tools.tools}
@@ -77,8 +79,10 @@ async def probar_rol():
             "MCP_DEV_ROL": "administrador",
         },
     )
-    async with stdio_client(params) as (lector, escritor):
-        async with ClientSession(lector, escritor) as cliente:
+    async with (
+        stdio_client(params) as (lector, escritor),
+        ClientSession(lector, escritor) as cliente,
+    ):
             await cliente.initialize()
 
             error = await cliente.call_tool(

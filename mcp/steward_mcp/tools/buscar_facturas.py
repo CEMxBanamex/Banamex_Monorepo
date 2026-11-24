@@ -7,13 +7,15 @@ from anyio import to_thread
 from mcp.server.fastmcp import Context
 from mcp.server.fastmcp.exceptions import ToolError
 from sqlalchemy.exc import SQLAlchemyError
-
-from ..identidad import resolver_usuario
 from steward_datos.contratos import BuscarFacturasSalida
 from steward_datos.tools.consultas_chat_seguras import (
     FiltrosFacturas,
+)
+from steward_datos.tools.consultas_chat_seguras import (
     buscar_facturas as buscar,
 )
+
+from ..identidad import resolver_usuario
 
 
 def registrar(servidor):

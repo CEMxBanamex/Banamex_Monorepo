@@ -2,7 +2,6 @@
 
 from typing import Any, Literal, TypedDict
 
-
 DominioChat = Literal[
     "gobernanza",
     "casos",

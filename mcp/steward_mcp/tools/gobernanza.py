@@ -7,21 +7,20 @@ from anyio import to_thread
 from mcp.server.fastmcp import Context
 from mcp.server.fastmcp.exceptions import ToolError
 from sqlalchemy.exc import SQLAlchemyError
-
 from steward_datos.contratos import (
     BuscarPoliticasEntrada,
     BuscarPoliticasSalida,
-    ConsultarGlosarioSalida,
     ConsultarCalidadSalida,
+    ConsultarGlosarioSalida,
 )
 from steward_datos.tools.buscar_politicas import (
     buscar_politicas as buscar,
 )
-from steward_datos.tools.consultar_glosario import (
-    consultar_glosario as consultar_termino,
-)
 from steward_datos.tools.consultar_calidad import (
     consultar_calidad as consultar_resultados,
+)
+from steward_datos.tools.consultar_glosario import (
+    consultar_glosario as consultar_termino,
 )
 
 from ..identidad import resolver_usuario

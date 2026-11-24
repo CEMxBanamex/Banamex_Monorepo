@@ -4,8 +4,7 @@ import re
 import unicodedata
 from typing import Any
 
-from .estado import EstadoChat, DominioChat
-
+from .estado import DominioChat, EstadoChat
 
 PALABRAS_GOBERNANZA = (
     "politica",

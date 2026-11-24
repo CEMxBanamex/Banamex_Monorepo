@@ -4,7 +4,6 @@ import os
 
 from mcp.server.fastmcp import Context
 from mcp.server.fastmcp.exceptions import ToolError
-
 from steward_datos.contratos import ContextoUsuario
 from steward_datos.credencial_interna import (
     CredencialInternaInvalida,
