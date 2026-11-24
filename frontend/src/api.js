@@ -3,8 +3,10 @@
  * Consume los endpoints REST de FastAPI interceptados por MSW en desarrollo.
  */
 
+export const API_BASE_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '')
+
 export async function apiFetch(endpoint, opciones = {}) {
-  const resp = await fetch(endpoint, {
+  const resp = await fetch(`${API_BASE_URL}${endpoint}`, {
     headers: {
       'Content-Type': 'application/json',
       ...opciones.headers,

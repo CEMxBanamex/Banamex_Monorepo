@@ -52,7 +52,9 @@ def test_buscar_politicas_respeta_vigencia():
     from steward_datos.contratos import BuscarPoliticasEntrada
     from steward_datos.tools.buscar_politicas import buscar_politicas
     hoy = buscar_politicas(BuscarPoliticasEntrada(consulta="tolerancia del total de la factura", fecha=date(2026, 11, 2)))
-    assert {(f.politica_id, f.version) for f in hoy.fragmentos if f.politica_id == "P-002"} == {("P-002", "2.0")}
+    assert {(f.politica_id, f.version) for f in hoy.fragmentos if f.politica_id == "P-002"} == {("P-002", "3.0")}
+    octubre = buscar_politicas(BuscarPoliticasEntrada(consulta="tolerancia del total de la factura", fecha=date(2026, 10, 15)))
+    assert {(f.politica_id, f.version) for f in octubre.fragmentos if f.politica_id == "P-002"} == {("P-002", "2.0")}
     antes = buscar_politicas(BuscarPoliticasEntrada(consulta="tolerancia del total de la factura", fecha=date(2025, 6, 1)))
     assert antes.fragmentos and all(f.politica_id == "P-002" and f.version == "1.0" for f in antes.fragmentos)
     gob = buscar_politicas(BuscarPoliticasEntrada(consulta="formato del RFC del cliente", tipo="gobernanza"))

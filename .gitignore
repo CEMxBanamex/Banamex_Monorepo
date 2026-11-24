@@ -34,3 +34,6 @@ crash.log
 .idea/
 .DS_Store
 Thumbs.db
+
+# Vercel CLI (vercel link / vercel pull)
+.vercel/

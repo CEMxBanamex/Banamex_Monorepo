@@ -1,0 +1,304 @@
+{
+  "caso_id": "F-9005",
+  "archivo": "db/semillas/sinteticos/facturas/evaluacion/piloto_001.png",
+  "fecha": "2026-11-23",
+  "sha256": "82ebcbedd28b17e37fa82b79e18109d4a46897b464ab51f9a1ee0e8e41be6a77",
+  "factura": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": "23175403",
+        "confianza": null,
+        "etiqueta": "Folio",
+        "pagina": 1,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": "27/09/2026",
+        "confianza": null,
+        "etiqueta": "Fecha",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Gonzales Servicios SAPI de CV",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": "GSS070101186W",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Privada Ozuna 662, Nueva Sri Lanka",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Servicios Corporativos Demo SA de CV",
+        "confianza": null,
+        "etiqueta": "Receptor",
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "SCD050920LM8",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": 1,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": 1,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "115,943.76",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": 1,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "18,551.00",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Retenciones",
+        "pagina": 1,
+        "bbox": null
+      },
+      "total": {
+        "valor": "134,494.76",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": 1,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Pago a 15 días",
+        "confianza": null,
+        "etiqueta": "Condiciones de pago",
+        "pagina": 1,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "10",
+        "precio_unitario": "11,550.88",
+        "importe": "115,508.80"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "434.96",
+        "importe": "434.96"
+      }
+    ],
+    "texto_completo": "Gonzales Servicios SAPI de CV\nRFC GSS070101186W\nPrivada Ozuna 662, Nueva Sri Lanka\n\nFACTURA\nFolio 23175403\nFecha 27/09/2026\n\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\n\nConcepto\nSoporte técnico mensual\nPapelería y artículos de oficina\n\nCant.  P. unitario  Importe\n10  11,550.88  115,508.80\n1  434.96  434.96\n\nSubtotal  115,943.76\nIVA 16 %  18,551.00\nTotal  $ 134,494.76\n\nCondiciones de pago: Pago a 15 días",
+    "modelo": "gemma3:4b",
+    "paginas": 1
+  },
+  "resultado": {
+    "caso_id": "F-9005",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-003@1.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-018@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "regla_id": "R-002",
+        "regla_version": "2.0",
+        "politica_id": "P-011",
+        "politica_version": "2.0",
+        "politica_seccion": "2. Estructura del RFC",
+        "efecto": "rechazo",
+        "severidad": "error",
+        "titulo": "El RFC del proveedor no tiene un formato válido",
+        "texto": "«GSS070101186W» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+        "cifras": null,
+        "campos": [
+          "emisor_rfc"
+        ],
+        "filas": null,
+        "evidencia": "página 1, rfc del proveedor",
+        "evidencia_detalle": {
+          "pagina": 1,
+          "campo": "emisor_rfc"
+        }
+      },
+      {
+        "regla_id": "R-003",
+        "regla_version": "1.0",
+        "politica_id": "P-004",
+        "politica_version": "1.0",
+        "politica_seccion": "2. Umbral de confianza",
+        "efecto": "informativo",
+        "severidad": "info",
+        "titulo": "No se conoce la confianza de lectura",
+        "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+        "cifras": null,
+        "campos": [
+          "folio",
+          "fecha",
+          "emisor_nombre",
+          "emisor_rfc",
+          "receptor_nombre",
+          "receptor_rfc",
+          "moneda",
+          "subtotal",
+          "impuestos",
+          "tasa_iva",
+          "total"
+        ],
+        "filas": null,
+        "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total",
+        "evidencia_detalle": null
+      }
+    ],
+    "resultado_sugerido": "rechazado",
+    "motivo": "No cumple: R-002 formato de rfc en la factura"
+  },
+  "politicas": {
+    "caso_id": "F-9005",
+    "resultado_sugerido": "rechazado",
+    "motivo": "No cumple: R-002 formato de rfc en la factura",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-003@1.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-018@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "hallazgo": {
+          "regla_id": "R-002",
+          "regla_version": "2.0",
+          "politica_id": "P-011",
+          "politica_version": "2.0",
+          "politica_seccion": "2. Estructura del RFC",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "El RFC del proveedor no tiene un formato válido",
+          "texto": "«GSS070101186W» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+          "cifras": null,
+          "campos": [
+            "emisor_rfc"
+          ],
+          "filas": null,
+          "evidencia": "página 1, rfc del proveedor",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "emisor_rfc"
+          }
+        },
+        "politica": {
+          "politica_id": "P-011",
+          "version": "2.0",
+          "seccion": "2. Estructura del RFC",
+          "texto": "P-011 v2.0 · Formato de RFC (vigente desde 15/01/2026)\nSección 2. Estructura del RFC\n\nUn RFC válido se escribe en mayúsculas, sin espacios ni guiones, y tiene una de estas dos formas (reglas **R-002 v2.0** para facturas y **R-103 v2.0** para registros):\n\n- **Persona moral: 12 caracteres.** Tres letras (se admiten Ñ y &), seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n- **Persona física: 13 caracteres.** Cuatro letras, seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n\nLos seis dígitos deben formar una fecha que exista en el calendario. Por ejemplo, un RFC con fecha 230231 no es válido porque el 31 de febrero no existe.",
+          "origen": "rag"
+        }
+      },
+      {
+        "hallazgo": {
+          "regla_id": "R-003",
+          "regla_version": "1.0",
+          "politica_id": "P-004",
+          "politica_version": "1.0",
+          "politica_seccion": "2. Umbral de confianza",
+          "efecto": "informativo",
+          "severidad": "info",
+          "titulo": "No se conoce la confianza de lectura",
+          "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+          "cifras": null,
+          "campos": [
+            "folio",
+            "fecha",
+            "emisor_nombre",
+            "emisor_rfc",
+            "receptor_nombre",
+            "receptor_rfc",
+            "moneda",
+            "subtotal",
+            "impuestos",
+            "tasa_iva",
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total",
+          "evidencia_detalle": null
+        },
+        "politica": {
+          "politica_id": "P-004",
+          "version": "1.0",
+          "seccion": "2. Umbral de confianza",
+          "texto": "P-004 v1.0 · Lectura automatizada de documentos (vigente desde 01/02/2026)\nSección 2. Umbral de confianza\n\nCada campo leído automáticamente lleva una confianza de lectura entre 0 % y 100 %. Si algún campo que se usa para evaluar las reglas tiene una confianza menor a 80 %, el campo se marca como dudoso y el caso pasa a revisión humana (regla **R-003 v1.0**). El analista debe verificar el dato contra el documento original y, si es necesario, corregirlo. Toda corrección queda registrada en la bitácora con el valor anterior y el nuevo.",
+          "origen": "rag"
+        }
+      }
+    ],
+    "pasos": [
+      "Validando reglas… 13 evaluadas, 2 hallazgos",
+      "Buscando política de R-002… P-011 v2.0",
+      "Buscando política de R-003… P-004 v1.0"
+    ]
+  },
+  "fragmentos": {
+    "R-002": [
+      34
+    ],
+    "R-003": [
+      24
+    ]
+  },
+  "explicacion": "No cumple: R-002 formato de rfc en la factura\nEl RFC del proveedor no tiene un formato válido: «GSS070101186W» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe. Evidencia: página 1, rfc del proveedor (R-002 · P-011 v2.0 §2. Estructura del RFC). Fragmento recuperado.\nNo se conoce la confianza de lectura: El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. Evidencia: página 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total (R-003 · P-004 v1.0 §2. Umbral de confianza). Fragmento recuperado.\nLa decisión final corresponde al analista.",
+  "decision_analista": {
+    "resultado": "rechazado",
+    "motivo": "Extracción incorrecta del RFC: Gemma leyó GSS070101186W; la imagen muestra GSS07010186W. Requiere corregir la extracción. No se concluye que la factura original sea inválida."
+  }
+}
