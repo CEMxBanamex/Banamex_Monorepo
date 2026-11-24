@@ -100,8 +100,9 @@ usan respuestas controladas y no acreditan precisión del modelo. Antes de cerra
 lote completo, revisar errores/discrepancias con Iris y versionar los resultados y conclusiones. El uso
 de embeddings `falso-hash` permite medir la integración del RAG; no acredita recuperación semántica real.
 
-La rama de S3-13 parte del código pendiente del PR #30. Integrar primero esa dependencia o dirigir el PR
-inicial a su rama; al entrar S3-11 en dev, comparar la evaluación contra dev y atender posibles cambios.
+El PR #30 ya está integrado en dev. La rama de S3-13 incorpora dev y el PR #36 apunta a dev.
+Los resultados conservados corresponden al commit histórico del manifiesto; esta actualización
+no vuelve a ejecutar Gemma ni sustituye las mediciones originales.
 
 ## Ejecución local registrada
 
