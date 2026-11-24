@@ -1,24 +1,35 @@
-"""Aplicación FastAPI. Por ahora solo /api/health para el entorno local, el CI y los despliegues.
+"""Aplicación FastAPI: salud, chat provisional y subida de archivos."""
 
-Lo mínimo que necesita la infraestructura (Fase 1 de docs/ci-cd). Los endpoints de negocio los agrega el equipo de backend.
-Ejecutar desde la raíz del repo: uvicorn backend.api.main:app
-"""
 import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.api.chat_provisional import router as chat_router
 from backend.api.subidas import router as subidas_router
 
+
 app = FastAPI(title="Data Steward Agéntico")
+
+app.include_router(chat_router)
 app.include_router(subidas_router)
 
-origenes = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
+origenes = [
+    origen.strip()
+    for origen in os.getenv("CORS_ORIGINS", "").split(",")
+    if origen.strip()
+]
+
 if origenes:
-    app.add_middleware(CORSMiddleware, allow_origins=origenes, allow_methods=["*"], allow_headers=["*"])
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origenes,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 @app.get("/api/health")
 def health() -> dict:
-    """Responde 200 si el proceso está arriba. No consulta la base: lo usan los health checks de Docker."""
+    """Confirma que el proceso responde, sin consultar la base de datos."""
     return {"status": "ok"}
