@@ -1,5 +1,12 @@
 # Agente de ejemplo: flujo de casos (S1-32)
 
+El [flujo real del piloto (S3-11)](REAL.md) conecta Ollama, las herramientas de Datos,
+el guardado en PostgreSQL y la decisión humana. Esta página describe la demo sin servicios.
+
+La [evaluación S3-13](EVALUACION.md) ejecuta el corpus completo con Gemma y mide extracción
+y clasificación, conservando los errores y aislando los casos de la aplicación.
+
+
 ## 1. Propósito
 
 Este módulo implementa un agente de demostración mediante un grafo de ejecución con LangGraph. Su objetivo es mostrar una estructura reutilizable para construir agentes con:

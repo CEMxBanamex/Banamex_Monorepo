@@ -1,0 +1,446 @@
+{
+  "archivo": "piloto_022.pdf",
+  "caso_id": "F-3965033621",
+  "sha256": "dd134751858cfd04fc9f03aa8e9c6c0caf5b5e79399a7be34d2c6b90eb871885",
+  "salida": {
+    "caso_id": "F-3965033621",
+    "archivo": "piloto_022.pdf",
+    "fecha": "2026-11-02",
+    "sha256": "dd134751858cfd04fc9f03aa8e9c6c0caf5b5e79399a7be34d2c6b90eb871885",
+    "factura": {
+      "tipo_documento": "factura",
+      "campos": {
+        "folio": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Folio",
+          "pagina": 1,
+          "bbox": null
+        },
+        "fecha": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Fecha",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_nombre": {
+          "valor": "Alvarez Consultores SA de CV",
+          "confianza": null,
+          "etiqueta": null,
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_rfc": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "RFC",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_direccion": {
+          "valor": "Continuación Norte Rascón 436, San Germán s/n bajos",
+          "confianza": null,
+          "etiqueta": null,
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_nombre": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Receptor",
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_rfc": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "RFC",
+          "pagina": 1,
+          "bbox": null
+        },
+        "moneda": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Moneda",
+          "pagina": 1,
+          "bbox": null
+        },
+        "subtotal": {
+          "valor": "38.235.91",
+          "confianza": null,
+          "etiqueta": "Subtotal",
+          "pagina": 1,
+          "bbox": null
+        },
+        "impuestos": {
+          "valor": "6.125.43",
+          "confianza": null,
+          "etiqueta": "IVA 16%",
+          "pagina": 1,
+          "bbox": null
+        },
+        "tasa_iva": {
+          "valor": "16",
+          "confianza": null,
+          "etiqueta": "IVA 16%",
+          "pagina": 1,
+          "bbox": null
+        },
+        "retenciones": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Retenciones",
+          "pagina": 1,
+          "bbox": null
+        },
+        "total": {
+          "valor": "44.809.54",
+          "confianza": null,
+          "etiqueta": "Total",
+          "pagina": 1,
+          "bbox": null
+        },
+        "condiciones_pago": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Condiciones de pago",
+          "pagina": 1,
+          "bbox": null
+        }
+      },
+      "conceptos": [],
+      "texto_completo": "Alvarez Consultores SA de CV\n4202205117\nContinuación Norte Rascón 436, San Germán s/n bajos\n\nRecibe:\nBanco Base SA, Institución de Banca Múltiple\nMonterrey, MEXICO\n\nConcepto\n\nRelacionamiento proveedores de equipo\t\t1\t$ 6.925.17\t\t$ 6.925.17\nServicio de limpieza\t\t2\t$ 3.500.00\t\t$ 3.500.00\nMaterial y papelería\t\t3\t$ 1.300.00\t\t$ 1.300.00\n\nSubtotal\t\t\t$ 38.235.91\nIVA 16%\t\t\t$ 6.125.43\nTotal\t\t\t$ 44.809.54\n\nTérminos y condiciones\n1. Los precios incluyen los impuestos mencionados en la página 1.\n2. Las condiciones de pago son a crédito, a 45 días, bajo los términos de la misión.\n3. Documento íntegro generado para el uso del Data Steward Agent.",
+      "modelo": "gemma3:4b",
+      "paginas": 2
+    },
+    "resultado": {
+      "caso_id": "F-3965033621",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "regla_id": "R-001",
+          "regla_version": "1.2",
+          "politica_id": "P-001",
+          "politica_version": "3.0",
+          "politica_seccion": "3. Datos obligatorios",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "Faltan datos obligatorios en la factura",
+          "texto": "La factura no muestra: folio, fecha, rfc del proveedor, receptor, rfc del receptor, moneda. La política exige estos datos para toda factura de proveedor.",
+          "cifras": null,
+          "campos": [
+            "folio",
+            "fecha",
+            "emisor_rfc",
+            "receptor_nombre",
+            "receptor_rfc",
+            "moneda"
+          ],
+          "filas": null,
+          "evidencia": "página 1",
+          "evidencia_detalle": null
+        },
+        {
+          "regla_id": "R-003",
+          "regla_version": "1.0",
+          "politica_id": "P-004",
+          "politica_version": "1.0",
+          "politica_seccion": "2. Umbral de confianza",
+          "efecto": "informativo",
+          "severidad": "info",
+          "titulo": "No se conoce la confianza de lectura",
+          "texto": "El modelo de visión no informó la confianza de: proveedor, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+          "cifras": null,
+          "campos": [
+            "emisor_nombre",
+            "subtotal",
+            "impuestos",
+            "tasa_iva",
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, proveedor, subtotal, impuestos, tasa de iva, total",
+          "evidencia_detalle": null
+        },
+        {
+          "regla_id": "R-011",
+          "regla_version": "2.0",
+          "politica_id": "P-002",
+          "politica_version": "2.0",
+          "politica_seccion": "4. Tasas de IVA",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "Los impuestos no corresponden a una tasa admitida",
+          "texto": "Los impuestos no equivalen al 16 % del subtotal ni a otra tasa admitida.",
+          "cifras": [
+            [
+              "Esperado",
+              "6,117.75"
+            ],
+            [
+              "Encontrado",
+              "6,125.43"
+            ],
+            [
+              "Diferencia",
+              "7.68"
+            ]
+          ],
+          "campos": [
+            "impuestos"
+          ],
+          "filas": null,
+          "evidencia": "página 1, impuestos",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "impuestos"
+          }
+        },
+        {
+          "regla_id": "R-014",
+          "regla_version": "2.1",
+          "politica_id": "P-002",
+          "politica_version": "2.0",
+          "politica_seccion": "5. Total de la factura",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "El total no coincide con subtotal más impuestos",
+          "texto": "La suma de subtotal e impuestos da un valor distinto al total impreso en la factura.",
+          "cifras": [
+            [
+              "Esperado",
+              "44,361.34"
+            ],
+            [
+              "Encontrado",
+              "44,809.54"
+            ],
+            [
+              "Diferencia",
+              "448.20"
+            ]
+          ],
+          "campos": [
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, total",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "total"
+          }
+        }
+      ],
+      "resultado_sugerido": "rechazado",
+      "motivo": "No cumple: R-001 campos obligatorios de la factura; R-011 impuestos calculados con una tasa admitida; R-014 el total coincide con subtotal más impuestos"
+    },
+    "politicas": {
+      "caso_id": "F-3965033621",
+      "resultado_sugerido": "rechazado",
+      "motivo": "No cumple: R-001 campos obligatorios de la factura; R-011 impuestos calculados con una tasa admitida; R-014 el total coincide con subtotal más impuestos",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "hallazgo": {
+            "regla_id": "R-001",
+            "regla_version": "1.2",
+            "politica_id": "P-001",
+            "politica_version": "3.0",
+            "politica_seccion": "3. Datos obligatorios",
+            "efecto": "rechazo",
+            "severidad": "error",
+            "titulo": "Faltan datos obligatorios en la factura",
+            "texto": "La factura no muestra: folio, fecha, rfc del proveedor, receptor, rfc del receptor, moneda. La política exige estos datos para toda factura de proveedor.",
+            "cifras": null,
+            "campos": [
+              "folio",
+              "fecha",
+              "emisor_rfc",
+              "receptor_nombre",
+              "receptor_rfc",
+              "moneda"
+            ],
+            "filas": null,
+            "evidencia": "página 1",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-001",
+            "version": "3.0",
+            "seccion": "3. Datos obligatorios",
+            "texto": "P-001 v3.0 · Recepción y validación de facturas de proveedores (vigente desde 15/01/2026)\nSección 3. Datos obligatorios\n\nToda factura debe mostrar de forma legible los siguientes datos (regla **R-001 v1.2**):\n\n- Folio de la factura.\n- Fecha de emisión.\n- Nombre o razón social del emisor y su RFC.\n- Nombre o razón social del receptor y su RFC.\n- Subtotal, impuestos trasladados y total.\n- Moneda.\n\nSi falta cualquiera de estos datos, la factura no cumple la política y se sugiere el resultado Rechazado. El RFC del emisor y del receptor se valida además contra la estructura definida en la política P-011 (regla **R-002 v2.0**).",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-003",
+            "regla_version": "1.0",
+            "politica_id": "P-004",
+            "politica_version": "1.0",
+            "politica_seccion": "2. Umbral de confianza",
+            "efecto": "informativo",
+            "severidad": "info",
+            "titulo": "No se conoce la confianza de lectura",
+            "texto": "El modelo de visión no informó la confianza de: proveedor, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+            "cifras": null,
+            "campos": [
+              "emisor_nombre",
+              "subtotal",
+              "impuestos",
+              "tasa_iva",
+              "total"
+            ],
+            "filas": null,
+            "evidencia": "página 1, proveedor, subtotal, impuestos, tasa de iva, total",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-004",
+            "version": "1.0",
+            "seccion": "2. Umbral de confianza",
+            "texto": "P-004 v1.0 · Lectura automatizada de documentos (vigente desde 01/02/2026)\nSección 2. Umbral de confianza\n\nCada campo leído automáticamente lleva una confianza de lectura entre 0 % y 100 %. Si algún campo que se usa para evaluar las reglas tiene una confianza menor a 80 %, el campo se marca como dudoso y el caso pasa a revisión humana (regla **R-003 v1.0**). El analista debe verificar el dato contra el documento original y, si es necesario, corregirlo. Toda corrección queda registrada en la bitácora con el valor anterior y el nuevo.",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-011",
+            "regla_version": "2.0",
+            "politica_id": "P-002",
+            "politica_version": "2.0",
+            "politica_seccion": "4. Tasas de IVA",
+            "efecto": "rechazo",
+            "severidad": "error",
+            "titulo": "Los impuestos no corresponden a una tasa admitida",
+            "texto": "Los impuestos no equivalen al 16 % del subtotal ni a otra tasa admitida.",
+            "cifras": [
+              [
+                "Esperado",
+                "6,117.75"
+              ],
+              [
+                "Encontrado",
+                "6,125.43"
+              ],
+              [
+                "Diferencia",
+                "7.68"
+              ]
+            ],
+            "campos": [
+              "impuestos"
+            ],
+            "filas": null,
+            "evidencia": "página 1, impuestos",
+            "evidencia_detalle": {
+              "pagina": 1,
+              "campo": "impuestos"
+            }
+          },
+          "politica": {
+            "politica_id": "P-002",
+            "version": "2.0",
+            "seccion": "4. Tasas de IVA",
+            "texto": "P-002 v2.0 · Cálculo de importes e impuestos en facturas (vigente desde 01/01/2026)\nSección 4. Tasas de IVA\n\nLos impuestos trasladados deben ser iguales al subtotal multiplicado por una tasa admitida de IVA (regla **R-011 v2.0**). Las tasas admitidas son:\n\n- 16 % (tasa general).\n- 8 % (región fronteriza).\n- 0 % (actos con tasa cero).\n\nSi los impuestos no corresponden a ninguna tasa admitida, la factura no cumple la política.",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-014",
+            "regla_version": "2.1",
+            "politica_id": "P-002",
+            "politica_version": "2.0",
+            "politica_seccion": "5. Total de la factura",
+            "efecto": "rechazo",
+            "severidad": "error",
+            "titulo": "El total no coincide con subtotal más impuestos",
+            "texto": "La suma de subtotal e impuestos da un valor distinto al total impreso en la factura.",
+            "cifras": [
+              [
+                "Esperado",
+                "44,361.34"
+              ],
+              [
+                "Encontrado",
+                "44,809.54"
+              ],
+              [
+                "Diferencia",
+                "448.20"
+              ]
+            ],
+            "campos": [
+              "total"
+            ],
+            "filas": null,
+            "evidencia": "página 1, total",
+            "evidencia_detalle": {
+              "pagina": 1,
+              "campo": "total"
+            }
+          },
+          "politica": {
+            "politica_id": "P-002",
+            "version": "2.0",
+            "seccion": "5. Total de la factura",
+            "texto": "P-002 v2.0 · Cálculo de importes e impuestos en facturas (vigente desde 01/01/2026)\nSección 5. Total de la factura\n\nEl total debe ser igual al subtotal más los impuestos trasladados, menos las retenciones si las hay (regla **R-014 v2.1**). Cuando el total impreso no coincide, se reportan el total esperado, el total encontrado y la diferencia, y se sugiere el resultado Rechazado, salvo que alguno de los datos se haya leído con baja confianza, en cuyo caso una persona debe verificarlo (ver P-004).",
+            "origen": "rag"
+          }
+        }
+      ],
+      "pasos": [
+        "Validando reglas… 12 evaluadas, 4 hallazgos",
+        "Buscando política de R-001… P-001 v3.0",
+        "Buscando política de R-003… P-004 v1.0",
+        "Buscando política de R-011… P-002 v2.0",
+        "Buscando política de R-014… P-002 v2.0"
+      ]
+    },
+    "fragmentos": {
+      "R-001": [
+        3
+      ],
+      "R-003": [
+        24
+      ],
+      "R-011": [
+        15
+      ],
+      "R-014": [
+        16
+      ]
+    },
+    "explicacion": "No cumple: R-001 campos obligatorios de la factura; R-011 impuestos calculados con una tasa admitida; R-014 el total coincide con subtotal más impuestos\nFaltan datos obligatorios en la factura: La factura no muestra: folio, fecha, rfc del proveedor, receptor, rfc del receptor, moneda. La política exige estos datos para toda factura de proveedor. Evidencia: página 1 (R-001 · P-001 v3.0 §3. Datos obligatorios). Fragmento recuperado.\nNo se conoce la confianza de lectura: El modelo de visión no informó la confianza de: proveedor, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. Evidencia: página 1, proveedor, subtotal, impuestos, tasa de iva, total (R-003 · P-004 v1.0 §2. Umbral de confianza). Fragmento recuperado.\nLos impuestos no corresponden a una tasa admitida: Los impuestos no equivalen al 16 % del subtotal ni a otra tasa admitida. Evidencia: página 1, impuestos (R-011 · P-002 v2.0 §4. Tasas de IVA). Fragmento recuperado.\nEl total no coincide con subtotal más impuestos: La suma de subtotal e impuestos da un valor distinto al total impreso en la factura. Evidencia: página 1, total (R-014 · P-002 v2.0 §5. Total de la factura). Fragmento recuperado.\nLa decisión final corresponde al analista."
+  },
+  "estado": "pausa",
+  "segundos": 15.434
+}

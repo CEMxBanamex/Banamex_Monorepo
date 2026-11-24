@@ -1,0 +1,5072 @@
+{
+  "total_corpus": 39,
+  "con_pausa": 30,
+  "errores": 9,
+  "pendientes": 0,
+  "clasificacion": {
+    "aciertos": 18,
+    "exactitud_sobre_corpus": 0.46153846153846156,
+    "falsos_aceptados": 0,
+    "matriz": {
+      "aceptado": {
+        "aceptado": 0,
+        "rechazado": 7,
+        "humana": 1,
+        "sin_salida": 3
+      },
+      "rechazado": {
+        "aceptado": 0,
+        "rechazado": 13,
+        "humana": 1,
+        "sin_salida": 3
+      },
+      "humana": {
+        "aceptado": 0,
+        "rechazado": 3,
+        "humana": 5,
+        "sin_salida": 3
+      }
+    },
+    "por_clase": {
+      "aceptado": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "rechazado": {
+        "precision": 0.5652173913043478,
+        "recall": 0.7647058823529411,
+        "f1": 0.65
+      },
+      "humana": {
+        "precision": 0.7142857142857143,
+        "recall": 0.45454545454545453,
+        "f1": 0.5555555555555556
+      }
+    },
+    "macro_f1": 0.4018518518518519
+  },
+  "extraccion": {
+    "valores_correctos": 184,
+    "valores_emitidos": 231,
+    "valores_esperados": 505,
+    "precision_valores": 0.7965367965367965,
+    "recall_sobre_corpus": 0.36435643564356435,
+    "por_campo": {
+      "folio": {
+        "correctos": 10,
+        "total": 39,
+        "exactitud": 0.2564102564102564
+      },
+      "fecha": {
+        "correctos": 17,
+        "total": 39,
+        "exactitud": 0.4358974358974359
+      },
+      "emisor_nombre": {
+        "correctos": 22,
+        "total": 39,
+        "exactitud": 0.5641025641025641
+      },
+      "emisor_rfc": {
+        "correctos": 8,
+        "total": 39,
+        "exactitud": 0.20512820512820512
+      },
+      "emisor_direccion": {
+        "correctos": 12,
+        "total": 39,
+        "exactitud": 0.3076923076923077
+      },
+      "receptor_nombre": {
+        "correctos": 12,
+        "total": 39,
+        "exactitud": 0.3076923076923077
+      },
+      "receptor_rfc": {
+        "correctos": 8,
+        "total": 39,
+        "exactitud": 0.20512820512820512
+      },
+      "moneda": {
+        "correctos": 17,
+        "total": 39,
+        "exactitud": 0.4358974358974359
+      },
+      "subtotal": {
+        "correctos": 19,
+        "total": 39,
+        "exactitud": 0.48717948717948717
+      },
+      "impuestos": {
+        "correctos": 16,
+        "total": 39,
+        "exactitud": 0.41025641025641024
+      },
+      "tasa_iva": {
+        "correctos": 13,
+        "total": 39,
+        "exactitud": 0.3333333333333333
+      },
+      "retenciones": {
+        "correctos": 29,
+        "total": 39,
+        "exactitud": 0.7435897435897436
+      },
+      "total": {
+        "correctos": 19,
+        "total": 39,
+        "exactitud": 0.48717948717948717
+      },
+      "condiciones_pago": {
+        "correctos": 13,
+        "total": 39,
+        "exactitud": 0.3333333333333333
+      }
+    }
+  },
+  "casos": [
+    {
+      "archivo": "piloto_001.png",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-002"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "23175403",
+          "leido": "23175403",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "27/09/2026",
+          "leido": "27/09/2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Gonzales Servicios SAPI de CV",
+          "leido": "Gonzales Servicios SAPI de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "GSS07010186W",
+          "leido": "GSS070101186W",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Privada Ozuna 662, Nueva Sri Lanka",
+          "leido": "Privada Ozuna 662, Nueva Sri Lanka",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": "Servicios Corporativos Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": "SCD050920LM8",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "115,943.76",
+          "leido": "115,943.76",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "18,551.00",
+          "leido": "18,551.00",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "134,494.76",
+          "leido": "134,494.76",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": "Pago a 15 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_002.pdf",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-010"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 1556",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "13/09/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Tijerina Tecnología S de RL de CV",
+          "leido": "Tijerena Tecnologia S de RL de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "TTS180815H99",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Boulevard San Vicente y las Granadinas 334, San María Teresa los altos",
+          "leido": "Boulevard San Vicente y las Granadinas 354, San Maria Tierra losobos",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": "Servicios Corporativos Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "127,987.42",
+          "leido": "123.51",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "20,477.99",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "148,465.41",
+          "leido": "217.48",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_003.png",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "FAC-042683",
+          "leido": "FAC-042683",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "24 de agosto de 2026",
+          "leido": "24 de agosto de 2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Heredia Grupo SC",
+          "leido": "Heredia Grupo SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "HGS940808H56",
+          "leido": "HGS940808H56",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+          "leido": "Circonulación Norte Padilla 482, San Lorenzo los bajos",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "80,916.47",
+          "leido": "80,916.47",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "12,946.64",
+          "leido": "12,946.64",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "93,863.11",
+          "leido": "93,863.11",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": "Contado",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_004.pdf",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-7066",
+          "leido": "A-7066",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "9 de junio de 2026",
+          "leido": "9 de junio de 2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Nevárez Tecnología SC",
+          "leido": "Névárez Tecnología SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "NTS8705115G4",
+          "leido": "NTS8705115G4",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Calzada Patiño 572, Vieja Andorra",
+          "leido": "Calzada Patino 572, Vieja Andorra",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "43,564.15",
+          "leido": "43,564.15",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "6,970.26",
+          "leido": "6,970.26",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "50,534.41",
+          "leido": "50,534.41 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_005.png",
+      "estado": "error",
+      "esperado": "aceptado",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "FAC-048939",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-10-21",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Loera Tecnología SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "LTS1804269JL",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Callejón Norte Solano 133, San Esperanza de la Montaña",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "1,307.96",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "209.27",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "1,517.23",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_006.pdf",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-002"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-4936",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-09-08",
+          "leido": "2026-09-08",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Martínez Servicios SC",
+          "leido": "MARTÍNEZ SERVICIOS SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "MSS161111P1S",
+          "leido": "MSS16111P1S",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Diagonal Gabón 12, San Antonia los bajos",
+          "leido": "Diagonal Gabón 12, San Antonio los bajos",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": "SCD050920LM8",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "4,597.29",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "735.57",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "5,332.86",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": "Pago a 30 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_007.png",
+      "estado": "error",
+      "esperado": "aceptado",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "20099907",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "01/07/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Portillo Suministros SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "PSS990327D9G",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Calle Norte Girón 590, Vieja Swazilandia",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "8,408.15",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "1,345.30",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "9,753.45",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_008.pdf",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-002"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-3217",
+          "leido": "A-3217",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "17/08/2026",
+          "leido": "17/08/2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Salas Suministros SC",
+          "leido": "Sales Suministros SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "SSS130401FHU",
+          "leido": "SSS13041FHU",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Cerrada Sur Blanco 770, Vieja Brasil",
+          "leido": "Cerrada Sur Blanco 770, Vieja Brasil",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "5,201.37",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "832.22",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "6,033.59",
+          "leido": "$ 6,033.59 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": "Pago a 45 dias",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_009.jpg",
+      "estado": "error",
+      "esperado": "aceptado",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "54586994",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "22 de septiembre de 2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Nevárez Tecnología SC",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "NTS8705115G4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Calzada Patiño 572, Vieja Andorra",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "47,725.14",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "3,818.01",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 8 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "51,543.15",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_010.pdf",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "humana",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-014",
+        "R-017"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "FAC-030583",
+          "leido": "030583",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "04/08/2026",
+          "leido": "04/08/2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Urrutia Consultores SC",
+          "leido": "Urruitia Consultores SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "UCS9007197H3",
+          "leido": "UCS900719TH3",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Boulevard Norte Santillán 433, San Clara los altos",
+          "leido": "Boulevard Norte Santillán 433, San Clara los altos",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": "BDM970315QW2",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "81,294.58",
+          "leido": "81,294.58",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "13,007.13",
+          "leido": "13,007.13",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": "8,129.46",
+          "leido": "-8,129.46",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "86,172.25",
+          "leido": "$ 86,172.25",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": "Pago a 15 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_011.pdf",
+      "estado": "pausa",
+      "esperado": "aceptado",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-004"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "FAC-023194",
+          "leido": "5205000000000000",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "03/10/2026",
+          "leido": "03/10/2020",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Sierra Suministros S de RL de CV",
+          "leido": "Sierra Suministros S de RL de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "SSS060820QE1",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Callejón Suecia 445, Vieja Grecia",
+          "leido": "Callejon Sucre 446, Vega Grecia",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "USD",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "2,729.84",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "436.77",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "3,166.61",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_012.png",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-014"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-014"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "62282276",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "21/07/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Bermúdez Consultores SAPI de CV",
+          "leido": "Bermúdez Consultores SAPI de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "BCS091217EXF",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": "Grupo Financiero Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "159,900.55",
+          "leido": "159.900,55",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "25,584.09",
+          "leido": "25.584,09",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "185,884.64",
+          "leido": "185.884,64 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_013.pdf",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-014"
+      ],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "54212728",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "20/10/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Heredia Grupo SC",
+          "leido": "Heredia Grupo SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "HGS940808H56",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+          "leido": "Circonulación Norte Padilla 482, San Lorenzo los bajos",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": "Servicios Corporativos Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "1,151.78",
+          "leido": "1,151.78",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "184.28",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "1,736.06",
+          "leido": "1,736.06 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_014.jpg",
+      "estado": "error",
+      "esperado": "rechazado",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-014"
+      ],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 167",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "23/07/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Casanova Servicios SAPI de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "CSS171128GQ2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Periférico Chiapas 515, Vieja República Democrática Popular Lao",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "95,815.82",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "15,330.53",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "111,246.35",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_015.jpg",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-011"
+      ],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "25004523",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "20/06/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Lara Grupo S de RL de CV",
+          "leido": "Servicios Corporativos Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "LGS0207182F0",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Calzada Godoy 400, Nueva Mongolia",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": "Lara Grupo S de RL de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "69,215.55",
+          "leido": "69215.55",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "11,628.21",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "80,843.76",
+          "leido": "80843.76 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_016.pdf",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-011"
+      ],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "88275030",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-07-10",
+          "leido": "2026-07-10",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Urrutia Consultores SC",
+          "leido": "URRUTA CONSULTORES SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "UCS9007197H3",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Boulevard Norte Santillán 433, San Clara los altos",
+          "leido": "Boulevard Norte Santillán 433, San Clara los altos",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "8,987.75",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "1,509.94",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "10,497.69",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_017.pdf",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-011"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-002",
+        "R-010",
+        "R-011",
+        "R-014"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 2181",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "22/09/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Villa Servicios SA de CV",
+          "leido": "Villa Servicios SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "VSS190522YKA",
+          "leido": "RFC: 12301926V",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Periférico Tabasco 770, San Isaac los altos",
+          "leido": "Prol. Tabasco 770, San Isaac, Co. Atlas",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "63,786.23",
+          "leido": "63786.23",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "6,378.62",
+          "leido": "63786.23",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 10 %",
+          "leido": "10",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "70,164.85",
+          "leido": "79104.63",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_018.png",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-010"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-010"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 4897",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-07-17",
+          "leido": "2026-07-17",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Berríos Servicios S de RL de CV",
+          "leido": "Berríos Servicios S DE RL DE CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "BSS960121D4N",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Circunvalación Sur Montañez 663, Vieja Mozambique",
+          "leido": "Circunvalación Sur Montañez 663, Vieja Mozambique",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "43,493.91",
+          "leido": "43,493.91",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "6,959.03",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "50,452.94",
+          "leido": "50,452.94",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_019.pdf",
+      "estado": "error",
+      "esperado": "rechazado",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-010"
+      ],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 1274",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "15 de julio de 2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Casanova Servicios SAPI de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "CSS171128GQ2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Periférico Chiapas 515, Vieja República Democrática Popular Lao",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "50,813.04",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "8,130.09",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "58,943.13",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_020.png",
+      "estado": "error",
+      "esperado": "rechazado",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-001"
+      ],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-08-19",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Serrato Tecnología SAPI de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "STS970523758",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "50,326.99",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "8,052.32",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "58,379.31",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_021.jpg",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-001"
+      ],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 8836",
+          "leido": "B 8836",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "11/07/2026",
+          "leido": "11/07/2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Vera Grupo SAPI de CV",
+          "leido": "VERA GRUPO SAPI DE CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+          "leido": "Retorno Farias 464, Nueva San Vicente y las Granadinas",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": "Banco Demo SA, Institución de Banca Múltiple",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "76,252.23",
+          "leido": "76252.23",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "12,200.36",
+          "leido": "12200.36",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "88,452.59",
+          "leido": "88452.59 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 30 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_022.pdf",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-002"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-011",
+        "R-014"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 563",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "05/07/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Alvarez Consultores SA de CV",
+          "leido": "Alvarez Consultores SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "ACS230231V82",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Continuación Norte Rascón 428, San Germán los bajos",
+          "leido": "Continuación Norte Rascón 436, San Germán s/n bajos",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "38,283.91",
+          "leido": "38.235.91",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "6,125.43",
+          "leido": "6.125.43",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "44,409.34",
+          "leido": "44.809.54",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_023.png",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "humana",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-002"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-017"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "FAC-080552",
+          "leido": "080552",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-10-04",
+          "leido": "2026-10-04",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Vera Grupo SAPI de CV",
+          "leido": "VERA GRUPO SAPI DE CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "VGS9607276E",
+          "leido": "SCD050920LM8",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+          "leido": "Retorno Farias 464, Nueva San Vicente y las Granadinas",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": "Servicios Corporativos Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "8,442.86",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "1,350.86",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "9,793.72",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": "Contado",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_024.jpg",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-004"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-002"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "FAC-035175",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "14/11/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Cervántez Servicios SA de CV",
+          "leido": "Cervántez Servicios SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "CSS131018FNR",
+          "leido": "CSS1311018FNR",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+          "leido": "Peatonal República Unida de Tanzania 1, Vieja Bhután",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": "Grupo Financiero Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": "GFD960701AB4",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "14,098.56",
+          "leido": "14,098.56",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "2,255.77",
+          "leido": "2,255.77",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "16,354.33",
+          "leido": "16,354.33",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": "Contado",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_025.pdf",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-004"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-002"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "97110651",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "08/09/2025",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Villa Servicios SA de CV",
+          "leido": "Villa Servicios SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "VSS190522YKA",
+          "leido": "VSS190522YKA",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Periférico Tabasco 770, San Isaac los altos",
+          "leido": "Periférico Tabasco 770, San Isaac los altos",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": "Grupo Financiero Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": "GF960701AB4",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "67,920.45",
+          "leido": "67,920.45",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "10,867.27",
+          "leido": "10,867.27",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "78,787.72",
+          "leido": "78,787.72",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": "Contado",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_026.pdf",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-018"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-018"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-8476",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "1 de julio de 2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Vera Grupo SAPI de CV",
+          "leido": "Vera Grupo SAPI de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "VGS9607276ET",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+          "leido": "Retorno Farias 464, Nueva San Vicente y las Granadinas",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Comercializadora Tercera SA de CV",
+          "leido": "Comercializadora Tercera SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "TER150610HG3",
+          "leido": "TER150610HG3",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "12,705.81",
+          "leido": "12,705.81",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "2,032.93",
+          "leido": "2,032.93",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "14,738.74",
+          "leido": "14,738.74 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": "Pago a 45 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_027.png",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-001",
+        "R-014"
+      ],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-08-08",
+          "leido": "2026-08-08",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "de la Rosa Tecnología S de RL de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "DLR970701G0E",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Prolongación Paraguay 533, Vieja Senegal",
+          "leido": "Prolongación Paraguay 533, Vieja Senegal",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "8,266.45",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "1,322.63",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "9,509.08",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": "Pago a 15 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_028.jpg",
+      "estado": "pausa",
+      "esperado": "rechazado",
+      "predicho": "rechazado",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-015"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-015"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "34071545",
+          "leido": "34071545",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "21 de marzo de 2026",
+          "leido": "21 de marzo de 2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Tovar Grupo SAPI de CV",
+          "leido": "Grupo SAPI de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "TGS0502165LK",
+          "leido": "TGS0502165LK",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Pasaje Esparza 461, San Alfredo de la Montaña",
+          "leido": "Paseje Esparza 461, San Alredo de la Montaña",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": "GFD960701AB4",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "91,258.17",
+          "leido": "91,258.17",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "14,601.31",
+          "leido": "14,601.31",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "105,859.48",
+          "leido": "105,859.48 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": "Pago a 15 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_029.pdf",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-015"
+      ],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-3786",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-06-15",
+          "leido": "2026-06-15",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Nevárez Tecnología SC",
+          "leido": "NEVÁREZ TECNOLOGÍA SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "NTS8705115G4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Calzada Patiño 572, Vieja Andorra",
+          "leido": "Caisada Patiño 572, Vieja Andorra",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "30,276.62",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "4,844.26",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "35,120.88",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_030.jpg",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "humana",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-021"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-017",
+        "R-021"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 894",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "23/09/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Serrato Tecnología SAPI de CV",
+          "leido": "Serrato Tecnología SAPI de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "STS970523758",
+          "leido": "STSS970523758",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+          "leido": "Pasaje Guerrero 944, San Hermelinda de la Montaña",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": "Servicios Corporativos Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": "SCD050920LM8",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "281,704.54",
+          "leido": "281,704.54",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "45,072.73",
+          "leido": "45,072.73",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "326,777.27",
+          "leido": "326,777.27",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_031.jpg",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "humana",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-021"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-017",
+        "R-021"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "FAC-068366",
+          "leido": "FAC-068366",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "18 de octubre de 2026",
+          "leido": "18 de octubre de 2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Jasso Tecnología SAPI de CV",
+          "leido": "Jasso Tecnología SAPI de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "JTS9712282K4",
+          "leido": "JTS9711228K4",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Calle Aguascalientes 99, San Violeta los altos",
+          "leido": "Calle Aguascalientes 99, San Violeta los altos",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "USD",
+          "leido": "USD",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "111,675.26",
+          "leido": "111,675.26",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "17,868.04",
+          "leido": "17,868.04",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "129,543.30",
+          "leido": "$ 129,543.30 USD",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": "Pago a 15 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_032.jpg",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "humana",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-017"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-017"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 5425",
+          "leido": "B 5425",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "12 de agosto de 2026",
+          "leido": "12 de agosto de 2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Lozano Consultores SA de CV",
+          "leido": "Lozano Consultores SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "LCS980401F5X",
+          "leido": "LCS980401F5X",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Privada Distrito Federal 869, Vieja Botswana",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "97,459.54",
+          "leido": "97,459.54",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "15,593.53",
+          "leido": "15,593.53",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "113,053.07",
+          "leido": "113,053.07 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_033.pdf",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "humana",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-017"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-017"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 4135",
+          "leido": "B 4135",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "fecha",
+          "esperado": "24 de septiembre de 2026",
+          "leido": "24 de septiembre de 2026",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Balderas Tecnología S de RL de CV",
+          "leido": "Balderas Tecnología S de RL de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "BTS860628LYP",
+          "leido": "BTS860628LYP",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Callejón Chiapas 985, San Rodolfo los altos",
+          "leido": "Callejón Chiapas 985, San Rodolfo los altos",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "82,017.25",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "13,122.76",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "95,140.01",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": "Pago a 45 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_034.pdf",
+      "estado": "error",
+      "esperado": "humana",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-005"
+      ],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-5830",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "23 de agosto de 2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Vélez Suministros SAPI de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "VSS140321VBZ",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Ampliación San Luis Potosí 295, San Francisca los bajos",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "EUR",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "68,908.32",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "11,025.33",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "79,933.65",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_035.jpg",
+      "estado": "error",
+      "esperado": "humana",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-003"
+      ],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-3525",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-06-18",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Vélez Suministros SAPI de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "VSS140321VBZ",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Ampliación San Luis Potosí 295, San Francisca los bajos",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "20,653.08",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "3,304.49",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "23,957.57",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Contado",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_036.pdf",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-003"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-002"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "35992249",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "07/07/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Cervántez Servicios SA de CV",
+          "leido": "Cervántez Servicios SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "CSS131018FNR",
+          "leido": "CS51018FNR",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Peatonal República Unida de Tanzanía 1, Vieja Bhután",
+          "leido": "Presional República Unida de Tanzania 1, Viejo Bhutan",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": "Servicios Corporativos Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": "SC0509820LM8",
+          "presente": true,
+          "emitido": true,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "3,155.85",
+          "leido": "3.155,85",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "504.94",
+          "leido": "504,94",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "3,660.79",
+          "leido": "3.660,79 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_037.pdf",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "humana",
+      "correcto": true,
+      "reglas_esperadas": [
+        "R-014",
+        "R-030"
+      ],
+      "reglas_obtenidas": [
+        "R-001",
+        "R-030"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "66106370",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "2026-09-12",
+          "leido": "2026-09-12",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Salas Suministros SC",
+          "leido": "SALAS SUMINISTROS SC",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "SSS130401FHU",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Cerrada Sur Blanco 770, Vieja Brasil",
+          "leido": "Cerrada Sur Blanco 770, Vieja Brasil",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Banco Demo SA, Institución de Banca Múltiple",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "BDM970315QW2",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "17,583.46",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "2,813.35",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": "16",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "22,896.81",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": "Pago a 15 días",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_038.pdf",
+      "estado": "error",
+      "esperado": "humana",
+      "predicho": "sin_salida",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-030"
+      ],
+      "reglas_obtenidas": [],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "B 8325",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "24/08/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Bermúdez Consultores SAPI de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "BCS091217EXF",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Servicios Corporativos Demo SA de CV",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "SCD050920LM8",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "60,674.52",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "9,707.92",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "total",
+          "esperado": "70,382.44",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 15 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    },
+    {
+      "archivo": "piloto_039.pdf",
+      "estado": "pausa",
+      "esperado": "humana",
+      "predicho": "rechazado",
+      "correcto": false,
+      "reglas_esperadas": [
+        "R-031"
+      ],
+      "reglas_obtenidas": [
+        "R-001"
+      ],
+      "campos": [
+        {
+          "campo": "folio",
+          "esperado": "A-1661",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "fecha",
+          "esperado": "16/09/2026",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "emisor_nombre",
+          "esperado": "Salinas Tecnología S de RL de CV",
+          "leido": "Salinas Tecnología S de RL de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_rfc",
+          "esperado": "STS020102K59",
+          "leido": "STS020102K59",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "emisor_direccion",
+          "esperado": "Privada Sur López 302, San Fabiola de la Montaña",
+          "leido": "Privada Sur López 302, San Fabiola de la Montaña",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_nombre",
+          "esperado": "Grupo Financiero Demo SA de CV",
+          "leido": "Grupo Financiero Demo SA de CV",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "receptor_rfc",
+          "esperado": "GFD960701AB4",
+          "leido": "GFD960701AB4",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "moneda",
+          "esperado": "MXN",
+          "leido": "MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "subtotal",
+          "esperado": "17,140.08",
+          "leido": "17,140.08",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "impuestos",
+          "esperado": "2,742.41",
+          "leido": "2,742.41",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "tasa_iva",
+          "esperado": "IVA 16 %",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        },
+        {
+          "campo": "retenciones",
+          "esperado": null,
+          "leido": null,
+          "presente": false,
+          "emitido": false,
+          "correcto": true
+        },
+        {
+          "campo": "total",
+          "esperado": "19,882.49",
+          "leido": "19,882.49 MXN",
+          "presente": true,
+          "emitido": true,
+          "correcto": true
+        },
+        {
+          "campo": "condiciones_pago",
+          "esperado": "Pago a 45 días",
+          "leido": null,
+          "presente": true,
+          "emitido": false,
+          "correcto": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,547 @@
+﻿archivo,campo,esperado,leido,presente,emitido,correcto
+piloto_001.png,folio,23175403,23175403,True,True,True
+piloto_001.png,fecha,27/09/2026,27/09/2026,True,True,True
+piloto_001.png,emisor_nombre,Gonzales Servicios SAPI de CV,Gonzales Servicios SAPI de CV,True,True,True
+piloto_001.png,emisor_rfc,GSS07010186W,GSS070101186W,True,True,False
+piloto_001.png,emisor_direccion,"Privada Ozuna 662, Nueva Sri Lanka","Privada Ozuna 662, Nueva Sri Lanka",True,True,True
+piloto_001.png,receptor_nombre,Servicios Corporativos Demo SA de CV,Servicios Corporativos Demo SA de CV,True,True,True
+piloto_001.png,receptor_rfc,SCD050920LM8,SCD050920LM8,True,True,True
+piloto_001.png,moneda,MXN,MXN,True,True,True
+piloto_001.png,subtotal,"115,943.76","115,943.76",True,True,True
+piloto_001.png,impuestos,"18,551.00","18,551.00",True,True,True
+piloto_001.png,tasa_iva,IVA 16 %,16,True,True,True
+piloto_001.png,retenciones,,,False,False,True
+piloto_001.png,total,"134,494.76","134,494.76",True,True,True
+piloto_001.png,condiciones_pago,Pago a 15 días,Pago a 15 días,True,True,True
+piloto_002.pdf,folio,B 1556,,True,False,False
+piloto_002.pdf,fecha,13/09/2026,,True,False,False
+piloto_002.pdf,emisor_nombre,Tijerina Tecnología S de RL de CV,Tijerena Tecnologia S de RL de CV,True,True,False
+piloto_002.pdf,emisor_rfc,TTS180815H99,,True,False,False
+piloto_002.pdf,emisor_direccion,"Boulevard San Vicente y las Granadinas 334, San María Teresa los altos","Boulevard San Vicente y las Granadinas 354, San Maria Tierra losobos",True,True,False
+piloto_002.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,Servicios Corporativos Demo SA de CV,True,True,True
+piloto_002.pdf,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_002.pdf,moneda,MXN,MXN,True,True,True
+piloto_002.pdf,subtotal,"127,987.42",123.51,True,True,False
+piloto_002.pdf,impuestos,"20,477.99",,True,False,False
+piloto_002.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_002.pdf,retenciones,,,False,False,True
+piloto_002.pdf,total,"148,465.41",217.48,True,True,False
+piloto_002.pdf,condiciones_pago,Pago a 30 días,,True,False,False
+piloto_003.png,folio,FAC-042683,FAC-042683,True,True,True
+piloto_003.png,fecha,24 de agosto de 2026,24 de agosto de 2026,True,True,True
+piloto_003.png,emisor_nombre,Heredia Grupo SC,Heredia Grupo SC,True,True,True
+piloto_003.png,emisor_rfc,HGS940808H56,HGS940808H56,True,True,True
+piloto_003.png,emisor_direccion,"Circunvalación Norte Padilla 482, San Lorenzo los bajos","Circonulación Norte Padilla 482, San Lorenzo los bajos",True,True,False
+piloto_003.png,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_003.png,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_003.png,moneda,MXN,,True,False,False
+piloto_003.png,subtotal,"80,916.47","80,916.47",True,True,True
+piloto_003.png,impuestos,"12,946.64","12,946.64",True,True,True
+piloto_003.png,tasa_iva,IVA 16 %,,True,False,False
+piloto_003.png,retenciones,,,False,False,True
+piloto_003.png,total,"93,863.11","93,863.11",True,True,True
+piloto_003.png,condiciones_pago,Contado,Contado,True,True,True
+piloto_004.pdf,folio,A-7066,A-7066,True,True,True
+piloto_004.pdf,fecha,9 de junio de 2026,9 de junio de 2026,True,True,True
+piloto_004.pdf,emisor_nombre,Nevárez Tecnología SC,Névárez Tecnología SC,True,True,False
+piloto_004.pdf,emisor_rfc,NTS8705115G4,NTS8705115G4,True,True,True
+piloto_004.pdf,emisor_direccion,"Calzada Patiño 572, Vieja Andorra","Calzada Patino 572, Vieja Andorra",True,True,False
+piloto_004.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,,True,False,False
+piloto_004.pdf,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_004.pdf,moneda,MXN,,True,False,False
+piloto_004.pdf,subtotal,"43,564.15","43,564.15",True,True,True
+piloto_004.pdf,impuestos,"6,970.26","6,970.26",True,True,True
+piloto_004.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_004.pdf,retenciones,,,False,False,True
+piloto_004.pdf,total,"50,534.41","50,534.41 MXN",True,True,True
+piloto_004.pdf,condiciones_pago,Pago a 30 días,,True,False,False
+piloto_005.png,folio,FAC-048939,,True,False,False
+piloto_005.png,fecha,2026-10-21,,True,False,False
+piloto_005.png,emisor_nombre,Loera Tecnología SA de CV,,True,False,False
+piloto_005.png,emisor_rfc,LTS1804269JL,,True,False,False
+piloto_005.png,emisor_direccion,"Callejón Norte Solano 133, San Esperanza de la Montaña",,True,False,False
+piloto_005.png,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_005.png,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_005.png,moneda,MXN,,True,False,False
+piloto_005.png,subtotal,"1,307.96",,True,False,False
+piloto_005.png,impuestos,209.27,,True,False,False
+piloto_005.png,tasa_iva,IVA 16 %,,True,False,False
+piloto_005.png,retenciones,,,False,False,False
+piloto_005.png,total,"1,517.23",,True,False,False
+piloto_005.png,condiciones_pago,Contado,,True,False,False
+piloto_006.pdf,folio,A-4936,,True,False,False
+piloto_006.pdf,fecha,2026-09-08,2026-09-08,True,True,True
+piloto_006.pdf,emisor_nombre,Martínez Servicios SC,MARTÍNEZ SERVICIOS SC,True,True,True
+piloto_006.pdf,emisor_rfc,MSS161111P1S,MSS16111P1S,True,True,False
+piloto_006.pdf,emisor_direccion,"Diagonal Gabón 12, San Antonia los bajos","Diagonal Gabón 12, San Antonio los bajos",True,True,False
+piloto_006.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,,True,False,False
+piloto_006.pdf,receptor_rfc,SCD050920LM8,SCD050920LM8,True,True,True
+piloto_006.pdf,moneda,MXN,MXN,True,True,True
+piloto_006.pdf,subtotal,"4,597.29",,True,False,False
+piloto_006.pdf,impuestos,735.57,,True,False,False
+piloto_006.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_006.pdf,retenciones,,,False,False,True
+piloto_006.pdf,total,"5,332.86",,True,False,False
+piloto_006.pdf,condiciones_pago,Pago a 30 días,Pago a 30 días,True,True,True
+piloto_007.png,folio,20099907,,True,False,False
+piloto_007.png,fecha,01/07/2026,,True,False,False
+piloto_007.png,emisor_nombre,Portillo Suministros SA de CV,,True,False,False
+piloto_007.png,emisor_rfc,PSS990327D9G,,True,False,False
+piloto_007.png,emisor_direccion,"Calle Norte Girón 590, Vieja Swazilandia",,True,False,False
+piloto_007.png,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_007.png,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_007.png,moneda,MXN,,True,False,False
+piloto_007.png,subtotal,"8,408.15",,True,False,False
+piloto_007.png,impuestos,"1,345.30",,True,False,False
+piloto_007.png,tasa_iva,IVA 16 %,,True,False,False
+piloto_007.png,retenciones,,,False,False,False
+piloto_007.png,total,"9,753.45",,True,False,False
+piloto_007.png,condiciones_pago,Pago a 30 días,,True,False,False
+piloto_008.pdf,folio,A-3217,A-3217,True,True,True
+piloto_008.pdf,fecha,17/08/2026,17/08/2026,True,True,True
+piloto_008.pdf,emisor_nombre,Salas Suministros SC,Sales Suministros SC,True,True,False
+piloto_008.pdf,emisor_rfc,SSS130401FHU,SSS13041FHU,True,True,False
+piloto_008.pdf,emisor_direccion,"Cerrada Sur Blanco 770, Vieja Brasil","Cerrada Sur Blanco 770, Vieja Brasil",True,True,True
+piloto_008.pdf,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_008.pdf,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_008.pdf,moneda,MXN,MXN,True,True,True
+piloto_008.pdf,subtotal,"5,201.37",,True,False,False
+piloto_008.pdf,impuestos,832.22,,True,False,False
+piloto_008.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_008.pdf,retenciones,,,False,False,True
+piloto_008.pdf,total,"6,033.59","$ 6,033.59 MXN",True,True,True
+piloto_008.pdf,condiciones_pago,Pago a 45 días,Pago a 45 dias,True,True,False
+piloto_009.jpg,folio,54586994,,True,False,False
+piloto_009.jpg,fecha,22 de septiembre de 2026,,True,False,False
+piloto_009.jpg,emisor_nombre,Nevárez Tecnología SC,,True,False,False
+piloto_009.jpg,emisor_rfc,NTS8705115G4,,True,False,False
+piloto_009.jpg,emisor_direccion,"Calzada Patiño 572, Vieja Andorra",,True,False,False
+piloto_009.jpg,receptor_nombre,Servicios Corporativos Demo SA de CV,,True,False,False
+piloto_009.jpg,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_009.jpg,moneda,MXN,,True,False,False
+piloto_009.jpg,subtotal,"47,725.14",,True,False,False
+piloto_009.jpg,impuestos,"3,818.01",,True,False,False
+piloto_009.jpg,tasa_iva,IVA 8 %,,True,False,False
+piloto_009.jpg,retenciones,,,False,False,False
+piloto_009.jpg,total,"51,543.15",,True,False,False
+piloto_009.jpg,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_010.pdf,folio,FAC-030583,030583,True,True,False
+piloto_010.pdf,fecha,04/08/2026,04/08/2026,True,True,True
+piloto_010.pdf,emisor_nombre,Urrutia Consultores SC,Urruitia Consultores SC,True,True,False
+piloto_010.pdf,emisor_rfc,UCS9007197H3,UCS900719TH3,True,True,False
+piloto_010.pdf,emisor_direccion,"Boulevard Norte Santillán 433, San Clara los altos","Boulevard Norte Santillán 433, San Clara los altos",True,True,True
+piloto_010.pdf,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_010.pdf,receptor_rfc,BDM970315QW2,BDM970315QW2,True,True,True
+piloto_010.pdf,moneda,MXN,,True,False,False
+piloto_010.pdf,subtotal,"81,294.58","81,294.58",True,True,True
+piloto_010.pdf,impuestos,"13,007.13","13,007.13",True,True,True
+piloto_010.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_010.pdf,retenciones,"8,129.46","-8,129.46",True,True,False
+piloto_010.pdf,total,"86,172.25","$ 86,172.25",True,True,True
+piloto_010.pdf,condiciones_pago,Pago a 15 días,Pago a 15 días,True,True,True
+piloto_011.pdf,folio,FAC-023194,5205000000000000,True,True,False
+piloto_011.pdf,fecha,03/10/2026,03/10/2020,True,True,False
+piloto_011.pdf,emisor_nombre,Sierra Suministros S de RL de CV,Sierra Suministros S de RL de CV,True,True,True
+piloto_011.pdf,emisor_rfc,SSS060820QE1,,True,False,False
+piloto_011.pdf,emisor_direccion,"Callejón Suecia 445, Vieja Grecia","Callejon Sucre 446, Vega Grecia",True,True,False
+piloto_011.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,,True,False,False
+piloto_011.pdf,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_011.pdf,moneda,USD,,True,False,False
+piloto_011.pdf,subtotal,"2,729.84",,True,False,False
+piloto_011.pdf,impuestos,436.77,,True,False,False
+piloto_011.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_011.pdf,retenciones,,,False,False,True
+piloto_011.pdf,total,"3,166.61",,True,False,False
+piloto_011.pdf,condiciones_pago,Contado,,True,False,False
+piloto_012.png,folio,62282276,,True,False,False
+piloto_012.png,fecha,21/07/2026,,True,False,False
+piloto_012.png,emisor_nombre,Bermúdez Consultores SAPI de CV,Bermúdez Consultores SAPI de CV,True,True,True
+piloto_012.png,emisor_rfc,BCS091217EXF,,True,False,False
+piloto_012.png,emisor_direccion,"Avenida Nuevo León 825, San Fabiola de la Montaña",,True,False,False
+piloto_012.png,receptor_nombre,Grupo Financiero Demo SA de CV,Grupo Financiero Demo SA de CV,True,True,True
+piloto_012.png,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_012.png,moneda,MXN,,True,False,False
+piloto_012.png,subtotal,"159,900.55","159.900,55",True,True,True
+piloto_012.png,impuestos,"25,584.09","25.584,09",True,True,True
+piloto_012.png,tasa_iva,IVA 16 %,,True,False,False
+piloto_012.png,retenciones,,,False,False,True
+piloto_012.png,total,"185,884.64","185.884,64 MXN",True,True,True
+piloto_012.png,condiciones_pago,Pago a 30 días,,True,False,False
+piloto_013.pdf,folio,54212728,,True,False,False
+piloto_013.pdf,fecha,20/10/2026,,True,False,False
+piloto_013.pdf,emisor_nombre,Heredia Grupo SC,Heredia Grupo SC,True,True,True
+piloto_013.pdf,emisor_rfc,HGS940808H56,,True,False,False
+piloto_013.pdf,emisor_direccion,"Circunvalación Norte Padilla 482, San Lorenzo los bajos","Circonulación Norte Padilla 482, San Lorenzo los bajos",True,True,False
+piloto_013.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,Servicios Corporativos Demo SA de CV,True,True,True
+piloto_013.pdf,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_013.pdf,moneda,MXN,,True,False,False
+piloto_013.pdf,subtotal,"1,151.78","1,151.78",True,True,True
+piloto_013.pdf,impuestos,184.28,,True,False,False
+piloto_013.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_013.pdf,retenciones,,,False,False,True
+piloto_013.pdf,total,"1,736.06","1,736.06 MXN",True,True,True
+piloto_013.pdf,condiciones_pago,Contado,,True,False,False
+piloto_014.jpg,folio,B 167,,True,False,False
+piloto_014.jpg,fecha,23/07/2026,,True,False,False
+piloto_014.jpg,emisor_nombre,Casanova Servicios SAPI de CV,,True,False,False
+piloto_014.jpg,emisor_rfc,CSS171128GQ2,,True,False,False
+piloto_014.jpg,emisor_direccion,"Periférico Chiapas 515, Vieja República Democrática Popular Lao",,True,False,False
+piloto_014.jpg,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_014.jpg,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_014.jpg,moneda,MXN,,True,False,False
+piloto_014.jpg,subtotal,"95,815.82",,True,False,False
+piloto_014.jpg,impuestos,"15,330.53",,True,False,False
+piloto_014.jpg,tasa_iva,IVA 16 %,,True,False,False
+piloto_014.jpg,retenciones,,,False,False,False
+piloto_014.jpg,total,"111,246.35",,True,False,False
+piloto_014.jpg,condiciones_pago,Pago a 45 días,,True,False,False
+piloto_015.jpg,folio,25004523,,True,False,False
+piloto_015.jpg,fecha,20/06/2026,,True,False,False
+piloto_015.jpg,emisor_nombre,Lara Grupo S de RL de CV,Servicios Corporativos Demo SA de CV,True,True,False
+piloto_015.jpg,emisor_rfc,LGS0207182F0,,True,False,False
+piloto_015.jpg,emisor_direccion,"Calzada Godoy 400, Nueva Mongolia",,True,False,False
+piloto_015.jpg,receptor_nombre,Servicios Corporativos Demo SA de CV,Lara Grupo S de RL de CV,True,True,False
+piloto_015.jpg,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_015.jpg,moneda,MXN,,True,False,False
+piloto_015.jpg,subtotal,"69,215.55",69215.55,True,True,True
+piloto_015.jpg,impuestos,"11,628.21",,True,False,False
+piloto_015.jpg,tasa_iva,IVA 16 %,,True,False,False
+piloto_015.jpg,retenciones,,,False,False,True
+piloto_015.jpg,total,"80,843.76",80843.76 MXN,True,True,True
+piloto_015.jpg,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_016.pdf,folio,88275030,,True,False,False
+piloto_016.pdf,fecha,2026-07-10,2026-07-10,True,True,True
+piloto_016.pdf,emisor_nombre,Urrutia Consultores SC,URRUTA CONSULTORES SC,True,True,False
+piloto_016.pdf,emisor_rfc,UCS9007197H3,,True,False,False
+piloto_016.pdf,emisor_direccion,"Boulevard Norte Santillán 433, San Clara los altos","Boulevard Norte Santillán 433, San Clara los altos",True,True,True
+piloto_016.pdf,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_016.pdf,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_016.pdf,moneda,MXN,MXN,True,True,True
+piloto_016.pdf,subtotal,"8,987.75",,True,False,False
+piloto_016.pdf,impuestos,"1,509.94",,True,False,False
+piloto_016.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_016.pdf,retenciones,,,False,False,True
+piloto_016.pdf,total,"10,497.69",,True,False,False
+piloto_016.pdf,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_017.pdf,folio,B 2181,,True,False,False
+piloto_017.pdf,fecha,22/09/2026,,True,False,False
+piloto_017.pdf,emisor_nombre,Villa Servicios SA de CV,Villa Servicios SA de CV,True,True,True
+piloto_017.pdf,emisor_rfc,VSS190522YKA,RFC: 12301926V,True,True,False
+piloto_017.pdf,emisor_direccion,"Periférico Tabasco 770, San Isaac los altos","Prol. Tabasco 770, San Isaac, Co. Atlas",True,True,False
+piloto_017.pdf,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_017.pdf,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_017.pdf,moneda,MXN,,True,False,False
+piloto_017.pdf,subtotal,"63,786.23",63786.23,True,True,True
+piloto_017.pdf,impuestos,"6,378.62",63786.23,True,True,False
+piloto_017.pdf,tasa_iva,IVA 10 %,10,True,True,True
+piloto_017.pdf,retenciones,,,False,False,True
+piloto_017.pdf,total,"70,164.85",79104.63,True,True,False
+piloto_017.pdf,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_018.png,folio,B 4897,,True,False,False
+piloto_018.png,fecha,2026-07-17,2026-07-17,True,True,True
+piloto_018.png,emisor_nombre,Berríos Servicios S de RL de CV,Berríos Servicios S DE RL DE CV,True,True,True
+piloto_018.png,emisor_rfc,BSS960121D4N,,True,False,False
+piloto_018.png,emisor_direccion,"Circunvalación Sur Montañez 663, Vieja Mozambique","Circunvalación Sur Montañez 663, Vieja Mozambique",True,True,True
+piloto_018.png,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_018.png,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_018.png,moneda,MXN,MXN,True,True,True
+piloto_018.png,subtotal,"43,493.91","43,493.91",True,True,True
+piloto_018.png,impuestos,"6,959.03",,True,False,False
+piloto_018.png,tasa_iva,IVA 16 %,,True,False,False
+piloto_018.png,retenciones,,,False,False,True
+piloto_018.png,total,"50,452.94","50,452.94",True,True,True
+piloto_018.png,condiciones_pago,Pago a 30 días,,True,False,False
+piloto_019.pdf,folio,B 1274,,True,False,False
+piloto_019.pdf,fecha,15 de julio de 2026,,True,False,False
+piloto_019.pdf,emisor_nombre,Casanova Servicios SAPI de CV,,True,False,False
+piloto_019.pdf,emisor_rfc,CSS171128GQ2,,True,False,False
+piloto_019.pdf,emisor_direccion,"Periférico Chiapas 515, Vieja República Democrática Popular Lao",,True,False,False
+piloto_019.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,,True,False,False
+piloto_019.pdf,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_019.pdf,moneda,MXN,,True,False,False
+piloto_019.pdf,subtotal,"50,813.04",,True,False,False
+piloto_019.pdf,impuestos,"8,130.09",,True,False,False
+piloto_019.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_019.pdf,retenciones,,,False,False,False
+piloto_019.pdf,total,"58,943.13",,True,False,False
+piloto_019.pdf,condiciones_pago,Pago a 30 días,,True,False,False
+piloto_020.png,folio,,,False,False,False
+piloto_020.png,fecha,2026-08-19,,True,False,False
+piloto_020.png,emisor_nombre,Serrato Tecnología SAPI de CV,,True,False,False
+piloto_020.png,emisor_rfc,STS970523758,,True,False,False
+piloto_020.png,emisor_direccion,"Pasaje Guerrero 944, San Hermelinda de la Montaña",,True,False,False
+piloto_020.png,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_020.png,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_020.png,moneda,MXN,,True,False,False
+piloto_020.png,subtotal,"50,326.99",,True,False,False
+piloto_020.png,impuestos,"8,052.32",,True,False,False
+piloto_020.png,tasa_iva,IVA 16 %,,True,False,False
+piloto_020.png,retenciones,,,False,False,False
+piloto_020.png,total,"58,379.31",,True,False,False
+piloto_020.png,condiciones_pago,Contado,,True,False,False
+piloto_021.jpg,folio,B 8836,B 8836,True,True,True
+piloto_021.jpg,fecha,11/07/2026,11/07/2026,True,True,True
+piloto_021.jpg,emisor_nombre,Vera Grupo SAPI de CV,VERA GRUPO SAPI DE CV,True,True,True
+piloto_021.jpg,emisor_rfc,,,False,False,True
+piloto_021.jpg,emisor_direccion,"Retorno Farías 464, Nueva San Vicente y las Granadinas","Retorno Farias 464, Nueva San Vicente y las Granadinas",True,True,False
+piloto_021.jpg,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple","Banco Demo SA, Institución de Banca Múltiple",True,True,True
+piloto_021.jpg,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_021.jpg,moneda,MXN,MXN,True,True,True
+piloto_021.jpg,subtotal,"76,252.23",76252.23,True,True,True
+piloto_021.jpg,impuestos,"12,200.36",12200.36,True,True,True
+piloto_021.jpg,tasa_iva,IVA 16 %,,True,False,False
+piloto_021.jpg,retenciones,,,False,False,True
+piloto_021.jpg,total,"88,452.59",88452.59 MXN,True,True,True
+piloto_021.jpg,condiciones_pago,Pago a 30 días,,True,False,False
+piloto_022.pdf,folio,B 563,,True,False,False
+piloto_022.pdf,fecha,05/07/2026,,True,False,False
+piloto_022.pdf,emisor_nombre,Alvarez Consultores SA de CV,Alvarez Consultores SA de CV,True,True,True
+piloto_022.pdf,emisor_rfc,ACS230231V82,,True,False,False
+piloto_022.pdf,emisor_direccion,"Continuación Norte Rascón 428, San Germán los bajos","Continuación Norte Rascón 436, San Germán s/n bajos",True,True,False
+piloto_022.pdf,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_022.pdf,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_022.pdf,moneda,MXN,,True,False,False
+piloto_022.pdf,subtotal,"38,283.91",38.235.91,True,True,False
+piloto_022.pdf,impuestos,"6,125.43",6.125.43,True,True,True
+piloto_022.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_022.pdf,retenciones,,,False,False,True
+piloto_022.pdf,total,"44,409.34",44.809.54,True,True,False
+piloto_022.pdf,condiciones_pago,Pago a 45 días,,True,False,False
+piloto_023.png,folio,FAC-080552,080552,True,True,False
+piloto_023.png,fecha,2026-10-04,2026-10-04,True,True,True
+piloto_023.png,emisor_nombre,Vera Grupo SAPI de CV,VERA GRUPO SAPI DE CV,True,True,True
+piloto_023.png,emisor_rfc,VGS9607276E,SCD050920LM8,True,True,False
+piloto_023.png,emisor_direccion,"Retorno Farías 464, Nueva San Vicente y las Granadinas","Retorno Farias 464, Nueva San Vicente y las Granadinas",True,True,False
+piloto_023.png,receptor_nombre,Servicios Corporativos Demo SA de CV,Servicios Corporativos Demo SA de CV,True,True,True
+piloto_023.png,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_023.png,moneda,MXN,MXN,True,True,True
+piloto_023.png,subtotal,"8,442.86",,True,False,False
+piloto_023.png,impuestos,"1,350.86",,True,False,False
+piloto_023.png,tasa_iva,IVA 16 %,,True,False,False
+piloto_023.png,retenciones,,,False,False,True
+piloto_023.png,total,"9,793.72",,True,False,False
+piloto_023.png,condiciones_pago,Contado,Contado,True,True,True
+piloto_024.jpg,folio,FAC-035175,,True,False,False
+piloto_024.jpg,fecha,14/11/2026,,True,False,False
+piloto_024.jpg,emisor_nombre,Cervántez Servicios SA de CV,Cervántez Servicios SA de CV,True,True,True
+piloto_024.jpg,emisor_rfc,CSS131018FNR,CSS1311018FNR,True,True,False
+piloto_024.jpg,emisor_direccion,"Peatonal República Unida de Tanzanía 1, Vieja Bhután","Peatonal República Unida de Tanzania 1, Vieja Bhután",True,True,False
+piloto_024.jpg,receptor_nombre,Grupo Financiero Demo SA de CV,Grupo Financiero Demo SA de CV,True,True,True
+piloto_024.jpg,receptor_rfc,GFD960701AB4,GFD960701AB4,True,True,True
+piloto_024.jpg,moneda,MXN,MXN,True,True,True
+piloto_024.jpg,subtotal,"14,098.56","14,098.56",True,True,True
+piloto_024.jpg,impuestos,"2,255.77","2,255.77",True,True,True
+piloto_024.jpg,tasa_iva,IVA 16 %,16,True,True,True
+piloto_024.jpg,retenciones,,,False,False,True
+piloto_024.jpg,total,"16,354.33","16,354.33",True,True,True
+piloto_024.jpg,condiciones_pago,Contado,Contado,True,True,True
+piloto_025.pdf,folio,97110651,,True,False,False
+piloto_025.pdf,fecha,08/09/2025,,True,False,False
+piloto_025.pdf,emisor_nombre,Villa Servicios SA de CV,Villa Servicios SA de CV,True,True,True
+piloto_025.pdf,emisor_rfc,VSS190522YKA,VSS190522YKA,True,True,True
+piloto_025.pdf,emisor_direccion,"Periférico Tabasco 770, San Isaac los altos","Periférico Tabasco 770, San Isaac los altos",True,True,True
+piloto_025.pdf,receptor_nombre,Grupo Financiero Demo SA de CV,Grupo Financiero Demo SA de CV,True,True,True
+piloto_025.pdf,receptor_rfc,GFD960701AB4,GF960701AB4,True,True,False
+piloto_025.pdf,moneda,MXN,,True,False,False
+piloto_025.pdf,subtotal,"67,920.45","67,920.45",True,True,True
+piloto_025.pdf,impuestos,"10,867.27","10,867.27",True,True,True
+piloto_025.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_025.pdf,retenciones,,,False,False,True
+piloto_025.pdf,total,"78,787.72","78,787.72",True,True,True
+piloto_025.pdf,condiciones_pago,Contado,Contado,True,True,True
+piloto_026.pdf,folio,A-8476,,True,False,False
+piloto_026.pdf,fecha,1 de julio de 2026,,True,False,False
+piloto_026.pdf,emisor_nombre,Vera Grupo SAPI de CV,Vera Grupo SAPI de CV,True,True,True
+piloto_026.pdf,emisor_rfc,VGS9607276ET,,True,False,False
+piloto_026.pdf,emisor_direccion,"Retorno Farías 464, Nueva San Vicente y las Granadinas","Retorno Farias 464, Nueva San Vicente y las Granadinas",True,True,False
+piloto_026.pdf,receptor_nombre,Comercializadora Tercera SA de CV,Comercializadora Tercera SA de CV,True,True,True
+piloto_026.pdf,receptor_rfc,TER150610HG3,TER150610HG3,True,True,True
+piloto_026.pdf,moneda,MXN,,True,False,False
+piloto_026.pdf,subtotal,"12,705.81","12,705.81",True,True,True
+piloto_026.pdf,impuestos,"2,032.93","2,032.93",True,True,True
+piloto_026.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_026.pdf,retenciones,,,False,False,True
+piloto_026.pdf,total,"14,738.74","14,738.74 MXN",True,True,True
+piloto_026.pdf,condiciones_pago,Pago a 45 días,Pago a 45 días,True,True,True
+piloto_027.png,folio,,,False,False,True
+piloto_027.png,fecha,2026-08-08,2026-08-08,True,True,True
+piloto_027.png,emisor_nombre,de la Rosa Tecnología S de RL de CV,,True,False,False
+piloto_027.png,emisor_rfc,DLR970701G0E,,True,False,False
+piloto_027.png,emisor_direccion,"Prolongación Paraguay 533, Vieja Senegal","Prolongación Paraguay 533, Vieja Senegal",True,True,True
+piloto_027.png,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_027.png,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_027.png,moneda,MXN,MXN,True,True,True
+piloto_027.png,subtotal,"8,266.45",,True,False,False
+piloto_027.png,impuestos,"1,322.63",,True,False,False
+piloto_027.png,tasa_iva,IVA 16 %,16,True,True,True
+piloto_027.png,retenciones,,,False,False,True
+piloto_027.png,total,"9,509.08",,True,False,False
+piloto_027.png,condiciones_pago,Pago a 15 días,Pago a 15 días,True,True,True
+piloto_028.jpg,folio,34071545,34071545,True,True,True
+piloto_028.jpg,fecha,21 de marzo de 2026,21 de marzo de 2026,True,True,True
+piloto_028.jpg,emisor_nombre,Tovar Grupo SAPI de CV,Grupo SAPI de CV,True,True,False
+piloto_028.jpg,emisor_rfc,TGS0502165LK,TGS0502165LK,True,True,True
+piloto_028.jpg,emisor_direccion,"Pasaje Esparza 461, San Alfredo de la Montaña","Paseje Esparza 461, San Alredo de la Montaña",True,True,False
+piloto_028.jpg,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_028.jpg,receptor_rfc,GFD960701AB4,GFD960701AB4,True,True,True
+piloto_028.jpg,moneda,MXN,MXN,True,True,True
+piloto_028.jpg,subtotal,"91,258.17","91,258.17",True,True,True
+piloto_028.jpg,impuestos,"14,601.31","14,601.31",True,True,True
+piloto_028.jpg,tasa_iva,IVA 16 %,,True,False,False
+piloto_028.jpg,retenciones,,,False,False,True
+piloto_028.jpg,total,"105,859.48","105,859.48 MXN",True,True,True
+piloto_028.jpg,condiciones_pago,Pago a 15 días,Pago a 15 días,True,True,True
+piloto_029.pdf,folio,A-3786,,True,False,False
+piloto_029.pdf,fecha,2026-06-15,2026-06-15,True,True,True
+piloto_029.pdf,emisor_nombre,Nevárez Tecnología SC,NEVÁREZ TECNOLOGÍA SC,True,True,True
+piloto_029.pdf,emisor_rfc,NTS8705115G4,,True,False,False
+piloto_029.pdf,emisor_direccion,"Calzada Patiño 572, Vieja Andorra","Caisada Patiño 572, Vieja Andorra",True,True,False
+piloto_029.pdf,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_029.pdf,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_029.pdf,moneda,MXN,MXN,True,True,True
+piloto_029.pdf,subtotal,"30,276.62",,True,False,False
+piloto_029.pdf,impuestos,"4,844.26",,True,False,False
+piloto_029.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_029.pdf,retenciones,,,False,False,True
+piloto_029.pdf,total,"35,120.88",,True,False,False
+piloto_029.pdf,condiciones_pago,Pago a 45 días,,True,False,False
+piloto_030.jpg,folio,B 894,,True,False,False
+piloto_030.jpg,fecha,23/09/2026,,True,False,False
+piloto_030.jpg,emisor_nombre,Serrato Tecnología SAPI de CV,Serrato Tecnología SAPI de CV,True,True,True
+piloto_030.jpg,emisor_rfc,STS970523758,STSS970523758,True,True,False
+piloto_030.jpg,emisor_direccion,"Pasaje Guerrero 944, San Hermelinda de la Montaña","Pasaje Guerrero 944, San Hermelinda de la Montaña",True,True,True
+piloto_030.jpg,receptor_nombre,Servicios Corporativos Demo SA de CV,Servicios Corporativos Demo SA de CV,True,True,True
+piloto_030.jpg,receptor_rfc,SCD050920LM8,SCD050920LM8,True,True,True
+piloto_030.jpg,moneda,MXN,MXN,True,True,True
+piloto_030.jpg,subtotal,"281,704.54","281,704.54",True,True,True
+piloto_030.jpg,impuestos,"45,072.73","45,072.73",True,True,True
+piloto_030.jpg,tasa_iva,IVA 16 %,,True,False,False
+piloto_030.jpg,retenciones,,,False,False,True
+piloto_030.jpg,total,"326,777.27","326,777.27",True,True,True
+piloto_030.jpg,condiciones_pago,Pago a 45 días,,True,False,False
+piloto_031.jpg,folio,FAC-068366,FAC-068366,True,True,True
+piloto_031.jpg,fecha,18 de octubre de 2026,18 de octubre de 2026,True,True,True
+piloto_031.jpg,emisor_nombre,Jasso Tecnología SAPI de CV,Jasso Tecnología SAPI de CV,True,True,True
+piloto_031.jpg,emisor_rfc,JTS9712282K4,JTS9711228K4,True,True,False
+piloto_031.jpg,emisor_direccion,"Calle Aguascalientes 99, San Violeta los altos","Calle Aguascalientes 99, San Violeta los altos",True,True,True
+piloto_031.jpg,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_031.jpg,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_031.jpg,moneda,USD,USD,True,True,True
+piloto_031.jpg,subtotal,"111,675.26","111,675.26",True,True,True
+piloto_031.jpg,impuestos,"17,868.04","17,868.04",True,True,True
+piloto_031.jpg,tasa_iva,IVA 16 %,16,True,True,True
+piloto_031.jpg,retenciones,,,False,False,True
+piloto_031.jpg,total,"129,543.30","$ 129,543.30 USD",True,True,True
+piloto_031.jpg,condiciones_pago,Pago a 15 días,Pago a 15 días,True,True,True
+piloto_032.jpg,folio,B 5425,B 5425,True,True,True
+piloto_032.jpg,fecha,12 de agosto de 2026,12 de agosto de 2026,True,True,True
+piloto_032.jpg,emisor_nombre,Lozano Consultores SA de CV,Lozano Consultores SA de CV,True,True,True
+piloto_032.jpg,emisor_rfc,LCS980401F5X,LCS980401F5X,True,True,True
+piloto_032.jpg,emisor_direccion,"Privada Distrito Federal 869, Vieja Botswana",,True,False,False
+piloto_032.jpg,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_032.jpg,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_032.jpg,moneda,MXN,,True,False,False
+piloto_032.jpg,subtotal,"97,459.54","97,459.54",True,True,True
+piloto_032.jpg,impuestos,"15,593.53","15,593.53",True,True,True
+piloto_032.jpg,tasa_iva,IVA 16 %,,True,False,False
+piloto_032.jpg,retenciones,,,False,False,True
+piloto_032.jpg,total,"113,053.07","113,053.07 MXN",True,True,True
+piloto_032.jpg,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_033.pdf,folio,B 4135,B 4135,True,True,True
+piloto_033.pdf,fecha,24 de septiembre de 2026,24 de septiembre de 2026,True,True,True
+piloto_033.pdf,emisor_nombre,Balderas Tecnología S de RL de CV,Balderas Tecnología S de RL de CV,True,True,True
+piloto_033.pdf,emisor_rfc,BTS860628LYP,BTS860628LYP,True,True,True
+piloto_033.pdf,emisor_direccion,"Callejón Chiapas 985, San Rodolfo los altos","Callejón Chiapas 985, San Rodolfo los altos",True,True,True
+piloto_033.pdf,receptor_nombre,Grupo Financiero Demo SA de CV,,True,False,False
+piloto_033.pdf,receptor_rfc,GFD960701AB4,,True,False,False
+piloto_033.pdf,moneda,MXN,,True,False,False
+piloto_033.pdf,subtotal,"82,017.25",,True,False,False
+piloto_033.pdf,impuestos,"13,122.76",,True,False,False
+piloto_033.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_033.pdf,retenciones,,,False,False,True
+piloto_033.pdf,total,"95,140.01",,True,False,False
+piloto_033.pdf,condiciones_pago,Pago a 45 días,Pago a 45 días,True,True,True
+piloto_034.pdf,folio,A-5830,,True,False,False
+piloto_034.pdf,fecha,23 de agosto de 2026,,True,False,False
+piloto_034.pdf,emisor_nombre,Vélez Suministros SAPI de CV,,True,False,False
+piloto_034.pdf,emisor_rfc,VSS140321VBZ,,True,False,False
+piloto_034.pdf,emisor_direccion,"Ampliación San Luis Potosí 295, San Francisca los bajos",,True,False,False
+piloto_034.pdf,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_034.pdf,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_034.pdf,moneda,EUR,,True,False,False
+piloto_034.pdf,subtotal,"68,908.32",,True,False,False
+piloto_034.pdf,impuestos,"11,025.33",,True,False,False
+piloto_034.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_034.pdf,retenciones,,,False,False,False
+piloto_034.pdf,total,"79,933.65",,True,False,False
+piloto_034.pdf,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_035.jpg,folio,A-3525,,True,False,False
+piloto_035.jpg,fecha,2026-06-18,,True,False,False
+piloto_035.jpg,emisor_nombre,Vélez Suministros SAPI de CV,,True,False,False
+piloto_035.jpg,emisor_rfc,VSS140321VBZ,,True,False,False
+piloto_035.jpg,emisor_direccion,"Ampliación San Luis Potosí 295, San Francisca los bajos",,True,False,False
+piloto_035.jpg,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_035.jpg,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_035.jpg,moneda,MXN,,True,False,False
+piloto_035.jpg,subtotal,"20,653.08",,True,False,False
+piloto_035.jpg,impuestos,"3,304.49",,True,False,False
+piloto_035.jpg,tasa_iva,IVA 16 %,,True,False,False
+piloto_035.jpg,retenciones,,,False,False,False
+piloto_035.jpg,total,"23,957.57",,True,False,False
+piloto_035.jpg,condiciones_pago,Contado,,True,False,False
+piloto_036.pdf,folio,35992249,,True,False,False
+piloto_036.pdf,fecha,07/07/2026,,True,False,False
+piloto_036.pdf,emisor_nombre,Cervántez Servicios SA de CV,Cervántez Servicios SA de CV,True,True,True
+piloto_036.pdf,emisor_rfc,CSS131018FNR,CS51018FNR,True,True,False
+piloto_036.pdf,emisor_direccion,"Peatonal República Unida de Tanzanía 1, Vieja Bhután","Presional República Unida de Tanzania 1, Viejo Bhutan",True,True,False
+piloto_036.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,Servicios Corporativos Demo SA de CV,True,True,True
+piloto_036.pdf,receptor_rfc,SCD050920LM8,SC0509820LM8,True,True,False
+piloto_036.pdf,moneda,MXN,MXN,True,True,True
+piloto_036.pdf,subtotal,"3,155.85","3.155,85",True,True,True
+piloto_036.pdf,impuestos,504.94,"504,94",True,True,True
+piloto_036.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_036.pdf,retenciones,,,False,False,True
+piloto_036.pdf,total,"3,660.79","3.660,79 MXN",True,True,True
+piloto_036.pdf,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_037.pdf,folio,66106370,,True,False,False
+piloto_037.pdf,fecha,2026-09-12,2026-09-12,True,True,True
+piloto_037.pdf,emisor_nombre,Salas Suministros SC,SALAS SUMINISTROS SC,True,True,True
+piloto_037.pdf,emisor_rfc,SSS130401FHU,,True,False,False
+piloto_037.pdf,emisor_direccion,"Cerrada Sur Blanco 770, Vieja Brasil","Cerrada Sur Blanco 770, Vieja Brasil",True,True,True
+piloto_037.pdf,receptor_nombre,"Banco Demo SA, Institución de Banca Múltiple",,True,False,False
+piloto_037.pdf,receptor_rfc,BDM970315QW2,,True,False,False
+piloto_037.pdf,moneda,MXN,MXN,True,True,True
+piloto_037.pdf,subtotal,"17,583.46",,True,False,False
+piloto_037.pdf,impuestos,"2,813.35",,True,False,False
+piloto_037.pdf,tasa_iva,IVA 16 %,16,True,True,True
+piloto_037.pdf,retenciones,,,False,False,True
+piloto_037.pdf,total,"22,896.81",,True,False,False
+piloto_037.pdf,condiciones_pago,Pago a 15 días,Pago a 15 días,True,True,True
+piloto_038.pdf,folio,B 8325,,True,False,False
+piloto_038.pdf,fecha,24/08/2026,,True,False,False
+piloto_038.pdf,emisor_nombre,Bermúdez Consultores SAPI de CV,,True,False,False
+piloto_038.pdf,emisor_rfc,BCS091217EXF,,True,False,False
+piloto_038.pdf,emisor_direccion,"Avenida Nuevo León 825, San Fabiola de la Montaña",,True,False,False
+piloto_038.pdf,receptor_nombre,Servicios Corporativos Demo SA de CV,,True,False,False
+piloto_038.pdf,receptor_rfc,SCD050920LM8,,True,False,False
+piloto_038.pdf,moneda,MXN,,True,False,False
+piloto_038.pdf,subtotal,"60,674.52",,True,False,False
+piloto_038.pdf,impuestos,"9,707.92",,True,False,False
+piloto_038.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_038.pdf,retenciones,,,False,False,False
+piloto_038.pdf,total,"70,382.44",,True,False,False
+piloto_038.pdf,condiciones_pago,Pago a 15 días,,True,False,False
+piloto_039.pdf,folio,A-1661,,True,False,False
+piloto_039.pdf,fecha,16/09/2026,,True,False,False
+piloto_039.pdf,emisor_nombre,Salinas Tecnología S de RL de CV,Salinas Tecnología S de RL de CV,True,True,True
+piloto_039.pdf,emisor_rfc,STS020102K59,STS020102K59,True,True,True
+piloto_039.pdf,emisor_direccion,"Privada Sur López 302, San Fabiola de la Montaña","Privada Sur López 302, San Fabiola de la Montaña",True,True,True
+piloto_039.pdf,receptor_nombre,Grupo Financiero Demo SA de CV,Grupo Financiero Demo SA de CV,True,True,True
+piloto_039.pdf,receptor_rfc,GFD960701AB4,GFD960701AB4,True,True,True
+piloto_039.pdf,moneda,MXN,MXN,True,True,True
+piloto_039.pdf,subtotal,"17,140.08","17,140.08",True,True,True
+piloto_039.pdf,impuestos,"2,742.41","2,742.41",True,True,True
+piloto_039.pdf,tasa_iva,IVA 16 %,,True,False,False
+piloto_039.pdf,retenciones,,,False,False,True
+piloto_039.pdf,total,"19,882.49","19,882.49 MXN",True,True,True
+piloto_039.pdf,condiciones_pago,Pago a 45 días,,True,False,False

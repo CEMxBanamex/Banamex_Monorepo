@@ -1,0 +1,415 @@
+{
+  "archivo": "piloto_031.jpg",
+  "caso_id": "F-3965033630",
+  "sha256": "44ce4e1b0b189b640582d7181f9606bf37664df03ea19de07cc07686ef00578f",
+  "salida": {
+    "caso_id": "F-3965033630",
+    "archivo": "piloto_031.jpg",
+    "fecha": "2026-11-02",
+    "sha256": "44ce4e1b0b189b640582d7181f9606bf37664df03ea19de07cc07686ef00578f",
+    "factura": {
+      "tipo_documento": "factura",
+      "campos": {
+        "folio": {
+          "valor": "FAC-068366",
+          "confianza": null,
+          "etiqueta": "FAC-068366",
+          "pagina": 1,
+          "bbox": null
+        },
+        "fecha": {
+          "valor": "18 de octubre de 2026",
+          "confianza": null,
+          "etiqueta": "18 de octubre de 2026",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_nombre": {
+          "valor": "Jasso Tecnología SAPI de CV",
+          "confianza": null,
+          "etiqueta": "Jasso Tecnología SAPI de CV",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_rfc": {
+          "valor": "JTS9711228K4",
+          "confianza": null,
+          "etiqueta": "JTS9711228K4",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_direccion": {
+          "valor": "Calle Aguascalientes 99, San Violeta los altos",
+          "confianza": null,
+          "etiqueta": "Calle Aguascalientes 99, San Violeta los altos",
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_nombre": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Grupo Financiero Demo SA de CV",
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_rfc": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "GFD960701AB4",
+          "pagina": 1,
+          "bbox": null
+        },
+        "moneda": {
+          "valor": "USD",
+          "confianza": null,
+          "etiqueta": "USD",
+          "pagina": 1,
+          "bbox": null
+        },
+        "subtotal": {
+          "valor": "111,675.26",
+          "confianza": null,
+          "etiqueta": "Subtotal",
+          "pagina": 1,
+          "bbox": null
+        },
+        "impuestos": {
+          "valor": "17,868.04",
+          "confianza": null,
+          "etiqueta": "IVA 16 %",
+          "pagina": 1,
+          "bbox": null
+        },
+        "tasa_iva": {
+          "valor": "16",
+          "confianza": null,
+          "etiqueta": "IVA 16 %",
+          "pagina": 1,
+          "bbox": null
+        },
+        "retenciones": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "retenciones",
+          "pagina": 1,
+          "bbox": null
+        },
+        "total": {
+          "valor": "$ 129,543.30 USD",
+          "confianza": null,
+          "etiqueta": "Total",
+          "pagina": 1,
+          "bbox": null
+        },
+        "condiciones_pago": {
+          "valor": "Pago a 15 días",
+          "confianza": null,
+          "etiqueta": "Condiciones de pago: Pago a 15 días",
+          "pagina": 1,
+          "bbox": null
+        }
+      },
+      "conceptos": [
+        {
+          "descripcion": "Licencia anual de software",
+          "cantidad": "5",
+          "precio_unitario": "8,268.58",
+          "importe": "41,342.90"
+        },
+        {
+          "descripcion": "Soporte técnico mensual",
+          "cantidad": "4",
+          "precio_unitario": "13,958.09",
+          "importe": "55,832.36"
+        },
+        {
+          "descripcion": "Implementación de plataforma",
+          "cantidad": "1",
+          "precio_unitario": "14,500.00",
+          "importe": "14,500.00"
+        }
+      ],
+      "texto_completo": "Jasso Tecnología SAPI de CV\nCalle Aguascalientes 99, San Violeta los altos\n\nFACTURA\nRFC: JTS9711228K4\nNo. de factura: FAC-068366\nExpedida el 18 de octubre de 2026\n\nConcepto | Cant. | P. unitario | Importe\n------- | -------- | -------- | --------\nLicencia anual de software | 5 | 8,268.58 | 41,342.90\nSoporte técnico mensual | 4 | 13,958.09 | 55,832.36\nImplementación de plataforma | 1 | 14,500.00 | 14,500.00\n\nSubtotal |  |  | 111,675.26\nIVA 16 % |  |  | 17,868.04\nTotal |  |  | $ 129,543.30 USD\n\nCondiciones de pago: Pago a 15 días",
+      "modelo": "gemma3:4b",
+      "paginas": 1
+    },
+    "resultado": {
+      "caso_id": "F-3965033630",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-017@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "regla_id": "R-001",
+          "regla_version": "1.2",
+          "politica_id": "P-001",
+          "politica_version": "3.0",
+          "politica_seccion": "3. Datos obligatorios",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "Faltan datos obligatorios en la factura",
+          "texto": "La factura no muestra: receptor, rfc del receptor. La política exige estos datos para toda factura de proveedor.",
+          "cifras": null,
+          "campos": [
+            "receptor_nombre",
+            "receptor_rfc"
+          ],
+          "filas": null,
+          "evidencia": "página 1",
+          "evidencia_detalle": null
+        },
+        {
+          "regla_id": "R-003",
+          "regla_version": "1.0",
+          "politica_id": "P-004",
+          "politica_version": "1.0",
+          "politica_seccion": "2. Umbral de confianza",
+          "efecto": "informativo",
+          "severidad": "info",
+          "titulo": "No se conoce la confianza de lectura",
+          "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+          "cifras": null,
+          "campos": [
+            "folio",
+            "fecha",
+            "emisor_nombre",
+            "emisor_rfc",
+            "moneda",
+            "subtotal",
+            "impuestos",
+            "tasa_iva",
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, moneda, subtotal, impuestos, tasa de iva, total",
+          "evidencia_detalle": null
+        },
+        {
+          "regla_id": "R-017",
+          "regla_version": "1.0",
+          "politica_id": "P-003",
+          "politica_version": "1.2",
+          "politica_seccion": "3. Padrón de proveedores",
+          "efecto": "revision",
+          "severidad": "adv",
+          "titulo": "El proveedor no está en el padrón",
+          "texto": "El RFC JTS9711228K4 no aparece activo en el padrón de proveedores. Compras debe validarlo.",
+          "cifras": null,
+          "campos": [
+            "emisor_rfc"
+          ],
+          "filas": null,
+          "evidencia": "página 1, rfc del proveedor",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "emisor_rfc"
+          }
+        },
+        {
+          "regla_id": "R-021",
+          "regla_version": "1.2",
+          "politica_id": "P-003",
+          "politica_version": "1.2",
+          "politica_seccion": "4. Montos altos",
+          "efecto": "revision",
+          "severidad": "adv",
+          "titulo": "El monto requiere revisión de supervisión",
+          "texto": "El total de 129,543.30 USD (≈ 2,396,551.05 MXN) es igual o mayor a 250,000.00 MXN.",
+          "cifras": null,
+          "campos": [
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, total",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "total"
+          }
+        }
+      ],
+      "resultado_sugerido": "humana",
+      "motivo": "Requiere revisión humana por: R-017 proveedor registrado en el padrón; R-021 monto que requiere revisión adicional"
+    },
+    "politicas": {
+      "caso_id": "F-3965033630",
+      "resultado_sugerido": "humana",
+      "motivo": "Requiere revisión humana por: R-017 proveedor registrado en el padrón; R-021 monto que requiere revisión adicional",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-017@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "hallazgo": {
+            "regla_id": "R-001",
+            "regla_version": "1.2",
+            "politica_id": "P-001",
+            "politica_version": "3.0",
+            "politica_seccion": "3. Datos obligatorios",
+            "efecto": "rechazo",
+            "severidad": "error",
+            "titulo": "Faltan datos obligatorios en la factura",
+            "texto": "La factura no muestra: receptor, rfc del receptor. La política exige estos datos para toda factura de proveedor.",
+            "cifras": null,
+            "campos": [
+              "receptor_nombre",
+              "receptor_rfc"
+            ],
+            "filas": null,
+            "evidencia": "página 1",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-001",
+            "version": "3.0",
+            "seccion": "3. Datos obligatorios",
+            "texto": "P-001 v3.0 · Recepción y validación de facturas de proveedores (vigente desde 15/01/2026)\nSección 3. Datos obligatorios\n\nToda factura debe mostrar de forma legible los siguientes datos (regla **R-001 v1.2**):\n\n- Folio de la factura.\n- Fecha de emisión.\n- Nombre o razón social del emisor y su RFC.\n- Nombre o razón social del receptor y su RFC.\n- Subtotal, impuestos trasladados y total.\n- Moneda.\n\nSi falta cualquiera de estos datos, la factura no cumple la política y se sugiere el resultado Rechazado. El RFC del emisor y del receptor se valida además contra la estructura definida en la política P-011 (regla **R-002 v2.0**).",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-003",
+            "regla_version": "1.0",
+            "politica_id": "P-004",
+            "politica_version": "1.0",
+            "politica_seccion": "2. Umbral de confianza",
+            "efecto": "informativo",
+            "severidad": "info",
+            "titulo": "No se conoce la confianza de lectura",
+            "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+            "cifras": null,
+            "campos": [
+              "folio",
+              "fecha",
+              "emisor_nombre",
+              "emisor_rfc",
+              "moneda",
+              "subtotal",
+              "impuestos",
+              "tasa_iva",
+              "total"
+            ],
+            "filas": null,
+            "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, moneda, subtotal, impuestos, tasa de iva, total",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-004",
+            "version": "1.0",
+            "seccion": "2. Umbral de confianza",
+            "texto": "P-004 v1.0 · Lectura automatizada de documentos (vigente desde 01/02/2026)\nSección 2. Umbral de confianza\n\nCada campo leído automáticamente lleva una confianza de lectura entre 0 % y 100 %. Si algún campo que se usa para evaluar las reglas tiene una confianza menor a 80 %, el campo se marca como dudoso y el caso pasa a revisión humana (regla **R-003 v1.0**). El analista debe verificar el dato contra el documento original y, si es necesario, corregirlo. Toda corrección queda registrada en la bitácora con el valor anterior y el nuevo.",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-017",
+            "regla_version": "1.0",
+            "politica_id": "P-003",
+            "politica_version": "1.2",
+            "politica_seccion": "3. Padrón de proveedores",
+            "efecto": "revision",
+            "severidad": "adv",
+            "titulo": "El proveedor no está en el padrón",
+            "texto": "El RFC JTS9711228K4 no aparece activo en el padrón de proveedores. Compras debe validarlo.",
+            "cifras": null,
+            "campos": [
+              "emisor_rfc"
+            ],
+            "filas": null,
+            "evidencia": "página 1, rfc del proveedor",
+            "evidencia_detalle": {
+              "pagina": 1,
+              "campo": "emisor_rfc"
+            }
+          },
+          "politica": {
+            "politica_id": "P-003",
+            "version": "1.2",
+            "seccion": "3. Padrón de proveedores",
+            "texto": "P-003 v1.2 · Facturas que requieren revisión adicional (vigente desde 01/04/2026)\nSección 3. Padrón de proveedores\n\nEl RFC del emisor debe estar activo en el padrón de proveedores autorizados (regla **R-017 v1.0**). Si no aparece o está inactivo, el caso pasa a revisión humana para que el área de Compras confirme el alta del proveedor. No se rechaza automáticamente.",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-021",
+            "regla_version": "1.2",
+            "politica_id": "P-003",
+            "politica_version": "1.2",
+            "politica_seccion": "4. Montos altos",
+            "efecto": "revision",
+            "severidad": "adv",
+            "titulo": "El monto requiere revisión de supervisión",
+            "texto": "El total de 129,543.30 USD (≈ 2,396,551.05 MXN) es igual o mayor a 250,000.00 MXN.",
+            "cifras": null,
+            "campos": [
+              "total"
+            ],
+            "filas": null,
+            "evidencia": "página 1, total",
+            "evidencia_detalle": {
+              "pagina": 1,
+              "campo": "total"
+            }
+          },
+          "politica": {
+            "politica_id": "P-003",
+            "version": "1.2",
+            "seccion": "4. Montos altos",
+            "texto": "P-003 v1.2 · Facturas que requieren revisión adicional (vigente desde 01/04/2026)\nSección 4. Montos altos\n\nLas facturas con un total igual o mayor a 250,000.00 MXN requieren la revisión de una persona de supervisión (regla **R-021 v1.2**). Para facturas en USD se usa, durante el piloto, un tipo de cambio fijo de 18.50 MXN por dólar. El agente marca el caso como Requiere revisión humana y lo indica en la explicación; el analista decide si lo escala.",
+            "origen": "rag"
+          }
+        }
+      ],
+      "pasos": [
+        "Validando reglas… 13 evaluadas, 4 hallazgos",
+        "Buscando política de R-001… P-001 v3.0",
+        "Buscando política de R-003… P-004 v1.0",
+        "Buscando política de R-017… P-003 v1.2",
+        "Buscando política de R-021… P-003 v1.2"
+      ]
+    },
+    "fragmentos": {
+      "R-001": [
+        3
+      ],
+      "R-003": [
+        24
+      ],
+      "R-017": [
+        20
+      ],
+      "R-021": [
+        21
+      ]
+    },
+    "explicacion": "Requiere revisión humana por: R-017 proveedor registrado en el padrón; R-021 monto que requiere revisión adicional\nFaltan datos obligatorios en la factura: La factura no muestra: receptor, rfc del receptor. La política exige estos datos para toda factura de proveedor. Evidencia: página 1 (R-001 · P-001 v3.0 §3. Datos obligatorios). Fragmento recuperado.\nNo se conoce la confianza de lectura: El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. Evidencia: página 1, folio, fecha, proveedor, rfc del proveedor, moneda, subtotal, impuestos, tasa de iva, total (R-003 · P-004 v1.0 §2. Umbral de confianza). Fragmento recuperado.\nEl proveedor no está en el padrón: El RFC JTS9711228K4 no aparece activo en el padrón de proveedores. Compras debe validarlo. Evidencia: página 1, rfc del proveedor (R-017 · P-003 v1.2 §3. Padrón de proveedores). Fragmento recuperado.\nEl monto requiere revisión de supervisión: El total de 129,543.30 USD (≈ 2,396,551.05 MXN) es igual o mayor a 250,000.00 MXN. Evidencia: página 1, total (R-021 · P-003 v1.2 §4. Montos altos). Fragmento recuperado.\nLa decisión final corresponde al analista."
+  },
+  "estado": "pausa",
+  "segundos": 18.451
+}

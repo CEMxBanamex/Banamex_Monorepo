@@ -1,0 +1,352 @@
+{
+  "archivo": "piloto_008.pdf",
+  "caso_id": "F-3965033607",
+  "sha256": "5c7f3f50abab02ae567f28b8dbaec1af749e28abde2578377d71ed6279ea2f08",
+  "salida": {
+    "caso_id": "F-3965033607",
+    "archivo": "piloto_008.pdf",
+    "fecha": "2026-11-02",
+    "sha256": "5c7f3f50abab02ae567f28b8dbaec1af749e28abde2578377d71ed6279ea2f08",
+    "factura": {
+      "tipo_documento": "factura",
+      "campos": {
+        "folio": {
+          "valor": "A-3217",
+          "confianza": null,
+          "etiqueta": "Folio",
+          "pagina": 1,
+          "bbox": null
+        },
+        "fecha": {
+          "valor": "17/08/2026",
+          "confianza": null,
+          "etiqueta": "Fecha",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_nombre": {
+          "valor": "Sales Suministros SC",
+          "confianza": null,
+          "etiqueta": "Emisor",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_rfc": {
+          "valor": "SSS13041FHU",
+          "confianza": null,
+          "etiqueta": "RFC",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_direccion": {
+          "valor": "Cerrada Sur Blanco 770, Vieja Brasil",
+          "confianza": null,
+          "etiqueta": null,
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_nombre": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Receptor",
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_rfc": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "RFC",
+          "pagina": 1,
+          "bbox": null
+        },
+        "moneda": {
+          "valor": "MXN",
+          "confianza": null,
+          "etiqueta": "Moneda",
+          "pagina": 1,
+          "bbox": null
+        },
+        "subtotal": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Subtotal",
+          "pagina": 1,
+          "bbox": null
+        },
+        "impuestos": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "IVA 16 %",
+          "pagina": 1,
+          "bbox": null
+        },
+        "tasa_iva": {
+          "valor": "16",
+          "confianza": null,
+          "etiqueta": "IVA 16 %",
+          "pagina": 1,
+          "bbox": null
+        },
+        "retenciones": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Retenciones",
+          "pagina": 1,
+          "bbox": null
+        },
+        "total": {
+          "valor": "$ 6,033.59 MXN",
+          "confianza": null,
+          "etiqueta": "Total",
+          "pagina": 1,
+          "bbox": null
+        },
+        "condiciones_pago": {
+          "valor": "Pago a 45 dias",
+          "confianza": null,
+          "etiqueta": "Condiciones de pago",
+          "pagina": 1,
+          "bbox": null
+        }
+      },
+      "conceptos": [
+        {
+          "descripcion": "Rent a equipo de cómputo",
+          "cantidad": "1",
+          "precio_unitario": "4,463.45",
+          "importe": "4,463.45"
+        },
+        {
+          "descripcion": "Mensajería y paquetería",
+          "cantidad": "1",
+          "precio_unitario": "737.92",
+          "importe": "737.92"
+        }
+      ],
+      "texto_completo": "Sales Suministros SC\nCerrada Sur Blanco 770, Vieja Brasil\nRFC emisor SSS13041FHU\n\nDocumento\nSerie y folio A-3217\nFecha de emisión 17/08/2026\nMoneda MXN\n\nConcepto Cant. P. unitario Importe\nRent a equipo de cómputo 1 4,463.45 4,463.45\nMensajería y paquetería 1 737.92 737.92\n\nSubtotal 5,201.37\nIVA 16 % 832.22\nTotal $ 6,033.59 MXN\n\nCondiciones de pago: Pago a 45 dias",
+      "modelo": "gemma3:4b",
+      "paginas": 1
+    },
+    "resultado": {
+      "caso_id": "F-3965033607",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "regla_id": "R-001",
+          "regla_version": "1.2",
+          "politica_id": "P-001",
+          "politica_version": "3.0",
+          "politica_seccion": "3. Datos obligatorios",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "Faltan datos obligatorios en la factura",
+          "texto": "La factura no muestra: receptor, rfc del receptor, subtotal, impuestos. La política exige estos datos para toda factura de proveedor.",
+          "cifras": null,
+          "campos": [
+            "receptor_nombre",
+            "receptor_rfc",
+            "subtotal",
+            "impuestos"
+          ],
+          "filas": null,
+          "evidencia": "página 1",
+          "evidencia_detalle": null
+        },
+        {
+          "regla_id": "R-002",
+          "regla_version": "2.0",
+          "politica_id": "P-011",
+          "politica_version": "2.0",
+          "politica_seccion": "2. Estructura del RFC",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "El RFC del proveedor no tiene un formato válido",
+          "texto": "«SSS13041FHU» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+          "cifras": null,
+          "campos": [
+            "emisor_rfc"
+          ],
+          "filas": null,
+          "evidencia": "página 1, rfc del proveedor",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "emisor_rfc"
+          }
+        },
+        {
+          "regla_id": "R-003",
+          "regla_version": "1.0",
+          "politica_id": "P-004",
+          "politica_version": "1.0",
+          "politica_seccion": "2. Umbral de confianza",
+          "efecto": "informativo",
+          "severidad": "info",
+          "titulo": "No se conoce la confianza de lectura",
+          "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, moneda, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+          "cifras": null,
+          "campos": [
+            "folio",
+            "fecha",
+            "emisor_nombre",
+            "emisor_rfc",
+            "moneda",
+            "tasa_iva",
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, moneda, tasa de iva, total",
+          "evidencia_detalle": null
+        }
+      ],
+      "resultado_sugerido": "rechazado",
+      "motivo": "No cumple: R-001 campos obligatorios de la factura; R-002 formato de rfc en la factura"
+    },
+    "politicas": {
+      "caso_id": "F-3965033607",
+      "resultado_sugerido": "rechazado",
+      "motivo": "No cumple: R-001 campos obligatorios de la factura; R-002 formato de rfc en la factura",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "hallazgo": {
+            "regla_id": "R-001",
+            "regla_version": "1.2",
+            "politica_id": "P-001",
+            "politica_version": "3.0",
+            "politica_seccion": "3. Datos obligatorios",
+            "efecto": "rechazo",
+            "severidad": "error",
+            "titulo": "Faltan datos obligatorios en la factura",
+            "texto": "La factura no muestra: receptor, rfc del receptor, subtotal, impuestos. La política exige estos datos para toda factura de proveedor.",
+            "cifras": null,
+            "campos": [
+              "receptor_nombre",
+              "receptor_rfc",
+              "subtotal",
+              "impuestos"
+            ],
+            "filas": null,
+            "evidencia": "página 1",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-001",
+            "version": "3.0",
+            "seccion": "3. Datos obligatorios",
+            "texto": "P-001 v3.0 · Recepción y validación de facturas de proveedores (vigente desde 15/01/2026)\nSección 3. Datos obligatorios\n\nToda factura debe mostrar de forma legible los siguientes datos (regla **R-001 v1.2**):\n\n- Folio de la factura.\n- Fecha de emisión.\n- Nombre o razón social del emisor y su RFC.\n- Nombre o razón social del receptor y su RFC.\n- Subtotal, impuestos trasladados y total.\n- Moneda.\n\nSi falta cualquiera de estos datos, la factura no cumple la política y se sugiere el resultado Rechazado. El RFC del emisor y del receptor se valida además contra la estructura definida en la política P-011 (regla **R-002 v2.0**).",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-002",
+            "regla_version": "2.0",
+            "politica_id": "P-011",
+            "politica_version": "2.0",
+            "politica_seccion": "2. Estructura del RFC",
+            "efecto": "rechazo",
+            "severidad": "error",
+            "titulo": "El RFC del proveedor no tiene un formato válido",
+            "texto": "«SSS13041FHU» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+            "cifras": null,
+            "campos": [
+              "emisor_rfc"
+            ],
+            "filas": null,
+            "evidencia": "página 1, rfc del proveedor",
+            "evidencia_detalle": {
+              "pagina": 1,
+              "campo": "emisor_rfc"
+            }
+          },
+          "politica": {
+            "politica_id": "P-011",
+            "version": "2.0",
+            "seccion": "2. Estructura del RFC",
+            "texto": "P-011 v2.0 · Formato de RFC (vigente desde 15/01/2026)\nSección 2. Estructura del RFC\n\nUn RFC válido se escribe en mayúsculas, sin espacios ni guiones, y tiene una de estas dos formas (reglas **R-002 v2.0** para facturas y **R-103 v2.0** para registros):\n\n- **Persona moral: 12 caracteres.** Tres letras (se admiten Ñ y &), seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n- **Persona física: 13 caracteres.** Cuatro letras, seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n\nLos seis dígitos deben formar una fecha que exista en el calendario. Por ejemplo, un RFC con fecha 230231 no es válido porque el 31 de febrero no existe.",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-003",
+            "regla_version": "1.0",
+            "politica_id": "P-004",
+            "politica_version": "1.0",
+            "politica_seccion": "2. Umbral de confianza",
+            "efecto": "informativo",
+            "severidad": "info",
+            "titulo": "No se conoce la confianza de lectura",
+            "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, moneda, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+            "cifras": null,
+            "campos": [
+              "folio",
+              "fecha",
+              "emisor_nombre",
+              "emisor_rfc",
+              "moneda",
+              "tasa_iva",
+              "total"
+            ],
+            "filas": null,
+            "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, moneda, tasa de iva, total",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-004",
+            "version": "1.0",
+            "seccion": "2. Umbral de confianza",
+            "texto": "P-004 v1.0 · Lectura automatizada de documentos (vigente desde 01/02/2026)\nSección 2. Umbral de confianza\n\nCada campo leído automáticamente lleva una confianza de lectura entre 0 % y 100 %. Si algún campo que se usa para evaluar las reglas tiene una confianza menor a 80 %, el campo se marca como dudoso y el caso pasa a revisión humana (regla **R-003 v1.0**). El analista debe verificar el dato contra el documento original y, si es necesario, corregirlo. Toda corrección queda registrada en la bitácora con el valor anterior y el nuevo.",
+            "origen": "rag"
+          }
+        }
+      ],
+      "pasos": [
+        "Validando reglas… 12 evaluadas, 3 hallazgos",
+        "Buscando política de R-001… P-001 v3.0",
+        "Buscando política de R-002… P-011 v2.0",
+        "Buscando política de R-003… P-004 v1.0"
+      ]
+    },
+    "fragmentos": {
+      "R-001": [
+        3
+      ],
+      "R-002": [
+        34
+      ],
+      "R-003": [
+        24
+      ]
+    },
+    "explicacion": "No cumple: R-001 campos obligatorios de la factura; R-002 formato de rfc en la factura\nFaltan datos obligatorios en la factura: La factura no muestra: receptor, rfc del receptor, subtotal, impuestos. La política exige estos datos para toda factura de proveedor. Evidencia: página 1 (R-001 · P-001 v3.0 §3. Datos obligatorios). Fragmento recuperado.\nEl RFC del proveedor no tiene un formato válido: «SSS13041FHU» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe. Evidencia: página 1, rfc del proveedor (R-002 · P-011 v2.0 §2. Estructura del RFC). Fragmento recuperado.\nNo se conoce la confianza de lectura: El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, moneda, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. Evidencia: página 1, folio, fecha, proveedor, rfc del proveedor, moneda, tasa de iva, total (R-003 · P-004 v1.0 §2. Umbral de confianza). Fragmento recuperado.\nLa decisión final corresponde al analista."
+  },
+  "estado": "pausa",
+  "segundos": 17.358
+}

@@ -1,0 +1,40 @@
+﻿archivo,estado,esperado,predicho,correcto,reglas_esperadas,reglas_obtenidas
+piloto_001.png,pausa,aceptado,rechazado,False,[],['R-002']
+piloto_002.pdf,pausa,aceptado,rechazado,False,[],"['R-001', 'R-010']"
+piloto_003.png,pausa,aceptado,rechazado,False,[],['R-001']
+piloto_004.pdf,pausa,aceptado,rechazado,False,[],['R-001']
+piloto_005.png,error,aceptado,sin_salida,False,[],[]
+piloto_006.pdf,pausa,aceptado,rechazado,False,[],"['R-001', 'R-002']"
+piloto_007.png,error,aceptado,sin_salida,False,[],[]
+piloto_008.pdf,pausa,aceptado,rechazado,False,[],"['R-001', 'R-002']"
+piloto_009.jpg,error,aceptado,sin_salida,False,[],[]
+piloto_010.pdf,pausa,aceptado,humana,False,[],"['R-001', 'R-014', 'R-017']"
+piloto_011.pdf,pausa,aceptado,rechazado,False,[],"['R-001', 'R-004']"
+piloto_012.png,pausa,rechazado,rechazado,True,['R-014'],"['R-001', 'R-014']"
+piloto_013.pdf,pausa,rechazado,rechazado,True,['R-014'],['R-001']
+piloto_014.jpg,error,rechazado,sin_salida,False,['R-014'],[]
+piloto_015.jpg,pausa,rechazado,rechazado,True,['R-011'],['R-001']
+piloto_016.pdf,pausa,rechazado,rechazado,True,['R-011'],['R-001']
+piloto_017.pdf,pausa,rechazado,rechazado,True,['R-011'],"['R-001', 'R-002', 'R-010', 'R-011', 'R-014']"
+piloto_018.png,pausa,rechazado,rechazado,True,['R-010'],"['R-001', 'R-010']"
+piloto_019.pdf,error,rechazado,sin_salida,False,['R-010'],[]
+piloto_020.png,error,rechazado,sin_salida,False,['R-001'],[]
+piloto_021.jpg,pausa,rechazado,rechazado,True,['R-001'],['R-001']
+piloto_022.pdf,pausa,rechazado,rechazado,True,['R-002'],"['R-001', 'R-011', 'R-014']"
+piloto_023.png,pausa,rechazado,humana,False,['R-002'],"['R-001', 'R-017']"
+piloto_024.jpg,pausa,rechazado,rechazado,True,['R-004'],"['R-001', 'R-002']"
+piloto_025.pdf,pausa,rechazado,rechazado,True,['R-004'],"['R-001', 'R-002']"
+piloto_026.pdf,pausa,rechazado,rechazado,True,['R-018'],"['R-001', 'R-018']"
+piloto_027.png,pausa,rechazado,rechazado,True,"['R-001', 'R-014']",['R-001']
+piloto_028.jpg,pausa,rechazado,rechazado,True,['R-015'],"['R-001', 'R-015']"
+piloto_029.pdf,pausa,humana,rechazado,False,['R-015'],['R-001']
+piloto_030.jpg,pausa,humana,humana,True,['R-021'],"['R-001', 'R-017', 'R-021']"
+piloto_031.jpg,pausa,humana,humana,True,['R-021'],"['R-001', 'R-017', 'R-021']"
+piloto_032.jpg,pausa,humana,humana,True,['R-017'],"['R-001', 'R-017']"
+piloto_033.pdf,pausa,humana,humana,True,['R-017'],"['R-001', 'R-017']"
+piloto_034.pdf,error,humana,sin_salida,False,['R-005'],[]
+piloto_035.jpg,error,humana,sin_salida,False,['R-003'],[]
+piloto_036.pdf,pausa,humana,rechazado,False,['R-003'],"['R-001', 'R-002']"
+piloto_037.pdf,pausa,humana,humana,True,"['R-014', 'R-030']","['R-001', 'R-030']"
+piloto_038.pdf,error,humana,sin_salida,False,['R-030'],[]
+piloto_039.pdf,pausa,humana,rechazado,False,['R-031'],['R-001']

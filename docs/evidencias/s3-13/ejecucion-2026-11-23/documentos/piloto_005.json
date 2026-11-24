@@ -1,0 +1,9 @@
+{
+  "archivo": "piloto_005.png",
+  "caso_id": "F-3965033604",
+  "sha256": "251dc015f55eff2924348aa1a4c1f97661759bc5288f8d24ebff428023cee513",
+  "estado": "error",
+  "error_tipo": "ErrorExtraccion",
+  "error": "Ollama no completó la extracción.",
+  "segundos": 72.987
+}
