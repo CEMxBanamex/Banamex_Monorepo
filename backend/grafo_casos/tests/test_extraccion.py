@@ -29,6 +29,12 @@ class TestExtraccion(unittest.TestCase):
                 self.assertTrue(esquema_visible["properties"]["campos"]["properties"][campo]["description"])
             self.assertIn("campos", esquema["required"])
             self.assertIn("texto_completo", esquema["required"])
+            self.assertIn("conceptos", esquema["required"])
+            concepto = esquema["$defs"]["ConceptoLeido"]
+            self.assertEqual(set(concepto["required"]), {"descripcion", "cantidad", "precio_unitario", "importe"})
+            self.assertNotIn("minItems", esquema["properties"]["conceptos"])
+            for clave in concepto["required"]:
+                self.assertTrue(concepto["properties"][clave]["description"])
             self.assertEqual(set(esquema["properties"]["campos"]["required"]), set(CAMPOS_FACTURA))
             self.assertEqual(set(esquema["$defs"]["CampoLeido"]["required"]), {"valor", "etiqueta"})
             return httpx.Response(200, json={"done": True, "response": json.dumps(salida), **envoltura})
@@ -145,3 +151,18 @@ class TestExtraccion(unittest.TestCase):
         }, "texto_completo": "Total 116.00"})
         self.assertIsNone(factura.campos["folio"].valor)
         self.assertIsNone(factura.campos["fecha"].valor)
+
+    def test_conceptos_conserva_filas_celdas_nulas_e_importes_sin_calcular(self):
+        conceptos = [
+            {"descripcion": "Servicio A", "cantidad": "2", "precio_unitario": "1,000.00", "importe": "2,001.00"},
+            {"descripcion": "Servicio B", "cantidad": None, "precio_unitario": None, "importe": "300.00"},
+        ]
+        factura = self.extraer({"campos": {"folio": {"valor": "F-8", "etiqueta": "Folio"}},
+                               "conceptos": conceptos,
+                               "texto_completo": "Folio F-8\nServicio A 2 1,000.00 2,001.00\nServicio B 300.00"})
+        self.assertEqual([c.model_dump() for c in factura.conceptos], conceptos)
+
+    def test_admite_lista_vacia_sin_fabricar_conceptos(self):
+        factura = self.extraer({"campos": {"folio": {"valor": "F-8", "etiqueta": "Folio"}},
+                               "conceptos": [], "texto_completo": "Folio F-8"})
+        self.assertEqual(factura.conceptos, [])

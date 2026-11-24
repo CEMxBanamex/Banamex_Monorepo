@@ -28,3 +28,21 @@ y RFC ausentes; también conserva el descarte de folio y fecha sin transcripció
 Al reproducir ambos JSON guardados, el único cambio frente a las salidas anteriores
 es conservar `receptor_rfc=GFD960701AB4` en `piloto_012`, con etiqueta nula.
 Las pruebas verifican comportamiento del código, no precisión del modelo.
+
+## Experimento posterior: conceptos estructurados
+
+Ante una nueva extracción de `piloto_012` que conserva el RFC pero sigue devolviendo
+`conceptos=[]`, se explicita en el prompt que transcribir las partidas no sustituye
+llenar la lista. El esquema de generación requiere la lista y las cuatro claves
+de cada partida, con descripciones específicas. Las celdas numéricas admiten null
+y la lista admite cero elementos: no se impone una cantidad de partidas ni se
+calculan importes. No se cambia el contrato compartido ni el modelo predeterminado.
+También se pide incluir folio y fecha en la transcripción completa.
+
+Este cambio de prompt/esquema inicia una configuración experimental distinta;
+los resultados anteriores permanecen como evidencia de la configuración anterior.
+Validación local: 32 pruebas aprobadas y una integración de base de datos omitida
+(33 en total). La salida simulada conserva incluso un importe inconsistente y
+celdas nulas sin corregirlos; se admite lista vacía. Está pendiente ejecutar Qwen
+en la laptop y contrastar todas las filas contra el documento original. No se
+afirma mejora de precisión a partir de las pruebas de código.

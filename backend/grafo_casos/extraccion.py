@@ -29,7 +29,12 @@ Si no hay evidencia del valor, valor=null. No inventes etiquetas ni dejes vacío
 DISCOUNT es descuento: nunca lo uses como impuestos. SUBTOTAL no es TOTAL. No deduzcas un total.
 No completes RFC, folios, fechas, moneda o importes con números cercanos ni con conocimiento general.
 confianza y bbox deben ser null: no dispones de una medición calibrada ni de coordenadas verificadas.
-texto_completo contiene la transcripción del documento. Los conceptos solo contienen lo visible.
+texto_completo contiene la transcripción completa del documento, incluidos folio, fecha y tabla de conceptos.
+Además de transcribir la tabla, llena conceptos: un objeto por cada partida visible, en el orden impreso.
+Cada objeto contiene descripcion, cantidad, precio_unitario e importe. Copia los números como texto,
+con sus separadores originales. Si una celda numérica no se puede leer o está ausente, usa null en esa celda.
+No calcules importes ni completes filas con datos de otras partidas. No incluyas subtotal, IVA,
+retenciones o total como conceptos. Usa conceptos=[] solo si no puedes identificar partidas legibles.
 Además de transcribir, llena el objeto campos con todas las claves solicitadas en el esquema.
 Cada clave contiene valor y etiqueta. Cada uno usa null si está ausente; no omitas la clave.
 Ejemplo de estructura: campos.folio = {"valor": "123", "etiqueta": "Folio"}, solo si eso aparece en la imagen.
@@ -183,8 +188,21 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None)
     }
     # El contrato compartido permite omisiones; la generación debe pedir explícitamente
     # los campos para evitar una respuesta válida pero inútil como campos={}.
-    esquema["required"] = list(dict.fromkeys([*esquema.get("required", []), "campos", "texto_completo"]))
+    esquema["required"] = list(dict.fromkeys([*esquema.get("required", []), "campos", "texto_completo", "conceptos"]))
     esquema["$defs"]["CampoLeido"]["required"] = ["valor", "etiqueta"]
+    esquema["properties"]["conceptos"]["description"] = (
+        "Una entrada por partida visible de la tabla, en orden. Transcribirla también en texto_completo "
+        "no sustituye llenar esta lista. No incluir resúmenes ni impuestos. Lista vacía si no hay partidas legibles."
+    )
+    concepto = esquema["$defs"]["ConceptoLeido"]
+    concepto["required"] = ["descripcion", "cantidad", "precio_unitario", "importe"]
+    for clave, descripcion in {
+        "descripcion": "Descripción literal de esta partida visible, sin resumir ni inventar.",
+        "cantidad": "Cantidad impresa de esta partida como texto; null si falta o es ilegible.",
+        "precio_unitario": "Precio unitario impreso de esta partida como texto; null si falta o es ilegible. No calcular.",
+        "importe": "Importe impreso de esta partida como texto; null si falta o es ilegible. No calcular.",
+    }.items():
+        concepto["properties"][clave]["description"] = descripcion
     modelo = os.getenv("VISION_MODELO", "gemma3:4b")
     # format limita la estructura; incluir también el esquema en el prompt hace
     # visibles al modelo las instrucciones semánticas específicas de cada campo.
