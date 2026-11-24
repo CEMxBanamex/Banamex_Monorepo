@@ -109,3 +109,39 @@ class TestExtraccion(unittest.TestCase):
         self.assertEqual(factura.campos["emisor_rfc"].valor, "AAA010101AAA")
         self.assertEqual(factura.campos["emisor_rfc"].etiqueta, "RFC")
         self.assertIsNone(factura.campos["receptor_rfc"].valor)
+
+    def test_rfc_sin_etiqueta_en_bloque_receptor(self):
+        factura = self.extraer({"campos": {
+            "receptor_nombre": {"valor": "Cliente Ejemplo SA", "etiqueta": "RECEPTOR"},
+            "receptor_rfc": {"valor": "BBB020202BBB", "etiqueta": None},
+        }, "texto_completo": "RECEPTOR\nCliente Ejemplo SA\nBBB020202BBB"})
+        self.assertEqual(factura.campos["receptor_rfc"].valor, "BBB020202BBB")
+        self.assertIsNone(factura.campos["receptor_rfc"].etiqueta)
+        self.assertIsNone(factura.campos["receptor_rfc"].confianza)
+
+    def test_rfc_sin_etiqueta_rechaza_bloques_ambiguos_y_valores_sin_respaldo(self):
+        for texto in (
+            "EMISOR\nCliente Ejemplo SA\nBBB020202BBB",  # Otro rol.
+            "RECEPTOR\nOtro Cliente SA\nBBB020202BBB",  # Otro nombre.
+            "RECEPTOR\nCliente Ejemplo SA\nRFC BBB020202BBB",  # No es línea completa.
+            "RECEPTOR\nCliente Ejemplo SA\nBBB020202BBB9",  # Coincidencia parcial.
+            "RECEPTOR\nCliente Ejemplo SA\nMoneda MXN\nBBB020202BBB",  # Otro bloque.
+            "RECEPTOR\nCliente Ejemplo SA\nBBB020202BBB\nBBB020202BBB",  # Ambiguo.
+            "RECEPTOR\nCliente Ejemplo SA",  # Ausente.
+        ):
+            with self.subTest(texto=texto):
+                factura = self.extraer({"campos": {
+                    "folio": {"valor": "F-1", "etiqueta": "Folio"},
+                    "receptor_nombre": {"valor": "Cliente Ejemplo SA", "etiqueta": "RECEPTOR"},
+                    "receptor_rfc": {"valor": "BBB020202BBB", "etiqueta": None},
+                }, "texto_completo": "Folio F-1\n" + texto})
+                self.assertIsNone(factura.campos["receptor_rfc"].valor)
+
+    def test_no_conserva_folio_y_fecha_omitidos_en_transcripcion(self):
+        factura = self.extraer({"campos": {
+            "folio": {"valor": "23175403", "etiqueta": "Folio"},
+            "fecha": {"valor": "27/09/2026", "etiqueta": "Fecha"},
+            "total": {"valor": "116.00", "etiqueta": "Total"},
+        }, "texto_completo": "Total 116.00"})
+        self.assertIsNone(factura.campos["folio"].valor)
+        self.assertIsNone(factura.campos["fecha"].valor)

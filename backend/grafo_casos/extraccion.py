@@ -61,6 +61,26 @@ def _texto(texto: str) -> str:
     return " ".join(unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode().lower().split())
 
 
+def _rfc_receptor_sin_etiqueta(factura: FacturaExtraida, valor: str) -> bool:
+    """Excepción acotada: RECEPTOR, nombre completo y RFC en líneas consecutivas.
+
+    Comprueba coherencia con la transcripción, no exactitud contra la imagen.
+    No busca ni completa un RFC que el modelo no haya entregado como campo.
+    """
+    if not re.fullmatch(r"[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}", valor, re.IGNORECASE):
+        return False
+    receptor = factura.campos.get("receptor_nombre")
+    if receptor is None or not receptor.valor:
+        return False
+    lineas = [_texto(linea) for linea in (factura.texto_completo or "").splitlines() if linea.strip()]
+    identificador, nombre = _texto(valor), _texto(receptor.valor)
+    # Rechazar atribuciones ambiguas o valores parciales de una línea.
+    if lineas.count(identificador) != 1:
+        return False
+    return any(lineas[i:i + 3] == ["receptor", nombre, identificador]
+               for i in range(len(lineas) - 2))
+
+
 def _filtrar_evidencia(factura: FacturaExtraida):
     transcripcion = _texto(factura.texto_completo or "")
     lineas = {_texto(linea) for linea in (factura.texto_completo or "").splitlines() if linea.strip()}
@@ -75,12 +95,16 @@ def _filtrar_evidencia(factura: FacturaExtraida):
         valor, etiqueta = _texto(campo.valor or ""), _texto(campo.etiqueta or "")
         soportado = bool(valor and etiqueta and valor in transcripcion and etiqueta in transcripcion)
         # Nombres y dirección pueden ocupar una línea sin etiqueta. No extender esta
-        # excepción a RFC o importes, ni aceptar valores parciales de otra línea.
+        # excepción a importes, ni aceptar valores parciales de otra línea.
         if (nombre in {"emisor_nombre", "emisor_direccion", "receptor_nombre"}
                 and (not etiqueta or etiqueta not in transcripcion)):
             soportado = bool(valor and valor in lineas)
             if soportado:
                 campo.etiqueta = None
+        # Un RFC sin etiqueta solo se conserva en un bloque receptor explícito.
+        # No inventar "RFC" como etiqueta ni relajar el resto de los campos.
+        if nombre == "receptor_rfc" and campo.etiqueta is None and campo.valor:
+            soportado = _rfc_receptor_sin_etiqueta(factura, campo.valor)
         if nombre == "impuestos":
             soportado = soportado and bool(re.search(r"\b(iva|vat|tax|taxes|impuestos?)\b", etiqueta))
             soportado = soportado and not re.search(r"discount|descuento|retencion|withhold", etiqueta)
