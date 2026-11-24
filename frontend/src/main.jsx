@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './styles.css'
+import { CHAT_REAL } from './chatConfig.js'
 
 async function iniciar() {
-  if (import.meta.env.DEV) {
+  if (import.meta.env.DEV && !CHAT_REAL) {
     const { worker } = await import('./mocks/browser.js')
     await worker.start({
       onUnhandledRequest: 'bypass',

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Asistente.css'
+import { CHAT_REAL, CHAT_API } from '../chatConfig.js'
 
 const ESTADOS = {
   pendiente: 'Pendiente',
@@ -13,6 +14,7 @@ export default function Asistente({ casoId = null }) {
   const [turnos, setTurnos] = useState([])
   const [ocupado, setOcupado] = useState(false)
   const [aviso, setAviso] = useState('')
+  const conversacion = useRef({ casoId: null, id: null })
   const controlador = useRef(null)
   const bloqueo = useRef(false)
   const activo = useRef(true)
@@ -142,7 +144,30 @@ export default function Asistente({ casoId = null }) {
     }
 
     try {
-      const respuesta = await fetch((import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '') + '/api/chat/stream', {
+      let conversacionId = null
+      if (CHAT_REAL) {
+        if (conversacion.current.casoId !== casoId) {
+          conversacion.current = { casoId, id: null }
+        }
+        if (!conversacion.current.id) {
+          const nueva = await fetch(CHAT_API + '/api/chat/conversaciones', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ titulo: texto.slice(0, 200), caso_id: casoId }),
+            signal: abortador.signal,
+          })
+          if (!nueva.ok) {
+            throw new Error(`No se pudo abrir la conversación: HTTP ${nueva.status}.`)
+          }
+          const datos = await nueva.json()
+          if (typeof datos.id !== 'string' || !datos.id) {
+            throw new Error('El servidor no devolvió una conversación válida.')
+          }
+          conversacion.current = { casoId, id: datos.id }
+        }
+        conversacionId = conversacion.current.id
+      }
+      const respuesta = await fetch(CHAT_API + '/api/chat/stream', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,6 +175,7 @@ export default function Asistente({ casoId = null }) {
         },
         body: JSON.stringify({
           mensaje: texto,
+          ...(conversacionId ? { conversacion_id: conversacionId } : {}),
           caso_id: casoId,
         }),
         signal: abortador.signal,
@@ -251,8 +277,9 @@ export default function Asistente({ casoId = null }) {
             : 'Consulta información sobre casos y facturas.'}
         </p>
         <p className="asistente-aviso">
-          Prototipo con respuestas simuladas. Los mensajes se conservan
-          mientras permanezcas en esta pantalla.
+          {CHAT_REAL
+            ? 'Respuestas de demostración del servidor. Los turnos completados se guardan; al salir de esta pantalla se inicia una conversación nueva.'
+            : 'Prototipo con respuestas simuladas. Los mensajes se conservan mientras permanezcas en esta pantalla.'}
         </p>
       </header>
 

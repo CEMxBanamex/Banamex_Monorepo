@@ -1,0 +1,4 @@
+# Usar junto a docker-compose.dev.yml para probar el chat sin cambiar el backend habitual.
+services:
+  backend:
+    image: dsa-backend:s333

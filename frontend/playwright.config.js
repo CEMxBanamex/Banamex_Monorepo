@@ -18,6 +18,6 @@ export default defineConfig({
     command: 'npm run dev -- --host 127.0.0.1 --port 5188 --strictPort',
     url: 'http://127.0.0.1:5188',
     reuseExistingServer: false,
-    env: { VITE_API_URL: '' },
+    env: { VITE_API_URL: '', VITE_CHAT_REAL: 'false' },
   },
 })
