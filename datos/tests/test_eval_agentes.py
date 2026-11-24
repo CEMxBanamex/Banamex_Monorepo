@@ -116,7 +116,7 @@ def test_calificar_validador():
     from steward_datos.reglas.catalogo import catalogo
     cat = catalogo()
     bien = {"tools": [{"nombre": "validar_reglas"}], "resultado_sugerido": "rechazado",
-            "hallazgos": [{"regla_id": "R-014", "politica_id": "P-002", "politica_version": "2.0",
+            "hallazgos": [{"regla_id": "R-014", "politica_id": "P-002", "politica_version": "3.0",
                            "politica_seccion": "5. Total de la factura"}]}
     esperado = {"resultado": "rechazado", "reglas": ["R-014"]}
     assert calificar_validador(esperado, bien, cat)["ok"]

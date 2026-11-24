@@ -38,6 +38,7 @@ RE_INYECCION = re.compile("|".join(PATRONES_INYECCION), re.IGNORECASE)
 class Contexto:
     proveedores_activos: Optional[set[str]] = None  # None = no evaluar R-017
     entidades_receptoras: Optional[set[str]] = None  # None = no evaluar R-018
+    lista_69b: Optional[dict[str, str]] = None  # RFC -> situación; None = no evaluar R-019
     antecedentes: list[Antecedente] = field(default_factory=list)
     sha256: Optional[str] = None
     fecha_recepcion: Optional[date] = None
@@ -252,6 +253,23 @@ def validar_factura(caso_id: str, f: FacturaExtraida, ctx: Optional[Contexto] = 
             acc.agregar("R-017", "El proveedor no está en el padrón",
                         f"El RFC {rfc_e} no aparece activo en el padrón de proveedores. Compras debe validarlo.",
                         campos=["emisor_rfc"], evidencia=ev, evidencia_detalle=det)
+
+    if ctx.lista_69b is not None and rfc_e and n.rfc_valido(rfc_e):
+        r = acc.evaluar("R-019")
+        situacion = ctx.lista_69b.get(rfc_e)
+        if situacion in ("definitivo", "presunto"):
+            ev, det = _evidencia(f, "emisor_rfc")
+            if situacion == "definitivo":
+                acc.agregar("R-019", "El emisor está en la lista 69-B como definitivo",
+                            f"El SAT publicó al RFC {rfc_e} como emisor de operaciones inexistentes (situación definitiva). "
+                            "Sus comprobantes no producen efectos fiscales.",
+                            campos=["emisor_rfc"], evidencia=ev, evidencia_detalle=det)
+            else:
+                acc.agregar("R-019", "El emisor está en la lista 69-B como presunto",
+                            f"El SAT publicó al RFC {rfc_e} como presunto emisor de operaciones inexistentes. "
+                            "Compras y Fiscal deben revisar la operación antes de continuar.",
+                            efecto=r.parametros.get("efecto_presunto", "revision"),
+                            campos=["emisor_rfc"], evidencia=ev, evidencia_detalle=det)
 
     rfc_r = n.rfc_normalizado(valor("receptor_rfc"))
     if ctx.entidades_receptoras is not None and rfc_r and n.rfc_valido(rfc_r):

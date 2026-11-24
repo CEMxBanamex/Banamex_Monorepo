@@ -1,0 +1,35 @@
+# Facturas de la demo del 25 nov. (S3-23, Iris). Archivos en db/semillas/sinteticos/facturas/evaluacion/.
+# Probadas con validar_reglas sobre la extracción de referencia y la base sembrada, con fecha de recepción 2026-11-25.
+# No usar factura_1041.png (F-1041 del mockup): ya está en la base y sale rechazada por duplicado (R-015).
+# Cada archivo solo puede subirse una vez por base: en el ensayo y en la demo, R-015 marca el segundo intento.
+# Por eso cada escenario tiene un respaldo con el mismo resultado.
+# En dev la app entra como dev-ana (analista): el receptor de cada factura debe ser una de sus entidades
+# (GFD960701AB4, BDM970315QW2 o CPR180301KJ7); si no, el caso no aparece en su bandeja ni en el chat.
+
+facturas:
+  - escenario: correcta
+    archivo: piloto_003.png
+    respaldo: piloto_005.png
+    resultado: aceptado
+    reglas: []
+    que_mostrar: Sin hallazgos; el analista confirma.
+  - escenario: total que no cuadra
+    archivo: piloto_012.png
+    respaldo: piloto_014.jpg
+    resultado: rechazado
+    reglas: [R-014]
+    que_mostrar: "Subtotal 159,900.55 + IVA 25,584.09 = 185,484.64, pero el total impreso es 185,884.64 (diferencia de 400.00)."
+  - escenario: campo faltante
+    archivo: piloto_021.jpg
+    respaldo: piloto_020.png
+    resultado: rechazado
+    reglas: [R-001]
+    que_mostrar: La factura no trae el RFC del emisor (el respaldo no trae folio).
+  - escenario: dato de baja confianza
+    archivo: piloto_035.jpg
+    respaldo: piloto_036.pdf
+    resultado: humana
+    reglas: [R-003]
+    que_mostrar: Escaneo borroso; la lectura baja del 80 % y se manda a revisión humana en vez de rechazar.
+    requiere: que extraer_campos_factura devuelva confianza por campo (S3-11); sin ella R-003 solo avisa.
+    aviso: el respaldo es de Servicios Corporativos Demo, que dev-ana no ve; usarlo solo con el administrador.
