@@ -1,7 +1,5 @@
 """Borrador de contrato del chat: respuestas fijas, sin IA ni base de datos."""
 
-import asyncio
-from collections.abc import AsyncIterator
 from typing import Literal
 
 from fastapi import APIRouter, HTTPException
@@ -48,56 +46,6 @@ def formar_evento(
     """Convierte los datos al formato de un evento SSE."""
 
     return f"event: {nombre}\ndata: {contenido.model_dump_json()}\n\n"
-
-
-@router.post(
-    "/stream",
-    response_class=StreamingResponse,
-    responses={
-        200: {
-            "description": "Eventos simulados de paso y respuesta.",
-            "content": {"text/event-stream": {}},
-        }
-    },
-)
-async def consultar_chat_stream(
-    consulta: ConsultaChat,
-) -> StreamingResponse:
-    """Simula progreso y respuesta, sin consultar herramientas ni IA."""
-
-    async def generar_eventos() -> AsyncIterator[str]:
-        yield formar_evento(
-            "paso",
-            PasoEvent(
-                id="demo-1",
-                texto="Preparando ejemplo",
-                detalle="Paso simulado para probar la interfaz.",
-                estado="en_curso",
-            ),
-        )
-
-        await asyncio.sleep(0.5)
-
-        yield formar_evento(
-            "paso",
-            PasoEvent(
-                id="demo-1",
-                texto="Preparando ejemplo",
-                detalle="La preparación simulada terminó.",
-                estado="completado",
-            ),
-        )
-
-        yield formar_evento(
-            "respuesta",
-            consultar_chat(consulta),
-        )
-
-    return StreamingResponse(
-        generar_eventos(),
-        media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache"},
-    )
 
 
 class ConversacionChat(BaseModel):
