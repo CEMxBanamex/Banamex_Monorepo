@@ -5,10 +5,10 @@ import sys
 import unittest
 from pathlib import Path
 
-from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-
 from steward_datos.contratos import FacturaExtraida
+
+from mcp import ClientSession, StdioServerParameters
 
 RAIZ = Path(__file__).resolve().parents[2]
 TOOL = "extraer_campos_factura_demo"
@@ -21,13 +21,32 @@ async def probar_analista():
         command=sys.executable,
         args=["-m", "steward_mcp.servidor"],
         cwd=RAIZ,
-        env={**os.environ, "PYTHONPATH": RUTAS, "AUTH_MODE": "dev", "MCP_DEV_ROL": "analista"},
+        env={
+            **os.environ,
+            "PYTHONPATH": RUTAS,
+            "AUTH_MODE": "dev",
+            "MCP_TRANSPORT": "stdio",
+            "MCP_DEV_ROL": "analista",
+        },
     )
-    async with stdio_client(params) as (lector, escritor):
-        async with ClientSession(lector, escritor) as cliente:
+    async with (
+        stdio_client(params) as (lector, escritor),
+        ClientSession(lector, escritor) as cliente,
+    ):
             await cliente.initialize()
             tools = await cliente.list_tools()
-            assert {tool.name for tool in tools.tools} == {TOOL, "consultar_caso", "buscar_facturas"}
+            nombres = {tool.name for tool in tools.tools}
+
+            esperadas = {
+                TOOL,
+                "consultar_caso",
+                "buscar_facturas",
+                "buscar_politicas",
+                "consultar_glosario",
+                "consultar_calidad",
+            }
+
+            assert esperadas.issubset(nombres), f"Faltan herramientas: {esperadas - nombres}"
             pasos = []
 
             async def registrar_paso(progreso, total, mensaje):
@@ -52,16 +71,30 @@ async def probar_rol():
         command=sys.executable,
         args=["-m", "steward_mcp.servidor"],
         cwd=RAIZ,
-        env={**os.environ, "PYTHONPATH": RUTAS, "AUTH_MODE": "dev", "MCP_DEV_ROL": "administrador"},
+        env={
+            **os.environ,
+            "PYTHONPATH": RUTAS,
+            "AUTH_MODE": "dev",
+            "MCP_TRANSPORT": "stdio",
+            "MCP_DEV_ROL": "administrador",
+        },
     )
-    async with stdio_client(params) as (lector, escritor):
-        async with ClientSession(lector, escritor) as cliente:
+    async with (
+        stdio_client(params) as (lector, escritor),
+        ClientSession(lector, escritor) as cliente,
+    ):
             await cliente.initialize()
-            error = await cliente.call_tool(TOOL, {"entrada": {"documento_id": "DEMO-001"}})
+
+            error = await cliente.call_tool(
+                TOOL,
+                {"entrada": {"documento_id": "DEMO-001"}},
+            )
             assert error.isError
             assert "ROL_NO_AUTORIZADO" in error.content[0].text
+
             suplantado = await cliente.call_tool(
-                TOOL, {"entrada": {"documento_id": "DEMO-001", "rol": "analista"}}
+                TOOL,
+                {"entrada": {"documento_id": "DEMO-001", "rol": "analista"}},
             )
             assert suplantado.isError
             assert "extra_forbidden" in suplantado.content[0].text
