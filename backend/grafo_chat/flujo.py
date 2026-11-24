@@ -172,6 +172,15 @@ def _seleccionar_herramienta(
         )
 
     if dominio == "casos":
+        identificador = caso_id.strip() if caso_id else None
+        encontrado = re.search(r"\b[FV]-\d{4,}\b", pregunta, re.IGNORECASE)
+        if encontrado:
+            en_pregunta = encontrado.group(0).upper()
+            if identificador and identificador.upper() != en_pregunta:
+                return None, {}, "El identificador de la pregunta no coincide con el caso abierto. Abre el caso correcto para continuar."
+            identificador = en_pregunta
+        if identificador:
+            return "consultar_caso", {"entrada": {"caso_id": identificador.upper()}}, None
         if "factura" in texto:
             return (
                 "buscar_facturas",
