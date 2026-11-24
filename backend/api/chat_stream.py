@@ -1,12 +1,21 @@
 """Transmisión SSE del grafo de chat de S1-33.
 
 Integración de desarrollo: el grafo todavía utiliza herramientas simuladas.
-No guarda conversaciones ni mensajes.
+Guarda turnos completados cuando se proporciona conversacion_id.
 """
 
 import logging
 import os
 from collections.abc import Iterator
+from uuid import UUID
+
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import select
+from backend.api.historial_chat import (
+    HistorialNoDisponible, obtener_conversacion, guardar_turno,
+)
+from steward_datos.db.sesion import sesion
+from steward_datos.db.models import Mensaje
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
@@ -18,6 +27,10 @@ from steward_datos.contratos import ContextoUsuario
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/chat", tags=["Chat"])
+
+
+class ConsultaStream(ConsultaChat):
+    conversacion_id: UUID | None = None
 
 
 def obtener_usuario_chat() -> ContextoUsuario:
@@ -47,13 +60,15 @@ def obtener_usuario_chat() -> ContextoUsuario:
 
 
 def transmitir(
-    consulta: ConsultaChat,
+    consulta: ConsultaStream,
     usuario: ContextoUsuario,
+    historial=None,
 ) -> Iterator[str]:
     """Convierte los modelos del grafo en eventos SSE.
 
     Ante un fallo, termina con un paso de error y no inventa una respuesta.
     """
+    pasos = []
     respuesta_recibida = False
     error_emitido = False
 
@@ -64,10 +79,11 @@ def transmitir(
             pregunta=consulta.mensaje,
             usuario_id=usuario.usuario_id,
             rol=usuario.rol,
-            historial=[],
+            historial=historial or [],
             caso_id=consulta.caso_id,
         ):
             if isinstance(evento, PasoEvent):
+                pasos.append(evento)
                 if evento.estado == "error":
                     error_emitido = True
 
@@ -77,6 +93,12 @@ def transmitir(
                     return
 
             elif isinstance(evento, RespuestaEvent):
+                if consulta.conversacion_id is not None:
+                    with sesion() as s:
+                        guardar_turno(
+                            s, usuario, consulta.conversacion_id,
+                            consulta.mensaje, pasos, evento,
+                        )
                 respuesta_recibida = True
                 yield formar_evento("respuesta", evento)
                 return
@@ -116,11 +138,33 @@ def transmitir(
     },
 )
 def consultar_chat_stream(
-    consulta: ConsultaChat,
+    consulta: ConsultaStream,
     usuario: ContextoUsuario = Depends(obtener_usuario_chat),
 ) -> StreamingResponse:
+    historial = []
+    if consulta.conversacion_id is not None:
+        try:
+            with sesion() as s:
+                c = obtener_conversacion(s, usuario, consulta.conversacion_id)
+                if consulta.caso_id is not None and consulta.caso_id != c.caso_id:
+                    raise HTTPException(422, 'El caso no coincide con la conversación')
+                consulta = consulta.model_copy(update={'caso_id': c.caso_id})
+                anteriores = list(s.scalars(
+                    select(Mensaje).where(Mensaje.conversacion_id == c.id)
+                    .order_by(Mensaje.id.desc()).limit(50)
+                ))
+                roles = {'usuario': 'user', 'asistente': 'assistant', 'sistema': 'system'}
+                historial = [
+                    {'role': roles[m.rol], 'content': m.contenido}
+                    for m in reversed(anteriores)
+                ]
+        except HistorialNoDisponible:
+            raise HTTPException(404, 'Conversación o caso no disponible') from None
+        except SQLAlchemyError:
+            logger.exception('No se pudo recuperar el historial del chat')
+            raise HTTPException(503, 'El historial no está disponible temporalmente') from None
     return StreamingResponse(
-        transmitir(consulta, usuario),
+        transmitir(consulta, usuario, historial),
         media_type="text/event-stream",
         headers={
             "Cache-Control": "no-cache",

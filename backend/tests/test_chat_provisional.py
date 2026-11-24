@@ -239,27 +239,3 @@ class TestChatProvisional(unittest.TestCase):
                 rutas.append(ruta)
 
         self.assertEqual(len(rutas), 1)
-
-    def test_listar_conversaciones_provisionales(self):
-        respuesta = self.client.get("/api/chat/conversaciones")
-        self.assertEqual(respuesta.status_code, 200)
-        self.assertEqual(
-            respuesta.json()[0]["id"],
-            "demo-conversacion-1",
-        )
-
-    def test_historial_provisional(self):
-        respuesta = self.client.get(
-            "/api/chat/conversaciones/demo-conversacion-1/mensajes"
-        )
-        self.assertEqual(respuesta.status_code, 200)
-        self.assertEqual(
-            [m["rol"] for m in respuesta.json()["mensajes"]],
-            ["usuario", "asistente"],
-        )
-
-    def test_historial_inexistente(self):
-        respuesta = self.client.get(
-            "/api/chat/conversaciones/no-existe/mensajes"
-        )
-        self.assertEqual(respuesta.status_code, 404)
