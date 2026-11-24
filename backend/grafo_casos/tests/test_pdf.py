@@ -67,7 +67,7 @@ class TestPDF(unittest.TestCase):
         for archivo in archivos:
             with self.subTest(archivo=archivo.name):
                 datos, paginas = _rasterizar_pdf(archivo.read_bytes())
-                referencia = json.loads(archivo.with_suffix('.json').read_text())
+                referencia = json.loads(archivo.with_suffix('.json').read_text(encoding='utf-8'))
                 self.assertEqual(paginas, referencia['paginas'])
                 with Image.open(BytesIO(datos)) as imagen:
                     self.assertEqual(imagen.format, 'PNG')
