@@ -46,3 +46,37 @@ Validación local: 32 pruebas aprobadas y una integración de base de datos omit
 celdas nulas sin corregirlos; se admite lista vacía. Está pendiente ejecutar Qwen
 en la laptop y contrastar todas las filas contra el documento original. No se
 afirma mejora de precisión a partir de las pruebas de código.
+
+## Prueba de revisión sin borrar valores
+
+`revision_evidencia.py` permite reproducir los JSON `antes_filtro` guardados sin
+invocar Ollama ni consultar la referencia esperada. Conserva valores, etiquetas y
+conceptos como lecturas, y añade un estado por campo: coincidencia textual,
+pendiente de revisión o sin valor leído. Ninguno verifica la imagen; sin valor
+leído no equivale a ausencia en la factura. Se mantienen las comprobaciones del
+filtro anterior sobre una copia para señalar inconsistencias, incluidos descuentos
+usados como impuestos o subtotales usados como total. No se corrigen etiquetas
+automáticamente ni se resuelve aún su atribución al rol o valor correcto.
+
+Es un informe experimental separado del contrato FacturaExtraida. No sustituye
+el extractor habitual ni se conecta a validar_reglas o a una decisión automática.
+Integrarlo al flujo requerirá que este consuma los estados de revisión y no trate
+los valores conservados como verificados. La confianza y las coordenadas del modelo
+no se publican como mediciones. Los conceptos se conservan sin acreditarse exactos.
+
+Reproducción local de los diagnósticos del 24 de noviembre, 14:28:26: se conservan
+los cuatro valores descartados en `piloto_001` y los dos de `piloto_003`, todos
+marcados pendientes de revisión. Además, en `piloto_001` se señalan tres etiquetas
+inventadas en nombre del emisor, dirección y nombre del receptor, cuyos valores
+el filtro anterior sí conservaba: siete campos pendientes en total en ese archivo,
+y dos en `piloto_003`. Las filas de conceptos permanecen sin cambios.
+35 pruebas de código pasan y una integración de base de datos se omite (36 total).
+Un valor inventado también se conserva como lectura, pero queda pendiente; por eso
+este informe no debe enviarse al validador habitual como si estuviera verificado.
+
+Uso en PowerShell desde la raíz del repositorio (carpeta de salida nueva):
+
+```powershell
+$salida = "..\revision_evidencia_$(Get-Date -Format yyyyMMdd_HHmmss)"
+.\.venv\Scripts\python.exe -m backend.grafo_casos.revision_evidencia --diagnosticos "..\diagnostico_qwen_conceptos_20261124_142826" --salida $salida
+```
