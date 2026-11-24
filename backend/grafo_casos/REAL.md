@@ -1,6 +1,6 @@
 # Grafo real del piloto (S3-11)
 
-`FlujoCasosReal` procesa una imagen PNG/JPEG con `gemma3:4b` en Ollama y devuelve una
+`FlujoCasosReal` procesa una factura PNG/JPEG/PDF con `gemma3:4b` en Ollama y devuelve una
 pausa para revisión humana. Al recibir una decisión válida, `reanudar_caso` guarda el
 resultado final, el responsable y un evento de confirmación en PostgreSQL.
 La demo original `FlujoCasos` se conserva para pruebas sin servicios.
@@ -36,7 +36,17 @@ La transcripción también proviene de Gemma: la consistencia textual no prueba 
 leído correctamente. Todos los casos se pausan, incluso cuando las reglas sugieren aceptación.
 No usar esta salida como aprobación automática ni atribuirle la precisión de S1-26: el esquema es distinto.
 
-Esta versión admite imágenes de una página. No sube el original a S3 ni crea un `Documento` con una
+Se aceptan PNG/JPEG y PDF identificados por su cabecera `%PDF`. Los PDF se rasterizan con
+`pypdfium2==5.15.2` a 150 dpi: todas sus páginas visibles se unen verticalmente en una imagen.
+No se lee la capa de texto oculta, ni se omiten páginas. Se admiten entre una y cuatro páginas,
+hasta 40 millones de píxeles en la imagen compuesta y 15 MiB tanto de entrada como del PNG generado.
+Los PDF dañados, protegidos por contraseña o fuera de límites fallan antes de llamar al modelo.
+`paginas` conserva el número original; en PDF multipágina `campos.*.pagina` queda en null porque
+no hay una ubicación por campo verificada. La extracción visual mantiene los mismos límites de
+precisión de Gemma: convertir un PDF no garantiza una lectura correcta.
+PDFium se protege con un mutex dentro del proceso por su restricción de concurrencia entre hilos.
+No requiere Poppler ni añade PyMuPDF a las dependencias del backend.
+ No sube el original a S3 ni crea un `Documento` con una
 ubicación ficticia; la imagen se conserva en su ruta local y debe mantenerse para la revisión.
 El SHA-256 se pasa al validador para contrastarlo con documentos ya registrados en la base.
 El alta del documento en S3 y su incorporación al historial de duplicados quedan para el flujo de carga de la API.
@@ -131,3 +141,21 @@ Medir precisión de extracción y clasificación por lote corresponde a S3-13.
 La [prueba local F-9005 del 23 de noviembre de 2026](../../docs/evidencias/s3-11/F-9005/README.md)
 incluye pausa, decisión humana y cierre confirmado en PostgreSQL. Se conserva el error
 de lectura del RFC y la limitación de embeddings de prueba; la verificación en dev sigue pendiente.
+
+## Comprobación del soporte PDF
+
+Las pruebas de `test_pdf.py` rasterizan los 20 PDF del piloto, verifican que la segunda página
+llega a la imagen enviada a Ollama y que el archivo original queda intacto. También cubren
+PDF inválidos, con contraseña y fuera de los límites. La respuesta de Ollama está controlada:
+estas pruebas verifican conversión y contrato, no precisión del modelo ni el recorrido en dev.
+Después de instalar las dependencias actualizadas, probar con Docker y Ollama activos:
+
+```powershell
+.\.venv\Scripts\python.exe -m backend.grafo_casos.piloto `
+  .\db\semillas\sinteticos\facturas\evaluacion\piloto_002.pdf `
+  --caso F-9101 --usuario dev-ana --salida "..\evaluacion_pdf_F-9101"
+```
+
+Usar un identificador nuevo si F-9101 ya existe. Inspeccionar el PDF original antes de decidir;
+conservar la salida aunque haya errores de lectura. Después corresponde comprobar las cuatro
+facturas de la demo y sus respaldos con el equipo en dev.

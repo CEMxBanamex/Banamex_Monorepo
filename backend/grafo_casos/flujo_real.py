@@ -67,7 +67,7 @@ class FlujoCasosReal:
             raise ValueError("Usar un identificador F- seguido de 4 a 10 dígitos.")
         ruta = Path(archivo).resolve(strict=True)
         if not ruta.is_file():
-            raise ValueError("Seleccionar un archivo de imagen.")
+            raise ValueError("Seleccionar un documento PNG, JPEG o PDF.")
         if caso_id in self._threads:
             raise ValueError("El caso ya fue iniciado.")
         sha = hashlib.sha256(ruta.read_bytes()).hexdigest()
@@ -89,7 +89,7 @@ class FlujoCasosReal:
     def _extractor(self, estado):
         factura = self.extraer(estado["archivo"])
         if hashlib.sha256(Path(estado["archivo"]).read_bytes()).hexdigest() != estado["sha256"]:
-            raise ValueError("La imagen cambió durante la extracción.")
+            raise ValueError("El documento cambió durante la extracción.")
         return {"factura": factura.model_dump(mode="json")}
 
     def _validador(self, estado):

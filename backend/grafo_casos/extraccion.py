@@ -1,14 +1,18 @@
-"""Extracción de una imagen de factura con Ollama; sin completar importes ausentes."""
+"""Extracción visual de una factura PNG, JPEG o PDF con Ollama; sin completar importes ausentes."""
 import base64
+from contextlib import closing
 from io import BytesIO
 import json
 import os
+import math
+from threading import Lock
 from pathlib import Path
 import re
 import unicodedata
 
 import httpx
 from PIL import Image
+import pypdfium2 as pdfium
 
 from steward_datos.contratos import CAMPOS_FACTURA, FacturaExtraida
 
@@ -87,11 +91,58 @@ def _filtrar_evidencia(factura: FacturaExtraida):
             campo.valor = None
 
 
+# PDFium no admite llamadas simultáneas desde distintos hilos.
+_PDF_LOCK = Lock()
+_MAX_PIXELES_PDF = 40_000_000
+
+
+def _rasterizar_pdf(datos: bytes) -> tuple[bytes, int]:
+    """Solo páginas visibles; no extraer texto oculto ni omitir páginas."""
+    try:
+        with _PDF_LOCK, pdfium.PdfDocument(datos) as documento:
+            paginas = len(documento)
+            if not 1 <= paginas <= 4:
+                raise ErrorExtraccion("El PDF debe contener entre 1 y 4 páginas.")
+            escala = 150 / 72
+            dimensiones = []
+            for i in range(paginas):
+                with closing(documento[i]) as pagina:
+                    ancho, alto = pagina.get_size()
+                if not all(math.isfinite(v) and v > 0 for v in (ancho, alto)):
+                    raise ErrorExtraccion("El PDF contiene dimensiones inválidas.")
+                dimensiones.append((math.ceil(ancho * escala), math.ceil(alto * escala)))
+            ancho = max(a for a, _ in dimensiones)
+            alto = sum(h for _, h in dimensiones)
+            if ancho * alto > _MAX_PIXELES_PDF:
+                raise ErrorExtraccion("El PDF supera 40 millones de píxeles a 150 dpi.")
+            with Image.new("RGB", (ancho, alto), "white") as lienzo:
+                y = 0
+                for i in range(paginas):
+                    with closing(documento[i]) as pagina:
+                        bitmap = pagina.render(scale=escala)
+                        try:
+                            with bitmap.to_pil() as imagen:
+                                lienzo.paste(imagen, (0, y))
+                                y += imagen.height
+                        finally:
+                            bitmap.close()
+                salida = BytesIO()
+                lienzo.save(salida, format="PNG")
+                return salida.getvalue(), paginas
+    except pdfium.PdfiumError as exc:
+        raise ErrorExtraccion("El PDF no es válido o requiere contraseña.") from exc
+
+
 def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None) -> FacturaExtraida:
     ruta = Path(archivo)
     datos = ruta.read_bytes()
     if len(datos) > 15 * 1024 * 1024:
-        raise ErrorExtraccion("La imagen supera 15 MiB.")
+        raise ErrorExtraccion("El documento supera 15 MiB.")
+    paginas = 1
+    if datos.startswith(b"%PDF"):
+        datos, paginas = _rasterizar_pdf(datos)
+        if len(datos) > 15 * 1024 * 1024:
+            raise ErrorExtraccion("La imagen del PDF supera 15 MiB.")
     try:
         with Image.open(BytesIO(datos)) as imagen:
             if imagen.format not in {"JPEG", "PNG"}:
@@ -125,8 +176,15 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None)
     if cliente is None:
         url = os.getenv("OLLAMA_BASE_URL") or os.getenv("OLLAMA_URL", "http://localhost:11434")
         with httpx.Client(base_url=url, timeout=180) as conexion:
-            return _extraer(conexion, payload, modelo)
-    return _extraer(cliente, payload, modelo)
+            factura = _extraer(conexion, payload, modelo)
+    else:
+        factura = _extraer(cliente, payload, modelo)
+    factura.paginas = paginas
+    if paginas > 1:
+        # La imagen compuesta no permite atribuir un campo a una página verificada.
+        for campo in factura.campos.values():
+            campo.pagina = None
+    return factura
 
 
 def _extraer(cliente: httpx.Client, payload: dict, modelo: str) -> FacturaExtraida:

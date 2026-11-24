@@ -11,7 +11,7 @@ from .flujo_real import FlujoCasosReal
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Procesar una imagen y registrar una decisión humana en la base local.")
+    parser = argparse.ArgumentParser(description="Procesar una factura PNG, JPEG o PDF y registrar una decisión humana en la base local.")
     parser.add_argument("archivo")
     parser.add_argument("--caso", required=True, help="Identificador nuevo, por ejemplo F-9001")
     parser.add_argument("--usuario", default="dev-ana")
@@ -30,7 +30,7 @@ def main():
     (carpeta / "pausa.json").write_text(json.dumps(evidencia, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(estado["factura"], ensure_ascii=False, indent=2))
     print(estado["explicacion"])
-    print("El caso está en revisión. Comprueba la imagen original antes de decidir.")
+    print("El caso está en revisión. Comprueba el documento original antes de decidir.")
     while True:
         resultado = input("Decisión (aceptado/rechazado; salir conserva revisión): ").strip().lower()
         if resultado == "salir":
