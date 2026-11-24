@@ -142,7 +142,7 @@ export default function Asistente({ casoId = null }) {
     }
 
     try {
-      const respuesta = await fetch('/api/chat/stream', {
+      const respuesta = await fetch((import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '') + '/api/chat/stream', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
