@@ -127,3 +127,14 @@
     padding: 12px;
   }
 }
+
+/* Deja espacio para la barra fija del detalle del caso. */
+.main.con-barra + .asistente {
+  padding-bottom: 180px;
+}
+
+@media (max-width: 760px) {
+  .main.con-barra + .asistente {
+    padding-bottom: 280px;
+  }
+}
