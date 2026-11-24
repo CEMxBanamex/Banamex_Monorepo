@@ -2,11 +2,12 @@ from datetime import date
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from pydantic import ValidationError
 
 from backend.grafo_casos.flujo_real import FlujoCasosReal
-from steward_datos.contratos import CampoLeido, ContextoUsuario, FacturaExtraida, BuscarPoliticasSalida
+from steward_datos.contratos import CampoLeido, ContextoUsuario, FacturaExtraida, BuscarPoliticasSalida, ResultadoValidacion
 from steward_datos.reglas.motor import Contexto, validar_factura
 from steward_datos.validador import preparar_para_redactor
 
@@ -14,6 +15,7 @@ from steward_datos.validador import preparar_para_redactor
 class AdaptadorPrueba:
     def __init__(self):
         self.guardados, self.cerrados, self.errores = [], [], []
+        self.revisiones = []
 
     def iniciar(self, caso):
         return caso
@@ -29,8 +31,9 @@ class AdaptadorPrueba:
                                             fragmentos=[], modelo_embedding="prueba", sin_resultados=True))
         return salida.model_dump(mode="json"), {}
 
-    def guardar(self, *datos):
+    def guardar(self, *datos, **revision):
         self.guardados.append(datos)
+        self.revisiones.append(revision)
 
     def cerrar(self, *datos):
         self.cerrados.append(datos)
@@ -87,3 +90,42 @@ class TestFlujoReal(unittest.TestCase):
         self.assertTrue(self.flujo._grafo.get_state(self.flujo._config("F-9001")).interrupts)
         with self.assertRaises(PermissionError):
             FlujoCasosReal(ContextoUsuario(usuario_id="admin", rol="administrador"))
+
+    def test_revision_conserva_lecturas_guarda_informe_y_fuerza_pausa_humana(self):
+        factura = FacturaExtraida(campos={"folio": CampoLeido(valor="F-8", etiqueta="Folio")},
+                                  texto_completo="transcripción incompleta")
+        # Incluso si las reglas sugieren aceptar, una lectura pendiente no lo habilita.
+        with patch.object(self.tools, "validar", return_value=ResultadoValidacion(
+                caso_id="F-9201", reglas_evaluadas=[], hallazgos=[],
+                resultado_sugerido="aceptado", motivo="Fixture de reglas conforme")) as validar, \
+                patch("backend.grafo_casos.flujo_real.extraer_campos_factura", return_value=factura) as extraer:
+            flujo = FlujoCasosReal(self.usuario, herramientas=self.tools, revisar_lecturas=True)
+            pausa = flujo.procesar_caso("F-9201", str(self.archivo))
+        extraer.assert_called_once_with(str(self.archivo.resolve()), conservar_lecturas=True)
+        self.assertEqual(validar.call_args.args[1]["campos"]["folio"]["valor"], "F-8")
+        self.assertEqual(pausa["factura"]["campos"]["folio"]["valor"], "F-8")
+        self.assertEqual(pausa["revision_evidencia"]["campos"]["folio"]["estado"], "pendiente_revision")
+        self.assertEqual(pausa["resultado_reglas"]["resultado_sugerido"], "aceptado")
+        self.assertEqual(pausa["resultado"]["resultado_sugerido"], "humana")
+        self.assertEqual(pausa["__interrupt__"][0].value["resultado_sugerido"], "humana")
+        self.assertIn("folio: 'F-8'", pausa["explicacion"])
+        self.assertIn("revision_evidencia", self.tools.revisiones[0])
+        self.assertEqual(self.tools.guardados[0][2]["resultado_sugerido"], "humana")
+        self.assertEqual(self.tools.cerrados, [])
+        final = flujo.reanudar_caso("F-9201", {"resultado": "rechazado", "motivo": "Lectura revisada."})
+        self.assertNotIn("__interrupt__", final)
+        self.assertEqual(len(self.tools.cerrados), 1)
+
+    def test_revision_no_oculta_hallazgos_de_reglas_reales(self):
+        flujo = FlujoCasosReal(self.usuario, herramientas=self.tools,
+                               extraer=lambda _: self.factura, revisar_lecturas=True)
+        pausa = flujo.procesar_caso("F-9202", str(self.archivo))
+        self.assertEqual(pausa["resultado"]["resultado_sugerido"], "humana")
+        self.assertTrue(pausa["resultado_reglas"]["hallazgos"])
+        self.assertEqual(pausa["resultado"]["hallazgos"], pausa["resultado_reglas"]["hallazgos"])
+
+    def test_modo_habitual_no_agrega_revision_experimental(self):
+        pausa = self.flujo.procesar_caso("F-9203", str(self.archivo))
+        self.assertNotIn("revision_evidencia", pausa)
+        self.assertNotIn("resultado_reglas", pausa)
+        self.assertEqual(self.tools.revisiones, [{}])

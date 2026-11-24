@@ -17,6 +17,8 @@ def main():
     parser.add_argument("--usuario", default="dev-ana")
     parser.add_argument("--fecha", type=date.fromisoformat, default=date.today())
     parser.add_argument("--salida", required=True, help="Carpeta fuera del repositorio para guardar evidencia")
+    parser.add_argument("--revisar-lecturas", action="store_true",
+                        help="Experimental: conservar lecturas y exigir revisión humana con informe de evidencia")
     args = parser.parse_args()
     if os.getenv("AUTH_MODE") != "dev":
         parser.error("Este piloto interactivo requiere AUTH_MODE=dev y una base de desarrollo.")
@@ -24,7 +26,8 @@ def main():
         parser.error("Definir DATABASE_URL para la base de desarrollo antes de ejecutar el piloto.")
     carpeta = Path(args.salida)
     carpeta.mkdir(parents=True, exist_ok=False)
-    flujo = FlujoCasosReal(ContextoUsuario(usuario_id=args.usuario, rol="analista"))
+    flujo = FlujoCasosReal(ContextoUsuario(usuario_id=args.usuario, rol="analista"),
+                          revisar_lecturas=args.revisar_lecturas)
     estado = flujo.procesar_caso(args.caso, args.archivo, fecha_recepcion=args.fecha)
     evidencia = {k: v for k, v in estado.items() if k != "__interrupt__"}
     (carpeta / "pausa.json").write_text(json.dumps(evidencia, ensure_ascii=False, indent=2), encoding="utf-8")

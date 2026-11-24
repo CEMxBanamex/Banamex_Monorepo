@@ -80,3 +80,37 @@ Uso en PowerShell desde la raíz del repositorio (carpeta de salida nueva):
 $salida = "..\revision_evidencia_$(Get-Date -Format yyyyMMdd_HHmmss)"
 .\.venv\Scripts\python.exe -m backend.grafo_casos.revision_evidencia --diagnosticos "..\diagnostico_qwen_conceptos_20261124_142826" --salida $salida
 ```
+
+## Integración opcional al piloto local
+
+La opción nueva `--revisar-lecturas` conecta este tratamiento al grafo real.
+Sin esa opción se conserva el comportamiento habitual. Con ella, el extractor
+conserva los valores anteriores al filtro, manteniendo rechazo de respuestas
+vacías o truncadas y anulando confianza/coordenadas no verificadas. Las reglas
+reales reciben esas lecturas; se conserva su salida original en `resultado_reglas`
+y sus hallazgos permanecen. La sugerencia publicada en este modo es siempre
+`humana`, incluso si las reglas sugerían aceptar o rechazar: sus cálculos sobre
+lecturas no verificadas no certifican el documento. No se agregan reglas de
+catálogo inventadas ni se asigna una confianza artificial.
+
+El estado, el aviso al analista y los archivos pausa/final incluyen el informe.
+El adaptador de base de datos guarda la explicación y un evento de extracción
+con el informe y el resultado original de las reglas en la misma transacción.
+Usa una acción existente de bitácora; no requiere migraciones. El cierre continúa
+requiriendo una decisión explícita del analista contra el original.
+
+Validación local de esta integración: 42 pruebas aprobadas y una integración de
+PostgreSQL omitida (43 total). Incluye un caso donde las reglas sugieren aceptar,
+que queda en pausa con sugerencia humana y conserva su lectura y reporte. Se
+verifica con sesión simulada el envío del informe al evento de base de datos y
+que repetir un guardado no duplique ese evento. No se ejecutó PostgreSQL local.
+
+Se reprodujo el grafo con ambas respuestas guardadas y reglas reales, usando un
+adaptador de pruebas para la persistencia y recuperación de políticas: conserva
+todos los campos, llega a pausa humana sin cierre y no genera R-001 por los seis
+descartes anteriores. Esto no constituye una nueva ejecución de Qwen, una prueba
+real de PostgreSQL o una evaluación de precisión sobre el corpus.
+
+Pendiente: ejecución en Windows con Ollama y la base local, inspección de
+`pausa.json`, explicación y bitácora. No desplegar este experimento por defecto
+ni comparar sus métricas con las históricas como si fueran la misma configuración.

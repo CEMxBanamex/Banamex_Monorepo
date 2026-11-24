@@ -162,7 +162,8 @@ def _rasterizar_pdf(datos: bytes) -> tuple[bytes, int]:
         raise ErrorExtraccion("El PDF no es válido o requiere contraseña.") from exc
 
 
-def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None) -> FacturaExtraida:
+def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None,
+                          conservar_lecturas: bool = False) -> FacturaExtraida:
     ruta = Path(archivo)
     datos = ruta.read_bytes()
     if len(datos) > 15 * 1024 * 1024:
@@ -218,9 +219,9 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None)
     if cliente is None:
         url = os.getenv("OLLAMA_BASE_URL") or os.getenv("OLLAMA_URL", "http://localhost:11434")
         with httpx.Client(base_url=url, timeout=180) as conexion:
-            factura = _extraer(conexion, payload, modelo)
+            factura = _extraer(conexion, payload, modelo, conservar_lecturas=conservar_lecturas)
     else:
-        factura = _extraer(cliente, payload, modelo)
+        factura = _extraer(cliente, payload, modelo, conservar_lecturas=conservar_lecturas)
     factura.paginas = paginas
     if paginas > 1:
         # La imagen compuesta no permite atribuir un campo a una página verificada.
@@ -229,7 +230,7 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None)
     return factura
 
 
-def _extraer(cliente: httpx.Client, payload: dict, modelo: str) -> FacturaExtraida:
+def _extraer(cliente: httpx.Client, payload: dict, modelo: str, *, conservar_lecturas: bool = False) -> FacturaExtraida:
     try:
         respuesta = cliente.post("/api/generate", json=payload)
         respuesta.raise_for_status()
@@ -243,7 +244,8 @@ def _extraer(cliente: httpx.Client, payload: dict, modelo: str) -> FacturaExtrai
         # No publicar autoevaluaciones o coordenadas del modelo como mediciones.
         for campo in factura.campos.values():
             campo.confianza, campo.bbox = None, None
-        _filtrar_evidencia(factura)
+        if not conservar_lecturas:
+            _filtrar_evidencia(factura)
         factura.modelo, factura.paginas = modelo, 1
         if not any(c.valor and c.valor.strip() for c in factura.campos.values()):
             raise ErrorExtraccion("No se pudieron leer campos; requiere revisión del documento.")

@@ -66,7 +66,8 @@ class HerramientasReales:
             salida = preparar_para_redactor(r, historia=1, buscar=buscar, fecha=date.fromisoformat(fecha))
             return salida.model_dump(mode="json"), ids
 
-    def guardar(self, caso_id: str, factura: dict, resultado: dict, explicacion: str, fragmentos: dict):
+    def guardar(self, caso_id: str, factura: dict, resultado: dict, explicacion: str, fragmentos: dict,
+                *, revision_evidencia: dict | None = None, resultado_reglas: dict | None = None):
         with sesion() as s:
             caso = self._caso(s, caso_id)
             if caso.estado == "revision":
@@ -77,6 +78,13 @@ class HerramientasReales:
             guardar_extraccion(s, caso_id, FacturaExtraida.model_validate(factura), cuando=ahora)
             guardar_resultado(s, ResultadoValidacion.model_validate(resultado), cuando=ahora,
                               explicacion=explicacion, fragmentos_por_regla=fragmentos)
+            if revision_evidencia is not None:
+                s.add(EventoBitacora(caso_id=caso_id, fecha=ahora, actor_tipo="agente", actor_nombre="Agente",
+                                     accion="extraccion", tono="info",
+                                     detalle="Lecturas conservadas sin verificación visual; requiere revisión humana.",
+                                     datos={"tipo": "revision_evidencia_experimental",
+                                            "revision_evidencia": revision_evidencia,
+                                            "resultado_reglas_sobre_lecturas": resultado_reglas}))
             # guardar_resultado usa registrar_hallazgo dentro de esta misma transacción.
 
     def cerrar(self, caso_id: str, decision: dict):

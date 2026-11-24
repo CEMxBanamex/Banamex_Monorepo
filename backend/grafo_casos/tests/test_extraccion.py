@@ -17,7 +17,7 @@ class TestExtraccion(unittest.TestCase):
         self.archivo = Path(self.tmp.name) / "factura.png"
         Image.new("RGB", (10, 10), "white").save(self.archivo)
 
-    def extraer(self, salida, **envoltura):
+    def extraer(self, salida, *, conservar_lecturas=False, **envoltura):
         def responder(request):
             entrada = json.loads(request.content)
             self.assertTrue(entrada["images"])
@@ -39,7 +39,8 @@ class TestExtraccion(unittest.TestCase):
             self.assertEqual(set(esquema["$defs"]["CampoLeido"]["required"]), {"valor", "etiqueta"})
             return httpx.Response(200, json={"done": True, "response": json.dumps(salida), **envoltura})
         with httpx.Client(base_url="http://ollama", transport=httpx.MockTransport(responder)) as cliente:
-            return extraer_campos_factura(str(self.archivo), cliente=cliente)
+            return extraer_campos_factura(str(self.archivo), cliente=cliente,
+                                          conservar_lecturas=conservar_lecturas)
 
     def test_conserva_nulos_y_descarta_mediciones_no_verificadas(self):
         salida = {"campos": {"total": {"valor": "447.04", "etiqueta": "TOTAL", "confianza": 99, "bbox": [1, 2, 3, 4]},
@@ -166,3 +167,21 @@ class TestExtraccion(unittest.TestCase):
         factura = self.extraer({"campos": {"folio": {"valor": "F-8", "etiqueta": "Folio"}},
                                "conceptos": [], "texto_completo": "Folio F-8"})
         self.assertEqual(factura.conceptos, [])
+
+    def test_modo_revision_conserva_lectura_y_anula_mediciones_no_verificadas(self):
+        salida = {"campos": {
+            "folio": {"valor": "F-8", "etiqueta": "Folio", "confianza": 99, "bbox": [1, 2, 3, 4]},
+            "total": {"valor": "116.00", "etiqueta": "Total"},
+        }, "texto_completo": "Total 116.00"}
+        normal = self.extraer(salida)
+        revision = self.extraer(salida, conservar_lecturas=True)
+        self.assertIsNone(normal.campos["folio"].valor)
+        self.assertEqual(revision.campos["folio"].valor, "F-8")
+        self.assertIsNone(revision.campos["folio"].confianza)
+        self.assertIsNone(revision.campos["folio"].bbox)
+
+    def test_modo_revision_no_admite_respuestas_vacias_o_truncadas(self):
+        for salida, envoltura in [({"campos": {}, "texto_completo": "Folio F-8"}, {}),
+                                  ({"campos": {"folio": {"valor": "F-8"}}}, {"done_reason": "length"})]:
+            with self.subTest(salida=salida), self.assertRaises(ErrorExtraccion):
+                self.extraer(salida, conservar_lecturas=True, **envoltura)
