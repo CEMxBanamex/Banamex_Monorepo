@@ -27,6 +27,15 @@ def sha(ruta):
     return hashlib.sha256(Path(ruta).read_bytes()).hexdigest()
 
 
+def huellas_codigo():
+    from steward_datos.config import CATALOGO_REGLAS
+    from . import extraccion
+    return {"extraccion_sha256": sha(Path(extraccion.__file__)),
+            "evaluador_sha256": sha(Path(__file__)),
+            "herramientas_sha256": sha(RAIZ / "backend/grafo_casos/herramientas_reales.py"),
+            "catalogo_reglas_sha256": sha(CATALOGO_REGLAS)}
+
+
 def escribir(ruta, datos):
     temporal = ruta.with_suffix(ruta.suffix + ".tmp")
     temporal.write_text(json.dumps(datos, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -258,7 +267,6 @@ def main():
         if not c.scalar(text("SELECT count(*) FROM reglas")):
             ap.error("Falta cargar el catálogo de reglas.")
     import httpx
-    from . import extraccion
     documentos = cargar_corpus()
     direccion = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434").rstrip("/")
     with httpx.Client(base_url=direccion, timeout=15) as cliente:
@@ -269,9 +277,7 @@ def main():
             ap.error(f"El modelo {modelo} no está disponible en Ollama.")
     congelado = {"modelo": modelo, "digest_modelo": modelos[0]["digest"],
                  "embeddings": os.getenv("EMBEDDING_PROVEEDOR", "falso"),
-                 "extraccion_sha256": sha(Path(extraccion.__file__)), "evaluador_sha256": sha(Path(__file__)),
-                 "herramientas_sha256": sha(RAIZ / "backend/grafo_casos/herramientas_reales.py"),
-                 "catalogo_reglas_sha256": sha(RAIZ / "datos/steward_datos/reglas/catalogo.yaml"),
+                 **huellas_codigo(),
                  "python": platform.python_version(),
                  "librerias": {p: version(p) for p in ("langgraph", "httpx", "PyMuPDF", "sqlalchemy")},
                  "pdf_dpi": 150, "pdf_modo": "paginas_visibles_en_imagen_vertical",

@@ -6,11 +6,17 @@ import unittest
 from PIL import Image
 from steward_datos.contratos import CampoLeido, FacturaExtraida
 from backend.grafo_casos.evaluacion import (
-    CORPUS, calificar, cargar_corpus, extraer_documento, generar_reportes, normalizado, resumir,
+    CORPUS, calificar, cargar_corpus, extraer_documento, generar_reportes, huellas_codigo, normalizado, resumir, sha,
 )
 
 
 class TestEvaluacion(unittest.TestCase):
+    def test_huellas_incluyen_catalogo_configurado_existente(self):
+        from steward_datos.config import CATALOGO_REGLAS
+        huellas = huellas_codigo()
+        self.assertEqual(huellas['catalogo_reglas_sha256'], sha(CATALOGO_REGLAS))
+        self.assertTrue(all(len(v) == 64 for v in huellas.values()))
+
     def test_corpus_completo_y_huellas(self):
         docs = cargar_corpus()
         self.assertEqual(len(docs), 39)
