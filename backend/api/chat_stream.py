@@ -6,7 +6,7 @@ Guarda turnos completados cuando se proporciona conversacion_id.
 
 import logging
 import os
-from collections.abc import Iterator
+from collections.abc import AsyncIterator
 from uuid import UUID
 
 from sqlalchemy.exc import SQLAlchemyError
@@ -59,11 +59,11 @@ def obtener_usuario_chat() -> ContextoUsuario:
     )
 
 
-def transmitir(
+async def transmitir(
     consulta: ConsultaStream,
     usuario: ContextoUsuario,
     historial=None,
-) -> Iterator[str]:
+) -> AsyncIterator[str]:
     """Convierte los modelos del grafo en eventos SSE.
 
     Ante un fallo, termina con un paso de error y no inventa una respuesta.
@@ -75,7 +75,7 @@ def transmitir(
     try:
         flujo = FlujoChat()
 
-        for evento in flujo.stream_chat(
+        async for evento in flujo.astream_chat(
             pregunta=consulta.mensaje,
             usuario_id=usuario.usuario_id,
             rol=usuario.rol,

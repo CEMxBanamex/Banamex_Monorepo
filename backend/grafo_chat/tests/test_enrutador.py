@@ -1,5 +1,4 @@
-
-"""Pruebas unitarias del enrutador del grafo de chat."""
+"""Pruebas unitarias del enrutador S3-15."""
 
 import unittest
 
@@ -7,51 +6,44 @@ from backend.grafo_chat.enrutador import clasificar_dominio
 
 
 class TestEnrutador(unittest.TestCase):
-    """Verifica la clasificación de preguntas por dominio."""
 
     def clasificar(self, pregunta):
         return clasificar_dominio({"pregunta": pregunta})["dominio"]
 
     def test_gobernanza(self):
-        self.assertEqual(
-            self.clasificar("politicas existentes"),
-            "gobernanza",
-        )
+        self.assertEqual(self.clasificar("políticas existentes"), "gobernanza")
 
-    def test_consultas(self):
-        self.assertEqual(
-            self.clasificar("metricas de ventas"),
-            "consultas",
-        )
+    def test_glosario(self):
+        self.assertEqual(self.clasificar("qué significa data owner"), "gobernanza")
+
+    def test_calidad_de_datos(self):
+        self.assertEqual(self.clasificar("calidad de datos"), "gobernanza")
 
     def test_casos(self):
-        self.assertEqual(
-            self.clasificar("estado del caso 123"),
-            "casos",
-        )
+        self.assertEqual(self.clasificar("estado del caso 123"), "casos")
 
-    def test_intencion_mixta(self):
-        self.assertEqual(
-            self.clasificar("metricas y politicas"),
-            "mixta",
-        )
-
-    def test_calidad_de_datos_es_gobernanza(self):
-        self.assertEqual(
-            self.clasificar("calidad de datos"),
-            "gobernanza",
-        )
+    def test_facturas_se_clasifican_como_casos(self):
+        self.assertEqual(self.clasificar("consulta las facturas"), "casos")
 
     def test_general(self):
-        self.assertEqual(
-            self.clasificar("hola como estas"),
-            "general",
-        )
+        self.assertEqual(self.clasificar("hola cómo estás"), "general")
+
+    def test_metricas_fuera_de_los_dos_dominios_ejecutables(self):
+        self.assertEqual(self.clasificar("métricas de ventas"), "general")
 
     def test_fuera_de_alcance(self):
+        self.assertEqual(self.clasificar("pronóstico del clima"), "fuera_de_alcance")
+
+    def test_fuera_de_alcance_tiene_prioridad(self):
         self.assertEqual(
-            self.clasificar("pronostico del clima"),
+            self.clasificar("dame una receta de cocina para un caso"),
             "fuera_de_alcance",
+        )
+
+    def test_gobernanza_tiene_prioridad_sobre_casos(self):
+        self.assertEqual(
+            self.clasificar("políticas relacionadas con facturas"),
+            "gobernanza",
         )
 
     def test_evitar_coincidencias_parciales(self):
@@ -59,7 +51,6 @@ class TestEnrutador(unittest.TestCase):
         self.assertEqual(self.clasificar("datossistema"), "general")
 
     def test_variantes_plural(self):
-        self.assertEqual(self.clasificar("indicadores"), "consultas")
         self.assertEqual(self.clasificar("expedientes"), "casos")
         self.assertEqual(self.clasificar("reglas de calidad"), "gobernanza")
 
@@ -67,41 +58,14 @@ class TestEnrutador(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.clasificar("   ")
 
-
-    def test_calidad_de_datos_con_intenciones_combinadas(self):
-        casos = [
-            ("calidad de datos", "gobernanza"),
-            ("calidad de datos y metricas", "mixta"),
-            ("calidad de datos y facturas", "mixta"),
-            ("consulta de datos", "consultas"),
-            ("metricas de ventas", "consultas"),
-        ]
-
-        for pregunta, dominio_esperado in casos:
-            with self.subTest(pregunta=pregunta):
-                self.assertEqual(
-                    self.clasificar(pregunta),
-                    dominio_esperado,
-                )
-
-
-    def test_pregunta_con_acentos(self):
-        self.assertEqual(
-            self.clasificar("políticas existentes"),
-            "gobernanza",
-        )
-
-    def test_limite_de_dos_dominios(self):
+    def test_no_genera_intencion_mixta(self):
         resultado = clasificar_dominio({
-            "pregunta": "políticas, métricas y casos"
+            "pregunta": "políticas, facturas y casos"
         })
 
-        self.assertEqual(resultado["dominio"], "mixta")
-        self.assertEqual(
-            resultado["dominios_objetivo"],
-            ["gobernanza", "consultas"],
-        )
-
+        self.assertNotEqual(resultado["dominio"], "mixta")
+        self.assertEqual(resultado["dominio"], "gobernanza")
+        self.assertEqual(resultado["dominios_objetivo"], ["gobernanza"])
 
 
 if __name__ == "__main__":

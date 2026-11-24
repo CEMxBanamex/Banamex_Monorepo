@@ -1,3 +1,8 @@
+async def eventos_async(elementos):
+    for elemento in elementos:
+        yield elemento
+
+
 import json
 import os
 import unittest
@@ -134,7 +139,7 @@ class TestChatProvisional(unittest.TestCase):
         with patch(
             "backend.api.chat_stream.FlujoChat"
         ) as clase:
-            clase.return_value.stream_chat.return_value = iter([final])
+            clase.return_value.astream_chat.return_value = eventos_async([final])
 
             respuesta = self.client.post(
                 "/api/chat/stream",
@@ -146,7 +151,7 @@ class TestChatProvisional(unittest.TestCase):
             )
 
             self.assertEqual(respuesta.status_code, 200)
-            clase.return_value.stream_chat.assert_called_once_with(
+            clase.return_value.astream_chat.assert_called_once_with(
                 pregunta="Hola",
                 usuario_id="dev-ana",
                 rol="analista",
@@ -167,7 +172,7 @@ class TestChatProvisional(unittest.TestCase):
         with patch(
             "backend.api.chat_stream.FlujoChat"
         ) as clase:
-            clase.return_value.stream_chat.side_effect = RuntimeError(
+            clase.return_value.astream_chat.side_effect = RuntimeError(
                 "DETALLE_INTERNO_PRIVADO"
             )
 
@@ -192,7 +197,7 @@ class TestChatProvisional(unittest.TestCase):
         with patch(
             "backend.api.chat_stream.FlujoChat"
         ) as clase:
-            clase.return_value.stream_chat.return_value = iter([error])
+            clase.return_value.astream_chat.return_value = eventos_async([error])
 
             respuesta = self.client.post(
                 "/api/chat/stream",
@@ -207,7 +212,7 @@ class TestChatProvisional(unittest.TestCase):
         with patch(
             "backend.api.chat_stream.FlujoChat"
         ) as clase:
-            clase.return_value.stream_chat.return_value = iter([])
+            clase.return_value.astream_chat.return_value = eventos_async([])
 
             respuesta = self.client.post(
                 "/api/chat/stream",
