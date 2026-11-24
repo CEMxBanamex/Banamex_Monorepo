@@ -3,7 +3,6 @@
 from typing import Literal
 
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
 from contratos.eventos_sse import PasoEvent, RespuestaEvent
