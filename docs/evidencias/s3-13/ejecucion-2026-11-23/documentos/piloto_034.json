@@ -1,0 +1,9 @@
+{
+  "archivo": "piloto_034.pdf",
+  "caso_id": "F-3965033633",
+  "sha256": "f838154314feafd9214c8dcde7652a078a84f42afa207969b83eb852bd7c0c68",
+  "estado": "error",
+  "error_tipo": "ErrorExtraccion",
+  "error": "Ollama no completó la extracción.",
+  "segundos": 63.606
+}

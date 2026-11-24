@@ -1,0 +1,289 @@
+{
+  "archivo": "piloto_013.pdf",
+  "caso_id": "F-3965033612",
+  "sha256": "4f546a832fc262dd0e26596a4010967146dfd277a478735336720bf4189daff7",
+  "salida": {
+    "caso_id": "F-3965033612",
+    "archivo": "piloto_013.pdf",
+    "fecha": "2026-11-02",
+    "sha256": "4f546a832fc262dd0e26596a4010967146dfd277a478735336720bf4189daff7",
+    "factura": {
+      "tipo_documento": "factura",
+      "campos": {
+        "folio": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Folio",
+          "pagina": 1,
+          "bbox": null
+        },
+        "fecha": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Fecha",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_nombre": {
+          "valor": "Heredia Grupo SC",
+          "confianza": null,
+          "etiqueta": null,
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_rfc": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Emisor RFC",
+          "pagina": 1,
+          "bbox": null
+        },
+        "emisor_direccion": {
+          "valor": "Circonulación Norte Padilla 482, San Lorenzo los bajos",
+          "confianza": null,
+          "etiqueta": null,
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_nombre": {
+          "valor": "Servicios Corporativos Demo SA de CV",
+          "confianza": null,
+          "etiqueta": null,
+          "pagina": 1,
+          "bbox": null
+        },
+        "receptor_rfc": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Receptor RFC",
+          "pagina": 1,
+          "bbox": null
+        },
+        "moneda": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Moneda",
+          "pagina": 1,
+          "bbox": null
+        },
+        "subtotal": {
+          "valor": "1,151.78",
+          "confianza": null,
+          "etiqueta": "Subtotal",
+          "pagina": 1,
+          "bbox": null
+        },
+        "impuestos": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Impuestos",
+          "pagina": 1,
+          "bbox": null
+        },
+        "tasa_iva": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Tasa IVA",
+          "pagina": 1,
+          "bbox": null
+        },
+        "retenciones": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Retenciones",
+          "pagina": 1,
+          "bbox": null
+        },
+        "total": {
+          "valor": "1,736.06 MXN",
+          "confianza": null,
+          "etiqueta": "Total",
+          "pagina": 1,
+          "bbox": null
+        },
+        "condiciones_pago": {
+          "valor": null,
+          "confianza": null,
+          "etiqueta": "Condiciones pago",
+          "pagina": 1,
+          "bbox": null
+        }
+      },
+      "conceptos": [
+        {
+          "descripcion": "Mensajería y paquetería",
+          "cantidad": "1",
+          "precio_unitario": "1,151.78",
+          "importe": "1,151.78"
+        }
+      ],
+      "texto_completo": "Heredia Grupo SC\nCirconulación Norte Padilla 482, San Lorenzo los bajos\nRFC emisor: HGS9408H56\n\nRECEPтор\nServicios Corporativos Demo SA de CV\nSCD050920LM8\n\nConcepto\n\nMensajería y paquetería\n\nCant.  P. unitario  Importe\n1  1,151.78  1,151.78\n\nSubtotal  1,151.78\nIVA 16 %  184.28\nTotal  $ 1,736.06 MXN\n\nCondiciones de pago: Contado",
+      "modelo": "gemma3:4b",
+      "paginas": 1
+    },
+    "resultado": {
+      "caso_id": "F-3965033612",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "regla_id": "R-001",
+          "regla_version": "1.2",
+          "politica_id": "P-001",
+          "politica_version": "3.0",
+          "politica_seccion": "3. Datos obligatorios",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "Faltan datos obligatorios en la factura",
+          "texto": "La factura no muestra: folio, fecha, rfc del proveedor, rfc del receptor, impuestos, moneda. La política exige estos datos para toda factura de proveedor.",
+          "cifras": null,
+          "campos": [
+            "folio",
+            "fecha",
+            "emisor_rfc",
+            "receptor_rfc",
+            "impuestos",
+            "moneda"
+          ],
+          "filas": null,
+          "evidencia": "página 1",
+          "evidencia_detalle": null
+        },
+        {
+          "regla_id": "R-003",
+          "regla_version": "1.0",
+          "politica_id": "P-004",
+          "politica_version": "1.0",
+          "politica_seccion": "2. Umbral de confianza",
+          "efecto": "informativo",
+          "severidad": "info",
+          "titulo": "No se conoce la confianza de lectura",
+          "texto": "El modelo de visión no informó la confianza de: proveedor, receptor, subtotal, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+          "cifras": null,
+          "campos": [
+            "emisor_nombre",
+            "receptor_nombre",
+            "subtotal",
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, proveedor, receptor, subtotal, total",
+          "evidencia_detalle": null
+        }
+      ],
+      "resultado_sugerido": "rechazado",
+      "motivo": "No cumple: R-001 campos obligatorios de la factura"
+    },
+    "politicas": {
+      "caso_id": "F-3965033612",
+      "resultado_sugerido": "rechazado",
+      "motivo": "No cumple: R-001 campos obligatorios de la factura",
+      "reglas_evaluadas": [
+        "R-031@1.0",
+        "R-030@1.0",
+        "R-001@1.2",
+        "R-002@2.0",
+        "R-003@1.0",
+        "R-004@1.1",
+        "R-005@1.0",
+        "R-010@1.0",
+        "R-011@2.0",
+        "R-014@2.1",
+        "R-015@1.0",
+        "R-021@1.2"
+      ],
+      "hallazgos": [
+        {
+          "hallazgo": {
+            "regla_id": "R-001",
+            "regla_version": "1.2",
+            "politica_id": "P-001",
+            "politica_version": "3.0",
+            "politica_seccion": "3. Datos obligatorios",
+            "efecto": "rechazo",
+            "severidad": "error",
+            "titulo": "Faltan datos obligatorios en la factura",
+            "texto": "La factura no muestra: folio, fecha, rfc del proveedor, rfc del receptor, impuestos, moneda. La política exige estos datos para toda factura de proveedor.",
+            "cifras": null,
+            "campos": [
+              "folio",
+              "fecha",
+              "emisor_rfc",
+              "receptor_rfc",
+              "impuestos",
+              "moneda"
+            ],
+            "filas": null,
+            "evidencia": "página 1",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-001",
+            "version": "3.0",
+            "seccion": "3. Datos obligatorios",
+            "texto": "P-001 v3.0 · Recepción y validación de facturas de proveedores (vigente desde 15/01/2026)\nSección 3. Datos obligatorios\n\nToda factura debe mostrar de forma legible los siguientes datos (regla **R-001 v1.2**):\n\n- Folio de la factura.\n- Fecha de emisión.\n- Nombre o razón social del emisor y su RFC.\n- Nombre o razón social del receptor y su RFC.\n- Subtotal, impuestos trasladados y total.\n- Moneda.\n\nSi falta cualquiera de estos datos, la factura no cumple la política y se sugiere el resultado Rechazado. El RFC del emisor y del receptor se valida además contra la estructura definida en la política P-011 (regla **R-002 v2.0**).",
+            "origen": "rag"
+          }
+        },
+        {
+          "hallazgo": {
+            "regla_id": "R-003",
+            "regla_version": "1.0",
+            "politica_id": "P-004",
+            "politica_version": "1.0",
+            "politica_seccion": "2. Umbral de confianza",
+            "efecto": "informativo",
+            "severidad": "info",
+            "titulo": "No se conoce la confianza de lectura",
+            "texto": "El modelo de visión no informó la confianza de: proveedor, receptor, subtotal, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+            "cifras": null,
+            "campos": [
+              "emisor_nombre",
+              "receptor_nombre",
+              "subtotal",
+              "total"
+            ],
+            "filas": null,
+            "evidencia": "página 1, proveedor, receptor, subtotal, total",
+            "evidencia_detalle": null
+          },
+          "politica": {
+            "politica_id": "P-004",
+            "version": "1.0",
+            "seccion": "2. Umbral de confianza",
+            "texto": "P-004 v1.0 · Lectura automatizada de documentos (vigente desde 01/02/2026)\nSección 2. Umbral de confianza\n\nCada campo leído automáticamente lleva una confianza de lectura entre 0 % y 100 %. Si algún campo que se usa para evaluar las reglas tiene una confianza menor a 80 %, el campo se marca como dudoso y el caso pasa a revisión humana (regla **R-003 v1.0**). El analista debe verificar el dato contra el documento original y, si es necesario, corregirlo. Toda corrección queda registrada en la bitácora con el valor anterior y el nuevo.",
+            "origen": "rag"
+          }
+        }
+      ],
+      "pasos": [
+        "Validando reglas… 12 evaluadas, 2 hallazgos",
+        "Buscando política de R-001… P-001 v3.0",
+        "Buscando política de R-003… P-004 v1.0"
+      ]
+    },
+    "fragmentos": {
+      "R-001": [
+        3
+      ],
+      "R-003": [
+        24
+      ]
+    },
+    "explicacion": "No cumple: R-001 campos obligatorios de la factura\nFaltan datos obligatorios en la factura: La factura no muestra: folio, fecha, rfc del proveedor, rfc del receptor, impuestos, moneda. La política exige estos datos para toda factura de proveedor. Evidencia: página 1 (R-001 · P-001 v3.0 §3. Datos obligatorios). Fragmento recuperado.\nNo se conoce la confianza de lectura: El modelo de visión no informó la confianza de: proveedor, receptor, subtotal, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. Evidencia: página 1, proveedor, receptor, subtotal, total (R-003 · P-004 v1.0 §2. Umbral de confianza). Fragmento recuperado.\nLa decisión final corresponde al analista."
+  },
+  "estado": "pausa",
+  "segundos": 15.826
+}

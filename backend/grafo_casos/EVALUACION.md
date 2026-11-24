@@ -102,3 +102,11 @@ de embeddings `falso-hash` permite medir la integración del RAG; no acredita re
 
 La rama de S3-13 parte del código pendiente del PR #30. Integrar primero esa dependencia o dirigir el PR
 inicial a su rama; al entrar S3-11 en dev, comparar la evaluación contra dev y atender posibles cambios.
+
+## Ejecución local registrada
+
+La [evidencia del 23 de noviembre de 2026](../../docs/evidencias/s3-13/ejecucion-2026-11-23/README.md)
+conserva los 39 intentos: 30 pausas, 9 errores y ningún pendiente. Exactitud de clasificación
+46.15%; precisión de valores 79.65%; recall sobre el corpus 36.44%. Incluye los mensajes
+de error, discrepancias y límites. Requiere revisión con Iris; no acredita aceptación
+autónoma ni validación del despliegue en dev.

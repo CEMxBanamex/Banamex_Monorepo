@@ -1,0 +1,9 @@
+{
+  "archivo": "piloto_038.pdf",
+  "caso_id": "F-3965033637",
+  "sha256": "dc96986599b3a6722cab74f9206f668afb8a52b79befad3babeeea2aef93a097",
+  "estado": "error",
+  "error_tipo": "ErrorExtraccion",
+  "error": "No se pudieron leer campos; requiere revisión del documento.",
+  "segundos": 13.974
+}
