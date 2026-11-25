@@ -1,0 +1,39 @@
+[
+  {
+    "archivo": "cfdi_correcto.xml",
+    "uuid_fiscal": "00000000-0000-4000-8000-000000000001",
+    "modelo": null,
+    "origen": "xml_cfdi",
+    "conceptos": 2,
+    "sugerencia_reglas": "aceptado",
+    "hallazgos": [],
+    "requiere_revision_humana": true,
+    "llamadas_vision": 0
+  },
+  {
+    "archivo": "cfdi_rfc_faltante.xml",
+    "uuid_fiscal": "00000000-0000-4000-8000-000000000003",
+    "modelo": null,
+    "origen": "xml_cfdi",
+    "conceptos": 2,
+    "sugerencia_reglas": "rechazado",
+    "hallazgos": [
+      "R-001"
+    ],
+    "requiere_revision_humana": true,
+    "llamadas_vision": 0
+  },
+  {
+    "archivo": "cfdi_total_incorrecto.xml",
+    "uuid_fiscal": "00000000-0000-4000-8000-000000000002",
+    "modelo": null,
+    "origen": "xml_cfdi",
+    "conceptos": 2,
+    "sugerencia_reglas": "rechazado",
+    "hallazgos": [
+      "R-014"
+    ],
+    "requiere_revision_humana": true,
+    "llamadas_vision": 0
+  }
+]

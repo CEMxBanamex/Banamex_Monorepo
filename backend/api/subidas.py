@@ -38,6 +38,7 @@ TipoDocumento = Literal["Factura", "Validación con políticas"]
 # y su documento de política en PDF.
 TIPOS_CONTENIDO = {
     ".pdf": "application/pdf",
+    ".xml": "application/xml",
     ".png": "image/png",
     ".jpg": "image/jpeg",
     ".jpeg": "image/jpeg",
@@ -46,7 +47,7 @@ TIPOS_CONTENIDO = {
     ".xls": "application/vnd.ms-excel",
 }
 EXTENSIONES_POR_TIPO: dict[str, set[str]] = {
-    "Factura": {".pdf", ".png", ".jpg", ".jpeg"},
+    "Factura": {".pdf", ".png", ".jpg", ".jpeg", ".xml"},
     "Validación con políticas": {".csv", ".xlsx", ".xls", ".pdf"},
 }
 TAMANO_MAXIMO_BYTES = 20 * 1024 * 1024

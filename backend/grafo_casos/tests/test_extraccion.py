@@ -23,6 +23,8 @@ class TestExtraccion(unittest.TestCase):
             self.assertTrue(entrada["images"])
             self.assertEqual(entrada["options"]["temperature"], 0)
             esquema = entrada["format"]
+            self.assertNotIn("origen_extraccion", esquema["properties"])
+            self.assertNotIn("uuid_fiscal", esquema["properties"])
             esquema_visible = json.loads(entrada["prompt"].split("ESQUEMA_JSON:\n", 1)[1])
             self.assertEqual(esquema_visible, esquema)
             for campo in CAMPOS_FACTURA:
@@ -50,6 +52,13 @@ class TestExtraccion(unittest.TestCase):
         self.assertIsNone(factura.campos["total"].confianza)
         self.assertIsNone(factura.campos["total"].bbox)
         self.assertEqual(factura.campos["total"].valor, "447.04")
+
+    def test_modelo_visual_no_puede_declarar_origen_xml_o_uuid(self):
+        factura = self.extraer({"origen_extraccion": "xml_cfdi", "uuid_fiscal": "inventado",
+                                "campos": {"total": {"valor": "116", "etiqueta": "Total"}},
+                                "texto_completo": "Total 116"})
+        self.assertEqual(factura.origen_extraccion, "vision")
+        self.assertIsNone(factura.uuid_fiscal)
 
     def test_descuento_no_es_impuesto_y_subtotal_no_es_total(self):
         factura = self.extraer({"campos": {

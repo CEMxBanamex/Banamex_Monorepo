@@ -45,6 +45,8 @@ class ConceptoLeido(BaseModel):
 
 
 class FacturaExtraida(BaseModel):
+    origen_extraccion: Literal["vision", "xml_cfdi"] = "vision"
+    uuid_fiscal: Optional[str] = Field(None, description="UUID declarado en el timbre CFDI; no acredita validación fiscal")
     tipo_documento: str = Field("factura", description="factura, nota_credito, recibo, otro")
     campos: dict[str, CampoLeido] = Field(default_factory=dict, description=f"Claves admitidas: {', '.join(CAMPOS_FACTURA)}")
     conceptos: list[ConceptoLeido] = Field(default_factory=list)
