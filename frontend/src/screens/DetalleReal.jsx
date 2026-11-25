@@ -67,13 +67,20 @@ export default function DetalleReal({ casoId, ir, toast }) {
               <section className="tarjeta caso-real__panel">
                 <h2><FileText size={19} aria-hidden="true" /> Documento original</h2>
                 {caso.documento_url
-                  ? <div className="caso-real__visor"><img src={caso.documento_url} alt={caso.archivo} /></div>
+                  ? <div className="caso-real__visor">
+                      {caso.archivo?.toLowerCase().endsWith('.pdf')
+                        ? <object data={caso.documento_url} type="application/pdf" aria-label={caso.archivo}>
+                            <a href={caso.documento_url} target="_blank" rel="noreferrer">Abrir PDF original</a>
+                          </object>
+                        : <img src={caso.documento_url} alt={caso.archivo} />}
+                    </div>
                   : <p className="caso-real__vacio">Este caso no tiene una imagen disponible.</p>}
               </section>
             </div>
             <div className="caso-real__columna">
               <section className="tarjeta caso-real__panel">
                 <h2><ListChecks size={19} aria-hidden="true" /> Hallazgos</h2>
+                {caso.revision_evidencia && <p className="caso-real__aviso" role="note">Compara los datos leídos con el documento original antes de registrar tu decisión.</p>}
                 {caso.explicacion && <p className="caso-real__resumen">{caso.explicacion}</p>}
                 {!caso.explicacion && caso.hallazgos.length === 0 && <p className="caso-real__vacio">Sin hallazgos registrados.</p>}
                 {caso.hallazgos.map((hallazgo) => (
@@ -91,9 +98,26 @@ export default function DetalleReal({ casoId, ir, toast }) {
                   <dl className="caso-real__campos">{caso.campos.map((campo) => (
                     <div key={campo.id}>
                       <dt>{campo.etiqueta}</dt>
-                      <dd>{campo.valor ?? 'Sin dato'}</dd>
+                      <dd>{campo.valor ?? 'Sin valor leído'}</dd>
+                      {campo.estado_evidencia === 'pendiente_revision' && <dd className="caso-real__evidencia">Evidencia incompleta. Comprueba el original.</dd>}
                     </div>
                   ))}</dl>
+                </section>
+              )}
+              {caso.conceptos?.length > 0 && (
+                <section className="tarjeta caso-real__panel">
+                  <h2>Conceptos leídos</h2>
+                  <div className="caso-real__tabla">
+                    <table>
+                      <thead><tr><th>Descripción</th><th>Cantidad</th><th>Precio unitario</th><th>Importe</th></tr></thead>
+                      <tbody>{caso.conceptos.map((concepto, i) => (
+                        <tr key={i}>
+                          <td>{concepto.descripcion}</td><td>{concepto.cantidad ?? 'Sin lectura'}</td>
+                          <td>{concepto.precio_unitario ?? 'Sin lectura'}</td><td>{concepto.importe ?? 'Sin lectura'}</td>
+                        </tr>
+                      ))}</tbody>
+                    </table>
+                  </div>
                 </section>
               )}
             </div>

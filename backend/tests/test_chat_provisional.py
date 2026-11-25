@@ -124,7 +124,8 @@ class TestChatProvisional(unittest.TestCase):
 
         final = RespuestaEvent.model_validate(eventos[-1][1])
         self.assertEqual(final.caso_id, "F-1042")
-        self.assertTrue(final.simulado)
+        # "Hola" va a general: texto fijo de orientación, no marcado como simulación.
+        self.assertFalse(final.simulado)
         self.assertTrue(final.respuesta.strip())
 
     def test_identidad_procede_del_servidor(self):

@@ -99,3 +99,10 @@
   .caso-real { padding-inline: 16px; gap: 16px; }
   .caso-real__pie .btn { width: 100%; }
 }
+
+.caso-real__visor object { display: block; width: 100%; min-height: 600px; }
+.caso-real__aviso { padding: 12px 16px; border-radius: 8px; background: var(--adv-bg); color: var(--adv); line-height: 1.5; }
+.caso-real__campos .caso-real__evidencia { color: var(--adv); font-size: 13px; font-weight: 400; }
+.caso-real__tabla { overflow-x: auto; margin-top: 14px; }
+.caso-real__tabla table { width: 100%; border-collapse: collapse; }
+.caso-real__tabla th, .caso-real__tabla td { padding: 10px; text-align: left; border-bottom: 1px solid var(--borde); }

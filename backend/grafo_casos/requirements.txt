@@ -1,1 +1,2 @@
 langgraph==1.2.20
+pypdfium2==5.15.2

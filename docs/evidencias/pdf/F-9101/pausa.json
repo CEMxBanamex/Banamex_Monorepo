@@ -1,0 +1,477 @@
+{
+  "caso_id": "F-9101",
+  "archivo": "db/semillas/sinteticos/facturas/evaluacion/piloto_002.pdf",
+  "fecha": "2026-11-24",
+  "sha256": "89c8623f3c372e56cd4e0b5cef5d9028f2c0e7b12bca1dc2057950fec9613c73",
+  "factura": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Folio",
+        "pagina": null,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Fecha",
+        "pagina": null,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Tijerina Tecnologia S de RL de CV",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": null,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": "RFC",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": null,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Boulevard San Vicente y las Granadianas 134, San Maria Termos los altos",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": null,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Receptor",
+        "pagina": null,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "RFC",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": null,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": null,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "127.987,42",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": null,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Impuestos",
+        "pagina": null,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16 %",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": null,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Retenciones",
+        "pagina": null,
+        "bbox": null
+      },
+      "total": {
+        "valor": "148.465,41",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": null,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Condiciones_pago",
+        "pagina": null,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Tablilla de documentos",
+        "cantidad": "4",
+        "precio_unitario": "3.196,93",
+        "importe": "12.791,72"
+      },
+      {
+        "descripcion": "Zapata y articulo de oficina",
+        "cantidad": "1",
+        "precio_unitario": "2.493,22",
+        "importe": "2.493,22"
+      },
+      {
+        "descripcion": "Auditoria de seguridad informática",
+        "cantidad": "2",
+        "precio_unitario": "47.391,37",
+        "importe": "94.782,74"
+      }
+    ],
+    "texto_completo": "Tijerina Tecnologia S de RL de CV\nRFC 15051566\nBoulevard San Vicente y las Granadianas 134, San Maria Termos los altos\nServicios Corporativos Demo SA de CV\nRFC C020406001M\nMoneda MXN\n\nConcepto\nTablilla de documentos\n4\nZapata y articulo de oficina\n1\nAuditoria de seguridad informática\n2\nSubtotal\n127.987,42\nIVA 16 %\n20.477,99\nTotal\n148.465,41\nCondiciones de pago. Pago a 30 días",
+    "modelo": "gemma3:4b",
+    "paginas": 2
+  },
+  "resultado": {
+    "caso_id": "F-9101",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-003@1.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "regla_id": "R-001",
+        "regla_version": "1.2",
+        "politica_id": "P-001",
+        "politica_version": "4.0",
+        "politica_seccion": "3. Datos obligatorios",
+        "efecto": "rechazo",
+        "severidad": "error",
+        "titulo": "Faltan datos obligatorios en la factura",
+        "texto": "La factura no muestra: folio, fecha, receptor, impuestos. La política exige estos datos para toda factura de proveedor.",
+        "cifras": null,
+        "campos": [
+          "folio",
+          "fecha",
+          "receptor_nombre",
+          "impuestos"
+        ],
+        "filas": null,
+        "evidencia": "página 1",
+        "evidencia_detalle": null
+      },
+      {
+        "regla_id": "R-002",
+        "regla_version": "2.0",
+        "politica_id": "P-011",
+        "politica_version": "2.0",
+        "politica_seccion": "2. Estructura del RFC",
+        "efecto": "rechazo",
+        "severidad": "error",
+        "titulo": "El RFC del proveedor no tiene un formato válido",
+        "texto": "«RFC» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+        "cifras": null,
+        "campos": [
+          "emisor_rfc"
+        ],
+        "filas": null,
+        "evidencia": "página 1, rfc del proveedor",
+        "evidencia_detalle": {
+          "pagina": 1,
+          "campo": "emisor_rfc"
+        }
+      },
+      {
+        "regla_id": "R-002",
+        "regla_version": "2.0",
+        "politica_id": "P-011",
+        "politica_version": "2.0",
+        "politica_seccion": "2. Estructura del RFC",
+        "efecto": "rechazo",
+        "severidad": "error",
+        "titulo": "El RFC del receptor no tiene un formato válido",
+        "texto": "«RFC» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+        "cifras": null,
+        "campos": [
+          "receptor_rfc"
+        ],
+        "filas": null,
+        "evidencia": "página 1, rfc del receptor",
+        "evidencia_detalle": {
+          "pagina": 1,
+          "campo": "receptor_rfc"
+        }
+      },
+      {
+        "regla_id": "R-003",
+        "regla_version": "1.0",
+        "politica_id": "P-004",
+        "politica_version": "1.0",
+        "politica_seccion": "2. Umbral de confianza",
+        "efecto": "informativo",
+        "severidad": "info",
+        "titulo": "No se conoce la confianza de lectura",
+        "texto": "El modelo de visión no informó la confianza de: proveedor, rfc del proveedor, rfc del receptor, moneda, subtotal, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+        "cifras": null,
+        "campos": [
+          "emisor_nombre",
+          "emisor_rfc",
+          "receptor_rfc",
+          "moneda",
+          "subtotal",
+          "tasa_iva",
+          "total"
+        ],
+        "filas": null,
+        "evidencia": "página 1, proveedor, rfc del proveedor, rfc del receptor, moneda, subtotal, tasa de iva, total",
+        "evidencia_detalle": null
+      },
+      {
+        "regla_id": "R-010",
+        "regla_version": "1.0",
+        "politica_id": "P-002",
+        "politica_version": "3.0",
+        "politica_seccion": "3. Conceptos y subtotal",
+        "efecto": "rechazo",
+        "severidad": "error",
+        "titulo": "Los conceptos no suman el subtotal",
+        "texto": "La suma de los 3 conceptos da un valor distinto al subtotal impreso.",
+        "cifras": [
+          [
+            "Esperado",
+            "110,067.68"
+          ],
+          [
+            "Encontrado",
+            "127,987.42"
+          ],
+          [
+            "Diferencia",
+            "17,919.74"
+          ]
+        ],
+        "campos": [
+          "subtotal"
+        ],
+        "filas": null,
+        "evidencia": "página 1, subtotal",
+        "evidencia_detalle": {
+          "pagina": 1,
+          "campo": "subtotal"
+        }
+      }
+    ],
+    "resultado_sugerido": "rechazado",
+    "motivo": "No cumple: R-001 campos obligatorios de la factura; R-002 formato de rfc en la factura; R-010 los conceptos suman el subtotal"
+  },
+  "politicas": {
+    "caso_id": "F-9101",
+    "resultado_sugerido": "rechazado",
+    "motivo": "No cumple: R-001 campos obligatorios de la factura; R-002 formato de rfc en la factura; R-010 los conceptos suman el subtotal",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-003@1.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "hallazgo": {
+          "regla_id": "R-001",
+          "regla_version": "1.2",
+          "politica_id": "P-001",
+          "politica_version": "4.0",
+          "politica_seccion": "3. Datos obligatorios",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "Faltan datos obligatorios en la factura",
+          "texto": "La factura no muestra: folio, fecha, receptor, impuestos. La política exige estos datos para toda factura de proveedor.",
+          "cifras": null,
+          "campos": [
+            "folio",
+            "fecha",
+            "receptor_nombre",
+            "impuestos"
+          ],
+          "filas": null,
+          "evidencia": "página 1",
+          "evidencia_detalle": null
+        },
+        "politica": {
+          "politica_id": "P-001",
+          "version": "4.0",
+          "seccion": "3. Datos obligatorios",
+          "texto": null,
+          "origen": "catalogo"
+        }
+      },
+      {
+        "hallazgo": {
+          "regla_id": "R-002",
+          "regla_version": "2.0",
+          "politica_id": "P-011",
+          "politica_version": "2.0",
+          "politica_seccion": "2. Estructura del RFC",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "El RFC del proveedor no tiene un formato válido",
+          "texto": "«RFC» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+          "cifras": null,
+          "campos": [
+            "emisor_rfc"
+          ],
+          "filas": null,
+          "evidencia": "página 1, rfc del proveedor",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "emisor_rfc"
+          }
+        },
+        "politica": {
+          "politica_id": "P-011",
+          "version": "2.0",
+          "seccion": "2. Estructura del RFC",
+          "texto": "P-011 v2.0 · Formato de RFC (vigente desde 15/01/2026)\nSección 2. Estructura del RFC\n\nUn RFC válido se escribe en mayúsculas, sin espacios ni guiones, y tiene una de estas dos formas (reglas **R-002 v2.0** para facturas y **R-103 v2.0** para registros):\n\n- **Persona moral: 12 caracteres.** Tres letras (se admiten Ñ y &), seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n- **Persona física: 13 caracteres.** Cuatro letras, seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n\nLos seis dígitos deben formar una fecha que exista en el calendario. Por ejemplo, un RFC con fecha 230231 no es válido porque el 31 de febrero no existe.",
+          "origen": "rag"
+        }
+      },
+      {
+        "hallazgo": {
+          "regla_id": "R-002",
+          "regla_version": "2.0",
+          "politica_id": "P-011",
+          "politica_version": "2.0",
+          "politica_seccion": "2. Estructura del RFC",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "El RFC del receptor no tiene un formato válido",
+          "texto": "«RFC» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe.",
+          "cifras": null,
+          "campos": [
+            "receptor_rfc"
+          ],
+          "filas": null,
+          "evidencia": "página 1, rfc del receptor",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "receptor_rfc"
+          }
+        },
+        "politica": {
+          "politica_id": "P-011",
+          "version": "2.0",
+          "seccion": "2. Estructura del RFC",
+          "texto": "P-011 v2.0 · Formato de RFC (vigente desde 15/01/2026)\nSección 2. Estructura del RFC\n\nUn RFC válido se escribe en mayúsculas, sin espacios ni guiones, y tiene una de estas dos formas (reglas **R-002 v2.0** para facturas y **R-103 v2.0** para registros):\n\n- **Persona moral: 12 caracteres.** Tres letras (se admiten Ñ y &), seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n- **Persona física: 13 caracteres.** Cuatro letras, seis dígitos de fecha en formato AAMMDD y tres caracteres alfanuméricos de homoclave.\n\nLos seis dígitos deben formar una fecha que exista en el calendario. Por ejemplo, un RFC con fecha 230231 no es válido porque el 31 de febrero no existe.",
+          "origen": "rag"
+        }
+      },
+      {
+        "hallazgo": {
+          "regla_id": "R-003",
+          "regla_version": "1.0",
+          "politica_id": "P-004",
+          "politica_version": "1.0",
+          "politica_seccion": "2. Umbral de confianza",
+          "efecto": "informativo",
+          "severidad": "info",
+          "titulo": "No se conoce la confianza de lectura",
+          "texto": "El modelo de visión no informó la confianza de: proveedor, rfc del proveedor, rfc del receptor, moneda, subtotal, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+          "cifras": null,
+          "campos": [
+            "emisor_nombre",
+            "emisor_rfc",
+            "receptor_rfc",
+            "moneda",
+            "subtotal",
+            "tasa_iva",
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, proveedor, rfc del proveedor, rfc del receptor, moneda, subtotal, tasa de iva, total",
+          "evidencia_detalle": null
+        },
+        "politica": {
+          "politica_id": "P-004",
+          "version": "1.0",
+          "seccion": "2. Umbral de confianza",
+          "texto": "P-004 v1.0 · Lectura automatizada de documentos (vigente desde 01/02/2026)\nSección 2. Umbral de confianza\n\nCada campo leído automáticamente lleva una confianza de lectura entre 0 % y 100 %. Si algún campo que se usa para evaluar las reglas tiene una confianza menor a 80 %, el campo se marca como dudoso y el caso pasa a revisión humana (regla **R-003 v1.0**). El analista debe verificar el dato contra el documento original y, si es necesario, corregirlo. Toda corrección queda registrada en la bitácora con el valor anterior y el nuevo.",
+          "origen": "rag"
+        }
+      },
+      {
+        "hallazgo": {
+          "regla_id": "R-010",
+          "regla_version": "1.0",
+          "politica_id": "P-002",
+          "politica_version": "3.0",
+          "politica_seccion": "3. Conceptos y subtotal",
+          "efecto": "rechazo",
+          "severidad": "error",
+          "titulo": "Los conceptos no suman el subtotal",
+          "texto": "La suma de los 3 conceptos da un valor distinto al subtotal impreso.",
+          "cifras": [
+            [
+              "Esperado",
+              "110,067.68"
+            ],
+            [
+              "Encontrado",
+              "127,987.42"
+            ],
+            [
+              "Diferencia",
+              "17,919.74"
+            ]
+          ],
+          "campos": [
+            "subtotal"
+          ],
+          "filas": null,
+          "evidencia": "página 1, subtotal",
+          "evidencia_detalle": {
+            "pagina": 1,
+            "campo": "subtotal"
+          }
+        },
+        "politica": {
+          "politica_id": "P-002",
+          "version": "3.0",
+          "seccion": "3. Conceptos y subtotal",
+          "texto": null,
+          "origen": "catalogo"
+        }
+      }
+    ],
+    "pasos": [
+      "Validando reglas… 12 evaluadas, 5 hallazgos",
+      "Buscando política de R-001… P-001 v4.0 (solo cita del catálogo)",
+      "Buscando política de R-002… P-011 v2.0",
+      "Buscando política de R-003… P-004 v1.0",
+      "Buscando política de R-010… P-002 v3.0 (solo cita del catálogo)"
+    ]
+  },
+  "fragmentos": {
+    "R-002": [
+      34
+    ],
+    "R-003": [
+      24
+    ]
+  },
+  "explicacion": "No cumple: R-001 campos obligatorios de la factura; R-002 formato de rfc en la factura; R-010 los conceptos suman el subtotal\nFaltan datos obligatorios en la factura: La factura no muestra: folio, fecha, receptor, impuestos. La política exige estos datos para toda factura de proveedor. Evidencia: página 1 (R-001 · P-001 v4.0 §3. Datos obligatorios). Solo cita del catálogo; sin fragmento recuperado.\nEl RFC del proveedor no tiene un formato válido: «RFC» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe. Evidencia: página 1, rfc del proveedor (R-002 · P-011 v2.0 §2. Estructura del RFC). Fragmento recuperado.\nEl RFC del receptor no tiene un formato válido: «RFC» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), o su fecha no existe. Evidencia: página 1, rfc del receptor (R-002 · P-011 v2.0 §2. Estructura del RFC). Fragmento recuperado.\nNo se conoce la confianza de lectura: El modelo de visión no informó la confianza de: proveedor, rfc del proveedor, rfc del receptor, moneda, subtotal, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. Evidencia: página 1, proveedor, rfc del proveedor, rfc del receptor, moneda, subtotal, tasa de iva, total (R-003 · P-004 v1.0 §2. Umbral de confianza). Fragmento recuperado.\nLos conceptos no suman el subtotal: La suma de los 3 conceptos da un valor distinto al subtotal impreso. Evidencia: página 1, subtotal (R-010 · P-002 v3.0 §3. Conceptos y subtotal). Solo cita del catálogo; sin fragmento recuperado.\nLa decisión final corresponde al analista."
+}

@@ -19,7 +19,7 @@ from steward_datos.api.casos import (
     ListarCasosSalida, MetricasBandeja, TipoCaso,
 )
 from steward_datos.contratos import ContextoUsuario
-from steward_datos.db.models import Caso, Documento, EventoBitacora
+from steward_datos.db.models import Caso, Documento, EventoBitacora, Factura
 from steward_datos.db.sesion import sesion, siguiente_id_caso
 from steward_datos.tools.consultas_chat_seguras import CasoNoDisponible, consultar_caso, sesion_autorizada
 
@@ -35,7 +35,7 @@ V_CASOS = table("v_casos", column("caso_id"))
 FLUJOS: dict[str, FlujoCasosReal] = {}
 DECISION = Lock()
 logger = logging.getLogger(__name__)
-IMAGENES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}
+IMAGENES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".pdf": "application/pdf"}
 MAX_IMAGEN = 15 * 1024 * 1024
 
 
@@ -72,6 +72,17 @@ def detalle_caso(caso_id: str, usuario: Usuario):
     except ValueError as error:
         raise HTTPException(422, "Identificador de caso inválido") from error
     documento_url = None
+    with sesion_autorizada(usuario) as s:
+        revision = s.scalar(select(EventoBitacora.datos).where(
+            EventoBitacora.caso_id == c.id, EventoBitacora.caso_id.in_(select(V_CASOS.c.caso_id)),
+            EventoBitacora.accion == "extraccion",
+            EventoBitacora.datos["tipo"].astext == "revision_evidencia_experimental",
+        ).order_by(EventoBitacora.id.desc()).limit(1))
+        lectura = s.scalar(select(Factura.salida_cruda).where(
+            Factura.caso_id == c.id, Factura.caso_id.in_(select(V_CASOS.c.caso_id)),
+        ))
+    informe = (revision or {}).get("revision_evidencia")
+    evidencia_campos = (informe or {}).get("campos", {})
     if bucket := os.getenv("S3_BUCKET"):
         with sesion_autorizada(usuario) as s:
             clave = s.scalar(select(Documento.s3_key).where(
@@ -85,8 +96,10 @@ def detalle_caso(caso_id: str, usuario: Usuario):
         documento_url=documento_url, id=c.id, archivo=c.archivo or c.id, tipo=TIPO_UI[c.tipo], estado=c.estado,
         resultado_sugerido=c.resultado_sugerido, resultado_final=c.resultado_final,
         explicacion=c.explicacion, fecha=c.creado_en.isoformat(), responsable=c.responsable or "",
+        revision_evidencia=informe, conceptos=(lectura or {}).get("conceptos", []),
         campos=[CampoDetalle(id=x.campo, etiqueta=x.etiqueta or x.campo, valor=x.valor,
                              conf=x.confianza,
+                             estado_evidencia=evidencia_campos.get(x.campo, {}).get("estado"),
                              valor_corregido=x.valor_corregido) for x in c.campos],
         hallazgos=[HallazgoDetalle(id=f"{h.regla_id}-{i}", tipo=h.severidad, titulo=h.titulo, texto=h.texto,
                                    regla=h.regla_id, version=h.regla_version, evidencia=h.evidencia or "",
@@ -146,7 +159,7 @@ def crear_caso(entrada: CrearCasoEntrada, usuario: Usuario):
         raise HTTPException(422, str(error)) from error
     mime = IMAGENES.get(Path(nombre).suffix.lower())
     if not mime:
-        raise HTTPException(422, "El grafo actual necesita una factura PNG o JPEG")
+        raise HTTPException(422, "Selecciona una factura PNG, JPEG o PDF")
     prefijo = prefijo_subida(usuario)
     if not entrada.s3_key or not re.fullmatch(f"{prefijo}[0-9a-f]{{32}}/{re.escape(nombre)}", entrada.s3_key):
         raise HTTPException(422, "Selecciona una factura subida con tu sesión")
@@ -164,7 +177,7 @@ def crear_caso(entrada: CrearCasoEntrada, usuario: Usuario):
         obj = cliente.get_object(Bucket=bucket, Key=entrada.s3_key)
         with obj["Body"] as contenido:
             if not 0 < obj["ContentLength"] <= MAX_IMAGEN or obj.get("ContentType") != mime:
-                raise HTTPException(422, "Tipo o tamaño de imagen inválido")
+                raise HTTPException(422, "Tipo o tamaño de documento inválido")
             datos = contenido.read(MAX_IMAGEN + 1)
             if len(datos) != obj["ContentLength"]:
                 raise HTTPException(422, "El archivo no se recibió completo")
@@ -179,7 +192,7 @@ def crear_caso(entrada: CrearCasoEntrada, usuario: Usuario):
         "nombre": nombre, "s3_key": entrada.s3_key, "mime": mime, "tamano_bytes": len(datos),
         "sha256": hashlib.sha256(datos).hexdigest(),
     })
-    flujo = FlujoCasosReal(usuario, herramientas=herramientas)
+    flujo = FlujoCasosReal(usuario, herramientas=herramientas, revisar_lecturas=True)
     with TemporaryDirectory() as carpeta:
         ruta = Path(carpeta, nombre)
         ruta.write_bytes(datos)
