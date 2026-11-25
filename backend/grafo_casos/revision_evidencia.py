@@ -16,6 +16,25 @@ def revisar_evidencia(factura: FacturaExtraida) -> dict:
     La coincidencia textual no verifica la imagen ni la asociación entre etiqueta,
     valor y rol. El informe no es una FacturaExtraida validada para las reglas.
     """
+    if factura.origen_extraccion == "xml_cfdi":
+        alertas = ["Lectura de atributos XML; no valida XSD, sellos, autenticidad ni estatus ante el SAT."]
+        if not factura.uuid_fiscal:
+            alertas.append("El XML no contiene UUID del timbre; no se considera un comprobante timbrado verificado.")
+        if "cfdi:Comprobante/@Descuento =" in (factura.texto_completo or ""):
+            alertas.append("El XML declara Descuento; las reglas actuales no modelan descuentos, revisar el cálculo del total.")
+        return {
+            "version": "lectura-cfdi-4.0-v1", "origen_extraccion": "xml_cfdi",
+            "requiere_revision_humana": True, "habilitado_para_decision_automatica": False,
+            "alcance": "Atributos copiados del XML recibido. No acredita validez fiscal ni consulta el SAT.",
+            "uuid_fiscal": factura.uuid_fiscal, "alertas_documento": alertas,
+            "campos": {nombre: {
+                "valor_leido": campo.valor, "etiqueta_leida": campo.etiqueta,
+                "estado": "atributo_xml" if campo.valor is not None else "sin_valor_leido",
+                "motivos": [] if campo.valor is not None else ["No hay un atributo compatible explícito; no se infiere su valor."],
+            } for nombre, campo in factura.campos.items()},
+            "conceptos_leidos": [c.model_dump(mode="json") for c in factura.conceptos],
+            "conceptos_verificados": False, "texto_completo": factura.texto_completo,
+        }
     filtrada = factura.model_copy(deep=True)
     _filtrar_evidencia(filtrada)
     transcripcion = _texto(factura.texto_completo or "")

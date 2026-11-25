@@ -1,3 +1,4 @@
+
 """Grafo asíncrono de chat con ejecución autenticada de herramientas MCP."""
 
 import json
@@ -8,6 +9,7 @@ from typing import Any
 
 from langgraph.graph import END, START, StateGraph
 from steward_datos.contratos import ContextoUsuario
+from steward_datos.gobernanza import metricas as catalogo_metricas
 
 from backend.api.cliente_mcp import ClienteMCP
 from contratos.eventos_sse import (
@@ -17,7 +19,8 @@ from contratos.eventos_sse import (
     TipoRespuesta,
 )
 
-from .enrutador import clasificar_dominio
+from . import conversacion
+from .enrutador import _normalizar, clasificar_dominio
 from .estado import EstadoChat, RolUsuario
 from .presentacion_caso import formatear_caso
 from .presentacion_bitacora import formatear_bitacora
@@ -59,7 +62,6 @@ def _texto_resultado_mcp(resultado: Any) -> str:
             return salida
 
     return "La herramienta terminó sin devolver contenido."
-
 
 
 def _formatear_resultado_calidad(resultado: Any) -> str:
@@ -105,7 +107,7 @@ def _formatear_resultado_calidad(resultado: Any) -> str:
                 f"[{regla.get('tabla', 'Sin tabla')}]: "
                 f"{regla.get('descripcion', 'Sin descripción')} "
                 f"Resultado: {regla.get('porcentaje', 'No disponible')}% "
-                f"(umbral: {regla.get('umbral', 'No disponible')}%)."
+                f"(umbral: {regla.get('umbral', 'No disponible')})."
             )
     else:
         lineas.append("Todas las reglas cumplen su umbral.")
@@ -116,6 +118,7 @@ def _formatear_resultado_calidad(resultado: Any) -> str:
     ])
 
     return "\n".join(lineas)
+
 
 def _extraer_termino(pregunta: str) -> str:
     """Extrae el término solicitado para una consulta del glosario."""
@@ -132,6 +135,53 @@ def _extraer_termino(pregunta: str) -> str:
     return pregunta.strip()
 
 
+ALIAS_DIMENSIONES = {
+    "proveedor": ("proveedor", "proveedores"),
+    "mes": ("mes",),
+    "entidad": ("entidad", "entidades"),
+    "centro_costo": ("centro de costo", "centro costo"),
+    "moneda": ("moneda", "divisa"),
+    "resultado": ("resultado",),
+    "regla": ("regla", "reglas"),
+    "efecto": ("efecto",),
+    "tipo": ("tipo", "tipo de caso"),
+    "responsable": ("responsable",),
+    "estado": ("estado",),
+    "segmento": ("segmento",),
+    "tipo_persona": ("tipo de persona",),
+    "mes_alta": ("mes de alta",),
+}
+
+
+def _extraer_dimensiones(texto: str, metrica: str) -> list[str]:
+    """Extrae dimensiones solicitadas y valida contra el catálogo oficial."""
+
+    catalogo = catalogo_metricas()["metricas"]
+    definicion = catalogo.get(metrica, {})
+    permitidas = definicion.get("dimensiones", {})
+
+    encontradas = []
+
+    for dimension in permitidas:
+        alias = ALIAS_DIMENSIONES.get(
+            dimension,
+            (dimension.replace("_", " "),),
+        )
+
+        for nombre in alias:
+            patron = (
+                rf"\b(?:por|desglosado por|desglosada por|"
+                rf"agrupado por|agrupada por)\s+"
+                rf"(?:cada\s+)?{re.escape(nombre)}\b"
+            )
+
+            if re.search(patron, texto):
+                encontradas.append(dimension)
+                break
+
+    return encontradas[:2]
+
+
 def _seleccionar_herramienta(
     dominio: str,
     pregunta: str,
@@ -139,7 +189,86 @@ def _seleccionar_herramienta(
 ) -> tuple[str | None, dict[str, Any], str | None]:
     """Selecciona una herramienta MCP para un único dominio."""
 
-    texto = pregunta.lower()
+    texto = _normalizar(pregunta)
+
+    if dominio == "analista":
+        mapa_metricas = {
+            "monto_facturado": (
+                "monto_facturado",
+                ("monto facturado", "total facturado", "importe facturado"),
+            ),
+            "numero_facturas": (
+                "numero_facturas",
+                ("numero de facturas", "cantidad de facturas", "facturas recibidas"),
+            ),
+            "facturas_rechazadas": (
+                "facturas_rechazadas",
+                ("facturas rechazadas",),
+            ),
+            "tasa_rechazo": (
+                "tasa_rechazo",
+                ("tasa de rechazo", "porcentaje de rechazo"),
+            ),
+            "tasa_conciliacion": (
+                "tasa_conciliacion",
+                ("tasa de conciliacion", "tasa de conciliación"),
+            ),
+            "tiempo_promedio_revision": (
+                "tiempo_promedio_revision",
+                ("tiempo promedio de revision", "tiempo promedio de revisión"),
+            ),
+            "facturas_por_regla": (
+                "facturas_por_regla",
+                ("facturas por regla", "facturas con hallazgos por regla"),
+            ),
+            "casos_pendientes": (
+                "casos_pendientes",
+                ("casos pendientes",),
+            ),
+            "monto_pagado": (
+                "monto_pagado",
+                ("monto pagado", "total pagado"),
+            ),
+            "pagos_a_tiempo": (
+                "pagos_a_tiempo",
+                ("pagos a tiempo", "pagos puntuales"),
+            ),
+            "monto_comprometido": (
+                "monto_comprometido",
+                ("monto comprometido",),
+            ),
+            "clientes_activos": (
+                "clientes_activos",
+                ("clientes activos",),
+            ),
+        }
+
+        for metrica, (_, sinonimos) in mapa_metricas.items():
+            if any(sinonimo in texto for sinonimo in sinonimos):
+                return (
+                    "obtener_metrica",
+                    {
+                        "entrada": {
+                            "metrica": metrica,
+                            "dimensiones": _extraer_dimensiones(texto, metrica),
+                            "filtros": {},
+                        }
+                    },
+                    None,
+                )
+
+        return (
+            None,
+            {},
+            (
+                "No pude identificar una métrica específica. "
+                "Puedes preguntar por monto facturado, número de facturas, "
+                "facturas rechazadas, tasa de rechazo, tasa de conciliación, "
+                "tiempo promedio de revisión, facturas por regla, casos "
+                "pendientes, monto pagado, pagos a tiempo, monto comprometido "
+                "o clientes activos."
+            ),
+        )
 
     if dominio == "gobernanza":
         if any(
@@ -175,13 +304,27 @@ def _seleccionar_herramienta(
     if dominio == "casos":
         identificador = caso_id.strip() if caso_id else None
         encontrado = re.search(r"\b[FV]-\d{4,}\b", pregunta, re.IGNORECASE)
+
         if encontrado:
             en_pregunta = encontrado.group(0).upper()
+
             if identificador and identificador.upper() != en_pregunta:
-                return None, {}, "El identificador de la pregunta no coincide con el caso abierto. Abre el caso correcto para continuar."
+                return (
+                    None,
+                    {},
+                    "El identificador de la pregunta no coincide con el caso abierto. "
+                    "Abre el caso correcto para continuar.",
+                )
+
             identificador = en_pregunta
+
         if identificador:
-            return "consultar_caso", {"entrada": {"caso_id": identificador.upper()}}, None
+            return (
+                "consultar_caso",
+                {"entrada": {"caso_id": identificador.upper()}},
+                None,
+            )
+
         if "factura" in texto:
             return (
                 "buscar_facturas",
@@ -193,7 +336,8 @@ def _seleccionar_herramienta(
             return (
                 None,
                 {},
-                "Para consultar un caso necesito su identificador. Indícame el caso_id para continuar.",
+                "Para consultar un caso necesito su identificador. "
+                "Indícame el caso_id para continuar.",
             )
 
         return (
@@ -214,6 +358,9 @@ def obtener_tipo_respuesta(estado: EstadoChat) -> TipoRespuesta:
         return TipoRespuesta.POLITICAS
 
     if dominio == "casos":
+        return TipoRespuesta.DATOS
+
+    if dominio == "analista":
         return TipoRespuesta.DATOS
 
     return TipoRespuesta.INFORMACION_GENERAL
@@ -254,6 +401,15 @@ class FlujoChat:
             else:
                 resultado = responder_fuera_alcance(pregunta)
 
+            # El modelo redacta con el historial; si no está disponible, queda el texto fijo.
+            redactada = await conversacion.responder(
+                pregunta,
+                estado.get("historial"),
+                fuera_de_alcance=dominio == "fuera_de_alcance",
+            )
+            if redactada:
+                resultado = {**resultado, "respuesta": redactada}
+
             return {
                 "resultados_dominio": [resultado],
                 "dominios_ejecutados": [],
@@ -263,7 +419,7 @@ class FlujoChat:
                 "simulado": False,
             }
 
-        dominios_validos = {"gobernanza", "casos"}
+        dominios_validos = {"gobernanza", "casos", "analista"}
 
         if dominio not in dominios_validos:
             raise ValueError(f"Dominio no soportado: {dominio}")
@@ -307,9 +463,27 @@ class FlujoChat:
             )
 
             respuesta = _texto_resultado_mcp(resultado_mcp)
-            if herramienta == 'consultar_caso':
+            detalle_paso = None
+
+            # S3-16: conservar el detalle de la métrica y el SQL generado.
+            if herramienta == "obtener_metrica":
+                datos = getattr(resultado_mcp, "structuredContent", None)
+
+                if datos is None:
+                    datos = getattr(resultado_mcp, "structured_content", None)
+
+                if isinstance(datos, dict):
+                    detalle_paso = (
+                        f"Métrica: {datos.get('etiqueta', datos.get('metrica', 'No disponible'))}\n"
+                        f"Definición: {datos.get('definicion', 'No disponible')}\n"
+                        f"SQL generado:\n{datos.get('sql', 'No disponible')}"
+                    )
+
+            # Dev: conservar el formato de presentación de los casos.
+            if herramienta == "consultar_caso":
                 respuesta = formatear_caso(resultado_mcp) or respuesta
 
+            # Conservar el formato especializado de calidad de datos.
             if herramienta == "consultar_calidad":
                 respuesta = _formatear_resultado_calidad(resultado_mcp)
 
@@ -317,6 +491,7 @@ class FlujoChat:
                 "dominio": dominio_objetivo,
                 "herramienta": herramienta,
                 "respuesta": respuesta,
+                "detalle_paso": detalle_paso,
                 "fuentes": [herramienta],
                 "ejecutado": True,
             })
@@ -406,9 +581,21 @@ class FlujoChat:
                         )
 
                     elif nodo == "ejecutor":
+                        resultados = cambios.get("resultados_dominio", [])
+
+                        detalle = next(
+                            (
+                                resultado.get("detalle_paso")
+                                for resultado in resultados
+                                if resultado.get("detalle_paso")
+                            ),
+                            None,
+                        )
+
                         yield PasoEvent(
                             id="ejecutor",
                             texto="Consulta terminada",
+                            detalle=detalle,
                             estado=EstadoPaso.COMPLETADO,
                         )
 

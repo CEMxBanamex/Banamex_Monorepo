@@ -1,4 +1,4 @@
-"""Extracción visual de una factura PNG, JPEG o PDF con Ollama; sin completar importes ausentes."""
+"""Extracción PNG/JPEG/PDF con Ollama y CFDI XML con código; sin completar importes ausentes."""
 import base64
 from contextlib import closing
 from io import BytesIO
@@ -168,6 +168,9 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None,
     datos = ruta.read_bytes()
     if len(datos) > 15 * 1024 * 1024:
         raise ErrorExtraccion("El documento supera 15 MiB.")
+    if ruta.suffix.lower() == ".xml":
+        from .cfdi_xml import extraer_cfdi
+        return extraer_cfdi(datos)
     paginas = 1
     if datos.startswith(b"%PDF"):
         datos, paginas = _rasterizar_pdf(datos)
@@ -181,6 +184,9 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None,
     except (OSError, Image.DecompressionBombError) as exc:
         raise ErrorExtraccion("La imagen no es válida.") from exc
     esquema = FacturaExtraida.model_json_schema()
+    # Metadatos asignados por código, nunca por el modelo visual.
+    for clave in ("origen_extraccion", "uuid_fiscal"):
+        esquema["properties"].pop(clave, None)
     esquema["properties"]["campos"] = {
         "type": "object", "additionalProperties": False,
         "properties": {campo: {"$ref": "#/$defs/CampoLeido", "description": DESCRIPCIONES_CAMPOS[campo]}
@@ -238,6 +244,7 @@ def _extraer(cliente: httpx.Client, payload: dict, modelo: str, *, conservar_lec
         if cuerpo.get("done_reason") == "length" or not cuerpo.get("done"):
             raise ErrorExtraccion("Ollama no completó la extracción.")
         bruto = json.loads(cuerpo["response"])
+        bruto["origen_extraccion"], bruto["uuid_fiscal"] = "vision", None
         factura = FacturaExtraida.model_validate(bruto)
         if set(factura.campos) - set(CAMPOS_FACTURA):
             raise ErrorExtraccion("La extracción contiene campos fuera del contrato.")

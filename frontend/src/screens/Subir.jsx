@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import { CASOS_REALES, crearCaso, subirFactura } from '../api.js'
 
-const ADMITIDOS = ['pdf', 'jpg', 'jpeg', 'png', 'xls', 'xlsx', 'csv', 'md', 'txt']
+const ADMITIDOS = ['pdf', 'xml', 'jpg', 'jpeg', 'png', 'xls', 'xlsx', 'csv', 'md', 'txt']
 const INICIALES = [
   { nombre: 'factura_1043.pdf', tam: '1.2 MB', progreso: 100 },
   { nombre: 'factura_1043_anexo.png', tam: '3.4 MB', progreso: 64 },
@@ -43,7 +43,7 @@ export default function Subir({ ir, iniciar }) {
   function agregar(lista) {
     const nuevos = [...lista].map((f) => {
       const ext = f.name.split('.').pop().toLowerCase()
-      const extensiones = CASOS_REALES ? ['png', 'jpg', 'jpeg', 'pdf'] : ADMITIDOS
+      const extensiones = CASOS_REALES ? ['png', 'jpg', 'jpeg', 'pdf', 'xml'] : ADMITIDOS
       const limite = CASOS_REALES ? 15 * 1024 * 1024 : 20e6
       const error = !extensiones.includes(ext) ? 'tipo' : f.size > limite || f.size === 0 ? 'tamano' : null
       return { archivo: f, nombre: f.name, tam: tamano(f.size), progreso: error ? 0 : CASOS_REALES ? 100 : 5, error }
@@ -121,9 +121,9 @@ export default function Subir({ ir, iniciar }) {
           <input ref={input} type="file" multiple hidden onChange={(e) => { agregar(e.target.files); e.target.value = '' }} />
           <div className="tipos">
             Tipos admitidos:
-            {(CASOS_REALES ? ['.pdf', '.jpg', '.jpeg', '.png'] : ['.pdf', '.jpg', '.png', '.xls', '.xlsx', '.csv', '.md', 'texto']).map((t) => <code key={t}>{t}</code>)}
+            {(CASOS_REALES ? ['.xml', '.pdf', '.jpg', '.jpeg', '.png'] : ['.pdf', '.jpg', '.png', '.xls', '.xlsx', '.csv', '.md', 'texto']).map((t) => <code key={t}>{t}</code>)}
           </div>
-          <div className="muted" style={{ marginTop: 14, fontSize: 14 }}>{CASOS_REALES ? "Factura PNG, JPEG o PDF de hasta 15 MiB. PDF de hasta 4 páginas." : "Tamaño máximo por archivo: 20 MB"}</div>
+          <div className="muted" style={{ marginTop: 14, fontSize: 14 }}>{CASOS_REALES ? "Factura PNG, JPEG, PDF o XML CFDI 4.0 de hasta 15 MiB. PDF de hasta 4 páginas." : "Tamaño máximo por archivo: 20 MB"}</div>
         </div>
 
         {archivos.length > 0 && (
@@ -143,7 +143,7 @@ export default function Subir({ ir, iniciar }) {
                     </div>
                     {fallo ? (
                       <div className="estado-arch" style={{ color: 'var(--error)', marginTop: 6 }}>
-                        <CircleAlert size={16} />{CASOS_REALES && a.error === 'tipo' ? 'Selecciona un archivo PNG, JPEG o PDF' : CASOS_REALES && a.error === 'tamano' ? 'El documento debe pesar entre 1 byte y 15 MiB' : ERRORES[a.error]}
+                        <CircleAlert size={16} />{CASOS_REALES && a.error === 'tipo' ? 'Selecciona PNG, JPEG, PDF o XML CFDI 4.0' : CASOS_REALES && a.error === 'tamano' ? 'El documento debe pesar entre 1 byte y 15 MiB' : ERRORES[a.error]}
                       </div>
                     ) : (
                       <>

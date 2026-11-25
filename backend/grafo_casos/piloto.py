@@ -11,7 +11,7 @@ from .flujo_real import FlujoCasosReal
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Procesar una factura PNG, JPEG o PDF y registrar una decisión humana en la base local.")
+    parser = argparse.ArgumentParser(description="Procesar una factura PNG, JPEG, PDF o XML CFDI 4.0 y registrar una decisión humana en la base local.")
     parser.add_argument("archivo")
     parser.add_argument("--caso", required=True, help="Identificador nuevo, por ejemplo F-9001")
     parser.add_argument("--usuario", default="dev-ana")

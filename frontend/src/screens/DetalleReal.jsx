@@ -69,7 +69,9 @@ export default function DetalleReal({ casoId, ir, toast }) {
                 <h2><FileText size={19} aria-hidden="true" /> Documento original</h2>
                 {caso.documento_url
                   ? <div className="caso-real__visor">
-                      {caso.archivo?.toLowerCase().endsWith('.pdf')
+                      {caso.archivo?.toLowerCase().endsWith('.xml')
+                        ? <p><a href={caso.documento_url} target="_blank" rel="noreferrer" download={caso.archivo}>Descargar XML original</a></p>
+                        : caso.archivo?.toLowerCase().endsWith('.pdf')
                         ? <object data={caso.documento_url} type="application/pdf" aria-label={caso.archivo}>
                             <a href={caso.documento_url} target="_blank" rel="noreferrer">Abrir PDF original</a>
                           </object>
@@ -96,6 +98,8 @@ export default function DetalleReal({ casoId, ir, toast }) {
               {caso.campos.length > 0 && (
                 <section className="tarjeta caso-real__panel">
                   <h2>Campos extraídos</h2>
+                  {caso.origen_extraccion === 'xml_cfdi' && <p>Datos leídos del XML sin modelo. No se ha validado su autenticidad ni estatus ante el SAT.</p>}
+                  {caso.uuid_fiscal && <p><strong>UUID declarado:</strong> {caso.uuid_fiscal}</p>}
                   <dl className="caso-real__campos">{caso.campos.map((campo) => (
                     <div key={campo.id}>
                       <dt>{campo.etiqueta}</dt>

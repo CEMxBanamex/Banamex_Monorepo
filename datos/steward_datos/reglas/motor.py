@@ -85,6 +85,9 @@ class _Acumulador:
 
 def _evidencia(f: FacturaExtraida, campo: str) -> tuple[str, Optional[dict]]:
     c = f.campos.get(campo)
+    if f.origen_extraccion == "xml_cfdi":
+        ruta = c.etiqueta if c and c.etiqueta else campo
+        return f"XML, {ruta}", {"campo": campo, "ruta_xml": ruta}
     pagina = (c.pagina if c and c.pagina else 1)
     detalle = {"pagina": pagina, "campo": campo}
     if c and c.bbox:
@@ -147,25 +150,27 @@ def validar_factura(caso_id: str, f: FacturaExtraida, ctx: Optional[Contexto] = 
                         f"«{v}» no corresponde a un RFC de persona moral (12 caracteres) ni de persona física (13), "
                         "o su fecha no existe.", campos=[c], evidencia=ev, evidencia_detalle=det)
 
-    r = acc.evaluar("R-003")
-    umbral = r.parametros.get("umbral", g.get("umbral_confianza", 80))
-    for c in CAMPOS_EVALUADOS:
-        campo = f.campos.get(c)
-        if campo and not n.vacio(campo.valor) and campo.confianza is not None and campo.confianza < umbral:
-            ev, det = _evidencia(f, c)
-            acc.agregar("R-003", f"{ETIQUETAS[c]}: se leyó con baja confianza",
-                        f"El campo se leyó con {campo.confianza} % de confianza (mínimo {umbral} %). "
-                        "Verifícalo contra el documento original.", campos=[c], evidencia=ev, evidencia_detalle=det)
-    # Si el modelo no da confianza, R-003 no puede evaluarse: se dice en lugar de suponer que la lectura es buena (P-004 §3).
-    sin_conf = [c for c in CAMPOS_EVALUADOS
-                if (campo := f.campos.get(c)) and not n.vacio(campo.valor) and campo.confianza is None]
-    if sin_conf:
-        nombres = ", ".join(ETIQUETAS[c].lower() for c in sin_conf)
-        acc.agregar("R-003", "No se conoce la confianza de lectura",
-                    f"El modelo de visión no informó la confianza de: {nombres}. "
-                    "No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
-                    efecto=r.parametros.get("sin_confianza", "informativo"), campos=sin_conf,
-                    evidencia=f"página 1, {nombres}")
+    # XML no usa visión ni una confianza OCR: no inventar porcentajes ni avisos de modelo.
+    if f.origen_extraccion != "xml_cfdi":
+        r = acc.evaluar("R-003")
+        umbral = r.parametros.get("umbral", g.get("umbral_confianza", 80))
+        for c in CAMPOS_EVALUADOS:
+            campo = f.campos.get(c)
+            if campo and not n.vacio(campo.valor) and campo.confianza is not None and campo.confianza < umbral:
+                ev, det = _evidencia(f, c)
+                acc.agregar("R-003", f"{ETIQUETAS[c]}: se leyó con baja confianza",
+                            f"El campo se leyó con {campo.confianza} % de confianza (mínimo {umbral} %). "
+                            "Verifícalo contra el documento original.", campos=[c], evidencia=ev, evidencia_detalle=det)
+        # Si el modelo no da confianza, R-003 no puede evaluarse: se dice en lugar de suponer que la lectura es buena (P-004 §3).
+        sin_conf = [c for c in CAMPOS_EVALUADOS
+                    if (campo := f.campos.get(c)) and not n.vacio(campo.valor) and campo.confianza is None]
+        if sin_conf:
+            nombres = ", ".join(ETIQUETAS[c].lower() for c in sin_conf)
+            acc.agregar("R-003", "No se conoce la confianza de lectura",
+                        f"El modelo de visión no informó la confianza de: {nombres}. "
+                        "No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+                        efecto=r.parametros.get("sin_confianza", "informativo"), campos=sin_conf,
+                        evidencia=f"página 1, {nombres}")
 
     r = acc.evaluar("R-004")
     fe = n.fecha(valor("fecha"))
@@ -293,7 +298,9 @@ def validar_factura(caso_id: str, f: FacturaExtraida, ctx: Optional[Contexto] = 
                         f"{n.formato_monto(limite)} MXN.".replace("  ", " "),
                         campos=["total"], evidencia=ev, evidencia_detalle=det)
 
-    return acc.resultado("Todos los campos se leyeron con buena confianza y las reglas evaluadas se cumplen.")
+    return acc.resultado("Los atributos XML cumplen las reglas evaluadas; esto no valida su autenticidad fiscal."
+                         if f.origen_extraccion == "xml_cfdi" else
+                         "Todos los campos se leyeron con buena confianza y las reglas evaluadas se cumplen.")
 
 
 def _mapear_columnas(columnas: Iterable[str], alias: dict[str, list[str]]) -> tuple[dict[str, str], list[str]]:

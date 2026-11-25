@@ -1,0 +1,284 @@
+{
+  "archivo": "cfdi_rfc_faltante.xml",
+  "sha256": "72b782459a99e14fb803cde0c3b4acca87d5a93a95617313d21e36a65cfde8ca",
+  "extraccion": {
+    "origen_extraccion": "xml_cfdi",
+    "uuid_fiscal": "00000000-0000-4000-8000-000000000003",
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": "XML-003",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/@Folio",
+        "pagina": null,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": "2026-11-24T10:00:00",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/@Fecha",
+        "pagina": null,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Proveedor Sintético SA de CV",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/cfdi:Emisor/@Nombre",
+        "pagina": null,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/cfdi:Emisor/@Rfc",
+        "pagina": null,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": null,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Grupo Financiero Demo SA de CV",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/cfdi:Receptor/@Nombre",
+        "pagina": null,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "GFD960701AB4",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/cfdi:Receptor/@Rfc",
+        "pagina": null,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/@Moneda",
+        "pagina": null,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "100.00",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/@SubTotal",
+        "pagina": null,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "16.00",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/cfdi:Impuestos/@TotalImpuestosTrasladados",
+        "pagina": null,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "0.160000",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota",
+        "pagina": null,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/cfdi:Impuestos/@TotalImpuestosRetenidos",
+        "pagina": null,
+        "bbox": null
+      },
+      "total": {
+        "valor": "116.00",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/@Total",
+        "pagina": null,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Contado",
+        "confianza": null,
+        "etiqueta": "cfdi:Comprobante/@CondicionesDePago",
+        "pagina": null,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de prueba",
+        "cantidad": "2",
+        "precio_unitario": "30.00",
+        "importe": "60.00"
+      },
+      {
+        "descripcion": "Soporte sintético",
+        "cantidad": "1",
+        "precio_unitario": "40.00",
+        "importe": "40.00"
+      }
+    ],
+    "texto_completo": "cfdi:Comprobante/@Version = 4.0\ncfdi:Comprobante/@Serie = DEMO\ncfdi:Comprobante/@Folio = XML-003\ncfdi:Comprobante/@Fecha = 2026-11-24T10:00:00\ncfdi:Comprobante/@SubTotal = 100.00\ncfdi:Comprobante/@Moneda = MXN\ncfdi:Comprobante/@Total = 116.00\ncfdi:Comprobante/@TipoDeComprobante = I\ncfdi:Comprobante/@CondicionesDePago = Contado\ncfdi:Comprobante/@FormaPago = 03\ncfdi:Comprobante/@MetodoPago = PUE\ncfdi:Comprobante/@Exportacion = 01\ncfdi:Comprobante/@LugarExpedicion = 01219\ncfdi:Comprobante/cfdi:Emisor/@Nombre = Proveedor Sintético SA de CV\ncfdi:Comprobante/cfdi:Emisor/@RegimenFiscal = 601\ncfdi:Comprobante/cfdi:Receptor/@Rfc = GFD960701AB4\ncfdi:Comprobante/cfdi:Receptor/@Nombre = Grupo Financiero Demo SA de CV\ncfdi:Comprobante/cfdi:Receptor/@DomicilioFiscalReceptor = 01219\ncfdi:Comprobante/cfdi:Receptor/@RegimenFiscalReceptor = 601\ncfdi:Comprobante/cfdi:Receptor/@UsoCFDI = G03\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveProdServ = 81111500\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Cantidad = 2\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveUnidad = E48\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Descripcion = Servicio de prueba\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ValorUnitario = 30.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Importe = 60.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ObjetoImp = 02\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Base = 60.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Impuesto = 002\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TipoFactor = Tasa\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota = 0.160000\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Importe = 9.60\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveProdServ = 81111500\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Cantidad = 1\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveUnidad = E48\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Descripcion = Soporte sintético\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ValorUnitario = 40.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Importe = 40.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ObjetoImp = 02\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Base = 40.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Impuesto = 002\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TipoFactor = Tasa\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota = 0.160000\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Importe = 6.40\ncfdi:Comprobante/cfdi:Impuestos/@TotalImpuestosTrasladados = 16.00\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Base = 100.00\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Impuesto = 002\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TipoFactor = Tasa\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota = 0.160000\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Importe = 16.00\ncfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@Version = 1.1\ncfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@UUID = 00000000-0000-4000-8000-000000000003\ncfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@FechaTimbrado = 2026-11-24T10:01:00",
+    "modelo": null,
+    "paginas": 0
+  },
+  "revision_evidencia": {
+    "version": "lectura-cfdi-4.0-v1",
+    "origen_extraccion": "xml_cfdi",
+    "requiere_revision_humana": true,
+    "habilitado_para_decision_automatica": false,
+    "alcance": "Atributos copiados del XML recibido. No acredita validez fiscal ni consulta el SAT.",
+    "uuid_fiscal": "00000000-0000-4000-8000-000000000003",
+    "alertas_documento": [
+      "Lectura de atributos XML; no valida XSD, sellos, autenticidad ni estatus ante el SAT."
+    ],
+    "campos": {
+      "folio": {
+        "valor_leido": "XML-003",
+        "etiqueta_leida": "cfdi:Comprobante/@Folio",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "fecha": {
+        "valor_leido": "2026-11-24T10:00:00",
+        "etiqueta_leida": "cfdi:Comprobante/@Fecha",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "emisor_nombre": {
+        "valor_leido": "Proveedor Sintético SA de CV",
+        "etiqueta_leida": "cfdi:Comprobante/cfdi:Emisor/@Nombre",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "emisor_rfc": {
+        "valor_leido": null,
+        "etiqueta_leida": "cfdi:Comprobante/cfdi:Emisor/@Rfc",
+        "estado": "sin_valor_leido",
+        "motivos": [
+          "No hay un atributo compatible explícito; no se infiere su valor."
+        ]
+      },
+      "emisor_direccion": {
+        "valor_leido": null,
+        "etiqueta_leida": null,
+        "estado": "sin_valor_leido",
+        "motivos": [
+          "No hay un atributo compatible explícito; no se infiere su valor."
+        ]
+      },
+      "receptor_nombre": {
+        "valor_leido": "Grupo Financiero Demo SA de CV",
+        "etiqueta_leida": "cfdi:Comprobante/cfdi:Receptor/@Nombre",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "receptor_rfc": {
+        "valor_leido": "GFD960701AB4",
+        "etiqueta_leida": "cfdi:Comprobante/cfdi:Receptor/@Rfc",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "moneda": {
+        "valor_leido": "MXN",
+        "etiqueta_leida": "cfdi:Comprobante/@Moneda",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "subtotal": {
+        "valor_leido": "100.00",
+        "etiqueta_leida": "cfdi:Comprobante/@SubTotal",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "impuestos": {
+        "valor_leido": "16.00",
+        "etiqueta_leida": "cfdi:Comprobante/cfdi:Impuestos/@TotalImpuestosTrasladados",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "tasa_iva": {
+        "valor_leido": "0.160000",
+        "etiqueta_leida": "cfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "retenciones": {
+        "valor_leido": null,
+        "etiqueta_leida": "cfdi:Comprobante/cfdi:Impuestos/@TotalImpuestosRetenidos",
+        "estado": "sin_valor_leido",
+        "motivos": [
+          "No hay un atributo compatible explícito; no se infiere su valor."
+        ]
+      },
+      "total": {
+        "valor_leido": "116.00",
+        "etiqueta_leida": "cfdi:Comprobante/@Total",
+        "estado": "atributo_xml",
+        "motivos": []
+      },
+      "condiciones_pago": {
+        "valor_leido": "Contado",
+        "etiqueta_leida": "cfdi:Comprobante/@CondicionesDePago",
+        "estado": "atributo_xml",
+        "motivos": []
+      }
+    },
+    "conceptos_leidos": [
+      {
+        "descripcion": "Servicio de prueba",
+        "cantidad": "2",
+        "precio_unitario": "30.00",
+        "importe": "60.00"
+      },
+      {
+        "descripcion": "Soporte sintético",
+        "cantidad": "1",
+        "precio_unitario": "40.00",
+        "importe": "40.00"
+      }
+    ],
+    "conceptos_verificados": false,
+    "texto_completo": "cfdi:Comprobante/@Version = 4.0\ncfdi:Comprobante/@Serie = DEMO\ncfdi:Comprobante/@Folio = XML-003\ncfdi:Comprobante/@Fecha = 2026-11-24T10:00:00\ncfdi:Comprobante/@SubTotal = 100.00\ncfdi:Comprobante/@Moneda = MXN\ncfdi:Comprobante/@Total = 116.00\ncfdi:Comprobante/@TipoDeComprobante = I\ncfdi:Comprobante/@CondicionesDePago = Contado\ncfdi:Comprobante/@FormaPago = 03\ncfdi:Comprobante/@MetodoPago = PUE\ncfdi:Comprobante/@Exportacion = 01\ncfdi:Comprobante/@LugarExpedicion = 01219\ncfdi:Comprobante/cfdi:Emisor/@Nombre = Proveedor Sintético SA de CV\ncfdi:Comprobante/cfdi:Emisor/@RegimenFiscal = 601\ncfdi:Comprobante/cfdi:Receptor/@Rfc = GFD960701AB4\ncfdi:Comprobante/cfdi:Receptor/@Nombre = Grupo Financiero Demo SA de CV\ncfdi:Comprobante/cfdi:Receptor/@DomicilioFiscalReceptor = 01219\ncfdi:Comprobante/cfdi:Receptor/@RegimenFiscalReceptor = 601\ncfdi:Comprobante/cfdi:Receptor/@UsoCFDI = G03\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveProdServ = 81111500\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Cantidad = 2\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveUnidad = E48\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Descripcion = Servicio de prueba\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ValorUnitario = 30.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Importe = 60.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ObjetoImp = 02\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Base = 60.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Impuesto = 002\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TipoFactor = Tasa\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota = 0.160000\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Importe = 9.60\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveProdServ = 81111500\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Cantidad = 1\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ClaveUnidad = E48\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Descripcion = Soporte sintético\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ValorUnitario = 40.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@Importe = 40.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/@ObjetoImp = 02\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Base = 40.00\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Impuesto = 002\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TipoFactor = Tasa\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota = 0.160000\ncfdi:Comprobante/cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Importe = 6.40\ncfdi:Comprobante/cfdi:Impuestos/@TotalImpuestosTrasladados = 16.00\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Base = 100.00\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Impuesto = 002\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TipoFactor = Tasa\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@TasaOCuota = 0.160000\ncfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado/@Importe = 16.00\ncfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@Version = 1.1\ncfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@UUID = 00000000-0000-4000-8000-000000000003\ncfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@FechaTimbrado = 2026-11-24T10:01:00"
+  },
+  "reglas_offline": {
+    "caso_id": "F-9802",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "regla_id": "R-001",
+        "regla_version": "1.2",
+        "politica_id": "P-001",
+        "politica_version": "4.0",
+        "politica_seccion": "3. Datos obligatorios",
+        "efecto": "rechazo",
+        "severidad": "error",
+        "titulo": "Faltan datos obligatorios en la factura",
+        "texto": "La factura no muestra: rfc del proveedor. La política exige estos datos para toda factura de proveedor.",
+        "cifras": null,
+        "campos": [
+          "emisor_rfc"
+        ],
+        "filas": null,
+        "evidencia": "página 1",
+        "evidencia_detalle": null
+      }
+    ],
+    "resultado_sugerido": "rechazado",
+    "motivo": "No cumple: R-001 campos obligatorios de la factura"
+  },
+  "alcance": "Ejecución local del parser y motor reales, con contexto sintético. Sin HTTP real, S3 ni base de datos."
+}
