@@ -53,6 +53,29 @@ PALABRAS_CASOS = (
     "facturas",
 )
 
+PALABRAS_ANALISTA = (
+    "metrica",
+    "metricas",
+    "monto facturado",
+    "total facturado",
+    "importe facturado",
+    "numero de facturas",
+    "cantidad de facturas",
+    "facturas recibidas",
+    "facturas rechazadas",
+    "tasa de rechazo",
+    "porcentaje de rechazo",
+    "tasa de conciliacion",
+    "tiempo promedio de revision",
+    "facturas por regla",
+    "casos pendientes",
+    "monto pagado",
+    "pagos a tiempo",
+    "pagos puntuales",
+    "monto comprometido",
+    "clientes activos",
+)
+
 PALABRAS_FUERA_ALCANCE = (
     "pronostico del clima",
     "receta de cocina",
@@ -94,6 +117,9 @@ def clasificar_dominio(estado: EstadoChat) -> dict[str, Any]:
     if _contiene_alguna(pregunta, PALABRAS_FUERA_ALCANCE):
         dominio: DominioChat = "fuera_de_alcance"
 
+    elif _contiene_alguna(pregunta, PALABRAS_ANALISTA):
+        dominio = "analista"
+
     elif _contiene_alguna(pregunta, PALABRAS_GOBERNANZA):
         dominio = "gobernanza"
 
@@ -105,7 +131,7 @@ def clasificar_dominio(estado: EstadoChat) -> dict[str, Any]:
 
     dominios = (
         [dominio]
-        if dominio in ("gobernanza", "casos")
+        if dominio in ("gobernanza", "casos", "analista")
         else []
     )
 

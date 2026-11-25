@@ -179,19 +179,62 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
 
         self.cliente_mcp.ejecutar.assert_not_awaited()
 
-    async def test_metricas_no_invoca_herramientas_mcp(self):
-        eventos = await self.ejecutar_chat("consulta las métricas de ventas")
 
+    async def test_metrica_ejecuta_obtener_metrica(self):
+        pregunta = "¿Cuál fue el monto facturado?"
+
+        eventos = await self.ejecutar_chat(pregunta)
         respuesta = eventos[-1]
 
-        self.assertEqual(
-            respuesta.tipo,
-            TipoRespuesta.INFORMACION_GENERAL,
-        )
-        self.assertTrue(respuesta.simulado)
-        self.assertEqual(respuesta.fuentes, [])
+        self.assertEqual(respuesta.tipo, TipoRespuesta.DATOS)
+        self.assertFalse(respuesta.simulado)
+        self.assertEqual(respuesta.fuentes, ["obtener_metrica"])
 
-        self.cliente_mcp.ejecutar.assert_not_awaited()
+        self.cliente_mcp.ejecutar.assert_awaited_once_with(
+            "obtener_metrica",
+            {
+                "entrada": {
+                    "metrica": "monto_facturado",
+                    "dimensiones": [],
+                    "filtros": {},
+                }
+            },
+            ContextoUsuario(
+                usuario_id="usuario_demo",
+                rol="analista",
+            ),
+        )
+
+    async def test_paso_sse_muestra_definicion_y_sql(self):
+        self.cliente_mcp.ejecutar.return_value = SimpleNamespace(
+            structuredContent={
+                "metrica": "monto_facturado",
+                "etiqueta": "Monto facturado",
+                "definicion": "Suma del total de las facturas no rechazadas.",
+                "unidad": "MXN",
+                "sql": "SELECT SUM(total_mxn) FROM v_facturas",
+            }
+        )
+
+        eventos = await self.ejecutar_chat(
+            "¿Cuál fue el monto facturado?"
+        )
+
+        pasos = [
+            evento for evento in eventos
+            if isinstance(evento, PasoEvent)
+        ]
+
+        paso_ejecutor = next(
+            paso for paso in pasos
+            if paso.id == "ejecutor"
+            and paso.estado == EstadoPaso.COMPLETADO
+        )
+
+        self.assertIn("Monto facturado", paso_ejecutor.detalle)
+        self.assertIn("Suma del total", paso_ejecutor.detalle)
+        self.assertIn("SELECT SUM(total_mxn)", paso_ejecutor.detalle)
+
 
     async def test_respuesta_general(self):
         eventos = await self.ejecutar_chat("hola, ¿cómo estás?")
@@ -317,6 +360,58 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(len(errores), 1)
         self.assertEqual(errores[0].id, "ejecutor")
+
+    def test_matriz_preguntas_negocio_selecciona_metricas(self):
+        """Valida las 10 preguntas de negocio de S3-16."""
+
+        from backend.grafo_chat.enrutador import clasificar_dominio
+        from backend.grafo_chat.flujo import _seleccionar_herramienta
+
+        casos = [
+            ("monto facturado por proveedor", "monto_facturado", ["proveedor"]),
+            ("numero de facturas por mes", "numero_facturas", ["mes"]),
+            ("facturas rechazadas", "facturas_rechazadas", []),
+            ("tasa de rechazo", "tasa_rechazo", []),
+            ("tasa de conciliacion", "tasa_conciliacion", []),
+            ("tiempo promedio de revision", "tiempo_promedio_revision", []),
+            ("facturas por regla", "facturas_por_regla", ["regla"]),
+            ("casos pendientes", "casos_pendientes", []),
+            ("monto pagado", "monto_pagado", []),
+            ("pagos a tiempo", "pagos_a_tiempo", []),
+        ]
+
+        for pregunta, metrica_esperada, dimensiones_esperadas in casos:
+            with self.subTest(pregunta=pregunta):
+                clasificacion = clasificar_dominio({
+                    "pregunta": pregunta
+                })
+
+                self.assertEqual(
+                    clasificacion["dominio"],
+                    "analista",
+                )
+
+                herramienta, argumentos, aviso = _seleccionar_herramienta(
+                    "analista",
+                    pregunta,
+                    None,
+                )
+
+                self.assertEqual(herramienta, "obtener_metrica")
+                self.assertIsNone(aviso)
+
+                entrada = argumentos["entrada"]
+
+                self.assertEqual(
+                    entrada["metrica"],
+                    metrica_esperada,
+                )
+
+                self.assertEqual(
+                    entrada["dimensiones"],
+                    dimensiones_esperadas,
+                )
+
 
 
 if __name__ == "__main__":

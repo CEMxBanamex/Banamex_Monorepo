@@ -41,6 +41,9 @@ class Fragmento:
 
 
 def leer_politica(texto_md: str) -> tuple[MetaPolitica, str]:
+    # Normaliza saltos de línea para que LF y CRLF produzcan el mismo hash.
+    texto_md = texto_md.replace("\r\n", "\n").replace("\r", "\n")
+
     m = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)$", texto_md, re.S)
     if not m:
         raise ValueError("La política debe empezar con un bloque de metadatos entre líneas '---'.")

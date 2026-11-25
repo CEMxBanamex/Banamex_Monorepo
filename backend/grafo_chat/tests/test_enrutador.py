@@ -28,8 +28,19 @@ class TestEnrutador(unittest.TestCase):
     def test_general(self):
         self.assertEqual(self.clasificar("hola cómo estás"), "general")
 
-    def test_metricas_fuera_de_los_dos_dominios_ejecutables(self):
-        self.assertEqual(self.clasificar("métricas de ventas"), "general")
+    def test_metricas_se_clasifican_como_analista(self):
+        self.assertEqual(
+            self.clasificar("monto facturado"),
+            "analista",
+        )
+        self.assertEqual(
+            self.clasificar("métricas de ventas"),
+            "analista",
+        )
+        self.assertEqual(
+            self.clasificar("tasa de rechazo"),
+            "analista",
+        )
 
     def test_fuera_de_alcance(self):
         self.assertEqual(self.clasificar("pronóstico del clima"), "fuera_de_alcance")

@@ -10,6 +10,7 @@ from .tools.buscar_facturas import registrar as registrar_facturas
 from .tools.consultar_caso import registrar as registrar_casos
 from .tools.extraer_campos_factura_demo import registrar
 from .tools.gobernanza import registrar as registrar_gobernanza
+from .tools.obtener_metrica import registrar as registrar_metrica
 
 
 def crear_servidor() -> FastMCP:
@@ -20,6 +21,7 @@ def crear_servidor() -> FastMCP:
     registrar_casos(servidor)
     registrar_facturas(servidor)
     registrar_gobernanza(servidor)
+    registrar_metrica(servidor)
 
     return servidor
 

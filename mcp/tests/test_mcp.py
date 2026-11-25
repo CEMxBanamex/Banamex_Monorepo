@@ -44,6 +44,7 @@ async def probar_analista():
                 "buscar_politicas",
                 "consultar_glosario",
                 "consultar_calidad",
+                "obtener_metrica",
             }
 
             assert esperadas.issubset(nombres), f"Faltan herramientas: {esperadas - nombres}"
