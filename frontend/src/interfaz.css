@@ -152,3 +152,18 @@ body:has(.barra-acciones) .chat-lanzador { bottom: 108px; }
   height: 36px; min-height: 36px; max-height: min(180px, 25dvh);
   resize: none; overflow-y: hidden; padding: 6px 4px; line-height: 1.6;
 }
+
+/* Identidad de sesión: nombre, rol y correo completo en líneas separadas. */
+.shell:has(.correo-usuario) { grid-template-rows: minmax(64px, auto) 1fr; }
+.topbar .usuario:has(.correo-usuario) { min-width: 0; gap: 16px; padding: 6px 0; }
+.topbar .usuario:has(.correo-usuario) > div { min-width: 0; }
+.topbar .usuario:has(.correo-usuario) .txt { display: block; min-width: 0; max-width: 290px; line-height: 1.35; }
+.topbar .usuario:has(.correo-usuario) .nombre { font-size: 13px; overflow-wrap: anywhere; }
+.topbar .usuario:has(.correo-usuario) .rol { font-size: 11px; }
+.topbar .correo-usuario { display: block; font-size: 11px; color: #c9dce2; white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .shell:has(.correo-usuario) .topbar { flex-wrap: wrap; gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+  .topbar .usuario:has(.correo-usuario) { width: 100%; justify-content: space-between; }
+  .topbar .usuario:has(.correo-usuario) .txt { max-width: 100%; }
+  .topbar .usuario:has(.correo-usuario) .salir { flex-shrink: 0; font-size: 12px; }
+}
