@@ -188,7 +188,7 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
             respuesta.tipo,
             TipoRespuesta.INFORMACION_GENERAL,
         )
-        self.assertTrue(respuesta.simulado)
+        self.assertFalse(respuesta.simulado)
         self.assertEqual(respuesta.fuentes, [])
 
         self.cliente_mcp.ejecutar.assert_not_awaited()
@@ -202,7 +202,7 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
             respuesta.tipo,
             TipoRespuesta.INFORMACION_GENERAL,
         )
-        self.assertTrue(respuesta.simulado)
+        self.assertFalse(respuesta.simulado)
         self.assertEqual(respuesta.fuentes, [])
 
         self.cliente_mcp.ejecutar.assert_not_awaited()
@@ -216,7 +216,7 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
             respuesta.tipo,
             TipoRespuesta.INFORMACION_GENERAL,
         )
-        self.assertTrue(respuesta.simulado)
+        self.assertFalse(respuesta.simulado)
         self.assertEqual(respuesta.fuentes, [])
 
         self.cliente_mcp.ejecutar.assert_not_awaited()
