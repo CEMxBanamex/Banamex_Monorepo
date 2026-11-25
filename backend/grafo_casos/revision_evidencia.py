@@ -2,8 +2,10 @@
 import argparse
 import json
 from pathlib import Path
+import re
 
 from steward_datos.contratos import CAMPOS_FACTURA, FacturaExtraida
+from steward_datos.reglas import normalizar
 
 from .extraccion import _filtrar_evidencia, _texto
 
@@ -35,6 +37,16 @@ def revisar_evidencia(factura: FacturaExtraida) -> dict:
             if respaldo is None or respaldo.valor is None:
                 if not motivos:
                     motivos.append("No satisface las condiciones de respaldo del filtro anterior.")
+            if nombre == "folio":
+                if re.search(r"\br\W*f\W*c\b", etiqueta or "", re.IGNORECASE) or re.fullmatch(
+                        r"[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}", normalizar.rfc_normalizado(valor)):
+                    motivos.append("El supuesto folio parece un RFC o usa su etiqueta; comprobar su asignación.")
+                if valor.lstrip().startswith("#"):
+                    motivos.append("El folio incluye #; comprobar la identidad del folio al buscar duplicados.")
+            if nombre == "retenciones":
+                importe = normalizar.monto(valor)
+                if importe is not None and importe < 0:
+                    motivos.append("Retenciones tiene signo negativo; verificar su interpretación antes de calcular el total.")
             estado = "pendiente_revision" if motivos else "coincidencia_textual"
         campos[nombre] = {
             "valor_leido": valor,
@@ -43,6 +55,9 @@ def revisar_evidencia(factura: FacturaExtraida) -> dict:
             "estado": estado,
             "motivos": motivos,
         }
+    alertas_documento = []
+    if re.search(r"\bnota\s+de\s+credito\b", transcripcion) and _texto(factura.tipo_documento) == "factura":
+        alertas_documento.append("La transcripción menciona nota de crédito, pero el modelo clasificó factura. Revisar tipo de documento.")
     return {
         "version": "experimental-conservar-lectura-v1",
         "requiere_revision_humana": True,
@@ -53,6 +68,7 @@ def revisar_evidencia(factura: FacturaExtraida) -> dict:
             "No sustituye las reglas ni debe usarse como factura aprobada."
         ),
         "campos": campos,
+        "alertas_documento": alertas_documento,
         "conceptos_leidos": [c.model_dump(mode="json") for c in factura.conceptos],
         "conceptos_verificados": False,
         "texto_completo": factura.texto_completo,

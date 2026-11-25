@@ -123,6 +123,7 @@ class FlujoCasosReal:
         explicacion = redactar_evidencia(estado["resultado"], estado["politicas"])
         if self.revisar_lecturas:
             avisos = ["Revisión de evidencia (experimental): valores conservados, no verificados contra el documento."]
+            avisos.extend(estado["revision_evidencia"].get("alertas_documento", []))
             for nombre, campo in estado["revision_evidencia"]["campos"].items():
                 if campo["estado"] == "pendiente_revision":
                     avisos.append(f"{nombre}: {campo['valor_leido']!r}. " + " ".join(campo["motivos"]))

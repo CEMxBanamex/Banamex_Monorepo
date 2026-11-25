@@ -19,11 +19,16 @@ def main():
     parser.add_argument("--salida", required=True, help="Carpeta fuera del repositorio para guardar evidencia")
     parser.add_argument("--revisar-lecturas", action="store_true",
                         help="Experimental: conservar lecturas y exigir revisión humana con informe de evidencia")
+    parser.add_argument("--modelo", help="Modelo de visión para este proceso, por ejemplo qwen3-vl:4b-instruct")
+    parser.add_argument("--sin-interaccion", action="store_true",
+                        help="Guardar la pausa y terminar sin registrar una decisión del analista")
     args = parser.parse_args()
     if os.getenv("AUTH_MODE") != "dev":
         parser.error("Este piloto interactivo requiere AUTH_MODE=dev y una base de desarrollo.")
     if not os.getenv("DATABASE_URL"):
         parser.error("Definir DATABASE_URL para la base de desarrollo antes de ejecutar el piloto.")
+    if args.modelo:
+        os.environ["VISION_MODELO"] = args.modelo
     carpeta = Path(args.salida)
     carpeta.mkdir(parents=True, exist_ok=False)
     flujo = FlujoCasosReal(ContextoUsuario(usuario_id=args.usuario, rol="analista"),
@@ -34,6 +39,9 @@ def main():
     print(json.dumps(estado["factura"], ensure_ascii=False, indent=2))
     print(estado["explicacion"])
     print("El caso está en revisión. Comprueba el documento original antes de decidir.")
+    if args.sin_interaccion:
+        print(f"Sin decisión final. Evidencia: {(carpeta / 'pausa.json').resolve()}")
+        return
     while True:
         try:
             resultado = input("Decisión (aceptado/rechazado; salir conserva revisión): ").strip().lower()

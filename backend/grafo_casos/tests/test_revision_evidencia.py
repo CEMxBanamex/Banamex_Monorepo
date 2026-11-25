@@ -6,6 +6,28 @@ from backend.grafo_casos.revision_evidencia import revisar_evidencia
 
 
 class TestRevisionEvidencia(unittest.TestCase):
+    def test_advierte_rfc_usado_como_folio_retencion_negativa_y_nota_credito(self):
+        factura = FacturaExtraida.model_validate({"tipo_documento": "factura", "campos": {
+            "folio": {"valor": "AAA010101AAA", "etiqueta": "R.F.C."},
+            "retenciones": {"valor": "-100.00", "etiqueta": "Retenciones"},
+        }, "texto_completo": "R.F.C. AAA010101AAA\nRetenciones -100.00\nDocumento\nNota De Crédito"})
+        informe = revisar_evidencia(factura)
+        self.assertEqual(informe["campos"]["folio"]["valor_leido"], "AAA010101AAA")
+        self.assertEqual(informe["campos"]["folio"]["estado"], "pendiente_revision")
+        self.assertTrue(any("parece un RFC" in m for m in informe["campos"]["folio"]["motivos"]))
+        self.assertTrue(any("signo negativo" in m for m in informe["campos"]["retenciones"]["motivos"]))
+        self.assertEqual(factura.tipo_documento, "factura")
+        self.assertTrue(informe["alertas_documento"])
+
+    def test_folio_con_numeral_se_conserva_y_advierte_comparacion_duplicados(self):
+        factura = FacturaExtraida.model_validate({"campos": {
+            "folio": {"valor": "#A-1234", "etiqueta": "Folio"},
+        }, "texto_completo": "Folio #A-1234"})
+        campo = revisar_evidencia(factura)["campos"]["folio"]
+        self.assertEqual(campo["valor_leido"], "#A-1234")
+        self.assertEqual(campo["estado"], "pendiente_revision")
+        self.assertTrue(any("duplicados" in m for m in campo["motivos"]))
+
     def test_conserva_lecturas_sin_respaldar_sin_declararlas_verificadas(self):
         factura = FacturaExtraida.model_validate({"campos": {
             "folio": {"valor": "F-9", "etiqueta": "Folio"},
