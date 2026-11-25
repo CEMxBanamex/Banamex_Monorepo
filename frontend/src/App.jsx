@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react'
-import { LayoutGrid } from 'lucide-react'
+import { useCallback, useEffect, useState } from 'react'
+import { LayoutGrid, Bot, X, Moon, Sun } from 'lucide-react'
 import { Shell, Toast } from './components.jsx'
 import { USUARIOS, CASOS } from './data.js'
 import Login from './screens/Login.jsx'
@@ -11,6 +11,7 @@ import DetalleFactura from './screens/Detalle.jsx'
 import Validacion from './screens/Validacion.jsx'
 import Bitacora from './screens/Bitacora.jsx'
 import Asistente from './screens/Asistente.jsx'
+import './interfaz.css'
 
 const caso = (id) => CASOS.find((c) => c.id === id)
 const NUEVO = { id: 'F-1043', archivo: 'factura_1043.pdf', tipo: 'Factura', estado: 'revision', resultado: 'humana' }
@@ -43,9 +44,23 @@ export default function App() {
   const [vista, setVista] = useState({ pantalla: 'login' })
   const [toast, setToast] = useState(null)
   const [menu, setMenu] = useState(false)
+  const [chatAbierto, setChatAbierto] = useState(false)
+  const [tema, setTema] = useState(() => {
+    try { return localStorage.getItem('dsa-tema') || 'claro' } catch { return 'claro' }
+  })
+  useEffect(() => {
+    document.documentElement.dataset.tema = tema
+    document.documentElement.style.colorScheme = tema === 'oscuro' ? 'dark' : 'light'
+    try { localStorage.setItem('dsa-tema', tema) } catch { /* Almacenamiento no disponible. */ }
+  }, [tema])
+  useEffect(() => {
+    const cerrar = (e) => { if (e.key === 'Escape') setChatAbierto(false) }
+    window.addEventListener('keydown', cerrar)
+    return () => window.removeEventListener('keydown', cerrar)
+  }, [])
   const cerrarToast = useCallback(() => setToast(null), [])
 
-  const ir = (pantalla) => { setVista({ pantalla, variante: 'normal' }); window.scrollTo(0, 0) }
+  const ir = (pantalla) => { if (pantalla === 'asistente') { setChatAbierto(true); return }; setVista({ pantalla, variante: 'normal' }); window.scrollTo(0, 0) }
   const abrirCaso = (c) => {
     if (CASOS_REALES) { setVista({ pantalla: 'factura', caso: c.id }); return }
     setVista(c.tipo === 'Factura' || c.variante === 'error'
@@ -97,24 +112,30 @@ export default function App() {
       pagina = <Bitacora toast={setToast} />
     }
     contenido = (
-      <Shell activo={activo} usuario={usuario} ir={ir} onSalir={() => setVista({ pantalla: 'login' })}>
-        {pantalla === 'factura' || pantalla === 'validacion' ? (
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {pagina}
-            <Asistente key={vista.caso} casoId={vista.caso} />
-          </div>
-        ) : (
-          pagina
-        )}
-      </Shell>
+      <Shell activo={activo} usuario={usuario} ir={ir} onSalir={() => { setChatAbierto(false); setVista({ pantalla: 'login' }) }}>
+        <div className={`espacio-trabajo ${chatAbierto ? 'chat-abierto' : ''}`}>
+          <div className="pagina-trabajo">{pagina}</div>
+          <aside className="chat-panel" hidden={!chatAbierto} aria-label="Panel del asistente">
+            <div className="chat-panel-barra">
+              <div><Bot size={22} /><strong>Asistente</strong><span>{vista.caso ? 'Caso ' + vista.caso : 'Data Steward'}</span></div>
+              <button className="btn btn-icono" aria-label="Cerrar asistente" onClick={() => setChatAbierto(false)}><X size={19} /></button>
+            </div>
+            <Asistente key={vista.caso || 'general'} casoId={vista.caso || null} />
+          </aside>
+        </div>
+            </Shell>
     )
   }
 
   return (
     <>
       {contenido}
+      <button className="tema-boton" aria-label={tema === 'oscuro' ? 'Activar modo claro' : 'Activar modo oscuro'} onClick={() => setTema(tema === 'oscuro' ? 'claro' : 'oscuro')}>
+        {tema === 'oscuro' ? <Sun size={19} /> : <Moon size={19} />}
+      </button>
+      {pantalla !== 'login' && !chatAbierto && <button className="chat-lanzador" aria-label="Abrir asistente" aria-expanded={false} onClick={() => setChatAbierto(true)}><Bot size={23} /><span>Asistente</span></button>}
       <Toast toast={toast} onCerrar={cerrarToast} />
-      {!CASOS_REALES && <div className="demo">
+      {!CASOS_REALES && !chatAbierto && <div className="demo">
         {menu && (
           <div className="demo-menu">
             {DEMO.map(([grupo, items]) => (

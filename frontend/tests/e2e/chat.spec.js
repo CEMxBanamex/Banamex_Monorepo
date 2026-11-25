@@ -19,7 +19,7 @@ test.beforeEach(async ({ page }) => {
     exact: true,
   }).click()
   await page.getByRole('button', {
-    name: 'Asistente',
+    name: 'Abrir asistente',
     exact: true,
   }).click()
 })
@@ -115,6 +115,7 @@ for (const ancho of [1280, 390]) {
   test('chat contextual con fuentes, ancho ' + ancho, async ({ page }) => {
     await page.setViewportSize({ width: ancho, height: 800 })
 
+    await page.getByRole('button', { name: 'Cerrar asistente' }).click()
     await page.getByRole('button', {
       name: 'Casos',
       exact: true,
@@ -124,11 +125,10 @@ for (const ancho of [1280, 390]) {
       hasText: 'F-1042',
     }).click()
 
+    await page.getByRole('button', { name: 'Abrir asistente' }).click()
     const panel = chat(page)
 
-    await expect(panel.getByRole('heading', {
-      name: 'Preguntas sobre F-1042',
-    })).toBeVisible()
+    await expect(page.getByText('Caso F-1042', { exact: true })).toBeVisible()
 
     const solicitud = page.waitForRequest((r) =>
       r.url().endsWith('/api/chat/stream') &&

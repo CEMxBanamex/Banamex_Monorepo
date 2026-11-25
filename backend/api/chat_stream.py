@@ -1,29 +1,26 @@
-"""Transmisión SSE del grafo de chat de S1-33.
-
-Integración de desarrollo: el grafo todavía utiliza herramientas simuladas.
-Guarda turnos completados cuando se proporciona conversacion_id.
-"""
+"""Transmisión SSE del chat con identidad por solicitud e historial persistente."""
 
 import logging
-import os
 from collections.abc import AsyncIterator
 from uuid import UUID
 
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import select
-from backend.api.historial_chat import (
-    HistorialNoDisponible, obtener_conversacion, guardar_turno,
-)
-from steward_datos.db.sesion import sesion
-from steward_datos.db.models import Mensaje
-
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
+from sqlalchemy import select
+from sqlalchemy.exc import SQLAlchemyError
 
+from backend.api.autenticacion import resolver_usuario
 from backend.api.chat_provisional import ConsultaChat, formar_evento
+from backend.api.historial_chat import (
+    HistorialNoDisponible,
+    guardar_turno,
+    obtener_conversacion,
+)
 from backend.grafo_chat.flujo import FlujoChat
 from contratos.eventos_sse import PasoEvent, RespuestaEvent
 from steward_datos.contratos import ContextoUsuario
+from steward_datos.db.models import Mensaje
+from steward_datos.db.sesion import sesion
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/chat", tags=["Chat"])
@@ -33,30 +30,11 @@ class ConsultaStream(ConsultaChat):
     conversacion_id: UUID | None = None
 
 
-def obtener_usuario_chat() -> ContextoUsuario:
-    """Identidad configurada en el servidor, solo para desarrollo.
-
-    No toma usuario ni rol del cuerpo de la pregunta.
-    La autenticación de producción debe sustituir esta dependencia.
-    """
-    if os.getenv("AUTH_MODE", "").strip().lower() != "dev":
-        raise HTTPException(
-            status_code=503,
-            detail="La integración del chat requiere autenticación configurada.",
-        )
-
-    usuario_id = os.getenv("CHAT_DEV_USUARIO", "dev-ana").strip()
-
-    if not usuario_id:
-        raise HTTPException(
-            status_code=503,
-            detail="Falta configurar el usuario de desarrollo del chat.",
-        )
-
-    return ContextoUsuario(
-        usuario_id=usuario_id,
-        rol="analista",
-    )
+def obtener_usuario_chat(
+    usuario: ContextoUsuario = Depends(resolver_usuario),
+) -> ContextoUsuario:
+    """Comparte la identidad autenticada entre el stream y el historial."""
+    return usuario
 
 
 async def transmitir(
@@ -64,9 +42,10 @@ async def transmitir(
     usuario: ContextoUsuario,
     historial=None,
 ) -> AsyncIterator[str]:
-    """Convierte los modelos del grafo en eventos SSE.
+    """Convierte los eventos del grafo al formato SSE.
 
-    Ante un fallo, termina con un paso de error y no inventa una respuesta.
+    Guarda los turnos completados cuando existe conversacion_id.
+    Ante un fallo, emite un paso de error sin inventar una respuesta.
     """
     pasos = []
     respuesta_recibida = False
@@ -84,6 +63,7 @@ async def transmitir(
         ):
             if isinstance(evento, PasoEvent):
                 pasos.append(evento)
+
                 if evento.estado == "error":
                     error_emitido = True
 
@@ -96,9 +76,14 @@ async def transmitir(
                 if consulta.conversacion_id is not None:
                     with sesion() as s:
                         guardar_turno(
-                            s, usuario, consulta.conversacion_id,
-                            consulta.mensaje, pasos, evento,
+                            s,
+                            usuario,
+                            consulta.conversacion_id,
+                            consulta.mensaje,
+                            pasos,
+                            evento,
                         )
+
                 respuesta_recibida = True
                 yield formar_evento("respuesta", evento)
                 return
@@ -132,8 +117,17 @@ async def transmitir(
             "description": "Pasos y respuesta del grafo de chat.",
             "content": {"text/event-stream": {}},
         },
+        401: {
+            "description": "Falta una identidad válida.",
+        },
+        403: {
+            "description": "El usuario no tiene un rol autorizado.",
+        },
+        404: {
+            "description": "Conversación o caso no disponible.",
+        },
         503: {
-            "description": "Autenticación de desarrollo no configurada.",
+            "description": "Autenticación o historial no disponibles.",
         },
     },
 )
@@ -142,27 +136,67 @@ def consultar_chat_stream(
     usuario: ContextoUsuario = Depends(obtener_usuario_chat),
 ) -> StreamingResponse:
     historial = []
+
     if consulta.conversacion_id is not None:
         try:
             with sesion() as s:
-                c = obtener_conversacion(s, usuario, consulta.conversacion_id)
-                if consulta.caso_id is not None and consulta.caso_id != c.caso_id:
-                    raise HTTPException(422, 'El caso no coincide con la conversación')
-                consulta = consulta.model_copy(update={'caso_id': c.caso_id})
-                anteriores = list(s.scalars(
-                    select(Mensaje).where(Mensaje.conversacion_id == c.id)
-                    .order_by(Mensaje.id.desc()).limit(50)
-                ))
-                roles = {'usuario': 'user', 'asistente': 'assistant', 'sistema': 'system'}
+                conversacion = obtener_conversacion(
+                    s,
+                    usuario,
+                    consulta.conversacion_id,
+                )
+
+                if (
+                    consulta.caso_id is not None
+                    and consulta.caso_id != conversacion.caso_id
+                ):
+                    raise HTTPException(
+                        status_code=422,
+                        detail="El caso no coincide con la conversación",
+                    )
+
+                consulta = consulta.model_copy(
+                    update={"caso_id": conversacion.caso_id},
+                )
+
+                anteriores = list(
+                    s.scalars(
+                        select(Mensaje)
+                        .where(
+                            Mensaje.conversacion_id == conversacion.id,
+                        )
+                        .order_by(Mensaje.id.desc())
+                        .limit(50)
+                    )
+                )
+
+                roles = {
+                    "usuario": "user",
+                    "asistente": "assistant",
+                    "sistema": "system",
+                }
+
                 historial = [
-                    {'role': roles[m.rol], 'content': m.contenido}
-                    for m in reversed(anteriores)
+                    {
+                        "role": roles[mensaje.rol],
+                        "content": mensaje.contenido,
+                    }
+                    for mensaje in reversed(anteriores)
                 ]
+
         except HistorialNoDisponible:
-            raise HTTPException(404, 'Conversación o caso no disponible') from None
+            raise HTTPException(
+                status_code=404,
+                detail="Conversación o caso no disponible",
+            ) from None
+
         except SQLAlchemyError:
-            logger.exception('No se pudo recuperar el historial del chat')
-            raise HTTPException(503, 'El historial no está disponible temporalmente') from None
+            logger.exception("No se pudo recuperar el historial del chat.")
+            raise HTTPException(
+                status_code=503,
+                detail="El historial no está disponible temporalmente",
+            ) from None
+
     return StreamingResponse(
         transmitir(consulta, usuario, historial),
         media_type="text/event-stream",

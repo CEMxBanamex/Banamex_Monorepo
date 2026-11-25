@@ -1,0 +1,431 @@
+{
+    "documento_url":  null,
+    "id":  "F-1100",
+    "archivo":  "piloto_012.png",
+    "tipo":  "Factura",
+    "estado":  "revision",
+    "resultado_sugerido":  "humana",
+    "resultado_final":  null,
+    "explicacion":  "RevisiÃ³n de evidencia (experimental): valores conservados, no verificados contra el documento.\nretenciones: sin valor leÃ­do; no demuestra ausencia en el documento.\nLos conceptos y las asociaciones de etiquetas y roles requieren revisiÃ³n del original.\nRevisiÃ³n humana requerida: lecturas conservadas sin verificaciÃ³n visual. Las reglas se calcularon sobre esas lecturas; sus hallazgos deben contrastarse con el documento original. No se dispone de confianza calibrada.\nNo se conoce la confianza de lectura: El modelo de visiÃ³n no informÃ³ la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. (R-003 v1.0 Â· P-004 v1.0 Â§2. Umbral de confianza). Fragmento recuperado. Evidencia: pÃ¡gina 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total.\nEl total no coincide con subtotal mÃ¡s impuestos: La suma de subtotal e impuestos da un valor distinto al total impreso en la factura. (R-014 v2.1 Â· P-002 v3.0 Â§5. Total de la factura). Solo cita del catÃ¡logo; sin fragmento recuperado. Evidencia: pÃ¡gina 1, total. Esperado: 185,484.64. Encontrado: 185,884.64. Diferencia: 400.00.\nPosible factura duplicada: El caso F-9502 ya tiene una factura del mismo emisor con el folio 62282276, pero el archivo es distinto. Puede ser una reexpediciÃ³n. (R-015 v1.0 Â· P-003 v1.2 Â§2. Duplicados). Fragmento recuperado. Evidencia: caso F-9502.\nLa decisiÃ³n final corresponde al analista.",
+    "fecha":  "2026-11-25T00:58:33.068106+00:00",
+    "responsable":  "dev-ana",
+    "variante":  "normal",
+    "campos":  [
+                   {
+                       "id":  "emisor_nombre",
+                       "etiqueta":  "Proveedor",
+                       "valor":  "BermÃºdez Consultores SAPI de CV",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "fecha",
+                       "etiqueta":  "Fecha",
+                       "valor":  "21/07/2026",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "subtotal",
+                       "etiqueta":  "Subtotal",
+                       "valor":  "159,900.55",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "impuestos",
+                       "etiqueta":  "Impuestos",
+                       "valor":  "25,584.09",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "total",
+                       "etiqueta":  "Total",
+                       "valor":  "$ 185,884.64 MXN",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "moneda",
+                       "etiqueta":  "Moneda",
+                       "valor":  "MXN",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "folio",
+                       "etiqueta":  "Folio",
+                       "valor":  "62282276",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "emisor_rfc",
+                       "etiqueta":  "RFC del proveedor",
+                       "valor":  "BCS091217EXF",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "receptor_nombre",
+                       "etiqueta":  "Receptor",
+                       "valor":  "Grupo Financiero Demo SA de CV",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "receptor_rfc",
+                       "etiqueta":  "RFC del receptor",
+                       "valor":  "GFD960701AB4",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "tasa_iva",
+                       "etiqueta":  "Tasa de IVA",
+                       "valor":  "16 %",
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "coincidencia_textual"
+                   },
+                   {
+                       "id":  "retenciones",
+                       "etiqueta":  "Retenciones",
+                       "valor":  null,
+                       "conf":  null,
+                       "valor_corregido":  null,
+                       "estado_evidencia":  "sin_valor_leido"
+                   }
+               ],
+    "hallazgos":  [
+                      {
+                          "id":  "R-003-0",
+                          "tipo":  "info",
+                          "titulo":  "No se conoce la confianza de lectura",
+                          "texto":  "El modelo de visiÃ³n no informÃ³ la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+                          "cifras":  null,
+                          "regla":  "R-003",
+                          "version":  "1.0",
+                          "evidencia":  "pÃ¡gina 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total"
+                      },
+                      {
+                          "id":  "R-014-1",
+                          "tipo":  "error",
+                          "titulo":  "El total no coincide con subtotal mÃ¡s impuestos",
+                          "texto":  "La suma de subtotal e impuestos da un valor distinto al total impreso en la factura.",
+                          "cifras":  [
+                                         [
+                                             "Esperado",
+                                             "185,484.64"
+                                         ],
+                                         [
+                                             "Encontrado",
+                                             "185,884.64"
+                                         ],
+                                         [
+                                             "Diferencia",
+                                             "400.00"
+                                         ]
+                                     ],
+                          "regla":  "R-014",
+                          "version":  "2.1",
+                          "evidencia":  "pÃ¡gina 1, total"
+                      },
+                      {
+                          "id":  "R-015-2",
+                          "tipo":  "adv",
+                          "titulo":  "Posible factura duplicada",
+                          "texto":  "El caso F-9502 ya tiene una factura del mismo emisor con el folio 62282276, pero el archivo es distinto. Puede ser una reexpediciÃ³n.",
+                          "cifras":  null,
+                          "regla":  "R-015",
+                          "version":  "1.0",
+                          "evidencia":  "caso F-9502"
+                      }
+                  ],
+    "eventos":  [
+                    {
+                        "id":  "EV-5267",
+                        "fecha":  "2026-11-25T00:58:58.083351+00:00",
+                        "quien":  "Agente",
+                        "accion":  "extraccion",
+                        "tono":  "info",
+                        "detalle":  "Lecturas conservadas sin verificaciÃ³n visual; requiere revisiÃ³n humana.",
+                        "regla":  null,
+                        "extra":  null
+                    },
+                    {
+                        "id":  "EV-5266",
+                        "fecha":  "2026-11-25T00:58:58.083351+00:00",
+                        "quien":  "Agente",
+                        "accion":  "resultado_sugerido",
+                        "tono":  "info",
+                        "detalle":  "Resultado sugerido: humana",
+                        "regla":  null,
+                        "extra":  null
+                    },
+                    {
+                        "id":  "EV-5265",
+                        "fecha":  "2026-11-25T00:58:58.083351+00:00",
+                        "quien":  "Agente",
+                        "accion":  "regla_aplicada",
+                        "tono":  "info",
+                        "detalle":  "Posible factura duplicada",
+                        "regla":  "R-015 Â· v1.0",
+                        "extra":  null
+                    },
+                    {
+                        "id":  "EV-5264",
+                        "fecha":  "2026-11-25T00:58:58.083351+00:00",
+                        "quien":  "Agente",
+                        "accion":  "regla_aplicada",
+                        "tono":  "info",
+                        "detalle":  "El total no coincide con subtotal mÃ¡s impuestos",
+                        "regla":  "R-014 Â· v2.1",
+                        "extra":  null
+                    },
+                    {
+                        "id":  "EV-5263",
+                        "fecha":  "2026-11-25T00:58:58.083351+00:00",
+                        "quien":  "Agente",
+                        "accion":  "regla_aplicada",
+                        "tono":  "info",
+                        "detalle":  "No se conoce la confianza de lectura",
+                        "regla":  "R-003 Â· v1.0",
+                        "extra":  null
+                    },
+                    {
+                        "id":  "EV-5262",
+                        "fecha":  "2026-11-25T00:58:58.083351+00:00",
+                        "quien":  "Agente",
+                        "accion":  "extraccion",
+                        "tono":  "info",
+                        "detalle":  "13 campos extraÃ­dos",
+                        "regla":  null,
+                        "extra":  null
+                    },
+                    {
+                        "id":  "EV-5261",
+                        "fecha":  "2026-11-25T00:58:33.068106+00:00",
+                        "quien":  "dev-ana",
+                        "accion":  "caso_creado",
+                        "tono":  "info",
+                        "detalle":  "Factura recibida para anÃ¡lisis.",
+                        "regla":  null,
+                        "extra":  null
+                    }
+                ],
+    "revision_evidencia":  {
+                               "campos":  {
+                                              "fecha":  {
+                                                            "estado":  "coincidencia_textual",
+                                                            "motivos":  [
+
+                                                                        ],
+                                                            "valor_leido":  "21/07/2026",
+                                                            "etiqueta_leida":  "Fecha de emisiÃ³n",
+                                                            "valor_filtro_anterior":  "21/07/2026"
+                                                        },
+                                              "folio":  {
+                                                            "estado":  "coincidencia_textual",
+                                                            "motivos":  [
+
+                                                                        ],
+                                                            "valor_leido":  "62282276",
+                                                            "etiqueta_leida":  "Serie y folio",
+                                                            "valor_filtro_anterior":  "62282276"
+                                                        },
+                                              "total":  {
+                                                            "estado":  "coincidencia_textual",
+                                                            "motivos":  [
+
+                                                                        ],
+                                                            "valor_leido":  "$ 185,884.64 MXN",
+                                                            "etiqueta_leida":  "Total",
+                                                            "valor_filtro_anterior":  "$ 185,884.64 MXN"
+                                                        },
+                                              "moneda":  {
+                                                             "estado":  "coincidencia_textual",
+                                                             "motivos":  [
+
+                                                                         ],
+                                                             "valor_leido":  "MXN",
+                                                             "etiqueta_leida":  "Moneda",
+                                                             "valor_filtro_anterior":  "MXN"
+                                                         },
+                                              "subtotal":  {
+                                                               "estado":  "coincidencia_textual",
+                                                               "motivos":  [
+
+                                                                           ],
+                                                               "valor_leido":  "159,900.55",
+                                                               "etiqueta_leida":  "Subtotal",
+                                                               "valor_filtro_anterior":  "159,900.55"
+                                                           },
+                                              "tasa_iva":  {
+                                                               "estado":  "coincidencia_textual",
+                                                               "motivos":  [
+
+                                                                           ],
+                                                               "valor_leido":  "16 %",
+                                                               "etiqueta_leida":  "IVA 16 %",
+                                                               "valor_filtro_anterior":  "16 %"
+                                                           },
+                                              "impuestos":  {
+                                                                "estado":  "coincidencia_textual",
+                                                                "motivos":  [
+
+                                                                            ],
+                                                                "valor_leido":  "25,584.09",
+                                                                "etiqueta_leida":  "IVA 16 %",
+                                                                "valor_filtro_anterior":  "25,584.09"
+                                                            },
+                                              "emisor_rfc":  {
+                                                                 "estado":  "coincidencia_textual",
+                                                                 "motivos":  [
+
+                                                                             ],
+                                                                 "valor_leido":  "BCS091217EXF",
+                                                                 "etiqueta_leida":  "RFC emisor",
+                                                                 "valor_filtro_anterior":  "BCS091217EXF"
+                                                             },
+                                              "retenciones":  {
+                                                                  "estado":  "sin_valor_leido",
+                                                                  "motivos":  [
+                                                                                  "El modelo no entregÃ³ un valor; esto no demuestra ausencia en el documento."
+                                                                              ],
+                                                                  "valor_leido":  null,
+                                                                  "etiqueta_leida":  null,
+                                                                  "valor_filtro_anterior":  null
+                                                              },
+                                              "receptor_rfc":  {
+                                                                   "estado":  "coincidencia_textual",
+                                                                   "motivos":  [
+
+                                                                               ],
+                                                                   "valor_leido":  "GFD960701AB4",
+                                                                   "etiqueta_leida":  "RFC",
+                                                                   "valor_filtro_anterior":  "GFD960701AB4"
+                                                               },
+                                              "emisor_nombre":  {
+                                                                    "estado":  "coincidencia_textual",
+                                                                    "motivos":  [
+
+                                                                                ],
+                                                                    "valor_leido":  "BermÃºdez Consultores SAPI de CV",
+                                                                    "etiqueta_leida":  null,
+                                                                    "valor_filtro_anterior":  "BermÃºdez Consultores SAPI de CV"
+                                                                },
+                                              "receptor_nombre":  {
+                                                                      "estado":  "coincidencia_textual",
+                                                                      "motivos":  [
+
+                                                                                  ],
+                                                                      "valor_leido":  "Grupo Financiero Demo SA de CV",
+                                                                      "etiqueta_leida":  "RECEPTOR",
+                                                                      "valor_filtro_anterior":  "Grupo Financiero Demo SA de CV"
+                                                                  },
+                                              "condiciones_pago":  {
+                                                                       "estado":  "coincidencia_textual",
+                                                                       "motivos":  [
+
+                                                                                   ],
+                                                                       "valor_leido":  "Pago a 30 dÃ­as",
+                                                                       "etiqueta_leida":  "Condiciones de pago",
+                                                                       "valor_filtro_anterior":  "Pago a 30 dÃ­as"
+                                                                   },
+                                              "emisor_direccion":  {
+                                                                       "estado":  "coincidencia_textual",
+                                                                       "motivos":  [
+
+                                                                                   ],
+                                                                       "valor_leido":  "Avenida Nuevo LeÃ³n 825, San Fabiola de la MontaÃ±a",
+                                                                       "etiqueta_leida":  null,
+                                                                       "valor_filtro_anterior":  "Avenida Nuevo LeÃ³n 825, San Fabiola de la MontaÃ±a"
+                                                                   }
+                                          },
+                               "alcance":  "Informe de consistencia con otra salida del mismo modelo. No verifica la imagen, la asociaciÃ³n de etiquetas o roles, ni la exactitud de los conceptos. No sustituye las reglas ni debe usarse como factura aprobada.",
+                               "version":  "experimental-conservar-lectura-v1",
+                               "texto_completo":  "BermÃºdez Consultores SAPI de CV\nAvenida Nuevo LeÃ³n 825, San Fabiola de la MontaÃ±a\nRFC emisor BCS091217EXF\n\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\n\nDocumento\nFactura\nSerie y folio\n62282276\nFecha de emisiÃ³n\n21/07/2026\nMoneda\nMXN\n\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultorÃ­a\n5\n19,485.14\n97,425.70\nDesarrollo de reporte analÃ­tico\n1\n25,827.34\n25,827.34\nMantenimiento preventivo de equipo\n4\n7,436.81\n29,747.24\nPapelerÃ­a y artÃ­culos de oficina\n1\n2,275.34\n2,275.34\nHospedaje de servidores\n1\n4,624.93\n4,624.93\n\nSubtotal\n159,900.55\nIVA 16 %\n25,584.09\nTotal\n$ 185,884.64 MXN\n\nCondiciones de pago: Pago a 30 dÃ­as",
+                               "conceptos_leidos":  [
+                                                        {
+                                                            "importe":  "97,425.70",
+                                                            "cantidad":  "5",
+                                                            "descripcion":  "Servicio de consultorÃ­a",
+                                                            "precio_unitario":  "19,485.14"
+                                                        },
+                                                        {
+                                                            "importe":  "25,827.34",
+                                                            "cantidad":  "1",
+                                                            "descripcion":  "Desarrollo de reporte analÃ­tico",
+                                                            "precio_unitario":  "25,827.34"
+                                                        },
+                                                        {
+                                                            "importe":  "29,747.24",
+                                                            "cantidad":  "4",
+                                                            "descripcion":  "Mantenimiento preventivo de equipo",
+                                                            "precio_unitario":  "7,436.81"
+                                                        },
+                                                        {
+                                                            "importe":  "2,275.34",
+                                                            "cantidad":  "1",
+                                                            "descripcion":  "PapelerÃ­a y artÃ­culos de oficina",
+                                                            "precio_unitario":  "2,275.34"
+                                                        },
+                                                        {
+                                                            "importe":  "4,624.93",
+                                                            "cantidad":  "1",
+                                                            "descripcion":  "Hospedaje de servidores",
+                                                            "precio_unitario":  "4,624.93"
+                                                        }
+                                                    ],
+                               "alertas_documento":  [
+
+                                                     ],
+                               "conceptos_verificados":  false,
+                               "requiere_revision_humana":  true,
+                               "habilitado_para_decision_automatica":  false
+                           },
+    "conceptos":  [
+                      {
+                          "descripcion":  "Servicio de consultorÃ­a",
+                          "cantidad":  "5",
+                          "precio_unitario":  "19,485.14",
+                          "importe":  "97,425.70"
+                      },
+                      {
+                          "descripcion":  "Desarrollo de reporte analÃ­tico",
+                          "cantidad":  "1",
+                          "precio_unitario":  "25,827.34",
+                          "importe":  "25,827.34"
+                      },
+                      {
+                          "descripcion":  "Mantenimiento preventivo de equipo",
+                          "cantidad":  "4",
+                          "precio_unitario":  "7,436.81",
+                          "importe":  "29,747.24"
+                      },
+                      {
+                          "descripcion":  "PapelerÃ­a y artÃ­culos de oficina",
+                          "cantidad":  "1",
+                          "precio_unitario":  "2,275.34",
+                          "importe":  "2,275.34"
+                      },
+                      {
+                          "descripcion":  "Hospedaje de servidores",
+                          "cantidad":  "1",
+                          "precio_unitario":  "4,624.93",
+                          "importe":  "4,624.93"
+                      }
+                  ]
+}

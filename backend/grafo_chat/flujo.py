@@ -21,6 +21,8 @@ from contratos.eventos_sse import (
 
 from .enrutador import _normalizar, clasificar_dominio
 from .estado import EstadoChat, RolUsuario
+from .presentacion_caso import formatear_caso
+from .presentacion_bitacora import formatear_bitacora
 from .herramientas_demo import (
     responder_fuera_alcance,
     responder_general,
@@ -489,6 +491,16 @@ class FlujoChat:
                 f"Resultado de {herramienta}:\n{respuesta}"
             )
             fuentes.append(herramienta)
+            if herramienta == "consultar_caso" and any(
+                palabra in pregunta.lower() for palabra in ("rechaz", "bitácora", "bitacora", "historial")
+            ):
+                bitacora = await self._cliente_mcp.ejecutar(
+                    "consultar_bitacora",
+                    {"entrada": {"caso_id": argumentos["entrada"]["caso_id"], "limite": 50}},
+                    usuario,
+                )
+                respuestas.append(formatear_bitacora(bitacora))
+                fuentes.append("consultar_bitacora")
             ejecutados.append(dominio_objetivo)
 
         return {
