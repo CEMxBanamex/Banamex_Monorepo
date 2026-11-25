@@ -39,3 +39,6 @@ class EstadoChat(TypedDict, total=False):
     simulado: bool
 
     pasos: list[dict[str, Any]]
+
+    # Plan del agente (agente.py): acción, motivo, herramienta y argumentos validados.
+    plan: dict[str, Any] | None

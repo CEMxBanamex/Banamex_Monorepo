@@ -19,7 +19,7 @@ from contratos.eventos_sse import (
     TipoRespuesta,
 )
 
-from . import conversacion
+from . import agente, conversacion
 from .enrutador import _normalizar, clasificar_dominio
 from .estado import EstadoChat, RolUsuario
 from .presentacion_caso import formatear_caso
@@ -374,7 +374,7 @@ class FlujoChat:
 
         grafo = StateGraph(EstadoChat)
 
-        grafo.add_node("enrutador", clasificar_dominio)
+        grafo.add_node("enrutador", self._enrutar)
         grafo.add_node("ejecutor", self._ejecutar_dominios)
 
         grafo.add_edge(START, "enrutador")
@@ -382,6 +382,42 @@ class FlujoChat:
         grafo.add_edge("ejecutor", END)
 
         self._grafo = grafo.compile()
+
+    async def _enrutar(self, estado: EstadoChat) -> dict:
+        """El modelo planea si el agente está activo; si no, o si el plan no es válido, palabras clave."""
+
+        plan = await agente.planear(
+            estado["pregunta"],
+            estado.get("historial"),
+            estado.get("caso_id"),
+            rol=estado.get("rol"),
+        )
+
+        if plan is None:
+            return {**clasificar_dominio(estado), "plan": None}
+
+        # Red de seguridad: si el modelo quiere conversar o negarse en un tema con datos (políticas, calidad,
+        # glosario, métricas o un folio), se consulta la herramienta y el modelo redacta con su resultado.
+        if plan.accion in ("conversar", "rechazar"):
+            por_palabras = clasificar_dominio(estado)
+            if agente.requiere_consulta(por_palabras["dominio"], estado["pregunta"], plan.accion):
+                return {
+                    **por_palabras,
+                    "plan": {
+                        "accion": "consultar",
+                        "motivo": f"{plan.motivo} Como toca datos del sistema, primero se consulta la base.",
+                        "herramienta": None,
+                        "argumentos": {},
+                    },
+                }
+
+        dominio = plan.dominio
+        return {
+            "dominio": dominio,
+            "dominios_objetivo": [dominio] if dominio in ("gobernanza", "casos", "analista") else [],
+            "dominios_ejecutados": [],
+            "plan": plan.como_dict(),
+        }
 
     async def _ejecutar_dominios(self, estado: EstadoChat) -> dict:
         """Ejecuta los dominios y combina los resultados."""
@@ -406,6 +442,7 @@ class FlujoChat:
                 pregunta,
                 estado.get("historial"),
                 fuera_de_alcance=dominio == "fuera_de_alcance",
+                rol=estado.get("rol"),
             )
             if redactada:
                 resultado = {**resultado, "respuesta": redactada}
@@ -439,12 +476,24 @@ class FlujoChat:
         ejecutados = []
         respuestas = []
 
+        plan = estado.get("plan") or {}
+
         for dominio_objetivo in dominios:
-            herramienta, argumentos, aviso = _seleccionar_herramienta(
-                dominio_objetivo,
-                pregunta,
-                estado.get("caso_id"),
-            )
+            if plan.get("herramienta"):
+                herramienta, argumentos, aviso = plan["herramienta"], plan["argumentos"], None
+                folio_plan = (argumentos.get("entrada") or {}).get("caso_id")
+                caso_abierto = (estado.get("caso_id") or "").strip().upper()
+                if folio_plan and caso_abierto and folio_plan != caso_abierto:
+                    herramienta, argumentos, aviso = None, {}, (
+                        "El identificador de la pregunta no coincide con el caso abierto. "
+                        "Abre el caso correcto para continuar."
+                    )
+            else:
+                herramienta, argumentos, aviso = _seleccionar_herramienta(
+                    dominio_objetivo,
+                    pregunta,
+                    estado.get("caso_id"),
+                )
 
             if aviso:
                 resultados.append({
@@ -487,6 +536,9 @@ class FlujoChat:
             if herramienta == "consultar_calidad":
                 respuesta = _formatear_resultado_calidad(resultado_mcp)
 
+            if herramienta == "consultar_bitacora":
+                respuesta = formatear_bitacora(resultado_mcp)
+
             resultados.append({
                 "dominio": dominio_objetivo,
                 "herramienta": herramienta,
@@ -512,10 +564,22 @@ class FlujoChat:
                 fuentes.append("consultar_bitacora")
             ejecutados.append(dominio_objetivo)
 
+        respuesta_final = "\n\n".join(respuestas)
+
+        # Con el agente activo, el modelo redacta con el resultado; si la redacción no pasa la revisión, queda el formato.
+        if agente.activo() and ejecutados:
+            if agente.reclama_otro_rol(pregunta, estado.get("rol")):
+                # Seguridad: no se deja al modelo decidir permisos que la pregunta dice tener.
+                respuesta_final = agente.aclaracion_de_rol(estado.get("rol"), respuesta_final)
+            else:
+                redactada = await agente.redactar(pregunta, respuesta_final, estado.get("historial"), rol=estado.get("rol"))
+                if redactada:
+                    respuesta_final = redactada
+
         return {
             "resultados_dominio": resultados,
             "dominios_ejecutados": ejecutados,
-            "respuesta": "\n\n".join(respuestas),
+            "respuesta": respuesta_final,
             "fuentes": list(dict.fromkeys(fuentes)),
             "simulado": False,
         }
@@ -554,7 +618,7 @@ class FlujoChat:
         try:
             yield PasoEvent(
                 id="enrutador",
-                texto="Clasificando solicitud",
+                texto="Analizando la pregunta" if agente.activo() else "Clasificando solicitud",
                 estado=EstadoPaso.EN_CURSO,
             )
 
@@ -567,16 +631,25 @@ class FlujoChat:
 
                     if nodo == "enrutador":
                         etapa_actual = "ejecutor"
+                        plan = estado.get("plan") or {}
 
                         yield PasoEvent(
                             id="enrutador",
-                            texto="Clasificando solicitud",
+                            texto="Analizando la pregunta" if plan else "Clasificando solicitud",
+                            detalle=plan.get("motivo"),
                             estado=EstadoPaso.COMPLETADO,
                         )
 
+                        if plan.get("herramienta"):
+                            texto_ejecutor = f"Consultando {plan['herramienta']}"
+                        elif plan.get("accion") in ("conversar", "rechazar"):
+                            texto_ejecutor = "Redactando respuesta"
+                        else:
+                            texto_ejecutor = "Consultando información"
+
                         yield PasoEvent(
                             id="ejecutor",
-                            texto="Consultando información",
+                            texto=texto_ejecutor,
                             estado=EstadoPaso.EN_CURSO,
                         )
 
