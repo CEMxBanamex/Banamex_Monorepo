@@ -19,6 +19,7 @@ from contratos.eventos_sse import (
     TipoRespuesta,
 )
 
+from . import conversacion
 from .enrutador import _normalizar, clasificar_dominio
 from .estado import EstadoChat, RolUsuario
 from .presentacion_caso import formatear_caso
@@ -399,6 +400,15 @@ class FlujoChat:
                 resultado = responder_general(pregunta)
             else:
                 resultado = responder_fuera_alcance(pregunta)
+
+            # El modelo redacta con el historial; si no está disponible, queda el texto fijo.
+            redactada = await conversacion.responder(
+                pregunta,
+                estado.get("historial"),
+                fuera_de_alcance=dominio == "fuera_de_alcance",
+            )
+            if redactada:
+                resultado = {**resultado, "respuesta": redactada}
 
             return {
                 "resultados_dominio": [resultado],
