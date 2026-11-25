@@ -5,6 +5,8 @@ import { USUARIOS, CASOS } from './data.js'
 import Login from './screens/Login.jsx'
 import Bandeja from './screens/Bandeja.jsx'
 import Subir from './screens/Subir.jsx'
+import { CASOS_REALES } from './api.js'
+import DetalleReal from './screens/DetalleReal.jsx'
 import DetalleFactura from './screens/Detalle.jsx'
 import Validacion from './screens/Validacion.jsx'
 import Bitacora from './screens/Bitacora.jsx'
@@ -45,12 +47,14 @@ export default function App() {
 
   const ir = (pantalla) => { setVista({ pantalla, variante: 'normal' }); window.scrollTo(0, 0) }
   const abrirCaso = (c) => {
+    if (CASOS_REALES) { setVista({ pantalla: 'factura', caso: c.id }); return }
     setVista(c.tipo === 'Factura' || c.variante === 'error'
       ? { pantalla: 'factura', caso: c.id, variante: c.variante || 'normal' }
       : { pantalla: 'validacion', caso: c.id })
     window.scrollTo(0, 0)
   }
   const iniciar = (tipo, nuevoCaso) => {
+    if (CASOS_REALES) { abrirCaso(nuevoCaso); return }
     const idCaso = nuevoCaso?.id || (tipo === 'factura' ? 'F-1043' : 'V-0207')
     setVista(tipo === 'factura'
       ? { pantalla: 'factura', caso: idCaso, variante: 'procesando' }
@@ -72,6 +76,8 @@ export default function App() {
       pagina = <Asistente />
     } else if (pantalla === 'subir') {
       pagina = <Subir ir={ir} iniciar={iniciar} />
+    } else if (pantalla === 'factura' && CASOS_REALES) {
+      pagina = <DetalleReal key={vista.caso} casoId={vista.caso} ir={ir} toast={setToast} />
     } else if (pantalla === 'factura') {
       const c = vista.caso === 'F-1043' ? NUEVO : caso(vista.caso)
       pagina = (
@@ -108,7 +114,7 @@ export default function App() {
     <>
       {contenido}
       <Toast toast={toast} onCerrar={cerrarToast} />
-      <div className="demo">
+      {!CASOS_REALES && <div className="demo">
         {menu && (
           <div className="demo-menu">
             {DEMO.map(([grupo, items]) => (
@@ -122,7 +128,7 @@ export default function App() {
           </div>
         )}
         <button className="demo-btn" onClick={() => setMenu((m) => !m)}><LayoutGrid size={14} />Pantallas</button>
-      </div>
+      </div>}
     </>
   )
 }

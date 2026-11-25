@@ -5,7 +5,7 @@ import uuid
 from sqlalchemy import select
 
 from steward_datos.contratos import ContextoUsuario, FacturaExtraida, ResultadoValidacion, ValidarReglasEntrada
-from steward_datos.db.models import Caso, EventoBitacora
+from steward_datos.db.models import Caso, Documento, EventoBitacora
 from steward_datos.db.sesion import sesion
 from steward_datos.persistencia import guardar_extraccion, guardar_resultado
 from steward_datos.tools.buscar_politicas import buscar_politicas
@@ -14,10 +14,11 @@ from steward_datos.validador import preparar_para_redactor
 
 
 class HerramientasReales:
-    def __init__(self, usuario: ContextoUsuario):
+    def __init__(self, usuario: ContextoUsuario, *, documento: dict | None = None):
         if usuario.rol != "analista":
             raise PermissionError("Solo un analista puede procesar y decidir casos.")
         self.usuario = usuario
+        self.documento = documento
 
     def _caso(self, s, caso_id: str) -> Caso:
         caso = s.scalar(select(Caso).where(Caso.id == caso_id).with_for_update())
@@ -33,9 +34,12 @@ class HerramientasReales:
             s.add(Caso(id=caso_id, tipo="factura", estado="procesando", thread_id=thread,
                        responsable_id=self.usuario.usuario_id, responsable_nombre=self.usuario.usuario_id))
             s.flush()
+            if self.documento is not None:
+                s.add(Documento(caso_id=caso_id, **self.documento))
+                s.flush()
             s.add(EventoBitacora(caso_id=caso_id, actor_tipo="usuario", actor_id=self.usuario.usuario_id,
                                  actor_nombre=self.usuario.usuario_id, accion="caso_creado", tono="info",
-                                 detalle="Caso iniciado desde el piloto local."))
+                                 detalle="Factura recibida para análisis."))
             return str(thread)
 
     def validar(self, caso_id: str, factura: dict, sha256: str, fecha: str):
@@ -87,16 +91,19 @@ class HerramientasReales:
                     EventoBitacora.caso_id == caso_id, EventoBitacora.accion == "confirmacion"
                 ).order_by(EventoBitacora.id.desc()))
                 if anterior and anterior.datos == decision and anterior.actor_id == self.usuario.usuario_id:
-                    return
+                    return anterior.id
                 raise ValueError("El caso ya tiene otra decisión final.")
             if caso.estado != "revision":
                 raise ValueError("El caso no está esperando revisión.")
             caso.estado, caso.resultado_final = "revisado", decision["resultado"]
             caso.revisado_por, caso.revisado_en = self.usuario.usuario_id, datetime.now(timezone.utc)
-            s.add(EventoBitacora(caso_id=caso_id, actor_tipo="usuario", actor_id=self.usuario.usuario_id,
+            evento = EventoBitacora(caso_id=caso_id, actor_tipo="usuario", actor_id=self.usuario.usuario_id,
                                  actor_nombre=self.usuario.usuario_id, accion="confirmacion",
                                  tono="exito" if decision["resultado"] == "aceptado" else "error",
-                                 detalle=decision["motivo"], datos=decision))
+                                 detalle=decision["motivo"], datos=decision)
+            s.add(evento)
+            s.flush()
+            return evento.id
 
     def error(self, caso_id: str):
         with sesion() as s:

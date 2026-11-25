@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import { Estado, Resultado, Banner } from '../components.jsx'
 import { CASOS } from '../data.js'
-import { obtenerCasos } from '../api.js'
+import { CASOS_REALES, obtenerCasos } from '../api.js'
 
 export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariante }) {
   const [buscar, setBuscar] = useState('')
@@ -49,8 +49,9 @@ export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariant
       })
       .catch((err) => {
         if (!cancelado) {
-          console.warn('API no disponible, usando datos de respaldo:', err)
-          setCasos(CASOS)
+          if (!CASOS_REALES) console.warn('API no disponible, usando datos de respaldo:', err)
+          setCasos(CASOS_REALES ? [] : CASOS)
+          setErrorCarga(Boolean(CASOS_REALES))
           setCargando(false)
         }
       })

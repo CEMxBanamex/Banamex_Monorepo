@@ -73,17 +73,32 @@ class TestRedactorHallazgos(unittest.TestCase):
 
 
     @patch("steward_datos.tools.registrar_hallazgo.registrar_hallazgo")
-    def test_redactor_no_registra_citas_inventadas(self, registrar):
+    def test_redactor_registra_revision_sin_inventar_politica(self, registrar):
+        registrar.return_value.evento_id = 32
         resultado = ejecutar_redactor(
             caso_id="F-1099",
             resultado_sugerido="aceptado",
             motivo="Prueba",
             hallazgos=[{"regla_id": "R-014", "regla_version": "2.1", "politica_id": " "}],
             registrar_en_bd=True,
+            sesion_bd=object(),
         )
-        registrar.assert_not_called()
-        self.assertEqual(resultado["eventos_bitacora"], [])
+        hallazgo = registrar.call_args.args[0].hallazgo
+        self.assertEqual(hallazgo.politica_id, "")
+        self.assertEqual(hallazgo.efecto, "revision")
+        self.assertEqual(resultado["eventos_bitacora"], [32])
         self.assertIn("requiere revisión humana", resultado["explicacion"])
+
+
+    @patch("steward_datos.tools.registrar_hallazgo.registrar_hallazgo", side_effect=RuntimeError("BD no disponible"))
+    def test_redactor_registra_y_propaga_fallo_de_auditoria(self, registrar):
+        with self.assertLogs("backend.grafo_casos.redactor", level="ERROR") as eventos:
+            with self.assertRaisesRegex(RuntimeError, "BD no disponible"):
+                ejecutar_redactor("F-1099", "humana", "Prueba", [
+                    {"regla_id": "R-014", "regla_version": "2.1"},
+                ], registrar_en_bd=True, sesion_bd=object())
+        registrar.assert_called_once()
+        self.assertIn("F-1099", eventos.output[0])
 
 
 if __name__ == "__main__":

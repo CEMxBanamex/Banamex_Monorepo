@@ -1,6 +1,7 @@
 """Flujo local con extracción Ollama, herramientas de Datos y revisión humana."""
 from datetime import date
 import hashlib
+import logging
 from pathlib import Path
 import re
 from typing import TypedDict
@@ -16,6 +17,9 @@ from .flujo import DecisionAnalista
 from .herramientas_reales import HerramientasReales
 
 
+logger = logging.getLogger(__name__)
+
+
 class EstadoReal(TypedDict, total=False):
     caso_id: str
     archivo: str
@@ -27,6 +31,7 @@ class EstadoReal(TypedDict, total=False):
     fragmentos: dict
     explicacion: str
     decision_analista: dict
+    evento_decision_id: int | None
 
 
 def redactar_evidencia(resultado: dict, politicas: dict) -> str:
@@ -34,10 +39,22 @@ def redactar_evidencia(resultado: dict, politicas: dict) -> str:
     lineas = [resultado["motivo"]]
     for item in politicas["hallazgos"]:
         h, p = item["hallazgo"], item["politica"]
-        cita = f"{h['regla_id']} · {p['politica_id']} v{p['version']} §{p['seccion']}"
-        evidencia = f" Evidencia: {h['evidencia']}" if h.get("evidencia") else ""
-        fuente = " Fragmento recuperado." if p["origen"] == "rag" else " Solo cita del catálogo; sin fragmento recuperado."
-        lineas.append(f"{h['titulo']}: {h['texto']}{evidencia} ({cita}).{fuente}")
+        regla = f"{h['regla_id']} v{h['regla_version']}"
+        if all(p[campo].strip() for campo in ("politica_id", "version", "seccion")):
+            cita = f"{regla} · {p['politica_id']} v{p['version']} §{p['seccion']}"
+            fuente = "Fragmento recuperado." if p["origen"] == "rag" else "Solo cita del catálogo; sin fragmento recuperado."
+        else:
+            cita = regla
+            fuente = "Política incompleta. Revisión humana requerida."
+
+        detalle = f"{h['titulo']}: {h['texto']} ({cita}). {fuente}"
+        if h.get("evidencia"):
+            detalle += f" Evidencia: {h['evidencia']}."
+        elif h.get("campos"):
+            detalle += f" Campos que se deben verificar: {', '.join(h['campos'])}."
+        for etiqueta, valor in h.get("cifras") or []:
+            detalle += f" {etiqueta}: {valor}."
+        lineas.append(detalle)
     return "\n".join(lineas + ["La decisión final corresponde al analista."])
 
 
@@ -101,10 +118,19 @@ class FlujoCasosReal:
         return {"politicas": salida, "fragmentos": fragmentos}
 
     def _redactor(self, estado):
-        return {"explicacion": redactar_evidencia(estado["resultado"], estado["politicas"])}
+        resultado = estado["resultado"]
+        politicas = estado["politicas"]
+        if any(not h["politica_id"].strip() for h in resultado["hallazgos"]):
+            resultado = {**resultado, "resultado_sugerido": "humana"}
+            politicas = {**politicas, "resultado_sugerido": "humana"}
+        return {"resultado": resultado, "politicas": politicas, "explicacion": redactar_evidencia(resultado, politicas)}
 
     def _guardar(self, estado):
-        self.tools.guardar(estado["caso_id"], estado["factura"], estado["resultado"], estado["explicacion"], estado["fragmentos"])
+        try:
+            self.tools.guardar(estado["caso_id"], estado["factura"], estado["resultado"], estado["explicacion"], estado["fragmentos"])
+        except Exception:
+            logger.exception("Falló el registro de hallazgos del caso %s", estado["caso_id"])
+            raise
         return {}
 
     def _revision(self, estado):
@@ -114,5 +140,4 @@ class FlujoCasosReal:
         return {"decision_analista": DecisionAnalista.model_validate(decision).model_dump()}
 
     def _cerrar(self, estado):
-        self.tools.cerrar(estado["caso_id"], estado["decision_analista"])
-        return {}
+        return {"evento_decision_id": self.tools.cerrar(estado["caso_id"], estado["decision_analista"])}
