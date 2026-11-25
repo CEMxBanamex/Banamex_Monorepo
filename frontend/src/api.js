@@ -8,9 +8,13 @@ export const API_BASE_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/,
 const USUARIO_DEV = import.meta.env.VITE_API_DEV_USUARIO
 export const CASOS_REALES = Boolean(API_BASE_URL && USUARIO_DEV)
 
+export function identidadApi() {
+  return USUARIO_DEV ? { 'X-Usuario': USUARIO_DEV, 'X-Rol': 'analista' } : {}
+}
+
 export async function apiFetch(endpoint, opciones = {}) {
   const { headers, ...peticion } = opciones
-  const identidad = CASOS_REALES ? { 'X-Usuario': USUARIO_DEV, 'X-Rol': 'analista' } : {}
+  const identidad = identidadApi()
   const resp = await fetch(`${API_BASE_URL}${endpoint}`, {
     headers: {
       'Content-Type': 'application/json',

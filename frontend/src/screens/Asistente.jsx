@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './Asistente.css'
 import { Bot, ArrowUp, Square } from 'lucide-react'
+import { identidadApi } from '../api.js'
 import { CHAT_REAL, CHAT_API } from '../chatConfig.js'
 
 const ESTADOS = {
@@ -155,7 +156,7 @@ export default function Asistente({ casoId = null }) {
         if (!conversacion.current.id) {
           const nueva = await fetch(CHAT_API + '/api/chat/conversaciones', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', ...identidadApi() },
             body: JSON.stringify({ titulo: texto.slice(0, 200), caso_id: casoId }),
             signal: abortador.signal,
           })
@@ -175,6 +176,7 @@ export default function Asistente({ casoId = null }) {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'text/event-stream',
+          ...identidadApi(),
         },
         body: JSON.stringify({
           mensaje: texto,
