@@ -1,0 +1,263 @@
+# Despliegue a prod al fusionar dev en main (con merge commit), o rollback a mano.
+#
+#   1. verificar         el merge trae el SHA de dev (segundo padre), sus imágenes existen en GHCR y su despliegue a
+#                        dev terminó bien. Calcula la versión siguiente (vX.Y.Z).
+#   2. promover          re-etiqueta las imágenes de ese SHA como <versión> y prod. No se reconstruye nada.
+#   3. deploy-backend    desde el runner de dev, SSM Run Command ejecuta deploy.sh en la EC2 con la etiqueta Env=prod.
+#   4. deploy-frontend   build del mismo commit con la API de prod y despliegue a producción en Vercel (app.<DOMINIO>).
+#   5. release           tag y release de GitHub con notas generadas.
+#
+# Rollback: Actions → Deploy prod → Run workflow, con "version" = una versión ya publicada (por ejemplo v0.1.3).
+# Se salta verificar la promoción y despliega esa versión sin correr migraciones.
+#
+# Seguridad: usa el runner self-hosted y por eso NUNCA debe dispararse con pull_request.
+name: Deploy prod
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Rollback: versión ya publicada (vX.Y.Z). Vacío = desplegar lo último de main."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+# Nunca se cancela un despliegue a prod a la mitad.
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    name: verificar
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: read
+      packages: read
+    outputs:
+      version: ${{ steps.datos.outputs.version }}
+      ref: ${{ steps.datos.outputs.ref }}
+      dev_sha: ${{ steps.datos.outputs.dev_sha }}
+      rollback: ${{ steps.datos.outputs.rollback }}
+    steps:
+      - name: Solo desde main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::Deploy prod solo corre sobre main (se lanzó sobre $GITHUB_REF)."
+          exit 1
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Versión, origen y verificaciones
+        id: datos
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION_ROLLBACK: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          registro="ghcr.io/${GITHUB_REPOSITORY,,}"
+          imagenes_existen() {
+            local tag="$1" servicio
+            for servicio in backend mcp; do
+              if ! docker manifest inspect "$registro/$servicio:$tag" > /dev/null; then
+                echo "::error::No existe $registro/$servicio:$tag en GHCR."
+                return 1
+              fi
+            done
+          }
+
+          if [ -n "$VERSION_ROLLBACK" ]; then
+            # --- Rollback a una versión publicada -----------------------------------------------------------------
+            if ! [[ "$VERSION_ROLLBACK" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "::error::La versión debe tener la forma vX.Y.Z (recibí '$VERSION_ROLLBACK')."
+              exit 1
+            fi
+            git ls-remote --exit-code --tags origin "refs/tags/$VERSION_ROLLBACK" > /dev/null \
+              || { echo "::error::No existe el tag $VERSION_ROLLBACK en el repo."; exit 1; }
+            imagenes_existen "$VERSION_ROLLBACK"
+            {
+              echo "version=$VERSION_ROLLBACK"
+              echo "ref=$VERSION_ROLLBACK"
+              echo "dev_sha="
+              echo "rollback=true"
+            } >> "$GITHUB_OUTPUT"
+            echo "Rollback a $VERSION_ROLLBACK."
+            exit 0
+          fi
+
+          # --- Promoción normal: el merge de dev en main ----------------------------------------------------------
+          if ! dev_sha="$(git rev-parse -q --verify 'HEAD^2')"; then
+            echo "::error::El último commit de main no es un merge commit. A main solo se llega desde dev con merge commit (no squash)."
+            exit 1
+          fi
+          echo "SHA de dev: $dev_sha"
+          imagenes_existen "$dev_sha"
+
+          deploy_id="$(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=dev&sha=$dev_sha&per_page=1" --jq '.[0].id // empty')"
+          if [ -z "$deploy_id" ]; then
+            echo "::error::$dev_sha nunca se desplegó en dev. Prod solo recibe lo que ya se probó en dev."
+            exit 1
+          fi
+          estado="$(gh api "repos/$GITHUB_REPOSITORY/deployments/$deploy_id/statuses?per_page=1" --jq '.[0].state // empty')"
+          if [ "$estado" != "success" ]; then
+            echo "::error::El despliegue de $dev_sha en dev terminó en '${estado:-sin estado}', no en success."
+            exit 1
+          fi
+
+          # Versión siguiente: sube el patch del último tag vX.Y.Z; la primera es v0.1.0.
+          ultima="$(git ls-remote --tags --refs origin 'v*' | sed 's#.*refs/tags/##' \
+            | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1 || true)"
+          if [ -z "$ultima" ]; then
+            version="v0.1.0"
+          else
+            IFS=. read -r mayor menor parche <<< "${ultima#v}"
+            version="v$mayor.$menor.$((parche + 1))"
+          fi
+          echo "Última versión: ${ultima:-ninguna}; nueva: $version."
+          {
+            echo "version=$version"
+            echo "ref=$dev_sha"
+            echo "dev_sha=$dev_sha"
+            echo "rollback=false"
+          } >> "$GITHUB_OUTPUT"
+
+  promover:
+    name: promover
+    needs: verificar
+    if: needs.verificar.outputs.rollback == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Re-etiquetar la imagen probada en dev
+        env:
+          DEV_SHA: ${{ needs.verificar.outputs.dev_sha }}
+          VERSION: ${{ needs.verificar.outputs.version }}
+        run: |
+          registro="ghcr.io/${GITHUB_REPOSITORY,,}"
+          for servicio in backend mcp; do
+            docker buildx imagetools create \
+              --tag "$registro/$servicio:$VERSION" \
+              --tag "$registro/$servicio:prod" \
+              "$registro/$servicio:$DEV_SHA"
+          done
+
+  deploy-backend:
+    name: deploy-backend
+    needs: [verificar, promover]
+    if: >-
+      always() && needs.verificar.result == 'success' &&
+      (needs.promover.result == 'success' || needs.promover.result == 'skipped')
+    runs-on: [self-hosted, dsa-dev]
+    environment:
+      name: prod
+      url: https://api.${{ vars.DOMINIO }}
+    permissions:
+      contents: read
+      deployments: write
+    env:
+      AWS_REGION: us-east-1
+      AWS_DEFAULT_REGION: us-east-1
+      VERSION: ${{ needs.verificar.outputs.version }}
+      REF: ${{ needs.verificar.outputs.ref }}
+      ROLLBACK: ${{ needs.verificar.outputs.rollback }}
+    steps:
+      - name: deploy.sh en la EC2 de prod por SSM Run Command
+        run: |
+          set -euo pipefail
+          extra=""
+          [ "$ROLLBACK" = "true" ] && extra=" --sin-migraciones"
+          parametros="$(mktemp)"
+          printf '{"commands":["/opt/dsa/deploy.sh %s prod --ref %s%s"]}' "$VERSION" "$REF" "$extra" > "$parametros"
+
+          id="$(aws ssm send-command \
+            --document-name AWS-RunShellScript \
+            --targets "Key=tag:Env,Values=prod" \
+            --comment "deploy $VERSION" \
+            --timeout-seconds 900 \
+            --parameters "file://$parametros" \
+            --query Command.CommandId --output text)"
+          echo "Comando de SSM: $id"
+
+          # Espera hasta 20 minutos a que termine.
+          for _ in $(seq 1 120); do
+            estado="$(aws ssm list-commands --command-id "$id" --query 'Commands[0].Status' --output text)"
+            case "$estado" in Pending|InProgress|Delayed) sleep 10 ;; *) break ;; esac
+          done
+
+          aws ssm list-command-invocations --command-id "$id" --details \
+            --query 'CommandInvocations[].CommandPlugins[].Output' --output text || true
+
+          objetivos="$(aws ssm list-commands --command-id "$id" --query 'Commands[0].TargetCount' --output text)"
+          if [ "$objetivos" = "0" ]; then
+            echo "::error::Ninguna EC2 con la etiqueta Env=prod recibió el comando. ¿Se aplicó infra/terraform/envs/prod y el lab está encendido?"
+            exit 1
+          fi
+          if [ "$estado" != "Success" ]; then
+            echo "::error::El despliegue en prod terminó en '$estado'. deploy.sh deja corriendo la versión anterior si algo falla."
+            exit 1
+          fi
+          echo "prod corre $VERSION."
+
+  deploy-frontend:
+    name: deploy-frontend
+    needs: [verificar, deploy-backend]
+    if: always() && needs.deploy-backend.result == 'success'
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      # El mismo commit que se probó en dev (o el tag de la versión, en un rollback).
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.verificar.outputs.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install --global vercel@66.2.0
+      - run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+      - name: Build
+        env:
+          VITE_API_URL: https://api.${{ vars.DOMINIO }}
+          # El chat usa el backend real (grafo de S3-15 e historial en PostgreSQL) en vez de respuestas simuladas.
+          VITE_CHAT_REAL: "true"
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+      # El dominio de producción (app.<DOMINIO>) se asigna en la configuración del proyecto de Vercel.
+      - run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+  release:
+    name: release
+    needs: [verificar, deploy-backend, deploy-frontend]
+    if: >-
+      always() && needs.verificar.outputs.rollback == 'false' &&
+      needs.deploy-backend.result == 'success' && needs.deploy-frontend.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Tag y release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.verificar.outputs.version }}
+        run: |
+          gh release create "$VERSION" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "$VERSION" --generate-notes

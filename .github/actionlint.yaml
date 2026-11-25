@@ -1,0 +1,4 @@
+# Etiquetas del runner self-hosted (scripts/runner/registrar.sh), para que actionlint las reconozca.
+self-hosted-runner:
+  labels:
+    - dsa-dev

@@ -18,4 +18,5 @@ UMBRAL_CONFIANZA = int(os.getenv("UMBRAL_CONFIANZA", "80"))
 
 CATALOGO_REGLAS = RAIZ_DATOS / "reglas" / "catalogo.yaml"
 CARPETA_POLITICAS = RAIZ_DATOS / "politicas"
-CARPETA_SINTETICOS = RAIZ_DATOS / "sinteticos"
+# Los datos sintéticos y sus generadores viven en db/semillas/ (raíz del repo). En un contenedor, define CARPETA_SINTETICOS.
+CARPETA_SINTETICOS = Path(os.getenv("CARPETA_SINTETICOS", RAIZ_DATOS.parent / "db" / "semillas" / "sinteticos"))

@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from ..contratos import Antecedente, ResultadoValidacion, ValidarReglasEntrada
 from ..db.models import Documento, EntidadReceptora, Factura, Proveedor
 from ..db.sesion import sesion
+from ..reglas.lista_69b import cargar_lista_69b
 from ..reglas.motor import Contexto, validar_factura, validar_registros
 
 
@@ -24,7 +25,7 @@ def contexto_desde_bd(s: Session, entrada: ValidarReglasEntrada) -> Contexto:
         select(Documento.caso_id, Documento.sha256).where(Documento.caso_id != entrada.caso_id, Documento.principal)
     ).all() if c not in {a.caso_id for a in antecedentes}]
     return Contexto(proveedores_activos=prov or None, entidades_receptoras=ent or None, antecedentes=antecedentes,
-                    sha256=entrada.sha256, fecha_recepcion=entrada.fecha_recepcion)
+                    lista_69b=cargar_lista_69b(), sha256=entrada.sha256, fecha_recepcion=entrada.fecha_recepcion)
 
 
 def validar_reglas(entrada: ValidarReglasEntrada, s: Optional[Session] = None) -> ResultadoValidacion:

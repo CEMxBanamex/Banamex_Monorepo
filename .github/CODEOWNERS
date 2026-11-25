@@ -1,0 +1,39 @@
+# Dueños por carpeta. GitHub les pide revisión automáticamente cuando un PR toca sus archivos.
+# Por ahora es solo una sugerencia: la aprobación de un dueño no es obligatoria (ver scripts/github/configurar-repo.sh).
+#
+# Para que una persona cuente como dueña necesita permiso de escritura en el repo.
+# La última regla que coincide con un archivo es la que gana, por eso lo general va arriba.
+
+# Todo lo que no tenga dueño más específico
+*                         @MasterJuan579
+
+# Datos: esquema, migraciones, semillas, reglas, políticas y evaluación
+/datos/                   @Iris-Giselle-Balderas-Arreola @oropeza-m
+/db/migrations/           @Iris-Giselle-Balderas-Arreola @oropeza-m
+/db/semillas/             @Iris-Giselle-Balderas-Arreola @oropeza-m
+/docs/datos/              @Iris-Giselle-Balderas-Arreola @oropeza-m
+
+# Agentes y modelos: grafos y servidor MCP
+/backend/                 @CDV-97 @Cmrg80
+/mcp/                     @CDV-97 @Cmrg80
+
+# Frontend
+/frontend/                @yaelgl @VictorinoStylo
+
+# Contratos: los revisa quien los consume y quien los implementa
+/contracts/               @MasterJuan579 @CDV-97 @yaelgl
+
+# Infraestructura, CI/CD y roles de la base
+/.github/                 @MasterJuan579
+/infra/                   @MasterJuan579
+/deploy/                  @MasterJuan579
+/scripts/                 @MasterJuan579
+/db/roles/                @MasterJuan579
+/db/local/                @MasterJuan579
+/docs/ci-cd/              @MasterJuan579
+/backend/Dockerfile       @MasterJuan579
+/mcp/Dockerfile           @MasterJuan579
+/backend/api/main.py      @MasterJuan579 @yaelgl @VictorinoStylo
+/docker-compose.dev.yml   @MasterJuan579
+/Makefile                 @MasterJuan579
+/.env.example             @MasterJuan579

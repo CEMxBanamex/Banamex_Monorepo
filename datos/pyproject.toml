@@ -12,11 +12,7 @@ testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 190
-extend-exclude = ["sinteticos"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W"]
 ignore = ["E731", "E402"]
-
-[tool.ruff.lint.per-file-ignores]
-"alembic/versions/*" = ["E501"]

@@ -45,6 +45,8 @@ class ConceptoLeido(BaseModel):
 
 
 class FacturaExtraida(BaseModel):
+    origen_extraccion: Literal["vision", "xml_cfdi"] = "vision"
+    uuid_fiscal: Optional[str] = Field(None, description="UUID declarado en el timbre CFDI; no acredita validación fiscal")
     tipo_documento: str = Field("factura", description="factura, nota_credito, recibo, otro")
     campos: dict[str, CampoLeido] = Field(default_factory=dict, description=f"Claves admitidas: {', '.join(CAMPOS_FACTURA)}")
     conceptos: list[ConceptoLeido] = Field(default_factory=list)
@@ -154,6 +156,37 @@ class RegistrarHallazgoEntrada(BaseModel):
 class RegistrarHallazgoSalida(BaseModel):
     hallazgo_id: int
     evento_id: int
+
+
+# consultar_bitacora (Yael)
+
+
+class EventoBitacoraDetalle(BaseModel):
+    id: str  # EV-3112
+    fecha: datetime
+    caso_id: Optional[str] = None
+    actor_tipo: str
+    actor_nombre: str
+    accion: str
+    tono: str
+    detalle: str
+    regla: Optional[str] = None
+    datos: Optional[dict] = None
+
+
+class ConsultarBitacoraEntrada(BaseModel):
+    caso_id: Optional[str] = None
+    actor_nombre: Optional[str] = None
+    accion: Optional[str] = None
+    fecha_desde: Optional[datetime] = None
+    fecha_hasta: Optional[datetime] = None
+    limite: int = Field(50, ge=1, le=200)
+
+
+class ConsultarBitacoraSalida(BaseModel):
+    eventos: list[EventoBitacoraDetalle]
+    total: int
+    paso: str = "Revisando la bitácora…"
 
 
 # consultar_caso

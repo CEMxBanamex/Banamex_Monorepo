@@ -10,20 +10,21 @@ Efecto: **rechazo** → Rechazado si no hay dudas · **revision** → Requiere r
 
 | Regla | Versión | Nombre | Política | Efecto | Qué comprueba |
 |---|---|---|---|---|---|
-| R-001 | 1.2 | Campos obligatorios de la factura | P-001 v3.0 §3 | rechazo | La factura debe mostrar folio, fecha, nombre y RFC del emisor, nombre y RFC del receptor, subtotal, impuestos, total y moneda. |
+| R-001 | 1.2 | Campos obligatorios de la factura | P-001 v4.0 §3 | rechazo | La factura debe mostrar folio, fecha, nombre y RFC del emisor, nombre y RFC del receptor, subtotal, impuestos, total y moneda. |
 | R-002 | 2.0 | Formato de RFC en la factura | P-011 v2.0 §2 | rechazo | El RFC del emisor y del receptor deben tener la estructura de la política P-011 (12 caracteres persona moral, 13 persona física, con fecha válida). |
 | R-003 | 1.0 | Confianza mínima de lectura | P-004 v1.0 §2 | revision | Si un campo usado por las reglas se leyó con confianza menor al umbral, una persona debe verificarlo contra el documento original. |
-| R-004 | 1.1 | Fecha de emisión válida | P-001 v3.0 §4 | rechazo | La fecha de emisión no puede ser posterior a la fecha de recepción ni tener más de 365 días de antigüedad. |
-| R-005 | 1.0 | Moneda admitida | P-001 v3.0 §5 | revision | Solo se procesan facturas en MXN o USD. Cualquier otra moneda la revisa Tesorería. |
-| R-010 | 1.0 | Los conceptos suman el subtotal | P-002 v2.0 §3 | rechazo | La suma de los importes de los conceptos debe ser igual al subtotal, con la tolerancia de la política. |
-| R-011 | 2.0 | Impuestos calculados con una tasa admitida | P-002 v2.0 §4 | rechazo | Los impuestos deben ser el subtotal por una tasa admitida de IVA (16 %, 8 % o 0 %). |
-| R-014 | 2.1 | El total coincide con subtotal más impuestos | P-002 v2.0 §5 | rechazo | El total debe ser subtotal + impuestos − retenciones, con la tolerancia de la política. |
+| R-004 | 1.1 | Fecha de emisión válida | P-001 v4.0 §4 | rechazo | La fecha de emisión no puede ser posterior a la fecha de recepción ni tener más de 365 días de antigüedad. |
+| R-005 | 1.0 | Moneda admitida | P-001 v4.0 §5 | revision | Solo se procesan facturas en MXN o USD. Cualquier otra moneda la revisa Tesorería. |
+| R-010 | 1.0 | Los conceptos suman el subtotal | P-002 v3.0 §3 | rechazo | La suma de los importes de los conceptos debe ser igual al subtotal, con la tolerancia de la política. |
+| R-011 | 2.0 | Impuestos calculados con una tasa admitida | P-002 v3.0 §4 | rechazo | Los impuestos deben ser el subtotal por una tasa admitida de IVA (16 %, 8 % o 0 %). |
+| R-014 | 2.1 | El total coincide con subtotal más impuestos | P-002 v3.0 §5 | rechazo | El total debe ser subtotal + impuestos − retenciones, con la tolerancia de la política. |
 | R-015 | 1.0 | Factura duplicada | P-003 v1.2 §2 | rechazo | Un archivo idéntico a uno ya registrado se rechaza. Si coincide el RFC del emisor y el folio, pero el archivo es distinto, pasa a revisión humana. |
 | R-017 | 1.0 | Proveedor registrado en el padrón | P-003 v1.2 §3 | revision | El RFC del emisor debe estar activo en el padrón de proveedores. Si no está, Compras debe validarlo. |
-| R-018 | 1.0 | Receptor es una entidad del grupo | P-001 v3.0 §6 | rechazo | El RFC del receptor debe pertenecer a una de las entidades receptoras autorizadas. |
+| R-019 | 1.0 | Emisor en la lista 69-B del SAT | P-005 v1.0 §3 | rechazo | Si el RFC del emisor aparece en la lista del artículo 69-B del CFF como definitivo, se rechaza; si aparece como presunto, la revisa una persona. |
+| R-018 | 1.0 | Receptor es una entidad del grupo | P-001 v4.0 §6 | rechazo | El RFC del receptor debe pertenecer a una de las entidades receptoras autorizadas. |
 | R-021 | 1.2 | Monto que requiere revisión adicional | P-003 v1.2 §4 | revision | Las facturas con total igual o mayor a 250,000.00 MXN (o su equivalente en USD) las revisa una persona de supervisión. |
 | R-030 | 1.0 | Instrucciones dirigidas al sistema dentro del documento | P-004 v1.0 §4 | revision | Si el documento contiene texto que intenta dar instrucciones al sistema, no se siguen, se reporta y una persona revisa el caso. |
-| R-031 | 1.0 | Tipo de documento sin política aplicable | P-001 v3.0 §2 | revision | Esta política solo cubre facturas de proveedores. Notas de crédito, recibos y otros documentos requieren revisión humana. |
+| R-031 | 1.0 | Tipo de documento sin política aplicable | P-001 v4.0 §2 | revision | Esta política solo cubre facturas de proveedores. Notas de crédito, recibos y otros documentos requieren revisión humana. |
 
 ## Historia 2 · Registros de clientes
 

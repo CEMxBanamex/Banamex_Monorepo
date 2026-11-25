@@ -6,8 +6,8 @@ version: "2.0"
 historia: 1
 area_responsable: Contraloría Fiscal
 vigente_desde: 2026-01-01
-vigente_hasta: null
-estado: vigente
+vigente_hasta: 2026-10-31
+estado: reemplazada
 ---
 
 # P-002 · Cálculo de importes e impuestos en facturas

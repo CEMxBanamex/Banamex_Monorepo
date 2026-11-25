@@ -1,4 +1,4 @@
-"""Lectura de los datos sintéticos generados por scripts/generar_*.py."""
+"""Lectura de los datos sintéticos generados por db/semillas/generar_*.py."""
 import csv
 import json
 from datetime import date
@@ -56,7 +56,8 @@ def antecedentes_historicos(base: Path = CARPETA_SINTETICOS) -> list[Antecedente
 
 def contexto_para(d: dict, base: Path = CARPETA_SINTETICOS) -> Contexto:
     prov, ent = catalogos(base)
-    return Contexto(proveedores_activos=prov, entidades_receptoras=ent,
+    from .reglas.lista_69b import cargar_lista_69b
+    return Contexto(proveedores_activos=prov, entidades_receptoras=ent, lista_69b=cargar_lista_69b(),
                     antecedentes=antecedentes_historicos(base) if d["grupo"] != "historico" else [],
                     sha256=d["sha256"], fecha_recepcion=date.fromisoformat(d["fecha_recepcion"]))
 

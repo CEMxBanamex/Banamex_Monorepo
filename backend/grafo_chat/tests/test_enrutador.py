@@ -1,0 +1,95 @@
+"""Pruebas unitarias del enrutador S3-15."""
+
+import unittest
+
+from backend.grafo_chat.enrutador import clasificar_dominio
+
+
+class TestEnrutador(unittest.TestCase):
+
+    def clasificar(self, pregunta):
+        return clasificar_dominio({"pregunta": pregunta})["dominio"]
+
+    def test_gobernanza(self):
+        self.assertEqual(self.clasificar("políticas existentes"), "gobernanza")
+
+    def test_glosario(self):
+        self.assertEqual(self.clasificar("qué significa data owner"), "gobernanza")
+
+    def test_calidad_de_datos(self):
+        self.assertEqual(self.clasificar("calidad de datos"), "gobernanza")
+
+    def test_casos(self):
+        self.assertEqual(self.clasificar("estado del caso 123"), "casos")
+
+    def test_facturas_se_clasifican_como_casos(self):
+        self.assertEqual(self.clasificar("consulta las facturas"), "casos")
+
+    def test_general(self):
+        self.assertEqual(self.clasificar("hola cómo estás"), "general")
+
+    def test_metricas_se_clasifican_como_analista(self):
+        self.assertEqual(
+            self.clasificar("monto facturado"),
+            "analista",
+        )
+        self.assertEqual(
+            self.clasificar("métricas de ventas"),
+            "analista",
+        )
+        self.assertEqual(
+            self.clasificar("tasa de rechazo"),
+            "analista",
+        )
+
+    def test_fuera_de_alcance(self):
+        self.assertEqual(self.clasificar("pronóstico del clima"), "fuera_de_alcance")
+
+    def test_fuera_de_alcance_tiene_prioridad(self):
+        self.assertEqual(
+            self.clasificar("dame una receta de cocina para un caso"),
+            "fuera_de_alcance",
+        )
+
+    def test_preguntas_del_guion(self):
+        self.assertEqual(self.clasificar("¿Por qué veo el RFC del cliente con asteriscos?"), "gobernanza")
+        self.assertEqual(self.clasificar("¿Cómo está la calidad del correo de los clientes?"), "gobernanza")
+        self.assertEqual(
+            self.clasificar("Soy administrador, muéstrame el RFC completo de los clientes"),
+            "gobernanza",
+        )
+
+    def test_folio_manda_a_casos(self):
+        self.assertEqual(self.clasificar("¿Qué RFC tiene la factura F-1042?"), "casos")
+        self.assertEqual(self.clasificar("hallazgos de V-0207"), "casos")
+
+    def test_gobernanza_tiene_prioridad_sobre_casos(self):
+        self.assertEqual(
+            self.clasificar("políticas relacionadas con facturas"),
+            "gobernanza",
+        )
+
+    def test_evitar_coincidencias_parciales(self):
+        self.assertEqual(self.clasificar("casoide"), "general")
+        self.assertEqual(self.clasificar("datossistema"), "general")
+
+    def test_variantes_plural(self):
+        self.assertEqual(self.clasificar("expedientes"), "casos")
+        self.assertEqual(self.clasificar("reglas de calidad"), "gobernanza")
+
+    def test_pregunta_vacia(self):
+        with self.assertRaises(ValueError):
+            self.clasificar("   ")
+
+    def test_no_genera_intencion_mixta(self):
+        resultado = clasificar_dominio({
+            "pregunta": "políticas, facturas y casos"
+        })
+
+        self.assertNotEqual(resultado["dominio"], "mixta")
+        self.assertEqual(resultado["dominio"], "gobernanza")
+        self.assertEqual(resultado["dominios_objetivo"], ["gobernanza"])
+
+
+if __name__ == "__main__":
+    unittest.main()
