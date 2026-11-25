@@ -242,7 +242,8 @@ def main():
     documentos = corpus(args.corpus)
     url = os.getenv("OLLAMA_BASE_URL") or os.getenv("OLLAMA_URL", "http://localhost:11434")
     with httpx.Client(base_url=url, timeout=30) as cliente:
-        r = cliente.get("/api/tags"); r.raise_for_status()
+        r = cliente.get("/api/tags")
+        r.raise_for_status()
         instalados = {m["name"]: m["digest"] for m in r.json()["models"]}
     for modelo in args.modelos:
         if modelo not in instalados:

@@ -54,7 +54,9 @@ class TestCompararVision(unittest.TestCase):
         self.assertNotEqual(normalizado("total", "ilegible"), normalizado("total", None))
 
     def test_separa_ajuste_y_mide_perdida_del_filtro_sin_otra_inferencia(self):
-        antes = lectura(); despues = deepcopy(antes); despues["campos"]["folio"]["valor"] = None
+        antes = lectura()
+        despues = deepcopy(antes)
+        despues["campos"]["folio"]["valor"] = None
         documentos = [documento(), documento("piloto_002.pdf")]
         r = resumir(documentos, {"modelo": {"piloto_001.png": {
             "estado": "ok", "sin_filtro": antes, "filtro_anterior": despues, "segundos": 2}}}, ["modelo"])["modelo"]
@@ -105,7 +107,10 @@ class TestCompararVision(unittest.TestCase):
             return cliente_real(transport=httpx.MockTransport(responder), **kwargs)
         with tempfile.TemporaryDirectory() as tmp:
             from PIL import Image
-            raiz = Path(tmp); entrada = raiz / "corpus"; entrada.mkdir(); salida = raiz / "salida"
+            raiz = Path(tmp)
+            entrada = raiz / "corpus"
+            entrada.mkdir()
+            salida = raiz / "salida"
             for i in (1, 2):
                 nombre = f"piloto_{i:03d}.png"
                 archivo = entrada / nombre

@@ -204,7 +204,7 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None,
         "importe": "Importe impreso de esta partida como texto; null si falta o es ilegible. No calcular.",
     }.items():
         concepto["properties"][clave]["description"] = descripcion
-    modelo = os.getenv("VISION_MODELO", "gemma3:4b")
+    modelo = os.getenv("VISION_MODELO", "qwen3-vl:4b-instruct")
     # format limita la estructura; incluir también el esquema en el prompt hace
     # visibles al modelo las instrucciones semánticas específicas de cada campo.
     prompt = (PROMPT + "\nClaves de campos: " + ", ".join(CAMPOS_FACTURA)

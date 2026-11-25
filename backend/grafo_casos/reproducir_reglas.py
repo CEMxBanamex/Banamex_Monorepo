@@ -1,6 +1,5 @@
 """Reglas reales sobre lecturas guardadas, con contexto sintético y sin Ollama/BD."""
 import argparse
-from collections import Counter
 import csv
 import hashlib
 import json
@@ -94,7 +93,8 @@ def reproducir(entrada, salida, carpeta_corpus=CORPUS):
     with (salida / "casos_reglas.csv").open("w", newline="", encoding="utf-8-sig") as f:
         claves = ["modelo", "etapa", "archivo", "esperado", "predicho_reglas", "categoria_correcta",
                   "reglas_esperadas", "reglas_obtenidas", "reglas_esperadas_no_detectadas"]
-        w = csv.DictWriter(f, fieldnames=claves); w.writeheader()
+        w = csv.DictWriter(f, fieldnames=claves)
+        w.writeheader()
         for modelo, etapas in resultados.items():
             for etapa, r in etapas.items():
                 texto.append(f"| {modelo} | {etapa} | {r['aciertos_categoria']}/{r['total']} | "
@@ -102,7 +102,8 @@ def reproducir(entrada, salida, carpeta_corpus=CORPUS):
                 for c in r["casos"]:
                     w.writerow({"modelo": modelo, "etapa": etapa, **{k: c[k] for k in claves[2:]}})
     texto += ["", "## Límites y decisiones", "",
-              "El modo experimental publica sugerencia humana para toda lectura completada, independientemente de la sugerencia de las reglas; no se usa ese bloqueo para inflar la exactitud de clasificación.",
+              "El modo experimental publica sugerencia humana para toda lectura completada, independientemente de las reglas; "
+              "no se usa ese bloqueo para inflar la exactitud de clasificación.",
               "Una categoría coincidente no implica que todas las reglas esperadas se detectaron: el detalle incluye reglas esperadas no detectadas.",
               "La referencia contiene escenarios con confianza simulada y texto oculto que el extractor visual puede no reproducir. Se conservan las discrepancias en los resultados.",
               "No se reemplazan lecturas por verdad de referencia ni se corrigen errores durante esta reproducción."]

@@ -43,7 +43,7 @@ export default function Subir({ ir, iniciar }) {
   function agregar(lista) {
     const nuevos = [...lista].map((f) => {
       const ext = f.name.split('.').pop().toLowerCase()
-      const extensiones = CASOS_REALES ? ['png', 'jpg', 'jpeg'] : ADMITIDOS
+      const extensiones = CASOS_REALES ? ['png', 'jpg', 'jpeg', 'pdf'] : ADMITIDOS
       const limite = CASOS_REALES ? 15 * 1024 * 1024 : 20e6
       const error = !extensiones.includes(ext) ? 'tipo' : f.size > limite || f.size === 0 ? 'tamano' : null
       return { archivo: f, nombre: f.name, tam: tamano(f.size), progreso: error ? 0 : CASOS_REALES ? 100 : 5, error }
@@ -122,7 +122,7 @@ export default function Subir({ ir, iniciar }) {
             Tipos admitidos:
             {(CASOS_REALES ? ['.jpg', '.jpeg', '.png'] : ['.pdf', '.jpg', '.png', '.xls', '.xlsx', '.csv', '.md', 'texto']).map((t) => <code key={t}>{t}</code>)}
           </div>
-          <div className="muted" style={{ marginTop: 14, fontSize: 14 }}>{CASOS_REALES ? "Factura PNG o JPEG de hasta 15 MiB" : "Tamaño máximo por archivo: 20 MB"}</div>
+          <div className="muted" style={{ marginTop: 14, fontSize: 14 }}>{CASOS_REALES ? "Factura PNG, JPEG o PDF de hasta 15 MiB. PDF de hasta 4 páginas." : "Tamaño máximo por archivo: 20 MB"}</div>
         </div>
 
         {archivos.length > 0 && (
@@ -142,7 +142,7 @@ export default function Subir({ ir, iniciar }) {
                     </div>
                     {fallo ? (
                       <div className="estado-arch" style={{ color: 'var(--error)', marginTop: 6 }}>
-                        <CircleAlert size={16} />{CASOS_REALES && a.error === 'tipo' ? 'Selecciona un archivo PNG o JPEG' : CASOS_REALES && a.error === 'tamano' ? 'La imagen debe pesar entre 1 byte y 15 MiB' : ERRORES[a.error]}
+                        <CircleAlert size={16} />{CASOS_REALES && a.error === 'tipo' ? 'Selecciona un archivo PNG, JPEG o PDF' : CASOS_REALES && a.error === 'tamano' ? 'El documento debe pesar entre 1 byte y 15 MiB' : ERRORES[a.error]}
                       </div>
                     ) : (
                       <>

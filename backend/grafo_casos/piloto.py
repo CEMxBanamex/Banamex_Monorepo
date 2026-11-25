@@ -17,7 +17,7 @@ def main():
     parser.add_argument("--usuario", default="dev-ana")
     parser.add_argument("--fecha", type=date.fromisoformat, default=date.today())
     parser.add_argument("--salida", required=True, help="Carpeta fuera del repositorio para guardar evidencia")
-    parser.add_argument("--revisar-lecturas", action="store_true",
+    parser.add_argument("--revisar-lecturas", action=argparse.BooleanOptionalAction, default=True,
                         help="Experimental: conservar lecturas y exigir revisión humana con informe de evidencia")
     parser.add_argument("--modelo", help="Modelo de visión para este proceso, por ejemplo qwen3-vl:4b-instruct")
     parser.add_argument("--sin-interaccion", action="store_true",

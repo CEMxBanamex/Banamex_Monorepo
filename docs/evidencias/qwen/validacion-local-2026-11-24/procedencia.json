@@ -1,0 +1,5 @@
+{
+  "adjunto": "Texto pegado(6).txt",
+  "sha256_original": "051cb530bb9703935830df1ece8181b04e7d1ef591f7456802d5d532279c5292",
+  "cambios": "Ruta personal sustituida por ruta relativa en salida_terminal.txt; lecturas extraídas del JSON impreso. Sin alterar los valores."
+}
