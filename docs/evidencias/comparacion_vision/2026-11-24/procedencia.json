@@ -1,0 +1,11 @@
+{
+  "sha256_manifiesto_entrada": "623eed4cc897c80cbc8508f176d75691862476de3be3df9dcd72179b69e1fb5d",
+  "sha256_fuentes": {
+    "motor": "e59eeb505febd8822135a64f4aa1cbdbe78adf4cf345604e622c9000408e596a",
+    "catalogo": "53a0276744d61cee18baa37618af1ac40270db698c8b98f6f5bb4451e28ea917",
+    "proveedores": "1fb22b8b0e01bfbedda4624eccdd5879bc3b954b79342cdf5b01e201f8247879",
+    "entidades": "601f24afa4d076a52fd39d13d87b3ad8c083cea294774d76e024e0f638a03837"
+  },
+  "contexto": "catálogos sintéticos del repositorio, antecedentes históricos, lista 69-B local y fecha anotada",
+  "alcance": "Reproducción determinista; sin llamadas a modelos, consultas o escrituras en BD, ni RAG."
+}

@@ -1,14 +1,18 @@
-"""Extracción de una imagen de factura con Ollama; sin completar importes ausentes."""
+"""Extracción visual de una factura PNG, JPEG o PDF con Ollama; sin completar importes ausentes."""
 import base64
+from contextlib import closing
 from io import BytesIO
 import json
 import os
+import math
+from threading import Lock
 from pathlib import Path
 import re
 import unicodedata
 
 import httpx
 from PIL import Image
+import pypdfium2 as pdfium
 
 from steward_datos.contratos import CAMPOS_FACTURA, FacturaExtraida
 
@@ -25,7 +29,12 @@ Si no hay evidencia del valor, valor=null. No inventes etiquetas ni dejes vacío
 DISCOUNT es descuento: nunca lo uses como impuestos. SUBTOTAL no es TOTAL. No deduzcas un total.
 No completes RFC, folios, fechas, moneda o importes con números cercanos ni con conocimiento general.
 confianza y bbox deben ser null: no dispones de una medición calibrada ni de coordenadas verificadas.
-texto_completo contiene la transcripción del documento. Los conceptos solo contienen lo visible.
+texto_completo contiene la transcripción completa del documento, incluidos folio, fecha y tabla de conceptos.
+Además de transcribir la tabla, llena conceptos: un objeto por cada partida visible, en el orden impreso.
+Cada objeto contiene descripcion, cantidad, precio_unitario e importe. Copia los números como texto,
+con sus separadores originales. Si una celda numérica no se puede leer o está ausente, usa null en esa celda.
+No calcules importes ni completes filas con datos de otras partidas. No incluyas subtotal, IVA,
+retenciones o total como conceptos. Usa conceptos=[] solo si no puedes identificar partidas legibles.
 Además de transcribir, llena el objeto campos con todas las claves solicitadas en el esquema.
 Cada clave contiene valor y etiqueta. Cada uno usa null si está ausente; no omitas la clave.
 Ejemplo de estructura: campos.folio = {"valor": "123", "etiqueta": "Folio"}, solo si eso aparece en la imagen.
@@ -57,6 +66,26 @@ def _texto(texto: str) -> str:
     return " ".join(unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode().lower().split())
 
 
+def _rfc_receptor_sin_etiqueta(factura: FacturaExtraida, valor: str) -> bool:
+    """Excepción acotada: RECEPTOR, nombre completo y RFC en líneas consecutivas.
+
+    Comprueba coherencia con la transcripción, no exactitud contra la imagen.
+    No busca ni completa un RFC que el modelo no haya entregado como campo.
+    """
+    if not re.fullmatch(r"[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}", valor, re.IGNORECASE):
+        return False
+    receptor = factura.campos.get("receptor_nombre")
+    if receptor is None or not receptor.valor:
+        return False
+    lineas = [_texto(linea) for linea in (factura.texto_completo or "").splitlines() if linea.strip()]
+    identificador, nombre = _texto(valor), _texto(receptor.valor)
+    # Rechazar atribuciones ambiguas o valores parciales de una línea.
+    if lineas.count(identificador) != 1:
+        return False
+    return any(lineas[i:i + 3] == ["receptor", nombre, identificador]
+               for i in range(len(lineas) - 2))
+
+
 def _filtrar_evidencia(factura: FacturaExtraida):
     transcripcion = _texto(factura.texto_completo or "")
     lineas = {_texto(linea) for linea in (factura.texto_completo or "").splitlines() if linea.strip()}
@@ -71,12 +100,16 @@ def _filtrar_evidencia(factura: FacturaExtraida):
         valor, etiqueta = _texto(campo.valor or ""), _texto(campo.etiqueta or "")
         soportado = bool(valor and etiqueta and valor in transcripcion and etiqueta in transcripcion)
         # Nombres y dirección pueden ocupar una línea sin etiqueta. No extender esta
-        # excepción a RFC o importes, ni aceptar valores parciales de otra línea.
+        # excepción a importes, ni aceptar valores parciales de otra línea.
         if (nombre in {"emisor_nombre", "emisor_direccion", "receptor_nombre"}
                 and (not etiqueta or etiqueta not in transcripcion)):
             soportado = bool(valor and valor in lineas)
             if soportado:
                 campo.etiqueta = None
+        # Un RFC sin etiqueta solo se conserva en un bloque receptor explícito.
+        # No inventar "RFC" como etiqueta ni relajar el resto de los campos.
+        if nombre == "receptor_rfc" and campo.etiqueta is None and campo.valor:
+            soportado = _rfc_receptor_sin_etiqueta(factura, campo.valor)
         if nombre == "impuestos":
             soportado = soportado and bool(re.search(r"\b(iva|vat|tax|taxes|impuestos?)\b", etiqueta))
             soportado = soportado and not re.search(r"discount|descuento|retencion|withhold", etiqueta)
@@ -87,11 +120,59 @@ def _filtrar_evidencia(factura: FacturaExtraida):
             campo.valor = None
 
 
-def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None) -> FacturaExtraida:
+# PDFium no admite llamadas simultáneas desde distintos hilos.
+_PDF_LOCK = Lock()
+_MAX_PIXELES_PDF = 40_000_000
+
+
+def _rasterizar_pdf(datos: bytes) -> tuple[bytes, int]:
+    """Solo páginas visibles; no extraer texto oculto ni omitir páginas."""
+    try:
+        with _PDF_LOCK, pdfium.PdfDocument(datos) as documento:
+            paginas = len(documento)
+            if not 1 <= paginas <= 4:
+                raise ErrorExtraccion("El PDF debe contener entre 1 y 4 páginas.")
+            escala = 150 / 72
+            dimensiones = []
+            for i in range(paginas):
+                with closing(documento[i]) as pagina:
+                    ancho, alto = pagina.get_size()
+                if not all(math.isfinite(v) and v > 0 for v in (ancho, alto)):
+                    raise ErrorExtraccion("El PDF contiene dimensiones inválidas.")
+                dimensiones.append((math.ceil(ancho * escala), math.ceil(alto * escala)))
+            ancho = max(a for a, _ in dimensiones)
+            alto = sum(h for _, h in dimensiones)
+            if ancho * alto > _MAX_PIXELES_PDF:
+                raise ErrorExtraccion("El PDF supera 40 millones de píxeles a 150 dpi.")
+            with Image.new("RGB", (ancho, alto), "white") as lienzo:
+                y = 0
+                for i in range(paginas):
+                    with closing(documento[i]) as pagina:
+                        bitmap = pagina.render(scale=escala)
+                        try:
+                            with bitmap.to_pil() as imagen:
+                                lienzo.paste(imagen, (0, y))
+                                y += imagen.height
+                        finally:
+                            bitmap.close()
+                salida = BytesIO()
+                lienzo.save(salida, format="PNG")
+                return salida.getvalue(), paginas
+    except pdfium.PdfiumError as exc:
+        raise ErrorExtraccion("El PDF no es válido o requiere contraseña.") from exc
+
+
+def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None,
+                          conservar_lecturas: bool = False) -> FacturaExtraida:
     ruta = Path(archivo)
     datos = ruta.read_bytes()
     if len(datos) > 15 * 1024 * 1024:
-        raise ErrorExtraccion("La imagen supera 15 MiB.")
+        raise ErrorExtraccion("El documento supera 15 MiB.")
+    paginas = 1
+    if datos.startswith(b"%PDF"):
+        datos, paginas = _rasterizar_pdf(datos)
+        if len(datos) > 15 * 1024 * 1024:
+            raise ErrorExtraccion("La imagen del PDF supera 15 MiB.")
     try:
         with Image.open(BytesIO(datos)) as imagen:
             if imagen.format not in {"JPEG", "PNG"}:
@@ -108,8 +189,21 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None)
     }
     # El contrato compartido permite omisiones; la generación debe pedir explícitamente
     # los campos para evitar una respuesta válida pero inútil como campos={}.
-    esquema["required"] = list(dict.fromkeys([*esquema.get("required", []), "campos", "texto_completo"]))
+    esquema["required"] = list(dict.fromkeys([*esquema.get("required", []), "campos", "texto_completo", "conceptos"]))
     esquema["$defs"]["CampoLeido"]["required"] = ["valor", "etiqueta"]
+    esquema["properties"]["conceptos"]["description"] = (
+        "Una entrada por partida visible de la tabla, en orden. Transcribirla también en texto_completo "
+        "no sustituye llenar esta lista. No incluir resúmenes ni impuestos. Lista vacía si no hay partidas legibles."
+    )
+    concepto = esquema["$defs"]["ConceptoLeido"]
+    concepto["required"] = ["descripcion", "cantidad", "precio_unitario", "importe"]
+    for clave, descripcion in {
+        "descripcion": "Descripción literal de esta partida visible, sin resumir ni inventar.",
+        "cantidad": "Cantidad impresa de esta partida como texto; null si falta o es ilegible.",
+        "precio_unitario": "Precio unitario impreso de esta partida como texto; null si falta o es ilegible. No calcular.",
+        "importe": "Importe impreso de esta partida como texto; null si falta o es ilegible. No calcular.",
+    }.items():
+        concepto["properties"][clave]["description"] = descripcion
     modelo = os.getenv("VISION_MODELO", "gemma3:4b")
     # format limita la estructura; incluir también el esquema en el prompt hace
     # visibles al modelo las instrucciones semánticas específicas de cada campo.
@@ -125,11 +219,18 @@ def extraer_campos_factura(archivo: str, *, cliente: httpx.Client | None = None)
     if cliente is None:
         url = os.getenv("OLLAMA_BASE_URL") or os.getenv("OLLAMA_URL", "http://localhost:11434")
         with httpx.Client(base_url=url, timeout=180) as conexion:
-            return _extraer(conexion, payload, modelo)
-    return _extraer(cliente, payload, modelo)
+            factura = _extraer(conexion, payload, modelo, conservar_lecturas=conservar_lecturas)
+    else:
+        factura = _extraer(cliente, payload, modelo, conservar_lecturas=conservar_lecturas)
+    factura.paginas = paginas
+    if paginas > 1:
+        # La imagen compuesta no permite atribuir un campo a una página verificada.
+        for campo in factura.campos.values():
+            campo.pagina = None
+    return factura
 
 
-def _extraer(cliente: httpx.Client, payload: dict, modelo: str) -> FacturaExtraida:
+def _extraer(cliente: httpx.Client, payload: dict, modelo: str, *, conservar_lecturas: bool = False) -> FacturaExtraida:
     try:
         respuesta = cliente.post("/api/generate", json=payload)
         respuesta.raise_for_status()
@@ -143,7 +244,8 @@ def _extraer(cliente: httpx.Client, payload: dict, modelo: str) -> FacturaExtrai
         # No publicar autoevaluaciones o coordenadas del modelo como mediciones.
         for campo in factura.campos.values():
             campo.confianza, campo.bbox = None, None
-        _filtrar_evidencia(factura)
+        if not conservar_lecturas:
+            _filtrar_evidencia(factura)
         factura.modelo, factura.paginas = modelo, 1
         if not any(c.valor and c.valor.strip() for c in factura.campos.values()):
             raise ErrorExtraccion("No se pudieron leer campos; requiere revisión del documento.")
