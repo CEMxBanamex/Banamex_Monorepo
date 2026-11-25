@@ -98,3 +98,14 @@ grafo de casos 58/1; API 16/0; backend 9/1; MCP 2/0. Total: 320 aprobadas y
 68 omitidas. Ruff de datos/backend/MCP y compilación Vite aprobados. Las pruebas
 omitidas requieren principalmente una base PostgreSQL de pruebas disponible.
 No hubo una prueba de navegador ni un despliegue real desde este entorno.
+
+## Comprobación real por API en Windows
+
+El 24 de noviembre de 2026 se completó el recorrido HTTP con S3, Ollama y
+PostgreSQL locales: subida de piloto_012.png, creación de F-1100, lectura de
+cinco conceptos, pausa humana, cierre explícito de prueba rechazado por diferencia
+de 400.00 y consulta posterior del evento EV-5268. Evidencia y límites en
+`docs/evidencias/qwen/api-local-2026-11-24/F-1100/`. Esta comprobación amplía las
+pruebas controladas anteriores; no representa una prueba de navegador ni un
+despliegue al entorno compartido. Los acentos se verificaron descargando la
+respuesta HTTP a archivo y leyendo UTF-8 explícitamente en PowerShell 5.1.
