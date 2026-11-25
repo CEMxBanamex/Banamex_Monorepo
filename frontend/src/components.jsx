@@ -38,6 +38,7 @@ export function Shell({ activo, usuario, ir, onSalir, children }) {
     ['casos', Inbox, 'Casos'],
     ['subir', Upload, 'Subir caso'],
     ['bitacora', List, 'Bitácora'],
+    ['asistente', List, 'Asistente'],
   ]
   return (
     <div className="shell">

@@ -84,3 +84,26 @@ def test_registrar_hallazgo_validaciones():
 
     with pytest.raises(ValueError, match="El caso F-9999 no existe"):
         registrar_hallazgo(entrada, s=mock_session)
+
+
+def test_registrar_hallazgo_sin_politica_audita_revision():
+    s = MagicMock()
+
+    def asignar_ids():
+        fila = s.add.call_args.args[0]
+        fila.id = len(s.add.call_args_list)
+
+    s.flush.side_effect = asignar_ids
+    entrada = RegistrarHallazgoEntrada(caso_id="F-1042", hallazgo=HallazgoOut(
+        regla_id="R-014", regla_version="2.1", politica_id="", efecto="rechazo",
+        severidad="error", titulo="Total incorrecto", texto="Diferencia de 400 MXN",
+    ))
+
+    salida = registrar_hallazgo(entrada, s=s)
+
+    hallazgo, evento = (llamada.args[0] for llamada in s.add.call_args_list)
+    assert hallazgo.politica_id is None
+    assert hallazgo.efecto == "revision"
+    assert evento.hallazgo_id == salida.hallazgo_id
+    assert evento.tono == "adv"
+    assert "requiere revisión humana" in evento.detalle

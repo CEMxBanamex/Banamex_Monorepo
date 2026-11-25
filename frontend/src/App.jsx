@@ -10,6 +10,7 @@ import DetalleReal from './screens/DetalleReal.jsx'
 import DetalleFactura from './screens/Detalle.jsx'
 import Validacion from './screens/Validacion.jsx'
 import Bitacora from './screens/Bitacora.jsx'
+import Asistente from './screens/Asistente.jsx'
 
 const caso = (id) => CASOS.find((c) => c.id === id)
 const NUEVO = { id: 'F-1043', archivo: 'factura_1043.pdf', tipo: 'Factura', estado: 'revision', resultado: 'humana' }
@@ -71,6 +72,8 @@ export default function App() {
     let pagina
     if (pantalla === 'casos') {
       pagina = <Bandeja variante={vista.variante} abrirCaso={abrirCaso} ir={ir} setVariante={(v) => setVista({ ...vista, variante: v })} />
+      } else if (pantalla === 'asistente') {
+      pagina = <Asistente />
     } else if (pantalla === 'subir') {
       pagina = <Subir ir={ir} iniciar={iniciar} />
     } else if (pantalla === 'factura' && CASOS_REALES) {
@@ -95,7 +98,14 @@ export default function App() {
     }
     contenido = (
       <Shell activo={activo} usuario={usuario} ir={ir} onSalir={() => setVista({ pantalla: 'login' })}>
-        {pagina}
+        {pantalla === 'factura' || pantalla === 'validacion' ? (
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {pagina}
+            <Asistente key={vista.caso} casoId={vista.caso} />
+          </div>
+        ) : (
+          pagina
+        )}
       </Shell>
     )
   }

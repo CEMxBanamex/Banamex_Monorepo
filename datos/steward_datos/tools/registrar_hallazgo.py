@@ -19,15 +19,18 @@ def registrar_hallazgo(entrada: RegistrarHallazgoEntrada, s: Optional[Session] =
         raise ValueError(f"El caso {entrada.caso_id} no existe.")
     if s.get(Regla, (h.regla_id, h.regla_version)) is None:
         raise ValueError(f"La regla {h.regla_id} v{h.regla_version} no está en el catálogo.")
-    fila = Hallazgo(caso_id=entrada.caso_id, regla_id=h.regla_id, regla_version=h.regla_version, politica_id=h.politica_id,
-                    efecto=h.efecto, severidad=h.severidad, titulo=h.titulo, texto=h.texto,
+    politica_id = h.politica_id.strip() or None
+    falta_politica = politica_id is None
+    detalle = f"{h.titulo}. Sin política aplicable: requiere revisión humana." if falta_politica else h.titulo
+    fila = Hallazgo(caso_id=entrada.caso_id, regla_id=h.regla_id, regla_version=h.regla_version, politica_id=politica_id,
+                    efecto="revision" if falta_politica else h.efecto, severidad=h.severidad, titulo=h.titulo, texto=h.texto,
                     cifras=[list(c) for c in h.cifras] if h.cifras else None, campos=h.campos or None, filas=h.filas,
                     evidencia=h.evidencia, evidencia_detalle=h.evidencia_detalle, origen=entrada.origen,
                     fragmentos_ids=entrada.fragmentos_ids or None, creado_en=cuando)
     s.add(fila)
     s.flush()
     ev = EventoBitacora(caso_id=entrada.caso_id, actor_tipo="agente" if entrada.origen != "humano" else "usuario",
-                        actor_nombre=entrada.actor_nombre, accion="regla_aplicada", tono="info", detalle=h.titulo,
+                        actor_nombre=entrada.actor_nombre, accion="regla_aplicada", tono="adv" if falta_politica else "info", detalle=detalle,
                                  regla_id=h.regla_id, regla_version=h.regla_version, hallazgo_id=fila.id, fecha=cuando)
     s.add(ev)
     s.flush()

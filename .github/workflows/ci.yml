@@ -118,6 +118,7 @@ jobs:
         run: |
           python -m unittest discover -s backend/tests -v
           python -m unittest discover -s backend/grafo_casos/tests -v
+          python -m unittest discover -s backend/grafo_chat/tests -v
       - name: Pruebas de mcp/
         run: python -m unittest discover -s mcp/tests -v
 

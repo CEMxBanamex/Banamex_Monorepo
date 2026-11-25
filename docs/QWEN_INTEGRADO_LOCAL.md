@@ -109,3 +109,21 @@ de 400.00 y consulta posterior del evento EV-5268. Evidencia y límites en
 pruebas controladas anteriores; no representa una prueba de navegador ni un
 despliegue al entorno compartido. Los acentos se verificaron descargando la
 respuesta HTTP a archivo y leyendo UTF-8 explícitamente en PowerShell 5.1.
+
+## Sincronización con dev antes del PR
+
+Se incorporó dev `9d584bb` (PR 47, 13, 44, 46 y 28). La resolución conserva
+los endpoints de chat e historial, la pantalla del asistente, su configuración
+VITE_CHAT_REAL y sus pruebas. Los endpoints de casos mantienen los avisos de
+evidencia, conceptos y PDF de Qwen. La corrección de dev que obliga a revisión
+cuando falta política y propaga fallos de auditoría se conserva junto al informe
+experimental. Las pruebas del adaptador anterior de chat con contrato `pregunta`
+se ejecutan en una aplicación aislada; el router principal usa el contrato
+`mensaje` del chat integrado por el equipo, cubierto por sus pruebas HTTP.
+
+Validación posterior a resolver conflictos: 367 pruebas aprobadas, 80 omitidas y
+77 subpruebas aprobadas (pytest de datos, grafos, API, backend y MCP); Ruff sin
+errores; npm ci y npm run build aprobados. Las pruebas omitidas incluyen
+integraciones PostgreSQL no disponibles aquí. No se ejecutó Playwright.
+La evidencia real F-1100 corresponde a la versión anterior a esta sincronización;
+no se presenta como una repetición del recorrido tras el merge.

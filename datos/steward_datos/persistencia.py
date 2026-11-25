@@ -61,11 +61,12 @@ def guardar_resultado(s: Session, r: ResultadoValidacion, *, cuando: Optional[da
         ), s, cuando=cuando)
         fila = s.get(Hallazgo, registrado.hallazgo_id)
         guardados.append(fila)
-    caso.resultado_sugerido = r.resultado_sugerido
+    sugerido = "humana" if any(not h.politica_id.strip() for h in r.hallazgos) else r.resultado_sugerido
+    caso.resultado_sugerido = sugerido
     caso.explicacion = explicacion or r.motivo
     caso.estado = "revision"
     s.add(EventoBitacora(caso_id=r.caso_id, fecha=cuando, actor_tipo="agente", actor_nombre="Agente", accion="resultado_sugerido",
-                         tono="info", detalle=f"Resultado sugerido: {r.resultado_sugerido}",
+                         tono="info", detalle=f"Resultado sugerido: {sugerido}",
                          datos={"reglas_evaluadas": r.reglas_evaluadas, "motivo": r.motivo}))
     s.flush()
     return guardados

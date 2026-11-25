@@ -120,7 +120,7 @@ export default function Subir({ ir, iniciar }) {
           <input ref={input} type="file" multiple hidden onChange={(e) => { agregar(e.target.files); e.target.value = '' }} />
           <div className="tipos">
             Tipos admitidos:
-            {(CASOS_REALES ? ['.jpg', '.jpeg', '.png'] : ['.pdf', '.jpg', '.png', '.xls', '.xlsx', '.csv', '.md', 'texto']).map((t) => <code key={t}>{t}</code>)}
+            {(CASOS_REALES ? ['.pdf', '.jpg', '.jpeg', '.png'] : ['.pdf', '.jpg', '.png', '.xls', '.xlsx', '.csv', '.md', 'texto']).map((t) => <code key={t}>{t}</code>)}
           </div>
           <div className="muted" style={{ marginTop: 14, fontSize: 14 }}>{CASOS_REALES ? "Factura PNG, JPEG o PDF de hasta 15 MiB. PDF de hasta 4 páginas." : "Tamaño máximo por archivo: 20 MB"}</div>
         </div>

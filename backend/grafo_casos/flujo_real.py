@@ -2,6 +2,7 @@
 from datetime import date
 from functools import partial
 import hashlib
+import logging
 from pathlib import Path
 import re
 from typing import TypedDict
@@ -16,6 +17,9 @@ from .extraccion import extraer_campos_factura
 from .flujo import DecisionAnalista
 from .herramientas_reales import HerramientasReales
 from .revision_evidencia import revisar_evidencia
+
+
+logger = logging.getLogger(__name__)
 
 
 class EstadoReal(TypedDict, total=False):
@@ -133,7 +137,12 @@ class FlujoCasosReal:
         return {"politicas": salida, "fragmentos": fragmentos}
 
     def _redactor(self, estado):
-        explicacion = redactar_evidencia(estado["resultado"], estado["politicas"])
+        resultado = estado["resultado"]
+        politicas = estado["politicas"]
+        if any(not h["politica_id"].strip() for h in resultado["hallazgos"]):
+            resultado = {**resultado, "resultado_sugerido": "humana"}
+            politicas = {**politicas, "resultado_sugerido": "humana"}
+        explicacion = redactar_evidencia(resultado, politicas)
         if self.revisar_lecturas:
             avisos = ["Revisión de evidencia (experimental): valores conservados, no verificados contra el documento."]
             avisos.extend(estado["revision_evidencia"].get("alertas_documento", []))
@@ -144,15 +153,19 @@ class FlujoCasosReal:
                     avisos.append(f"{nombre}: sin valor leído; no demuestra ausencia en el documento.")
             avisos.append("Los conceptos y las asociaciones de etiquetas y roles requieren revisión del original.")
             explicacion = "\n".join(avisos) + "\n" + explicacion
-        return {"explicacion": explicacion}
+        return {"resultado": resultado, "politicas": politicas, "explicacion": explicacion}
 
     def _guardar(self, estado):
-        datos = (estado["caso_id"], estado["factura"], estado["resultado"], estado["explicacion"], estado["fragmentos"])
-        if self.revisar_lecturas:
-            self.tools.guardar(*datos, revision_evidencia=estado["revision_evidencia"],
-                               resultado_reglas=estado["resultado_reglas"])
-        else:
-            self.tools.guardar(*datos)
+        try:
+            datos = (estado["caso_id"], estado["factura"], estado["resultado"], estado["explicacion"], estado["fragmentos"])
+            if self.revisar_lecturas:
+                self.tools.guardar(*datos, revision_evidencia=estado["revision_evidencia"],
+                                   resultado_reglas=estado["resultado_reglas"])
+            else:
+                self.tools.guardar(*datos)
+        except Exception:
+            logger.exception("Falló el registro de hallazgos del caso %s", estado["caso_id"])
+            raise
         return {}
 
     def _revision(self, estado):

@@ -19,6 +19,7 @@ from contratos.eventos_sse import (
 
 from .enrutador import clasificar_dominio
 from .estado import EstadoChat, RolUsuario
+from .presentacion_caso import formatear_caso
 from .herramientas_demo import (
     responder_fuera_alcance,
     responder_general,
@@ -95,13 +96,13 @@ def _formatear_resultado_calidad(resultado: Any) -> str:
     ]
 
     if incumplidas:
-        lineas.extend(["", "Reglas que requieren atenci?n:"])
+        lineas.extend(["", "Reglas que requieren atención:"])
 
         for regla in incumplidas:
             lineas.append(
                 f"- {regla.get('regla_id', 'Sin ID')} "
                 f"[{regla.get('tabla', 'Sin tabla')}]: "
-                f"{regla.get('descripcion', 'Sin descripci?n')} "
+                f"{regla.get('descripcion', 'Sin descripción')} "
                 f"Resultado: {regla.get('porcentaje', 'No disponible')}% "
                 f"(umbral: {regla.get('umbral', 'No disponible')}%)."
             )
@@ -110,7 +111,7 @@ def _formatear_resultado_calidad(resultado: Any) -> str:
 
     lineas.extend([
         "",
-        "Nota: estos resultados describen las reglas registradas; no constituyen una definici?n conceptual oficial del glosario.",
+        "Nota: estos resultados describen las reglas registradas; no constituyen una definición conceptual oficial del glosario.",
     ])
 
     return "\n".join(lineas)
@@ -153,7 +154,7 @@ def _seleccionar_herramienta(
 
         if any(
             palabra in texto
-            for palabra in ("glosario", "significa", "definici?n", "definicion")
+            for palabra in ("glosario", "significa", "definición", "definicion")
         ):
             return (
                 "consultar_glosario",
@@ -171,6 +172,15 @@ def _seleccionar_herramienta(
         )
 
     if dominio == "casos":
+        identificador = caso_id.strip() if caso_id else None
+        encontrado = re.search(r"\b[FV]-\d{4,}\b", pregunta, re.IGNORECASE)
+        if encontrado:
+            en_pregunta = encontrado.group(0).upper()
+            if identificador and identificador.upper() != en_pregunta:
+                return None, {}, "El identificador de la pregunta no coincide con el caso abierto. Abre el caso correcto para continuar."
+            identificador = en_pregunta
+        if identificador:
+            return "consultar_caso", {"entrada": {"caso_id": identificador.upper()}}, None
         if "factura" in texto:
             return (
                 "buscar_facturas",
@@ -295,6 +305,8 @@ class FlujoChat:
             )
 
             respuesta = _texto_resultado_mcp(resultado_mcp)
+            if herramienta == 'consultar_caso':
+                respuesta = formatear_caso(resultado_mcp) or respuesta
 
             if herramienta == "consultar_calidad":
                 respuesta = _formatear_resultado_calidad(resultado_mcp)
