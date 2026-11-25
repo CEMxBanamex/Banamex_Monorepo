@@ -5,6 +5,7 @@ from typing import Any, Literal, TypedDict
 DominioChat = Literal[
     "gobernanza",
     "casos",
+    "analista",
     "general",
     "fuera_de_alcance",
 ]
@@ -12,6 +13,7 @@ DominioChat = Literal[
 DominioEjecutable = Literal[
     "gobernanza",
     "casos",
+    "analista",
 ]
 
 RolUsuario = Literal["analista", "administrador"]

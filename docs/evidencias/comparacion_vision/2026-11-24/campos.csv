@@ -1,4 +1,4 @@
-﻿modelo,etapa,archivo,campo,esperado,leido,correcto,presente,emitido
+modelo,etapa,archivo,campo,esperado,leido,correcto,presente,emitido
 qwen3-vl:4b-instruct,sin_filtro,piloto_001.png,folio,23175403,23175403,True,True,True
 qwen3-vl:4b-instruct,sin_filtro,piloto_001.png,fecha,2026-09-27,2026-09-27,True,True,True
 qwen3-vl:4b-instruct,sin_filtro,piloto_001.png,emisor_nombre,gonzales servicios sapi de cv,gonzales servicios sapi de cv,True,True,True
