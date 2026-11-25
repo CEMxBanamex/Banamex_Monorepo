@@ -27,7 +27,6 @@ from .herramientas_demo import (
     responder_fuera_alcance,
     responder_general,
 )
-from .presentacion_caso import formatear_caso
 
 
 def _texto_resultado_mcp(resultado: Any) -> str:
