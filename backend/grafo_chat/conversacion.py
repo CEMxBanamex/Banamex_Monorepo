@@ -99,12 +99,20 @@ def construir_mensajes(
     return [{"role": "system", "content": sistema}, *_historial(historial), {"role": "user", "content": pregunta}]
 
 
-def revisar_respuesta(texto: str) -> str | None:
-    """Limpia la respuesta; None si viene vacía. Si menciona folios, reglas o políticas, la sustituye."""
+def _identificadores(texto: str) -> set[str]:
+    return {m.upper() for m in _DATO_DEL_NEGOCIO.findall(texto or "")}
+
+
+def revisar_respuesta(texto: str, contexto: str = "") -> str | None:
+    """Limpia la respuesta; None si viene vacía.
+
+    Puede citar folios, reglas o políticas que ya aparecieron en la conversación (los trajo una herramienta o
+    la persona); si menciona uno nuevo, se sustituye: sería un dato que nadie consultó.
+    """
     limpio = _PENSAMIENTO.sub("", texto or "").strip()
     if not limpio:
         return None
-    if _DATO_DEL_NEGOCIO.search(limpio):
+    if _identificadores(limpio) - _identificadores(contexto):
         return REDIRECCION
     return limpio
 
@@ -132,7 +140,9 @@ async def responder(
         else:
             respuesta = await cliente.post(f"{_url()}/api/chat", json=cuerpo)
         respuesta.raise_for_status()
-        return revisar_respuesta(respuesta.json().get("message", {}).get("content", ""))
+        # Solo el historial cuenta como consultado; la pregunta actual no (nadie ha traído esos datos todavía).
+        contexto = " ".join(str(m.get("content") or "") for m in (historial or [])[-MAX_MENSAJES_HISTORIAL:])
+        return revisar_respuesta(respuesta.json().get("message", {}).get("content", ""), contexto)
     except (httpx.HTTPError, ValueError, KeyError, TypeError):
         logger.warning("El modelo conversacional no respondió; se usa el texto fijo.", exc_info=True)
         return None
