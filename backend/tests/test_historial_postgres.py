@@ -60,7 +60,7 @@ class TestHistorialPostgres(unittest.TestCase):
             sustitucion = patch(f"backend.api.{modulo}.sesion", fabrica)
             sustitucion.start()
             self.addCleanup(sustitucion.stop)
-        self.cli = TestClient(app)
+        self.cli = TestClient(app, headers={"X-Usuario": self.ana.usuario_id, "X-Rol": "analista"})
         self.addCleanup(self.cli.close)
 
     def crear_por_api(self):
@@ -91,7 +91,7 @@ class TestHistorialPostgres(unittest.TestCase):
 
     def test_api_aislamiento_entre_usuarios(self):
         identificador = self.crear_por_api()
-        with patch.dict(os.environ, {"CHAT_DEV_USUARIO": self.otro.usuario_id}):
+        with patch.dict(self.cli.headers, {"X-Usuario": self.otro.usuario_id}):
             self.assertEqual(self.cli.get("/api/chat/conversaciones").json(), [])
             r = self.cli.get(f"/api/chat/conversaciones/{identificador}/mensajes")
             self.assertEqual(r.status_code, 404)
