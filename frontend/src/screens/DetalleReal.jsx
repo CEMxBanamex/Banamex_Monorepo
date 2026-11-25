@@ -1,3 +1,4 @@
+import { IndicadorCarga } from '../components.jsx'
 import { useEffect, useState } from 'react'
 import { ArrowLeft, Check, ClipboardList, FileText, ListChecks, X } from 'lucide-react'
 import { obtenerDetalleCaso, registrarDecisionCaso } from '../api.js'
@@ -58,7 +59,7 @@ export default function DetalleReal({ casoId, ir, toast }) {
       </header>
 
       {error && !caso && <p className="caso-real__error" role="alert">{error}</p>}
-      {!caso && !error && <p role="status">Cargando caso…</p>}
+      {!caso && !error && <IndicadorCarga>Cargando caso…</IndicadorCarga>}
       {caso && (
         <>
           {caso.estado === 'error' && <p className="caso-real__error">El análisis falló. Revisa el archivo y vuelve a subirlo si es necesario.</p>}
@@ -148,7 +149,7 @@ export default function DetalleReal({ casoId, ir, toast }) {
               {error && <p className="caso-real__error" role="alert">{error}</p>}
               <div className="caso-real__pie">
                 <button className="btn btn-primario" disabled={guardando || !resultado || !motivo.trim()}>
-                  {guardando ? 'Guardando…' : 'Registrar decisión'}
+                  {guardando ? <span role="status" className="indicador-carga"><span className="rueda-carga girando" aria-hidden="true" />Guardando…</span> : 'Registrar decisión'}
                 </button>
               </div>
             </form>

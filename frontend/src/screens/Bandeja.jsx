@@ -1,3 +1,4 @@
+import { IndicadorCarga } from '../components.jsx'
 import { useEffect, useState } from 'react'
 import {
   Plus, Search, ChevronDown, Calendar, Loader, Eye, TriangleAlert, Check,
@@ -70,7 +71,8 @@ export default function Bandeja({ variante = 'normal', abrirCaso, ir, setVariant
   let contenido
   if (cargando) {
     contenido = (
-      <div className="esqueleto">
+      <div className="esqueleto" aria-busy="true">
+            <IndicadorCarga>Cargando casos…</IndicadorCarga>
         {[0, 1, 2, 3, 4].map((i) => (
           <div key={i} style={{ width: `${70 + ((i * 7) % 25)}%` }} />
         ))}

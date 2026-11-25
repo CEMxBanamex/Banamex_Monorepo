@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './Asistente.css'
-import { Bot, ArrowUp, Square } from 'lucide-react'
+import { Bot, ArrowUp, Square, Loader } from 'lucide-react'
 import { identidadApi } from '../api.js'
 import { CHAT_REAL, CHAT_API } from '../chatConfig.js'
 
@@ -20,6 +20,35 @@ export default function Asistente({ casoId = null }) {
   const controlador = useRef(null)
   const bloqueo = useRef(false)
   const activo = useRef(true)
+  const cajaMensaje = useRef(null)
+
+  function ajustarCaja() {
+    const caja = cajaMensaje.current
+    if (!caja || caja.getBoundingClientRect().width === 0) return
+    caja.style.height = 'auto'
+    const limite = Math.max(36, Math.min(180, window.innerHeight * 0.25))
+    const altura = Math.max(36, Math.min(caja.scrollHeight, limite))
+    caja.style.height = `${altura}px`
+    caja.style.overflowY = caja.scrollHeight > limite ? 'auto' : 'hidden'
+  }
+
+  useLayoutEffect(() => { ajustarCaja() }, [mensaje])
+
+  useEffect(() => {
+    let anchoAnterior = -1
+    const observador = new ResizeObserver(([entrada]) => {
+      if (entrada.contentRect.width !== anchoAnterior) {
+        anchoAnterior = entrada.contentRect.width
+        ajustarCaja()
+      }
+    })
+    if (cajaMensaje.current) observador.observe(cajaMensaje.current)
+    window.addEventListener('resize', ajustarCaja)
+    return () => {
+      observador.disconnect()
+      window.removeEventListener('resize', ajustarCaja)
+    }
+  }, [])
 
   useEffect(() => {
     activo.current = true
@@ -372,6 +401,15 @@ export default function Asistente({ casoId = null }) {
         <label htmlFor="mensaje-asistente">Tu pregunta</label>
         <textarea
           id="mensaje-asistente"
+          ref={cajaMensaje}
+          enterKeyHint="send"
+          aria-describedby="ayuda-mensaje-asistente"
+          onKeyDown={(evento) => {
+            if (evento.key === 'Enter' && !evento.shiftKey && !evento.nativeEvent.isComposing && evento.keyCode !== 229) {
+              evento.preventDefault()
+              if (!evento.repeat) evento.currentTarget.form.requestSubmit()
+            }
+          }}
           value={mensaje}
           onChange={(evento) => setMensaje(evento.target.value)}
           maxLength={2000}
@@ -381,7 +419,8 @@ export default function Asistente({ casoId = null }) {
         />
         {aviso && <p role="alert">{aviso}</p>}
 
-        <div className="asistente-acciones">
+        <span id="ayuda-mensaje-asistente" className="asistente-sr">Enter para enviar. Shift más Enter para una nueva línea.</span>
+          <div className="asistente-acciones">
           <span>{mensaje.length}/2000</span>
 
           {ocupado && (
@@ -399,7 +438,7 @@ export default function Asistente({ casoId = null }) {
             className="btn btn-primario"
             disabled={ocupado || !mensaje.trim()}
           >
-            {ocupado ? 'Consultando…' : <><ArrowUp size={17} /> Enviar</>}
+            {ocupado ? <><Loader size={17} className="girando" aria-hidden="true" />Consultando…</> : <><ArrowUp size={17} /> Enviar</>}
           </button>
         </div>
       </form>
