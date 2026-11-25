@@ -94,7 +94,7 @@ export default function Bitacora({ toast }) {
         ) : null}
       </div>
 
-      <div className="tarjeta">
+      <div className="tarjeta bitacora-contenedor" role="region" aria-label="Eventos de bitácora" tabIndex={0}>
         {cargando ? (
           <div className="esqueleto">
             {[0, 1, 2, 3, 4].map((i) => (
@@ -121,8 +121,8 @@ export default function Bitacora({ toast }) {
                           {abiertoEste ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
                         </button>
                       </td>
-                      <td className="num" style={{ maxWidth: 140 }}>{ev.fecha}</td>
-                      <td><span className="id-caso" style={{ color: 'var(--texto)' }}>{ev.caso || '—'}</span></td>
+                      <td className="bit-fecha"><time>{ev.fecha}</time></td>
+                      <td className="bit-caso"><span className="id-caso" style={{ color: 'var(--texto)' }}>{ev.caso || '—'}</span></td>
                       <td>
                         <span className="quien">
                           {ev.ini ? <span className="avatar avatar-sm">{ev.ini}</span> : <span className="ico-agente"><Bot size={15} /></span>}
