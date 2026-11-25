@@ -116,3 +116,8 @@ jobs:
           curl -sS --fail-with-body -X POST -H "Authorization: Bearer $VERCEL_TOKEN" \
             -H "Content-Type: application/json" -d "{\"alias\":\"dev.$DOMINIO\"}" \
             "$api/v2/deployments/$id/aliases?teamId=$VERCEL_ORG_ID" | jq -r '"Alias: https://" + .alias'
+          # Mismo despliegue en un *.vercel.app: la API va por el mismo origen y Vercel la reenvía (vercel.json).
+          # Sirve en redes que bloquean el dominio propio por su categoría.
+          curl -sS --fail-with-body -X POST -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" -d '{"alias":"data-steward-dev.vercel.app"}' \
+            "$api/v2/deployments/$id/aliases?teamId=$VERCEL_ORG_ID" | jq -r '"Alias: https://" + .alias'

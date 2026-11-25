@@ -1,2 +1,5 @@
+import { API_BASE_URL } from './api.js'
+
 export const CHAT_REAL = import.meta.env.VITE_CHAT_REAL === 'true'
-export const CHAT_API = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '')
+// Misma URL que el resto de la API (en *.vercel.app, el mismo origen; ver api.js).
+export const CHAT_API = API_BASE_URL

@@ -44,7 +44,8 @@ module "s3" {
   source = "../../modules/s3"
 
   env             = local.env
-  allowed_origins = [local.frontend, "http://localhost:5173"]
+  # data-steward-dev.vercel.app: el mismo frontend para redes que bloquean el dominio propio (sube directo a S3).
+  allowed_origins = [local.frontend, "https://data-steward-dev.vercel.app", "http://localhost:5173"]
   force_destroy   = var.s3_force_destroy
   region          = var.region
 }

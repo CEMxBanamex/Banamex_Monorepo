@@ -3,7 +3,15 @@
  * Consume los endpoints REST de FastAPI interceptados por MSW en desarrollo.
  */
 
-export const API_BASE_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '')
+const API_CONFIGURADA = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '')
+
+// En *.vercel.app la página llama a la API en su mismo origen y Vercel la reenvía a la EC2 (frontend/vercel.json).
+// Sirve en redes que bloquean el dominio propio (la del Tec lo clasifica como "parked"). En dev.<dominio> y en
+// local se usa VITE_API_URL tal cual.
+const MISMO_ORIGEN = Boolean(API_CONFIGURADA) && typeof window !== 'undefined'
+  && window.location.hostname.endsWith('.vercel.app')
+
+export const API_BASE_URL = MISMO_ORIGEN ? window.location.origin : API_CONFIGURADA
 
 const USUARIO_DEV = import.meta.env.VITE_API_DEV_USUARIO
 export const CASOS_REALES = Boolean(API_BASE_URL && USUARIO_DEV)
