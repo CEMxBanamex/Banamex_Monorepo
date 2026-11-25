@@ -1,4 +1,4 @@
-﻿"""Pruebas HTTP del endpoint de chat y su transmisión SSE."""
+"""Pruebas HTTP aisladas del adaptador de chat anterior (contrato pregunta)."""
 
 import os
 import unittest
@@ -6,7 +6,11 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-from backend.api.main import app
+from fastapi import FastAPI
+from backend.api.chat import router
+
+app = FastAPI()
+app.include_router(router)
 from contratos.eventos_sse import (
     EstadoPaso,
     PasoEvent,

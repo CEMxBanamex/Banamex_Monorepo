@@ -1,0 +1,24 @@
+[
+  {
+    "archivo_versionado": "diagnostico_piloto_001.json",
+    "sha256_adjunto_original": "79e13d0f79d6c9b665f565a63cdc96b82d1d565f70f011bffdd41216eb6c8d2a",
+    "transformaciones": [
+      "Formato JSON UTF-8 con indentación y finales LF"
+    ]
+  },
+  {
+    "archivo_versionado": "diagnostico_piloto_003.json",
+    "sha256_adjunto_original": "1f64e7d803f131df6d3fdff90725323949177773b0cc19569f317d862956a8d8",
+    "transformaciones": [
+      "Formato JSON UTF-8 con indentación y finales LF"
+    ]
+  },
+  {
+    "archivo_versionado": "pausa_F-9401.json",
+    "sha256_adjunto_original": "c297522d2742f8fe2241479a31efd7737d9847a91fac056c55a07eee2fc9dd71",
+    "transformaciones": [
+      "Formato JSON UTF-8 con indentación y finales LF",
+      "Ruta absoluta de archivo sustituida por nombre base"
+    ]
+  }
+]

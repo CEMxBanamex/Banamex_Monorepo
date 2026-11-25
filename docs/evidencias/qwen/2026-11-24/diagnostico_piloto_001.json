@@ -1,0 +1,245 @@
+{
+  "archivo": "piloto_001.png",
+  "modelo_solicitado": "qwen3-vl:4b-instruct",
+  "antes_filtro": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": "23175403",
+        "confianza": null,
+        "etiqueta": "Folio",
+        "pagina": 1,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": "27/09/2026",
+        "confianza": null,
+        "etiqueta": "Fecha",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Gonzales Servicios SAPI de CV",
+        "confianza": null,
+        "etiqueta": "emisor_nombre",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": "GSS07010186W",
+        "confianza": null,
+        "etiqueta": "emisor_rfc",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Privada Ozuna 662, Nueva Sri Lanka",
+        "confianza": null,
+        "etiqueta": "emisor_direccion",
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Servicios Corporativos Demo SA de CV",
+        "confianza": null,
+        "etiqueta": "receptor_nombre",
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "SCD050920LM8",
+        "confianza": null,
+        "etiqueta": "receptor_rfc",
+        "pagina": 1,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": 1,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "115,943.76",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": 1,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "18,551.00",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16 %",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "retenciones",
+        "pagina": 1,
+        "bbox": null
+      },
+      "total": {
+        "valor": "$ 134,494.76",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": 1,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Pago a 15 días",
+        "confianza": null,
+        "etiqueta": "Condiciones de pago",
+        "pagina": 1,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "10",
+        "precio_unitario": "11,550.88",
+        "importe": "115,508.80"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "434.96",
+        "importe": "434.96"
+      }
+    ],
+    "texto_completo": "Gonzales Servicios SAPI de CV\nRFC GSS07010186W\nPrivada Ozuna 662, Nueva Sri Lanka\n\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\n\nConcepto\nCant.\nP. unitario\nImporte\nSoporte técnico mensual\n10\n11,550.88\n115,508.80\nPapelería y artículos de oficina\n1\n434.96\n434.96\n\nSubtotal\n115,943.76\nIVA 16 %\n18,551.00\nTotal\n$ 134,494.76\n\nCondiciones de pago: Pago a 15 días\n\n",
+    "modelo": null,
+    "paginas": 1
+  },
+  "despues_filtro": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Folio",
+        "pagina": 1,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "Fecha",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Gonzales Servicios SAPI de CV",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "emisor_rfc",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Privada Ozuna 662, Nueva Sri Lanka",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Servicios Corporativos Demo SA de CV",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "receptor_rfc",
+        "pagina": 1,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": 1,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "115,943.76",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": 1,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "18,551.00",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16 %",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": "retenciones",
+        "pagina": 1,
+        "bbox": null
+      },
+      "total": {
+        "valor": "$ 134,494.76",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": 1,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Pago a 15 días",
+        "confianza": null,
+        "etiqueta": "Condiciones de pago",
+        "pagina": 1,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "10",
+        "precio_unitario": "11,550.88",
+        "importe": "115,508.80"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "434.96",
+        "importe": "434.96"
+      }
+    ],
+    "texto_completo": "Gonzales Servicios SAPI de CV\nRFC GSS07010186W\nPrivada Ozuna 662, Nueva Sri Lanka\n\nReceptor\nServicios Corporativos Demo SA de CV\nRFC SCD050920LM8\nMoneda: MXN\n\nConcepto\nCant.\nP. unitario\nImporte\nSoporte técnico mensual\n10\n11,550.88\n115,508.80\nPapelería y artículos de oficina\n1\n434.96\n434.96\n\nSubtotal\n115,943.76\nIVA 16 %\n18,551.00\nTotal\n$ 134,494.76\n\nCondiciones de pago: Pago a 15 días\n\n",
+    "modelo": null,
+    "paginas": 1
+  },
+  "segundos": 22.08
+}

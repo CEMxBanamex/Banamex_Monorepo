@@ -1,0 +1,182 @@
+{
+  "inicio_utc": "2026-11-24T23:24:06.349008+00:00",
+  "identidad": {
+    "modelos": {
+      "qwen3-vl:4b-instruct": "84f7ed8042fa7cdbd902f7dcb7d0370e032095047cc3244179f263b77b5bc318",
+      "gemma3:4b": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"
+    },
+    "codigo": {
+      "comparar_vision.py": "41704980cca8be19087132c589896d375e96c9683ddd75bbf88ee59863a721ff",
+      "extraccion.py": "58ec22e20ab063758a5a8ad5fae08704b3907b6eaf6fd299d6ca20fb56902978",
+      "contratos.py": "3d0105944ce1517da6eb14c0f4c0f1cc6cd0b8f2785314c7cc794b67b36c8a7b",
+      "normalizar.py": "7d4b9fcb5a287f5b10ac5c0130c5c76c0b4b0dd22a6a1cbc64b88bef3d39d858"
+    },
+    "corpus": {
+      "piloto_001.png": {
+        "imagen_sha256": "82ebcbedd28b17e37fa82b79e18109d4a46897b464ab51f9a1ee0e8e41be6a77",
+        "referencia_sha256": "0f8be3b121dd27c3afe81ff6b2c17db86a7355748e7bef095d187101830c31b9"
+      },
+      "piloto_002.pdf": {
+        "imagen_sha256": "89c8623f3c372e56cd4e0b5cef5d9028f2c0e7b12bca1dc2057950fec9613c73",
+        "referencia_sha256": "6c5b97a6f9fc990ccdae00e35e19f29aaebe83daddd9bfcdb6f6ad02588b98e6"
+      },
+      "piloto_003.png": {
+        "imagen_sha256": "c6e1773e0fd48c0177eedf4ce764d5379ff5a0620bff25c067d3abe084392e47",
+        "referencia_sha256": "b50b276bce3243c2bba0862813cfedb82a95702859c5a8317c20f4a60fe11271"
+      },
+      "piloto_004.pdf": {
+        "imagen_sha256": "e760e2e666f83f54a21a0f97d9735deb133f7b94abb20fa306b4aa710cd7c932",
+        "referencia_sha256": "afbfe1e7b8ce0a4f5e7f95a0c8411bc142062dcd01c1dd4c767734a91c649c30"
+      },
+      "piloto_005.png": {
+        "imagen_sha256": "251dc015f55eff2924348aa1a4c1f97661759bc5288f8d24ebff428023cee513",
+        "referencia_sha256": "528d3c90e1028581d48c58d278a49c560398615a0434051529782a1c72ab3e2e"
+      },
+      "piloto_006.pdf": {
+        "imagen_sha256": "581f992b61ea16014e9cc38dcbf5a7306f778c6eb0628f18cb40d31a86eec367",
+        "referencia_sha256": "789e3093b26badfaa306e905e6faf5d7fb90c13b27c3ee50559188c5f571185f"
+      },
+      "piloto_007.png": {
+        "imagen_sha256": "3b87881e1c42ad74c72cd84c3c77350d4315afaf3ba1ee5d1ff82f002ac48ae0",
+        "referencia_sha256": "0de0905c364f5da4eb15a887a7b9aa40dc203a4947a64a72b5ea1793b0ddf09d"
+      },
+      "piloto_008.pdf": {
+        "imagen_sha256": "5c7f3f50abab02ae567f28b8dbaec1af749e28abde2578377d71ed6279ea2f08",
+        "referencia_sha256": "397ffb9d841d657f08618684e86f5dc9abe6540c9791ac6d7c5ffe4c007e0a37"
+      },
+      "piloto_009.jpg": {
+        "imagen_sha256": "070365d0df6d0969c9a51e98307e7412a3bbb1348ff4c00284841617bc3bd450",
+        "referencia_sha256": "d9b5f0fee807b6fb2ebf6d1314ad7c3b3274169605bb97c2dc6bca85ed368fc8"
+      },
+      "piloto_010.pdf": {
+        "imagen_sha256": "9d7af52c9b6717ccd5e6bbb549c94597174b2c5010045f65fce6f0da72c7c661",
+        "referencia_sha256": "f4f00a7a4fd172aa55e2c476393afc45105985e4ab7626cf4bf80ac2411124a2"
+      },
+      "piloto_011.pdf": {
+        "imagen_sha256": "40a09b0c7ef44f4a314c6a72eb8e6d92c5bb68a66b0fefad6de8e9564443324f",
+        "referencia_sha256": "95230e1056b198d300e18fab8eef0fc429e69f301b304f40bb50e037dd7334a5"
+      },
+      "piloto_012.png": {
+        "imagen_sha256": "3f0333fccf72a83c67da838f62adf9801bd0525374e13102b6b652cc0db99ea7",
+        "referencia_sha256": "9df4d770a2f0c5e1857855865720920676c5d8a9cc65dde823d4f496ad883d7c"
+      },
+      "piloto_013.pdf": {
+        "imagen_sha256": "4f546a832fc262dd0e26596a4010967146dfd277a478735336720bf4189daff7",
+        "referencia_sha256": "4757485bf92d215159f7026eb6d6667e9d8f30559fb34db83bb748a76773f528"
+      },
+      "piloto_014.jpg": {
+        "imagen_sha256": "1a2fb46fcc256e45a7c7eef4e65d6413c1f1c9684fb0ab0b6cea292079f778bc",
+        "referencia_sha256": "6e2cd316080ac39d1bc33ed9b944a7ed164efdc83e649d95cb1643427b78aa34"
+      },
+      "piloto_015.jpg": {
+        "imagen_sha256": "0ec598f73e1704f7f3d87023eda26bb6e436085f5b886368395889dd3a68b00c",
+        "referencia_sha256": "2f31c294ecb78c287281bf957cece76bbe036d7625564b40a72f5a0b0145f94c"
+      },
+      "piloto_016.pdf": {
+        "imagen_sha256": "3951a5d6e2c535457431df5a6b120c0e2ecfe8df12ba64e1eedc7d72cf93e568",
+        "referencia_sha256": "b16602cebcb3d3a269fbdb7f71617aaff47c4652514e7ff5474a570f1a7ed4e4"
+      },
+      "piloto_017.pdf": {
+        "imagen_sha256": "696ea48bf3adf6a52006b07aa3b28464d2a8a2e4df506c3927823b119135a3b4",
+        "referencia_sha256": "ebbe2041c1b8dd5609cefb3f664cab85fbd8b263910fec642d9bedc46e6466b3"
+      },
+      "piloto_018.png": {
+        "imagen_sha256": "da77558ad79bbbeb88d5f7b9dd5b304d0912f2cbb106b3428dbe9d36a99680b2",
+        "referencia_sha256": "7761cf158b4b40cdf873185d70170a9bc276dbe7bc20f4e0a89ea7fcf4d316b7"
+      },
+      "piloto_019.pdf": {
+        "imagen_sha256": "e5646f0ca159115d3bdcd0bd73fbfa2f2067444c58b71de132013faaf8f4db16",
+        "referencia_sha256": "1d238bb693d617442de3376f658239d47da10e5b4ebada332d5a6b1ce47948b3"
+      },
+      "piloto_020.png": {
+        "imagen_sha256": "0e8220836c60b2f26c6b58ed2b049f08816eea5b384444e636ef2fdb2782bcd0",
+        "referencia_sha256": "e8e20815317505a28dacfa345ac1892772863fc5048f97b05ddb827143c6a9b7"
+      },
+      "piloto_021.jpg": {
+        "imagen_sha256": "9bb0bf2acd2e4ba38d703b223ad621f6225a4848f0cf5fd849016b5a5a78bfae",
+        "referencia_sha256": "c497408bcacd9c2bf4f12bf020921037825c13b075da8272fbda2c7173e1ba44"
+      },
+      "piloto_022.pdf": {
+        "imagen_sha256": "dd134751858cfd04fc9f03aa8e9c6c0caf5b5e79399a7be34d2c6b90eb871885",
+        "referencia_sha256": "63ce77ea44e27c8144db1c464ea265bad4411b1fb936565de07ad116eadbaeb0"
+      },
+      "piloto_023.png": {
+        "imagen_sha256": "51ff0dc27004bde4173fab6499232a195badd979d817bf014fdfc75224adc92a",
+        "referencia_sha256": "bec7f78587b4ddf5dba53627c775c72c954846521038ae673381e2a13957540b"
+      },
+      "piloto_024.jpg": {
+        "imagen_sha256": "d90275780e550c1d310bbad534f5fcc1ea76d25b5f85f700bdd1b8923c74c4d6",
+        "referencia_sha256": "44ff517750701f555eb9bb86221ab93854f7a8fdb285d34e89728d09a2694a7e"
+      },
+      "piloto_025.pdf": {
+        "imagen_sha256": "7ff5565d1893a60716f96f297e98886fb67738a68e98e519e80cb4ec0804104e",
+        "referencia_sha256": "c7cb234421f68c043a9869991ae93462455230459ebf0b7512d2f3cc9b5cbffc"
+      },
+      "piloto_026.pdf": {
+        "imagen_sha256": "5f09d3d27b810f3422aa100d5473e53d26c28a72d17ce66bad4772e0bcef8a57",
+        "referencia_sha256": "b2e882aa6517e3a6ee59dea332d4d8f2c482602e8e32a91d0d6fca9836dd0e99"
+      },
+      "piloto_027.png": {
+        "imagen_sha256": "1e9280e8dabed2562ef221b9fb144448fed585e5f90e01c8f7b59a4b51ceedf6",
+        "referencia_sha256": "d04b93fe40ff59b448a9bb05cb4f47b2a6929a3704cba8dbb130848ab836de6b"
+      },
+      "piloto_028.jpg": {
+        "imagen_sha256": "5549e449686d2c4278cbe9ca26c36f3417971a535ece10d18f995a01f58d451b",
+        "referencia_sha256": "82b6373d855532a93f6b5a195dc208a49d8d01e62162858f52b712205fdb3f24"
+      },
+      "piloto_029.pdf": {
+        "imagen_sha256": "7a22f4d99267aa43d8bd737adf099075b44a824699addaeba717b93cbd6a1b14",
+        "referencia_sha256": "6d5faf3e808f1b204ab69737e65f55930e1c55fb2dd3c36d56e19f420d51eb56"
+      },
+      "piloto_030.jpg": {
+        "imagen_sha256": "d8173e5c33893d4b9be0982f2cd22043462f273401e79e9f770adee4c3f217ed",
+        "referencia_sha256": "ae7a3e5d0d1ce51327b45ae32709815babb40dc367fb9ed50c4094311f888124"
+      },
+      "piloto_031.jpg": {
+        "imagen_sha256": "44ce4e1b0b189b640582d7181f9606bf37664df03ea19de07cc07686ef00578f",
+        "referencia_sha256": "43c8a2651536c2eefe8343ddefda55fcfe3602a894c17a94ebcf2224a9108f64"
+      },
+      "piloto_032.jpg": {
+        "imagen_sha256": "bce6195f81b8530508c9c1eff49c7cc08c9d04ed39e5a2183433b18db1c56a27",
+        "referencia_sha256": "90d5da74df67a146e101ba4e913c067cff0e2826b47d889d4831039980f916c6"
+      },
+      "piloto_033.pdf": {
+        "imagen_sha256": "446d82d382d8094e9b793c5eb7f0f62d360713f2af3f371d44cb93207e5a1ec1",
+        "referencia_sha256": "05dabbac22e77ad61318472e93739fa94999940e0c2373ff2651f9d0d76ad876"
+      },
+      "piloto_034.pdf": {
+        "imagen_sha256": "f838154314feafd9214c8dcde7652a078a84f42afa207969b83eb852bd7c0c68",
+        "referencia_sha256": "9911a7466538c2d7ceb6bc5109c394625a48f95577acc4376bca08c53bfc97fa"
+      },
+      "piloto_035.jpg": {
+        "imagen_sha256": "2a69cade1a6d0bdbf0410a6b670a219eb1f45062d2bb15cf3707fb5a87c66dd0",
+        "referencia_sha256": "d630ebfb8216dcad83480dd103168f349959247eae61b7f300aa7ac33b1d9cd2"
+      },
+      "piloto_036.pdf": {
+        "imagen_sha256": "c1bf64423009d49deb9c1c0e7f74f6c385fed707b19821316247463c41dcba0d",
+        "referencia_sha256": "bf32e35fe0cbd5041425e7d52885592b3377cb76a22ae2a4b0da13e53f79f189"
+      },
+      "piloto_037.pdf": {
+        "imagen_sha256": "7116e9471d13b886446e985a2d6d2a0b90a5b2be16d295ce800db2d40caab1e2",
+        "referencia_sha256": "ac3f520605f6ba764a2a213904f97ad29e77c0da5b1debd1b266b48e8eab5ecb"
+      },
+      "piloto_038.pdf": {
+        "imagen_sha256": "dc96986599b3a6722cab74f9206f668afb8a52b79befad3babeeea2aef93a097",
+        "referencia_sha256": "9549503944e0a8c20bba3c8b5ee9d4be0c14e08a31218c1c17d77607c51bb0ec"
+      },
+      "piloto_039.pdf": {
+        "imagen_sha256": "f622d7867813e36aff421f44431b2e3ed8a3fe55b1d9382a7eaa1f20026232e4",
+        "referencia_sha256": "a9593f41dfd2be698aa426ea1024aaf9df6894603a576871ae58e379d856d9cb"
+      }
+    },
+    "python": "3.14.5",
+    "paquetes": {
+      "httpx": "0.28.1",
+      "pydantic": "2.14.3",
+      "pypdfium2": "5.15.2",
+      "pillow": "13.0.0"
+    },
+    "ollama_url": "http://localhost:11434"
+  },
+  "nota": "No se usó BD. La verdad solo se usa al calificar; no se envía al modelo."
+}

@@ -258,7 +258,8 @@ class FlujoChat:
                 "dominios_ejecutados": [],
                 "respuesta": resultado["respuesta"],
                 "fuentes": [],
-                "simulado": True,
+                # Textos fijos de orientación o rechazo: no son respuestas inventadas.
+                "simulado": False,
             }
 
         dominios_validos = {"gobernanza", "casos"}

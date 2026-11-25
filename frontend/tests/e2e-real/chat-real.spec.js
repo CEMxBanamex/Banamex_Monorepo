@@ -6,8 +6,9 @@ for (const contextual of [false, true]) {
     await page.getByRole('button', { name: 'Iniciar sesión', exact: true }).click()
     if (contextual) {
       await page.getByRole('row').filter({ hasText: 'F-1042' }).click()
+      await page.getByRole('button', { name: 'Abrir asistente' }).click()
     } else {
-      await page.getByRole('button', { name: 'Asistente', exact: true }).click()
+      await page.getByRole('button', { name: 'Abrir asistente', exact: true }).click()
     }
     const panel = page.getByRole('region', { name: 'Asistente de consultas' })
     const creada = page.waitForResponse(r =>
