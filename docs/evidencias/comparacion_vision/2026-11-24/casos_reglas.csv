@@ -1,4 +1,4 @@
-﻿modelo,etapa,archivo,esperado,predicho_reglas,categoria_correcta,reglas_esperadas,reglas_obtenidas,reglas_esperadas_no_detectadas
+modelo,etapa,archivo,esperado,predicho_reglas,categoria_correcta,reglas_esperadas,reglas_obtenidas,reglas_esperadas_no_detectadas
 qwen3-vl:4b-instruct,sin_filtro,piloto_001.png,aceptado,aceptado,True,[],[],[]
 qwen3-vl:4b-instruct,sin_filtro,piloto_002.pdf,aceptado,aceptado,True,[],[],[]
 qwen3-vl:4b-instruct,sin_filtro,piloto_003.png,aceptado,aceptado,True,[],[],[]

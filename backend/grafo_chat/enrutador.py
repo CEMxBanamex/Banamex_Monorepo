@@ -1,3 +1,4 @@
+
 """Enrutador determinista para el grafo de chat S3-15."""
 
 import re
@@ -41,7 +42,7 @@ PALABRAS_GOBERNANZA = (
     "hallazgo",
     "dato personal",
     "factura extemporanea",
-    # Preguntas del guion de la demo (datos/evaluacion/preguntas_demo.yaml).
+    # Preguntas del guion de la demo.
     "rfc",
     "asteriscos",
     "enmascarado",
@@ -61,7 +62,30 @@ PALABRAS_CASOS = (
     "facturas",
 )
 
-# Un folio de caso (F-1042, V-0207) manda la pregunta a casos aunque mencione términos de gobernanza.
+PALABRAS_ANALISTA = (
+    "metrica",
+    "metricas",
+    "monto facturado",
+    "total facturado",
+    "importe facturado",
+    "numero de facturas",
+    "cantidad de facturas",
+    "facturas recibidas",
+    "facturas rechazadas",
+    "tasa de rechazo",
+    "porcentaje de rechazo",
+    "tasa de conciliacion",
+    "tiempo promedio de revision",
+    "facturas por regla",
+    "casos pendientes",
+    "monto pagado",
+    "pagos a tiempo",
+    "pagos puntuales",
+    "monto comprometido",
+    "clientes activos",
+)
+
+# Un folio de caso tiene prioridad sobre otros términos de la pregunta.
 PATRON_FOLIO = re.compile(r"(?<!\w)[fv]-\d{4,}(?!\w)")
 
 PALABRAS_FUERA_ALCANCE = (
@@ -105,8 +129,14 @@ def clasificar_dominio(estado: EstadoChat) -> dict[str, Any]:
     if _contiene_alguna(pregunta, PALABRAS_FUERA_ALCANCE):
         dominio: DominioChat = "fuera_de_alcance"
 
+    # Los folios identifican consultas específicas de casos.
     elif PATRON_FOLIO.search(pregunta):
         dominio = "casos"
+
+    # Las métricas se evalúan antes de gobernanza porque algunas
+    # expresiones, como "monto facturado", aparecen en ambos dominios.
+    elif _contiene_alguna(pregunta, PALABRAS_ANALISTA):
+        dominio = "analista"
 
     elif _contiene_alguna(pregunta, PALABRAS_GOBERNANZA):
         dominio = "gobernanza"
@@ -119,7 +149,7 @@ def clasificar_dominio(estado: EstadoChat) -> dict[str, Any]:
 
     dominios = (
         [dominio]
-        if dominio in ("gobernanza", "casos")
+        if dominio in ("gobernanza", "casos", "analista")
         else []
     )
 
