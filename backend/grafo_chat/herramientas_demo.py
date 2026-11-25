@@ -45,7 +45,10 @@ def responder_general(pregunta: str) -> dict[str, Any]:
     return {
         "dominio": "general",
         "respuesta": (
-            "Esta es una respuesta general de demostración."
+            "Todavía no sé responder esa pregunta. Puedo ayudarte con políticas, "
+            "glosario y calidad de datos (por ejemplo, \"¿Qué significa factura "
+            "conciliada?\"), y con casos y facturas (por ejemplo, \"¿Por qué se "
+            "rechazó la factura F-0936?\")."
         ),
         "fuentes": [],
     }

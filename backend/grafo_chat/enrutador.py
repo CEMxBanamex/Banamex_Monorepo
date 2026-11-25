@@ -41,6 +41,14 @@ PALABRAS_GOBERNANZA = (
     "hallazgo",
     "dato personal",
     "factura extemporanea",
+    # Preguntas del guion de la demo (datos/evaluacion/preguntas_demo.yaml).
+    "rfc",
+    "asteriscos",
+    "enmascarado",
+    "enmascarada",
+    "calidad",
+    "dueno",
+    "datos personales",
 )
 
 PALABRAS_CASOS = (
@@ -52,6 +60,9 @@ PALABRAS_CASOS = (
     "factura",
     "facturas",
 )
+
+# Un folio de caso (F-1042, V-0207) manda la pregunta a casos aunque mencione términos de gobernanza.
+PATRON_FOLIO = re.compile(r"(?<!\w)[fv]-\d{4,}(?!\w)")
 
 PALABRAS_FUERA_ALCANCE = (
     "pronostico del clima",
@@ -93,6 +104,9 @@ def clasificar_dominio(estado: EstadoChat) -> dict[str, Any]:
 
     if _contiene_alguna(pregunta, PALABRAS_FUERA_ALCANCE):
         dominio: DominioChat = "fuera_de_alcance"
+
+    elif PATRON_FOLIO.search(pregunta):
+        dominio = "casos"
 
     elif _contiene_alguna(pregunta, PALABRAS_GOBERNANZA):
         dominio = "gobernanza"

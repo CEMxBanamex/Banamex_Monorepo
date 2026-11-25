@@ -280,7 +280,7 @@ export default function Asistente({ casoId = null }) {
         </p>
         <p className="asistente-aviso">
           {CHAT_REAL
-            ? 'Respuestas de demostración del servidor. Los turnos completados se guardan; al salir de esta pantalla se inicia una conversación nueva.'
+            ? 'Las respuestas salen de las herramientas del Data Steward, con los permisos de tu usuario. Los turnos completados se guardan; al salir de esta pantalla se inicia una conversación nueva.'
             : 'Prototipo con respuestas simuladas. Los mensajes se conservan mientras permanezcas en esta pantalla.'}
         </p>
       </header>
