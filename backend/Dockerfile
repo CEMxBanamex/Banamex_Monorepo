@@ -27,6 +27,7 @@ WORKDIR /app
 COPY --from=dependencias /opt/venv /opt/venv
 COPY datos/ datos/
 COPY backend/ backend/
+COPY contratos/ contratos/
 # Migraciones y datos sintéticos: deploy.sh migra y la carga de datos corre con esta misma imagen.
 COPY db/migrations/ db/migrations/
 COPY db/semillas/ db/semillas/

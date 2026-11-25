@@ -2,21 +2,27 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { API_BASE_URL } from './api.js'
+import { CHAT_REAL } from './chatConfig.js'
 import './styles.css'
 
-async function prepararApp() {
-  if (import.meta.env.DEV && !API_BASE_URL) {
+async function iniciar() {
+  // MSW solo en desarrollo: simula casos y bitácora si no hay VITE_API_URL, y el chat si VITE_CHAT_REAL no es true.
+  if (import.meta.env.DEV && (!API_BASE_URL || !CHAT_REAL)) {
     const { worker } = await import('./mocks/browser.js')
     await worker.start({
       onUnhandledRequest: 'bypass',
     })
   }
-}
 
-prepararApp().then(() => {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <App />
     </React.StrictMode>,
   )
+}
+
+iniciar().catch((error) => {
+  console.error('No se pudo iniciar la aplicación:', error)
+  document.getElementById('root').textContent =
+    'No se pudo iniciar la aplicación. Revisa la consola del navegador.'
 })
