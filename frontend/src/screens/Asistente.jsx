@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Asistente.css'
+import { Bot, ArrowUp, Square } from 'lucide-react'
 import { CHAT_REAL, CHAT_API } from '../chatConfig.js'
 
 const ESTADOS = {
@@ -271,23 +272,9 @@ export default function Asistente({ casoId = null }) {
 
   return (
     <section className="asistente" aria-label="Asistente de consultas">
-      <header>
-        <h1>{casoId ? `Preguntas sobre ${casoId}` : 'Asistente'}</h1>
-        <p>
-          {casoId
-            ? 'Esta conversación utiliza el identificador del caso abierto.'
-            : 'Consulta información sobre casos y facturas.'}
-        </p>
-        <p className="asistente-aviso">
-          {CHAT_REAL
-            ? 'Las respuestas salen de las herramientas del Data Steward, con los permisos de tu usuario. Los turnos completados se guardan; al salir de esta pantalla se inicia una conversación nueva.'
-            : 'Prototipo con respuestas simuladas. Los mensajes se conservan mientras permanezcas en esta pantalla.'}
-        </p>
-      </header>
-
       <div className="asistente-conversacion">
         {turnos.length === 0 && (
-          <p>Escribe una pregunta para comenzar.</p>
+          <div className="chat-bienvenida"><span className="chat-robot"><Bot size={34} /></span><h2>¿En qué puedo ayudarte?</h2><p>Consulta políticas, revisa un caso y encuentra la evidencia.</p><div className="chat-sugerencias">{(casoId ? ['Consulta el detalle del caso', `¿Por qué se rechazó la factura ${casoId}?`] : ['Consulta las reglas de calidad de datos', '¿Qué significa calidad de datos?']).map(texto => <button key={texto} type="button" onClick={() => setMensaje(texto)}>{texto}</button>)}</div></div>
         )}
 
         {turnos.map((turno) => {
@@ -346,7 +333,7 @@ export default function Asistente({ casoId = null }) {
 
               {turno.respuesta && (
                 <div className="asistente-respuesta">
-                  <strong>{turno.simulado ? 'Asistente · simulación' : 'Asistente'}</strong>
+                  <strong className="chat-autor"><Bot size={18} />{turno.simulado ? 'Asistente · simulación' : 'Asistente'}</strong>
                   <p>{turno.respuesta}</p>
                   {turno.fuentes.length > 0 && (
                     <section aria-label="Fuentes de la respuesta">
@@ -386,7 +373,7 @@ export default function Asistente({ casoId = null }) {
           value={mensaje}
           onChange={(evento) => setMensaje(evento.target.value)}
           maxLength={2000}
-          rows={3}
+          rows={1}
           disabled={ocupado}
           placeholder="Escribe tu pregunta…"
         />
@@ -401,7 +388,7 @@ export default function Asistente({ casoId = null }) {
               className="btn"
               onClick={() => controlador.current?.abort()}
             >
-              Cancelar
+              <Square size={14} /> Cancelar
             </button>
           )}
 
@@ -410,7 +397,7 @@ export default function Asistente({ casoId = null }) {
             className="btn btn-primario"
             disabled={ocupado || !mensaje.trim()}
           >
-            {ocupado ? 'Consultando…' : 'Enviar'}
+            {ocupado ? 'Consultando…' : <><ArrowUp size={17} /> Enviar</>}
           </button>
         </div>
       </form>
