@@ -84,6 +84,7 @@ services:
       MCP_DEV_ROL: ${MCP_DEV_ROL:-analista}
       MCP_DEV_USUARIO: ${MCP_DEV_USUARIO:-dev-local}
       DATABASE_URL: ${MCP_DATABASE_URL:?Copia .env.example a .env}
+      CLAVE_IDENTIDAD_MCP: ${CLAVE_IDENTIDAD_MCP:?Define CLAVE_IDENTIDAD_MCP en .env}
       OLLAMA_URL: ${OLLAMA_BASE_URL:-}
       EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}
     volumes:
@@ -105,6 +106,7 @@ services:
       DATABASE_URL: ${DATABASE_URL:?Copia .env.example a .env}
       CONSULTAS_DATABASE_URL: ${CONSULTAS_DATABASE_URL:?Copia .env.example a .env}
       AUTH_MODE: ${AUTH_MODE:-dev}
+      CLAVE_IDENTIDAD_MCP: ${CLAVE_IDENTIDAD_MCP:?Define CLAVE_IDENTIDAD_MCP en .env}
       OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
       OLLAMA_URL: ${OLLAMA_BASE_URL:-}
       EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}
@@ -112,6 +114,8 @@ services:
       CORS_ORIGINS: ${CORS_ORIGINS:-}
       S3_BUCKET: ${S3_BUCKET:?Copia .env.example a .env}
       S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:-}
+      # La URL prefirmada se firma con el host que ve el navegador, no con el de la red de Docker.
+      S3_ENDPOINT_PUBLICO: ${S3_ENDPOINT_PUBLICO:-http://localhost:8333}
       AWS_REGION: ${AWS_REGION:-us-east-1}
       # Credenciales falsas para el S3 local (boto3 exige firmar). En AWS se usa el perfil de la instancia.
       AWS_ACCESS_KEY_ID: local

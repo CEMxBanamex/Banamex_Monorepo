@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   FlaskConical, ReceiptText, Table, CircleCheck, Upload, File, Image,
-  X, Check, CircleAlert, Play,
+  X, Check, CircleAlert, Play, Loader,
 } from 'lucide-react'
+import { CASOS_REALES, crearCaso, subirFactura } from '../api.js'
 
 const ADMITIDOS = ['pdf', 'jpg', 'jpeg', 'png', 'xls', 'xlsx', 'csv', 'md', 'txt']
 const INICIALES = [
@@ -24,12 +25,14 @@ function tamano(bytes) {
 
 export default function Subir({ ir, iniciar }) {
   const [tipo, setTipo] = useState('factura')
-  const [archivos, setArchivos] = useState(INICIALES)
+  const [archivos, setArchivos] = useState(CASOS_REALES ? [] : INICIALES)
   const [arrastrando, setArrastrando] = useState(false)
+  const [errorEnvio, setErrorEnvio] = useState('')
   const input = useRef(null)
 
   // Simula el avance de las subidas en curso.
   useEffect(() => {
+    if (CASOS_REALES) return
     const t = setInterval(() => {
       setArchivos((as) => as.map((a) =>
         !a.error && a.progreso < 100 ? { ...a, progreso: Math.min(100, a.progreso + 6) } : a))
@@ -40,14 +43,42 @@ export default function Subir({ ir, iniciar }) {
   function agregar(lista) {
     const nuevos = [...lista].map((f) => {
       const ext = f.name.split('.').pop().toLowerCase()
-      const error = !ADMITIDOS.includes(ext) ? 'tipo' : f.size > 20e6 ? 'tamano' : null
-      return { nombre: f.name, tam: tamano(f.size), progreso: error ? 0 : 5, error }
+      const extensiones = CASOS_REALES ? ['png', 'jpg', 'jpeg'] : ADMITIDOS
+      const limite = CASOS_REALES ? 15 * 1024 * 1024 : 20e6
+      const error = !extensiones.includes(ext) ? 'tipo' : f.size > limite || f.size === 0 ? 'tamano' : null
+      return { archivo: f, nombre: f.name, tam: tamano(f.size), progreso: error ? 0 : CASOS_REALES ? 100 : 5, error }
     })
-    setArchivos((as) => [...as, ...nuevos])
+    setArchivos((as) => CASOS_REALES ? nuevos.slice(0, 1) : [...as, ...nuevos])
   }
+
+  const [enviando, setEnviando] = useState(false)
 
   const reintentar = (i) => setArchivos((as) => as.map((a, j) => (j === i ? { ...a, error: null, progreso: 5 } : a)))
   const listos = archivos.some((a) => !a.error && a.progreso === 100)
+
+  async function manejarIniciar() {
+    setEnviando(true)
+    setErrorEnvio('')
+    const archivoPrincipal = archivos.find((a) => a.progreso === 100)?.nombre || 'factura_nueva.pdf'
+    try {
+      if (CASOS_REALES) {
+        const seleccionado = archivos.find((a) => a.archivo && !a.error)
+        if (!seleccionado) return
+        iniciar('factura', await subirFactura(seleccionado.archivo))
+        return
+      }
+      const resp = await crearCaso({
+        archivo: archivoPrincipal,
+        tipo: tipo === 'factura' ? 'Factura' : 'Validación con políticas',
+      })
+      iniciar(tipo, resp)
+    } catch (e) {
+      if (CASOS_REALES) setErrorEnvio(e.message)
+      else iniciar(tipo)
+    } finally {
+      setEnviando(false)
+    }
+  }
 
   return (
     <main className="main">
@@ -55,6 +86,7 @@ export default function Subir({ ir, iniciar }) {
         <div className="cabecera">
           <div>
             <h1>Subir caso</h1>
+            {errorEnvio && <p role="alert">{errorEnvio}</p>}
             <p>Elige el tipo de revisión y agrega los archivos.</p>
           </div>
           <span className="badge b-neutro"><FlaskConical size={16} />Estás usando datos de prueba</span>
@@ -65,7 +97,7 @@ export default function Subir({ ir, iniciar }) {
           {[
             ['factura', ReceiptText, 'Revisión de factura', 'Extrae los datos de una factura y revisa sus reglas.'],
             ['politicas', Table, 'Validación con políticas', 'Valida documentos o registros contra políticas internas.'],
-          ].map(([id, Icono, titulo, texto]) => (
+          ].filter(([id]) => !CASOS_REALES || id === 'factura').map(([id, Icono, titulo, texto]) => (
             <button key={id} className={`opcion ${tipo === id ? 'sel' : ''}`} onClick={() => setTipo(id)} aria-pressed={tipo === id}>
               <span className="ico-cuad"><Icono size={26} /></span>
               <div><strong>{titulo}</strong><span>{texto}</span></div>
@@ -88,9 +120,9 @@ export default function Subir({ ir, iniciar }) {
           <input ref={input} type="file" multiple hidden onChange={(e) => { agregar(e.target.files); e.target.value = '' }} />
           <div className="tipos">
             Tipos admitidos:
-            {['.pdf', '.jpg', '.png', '.xls', '.xlsx', '.csv', '.md', 'texto'].map((t) => <code key={t}>{t}</code>)}
+            {(CASOS_REALES ? ['.jpg', '.jpeg', '.png'] : ['.pdf', '.jpg', '.png', '.xls', '.xlsx', '.csv', '.md', 'texto']).map((t) => <code key={t}>{t}</code>)}
           </div>
-          <div className="muted" style={{ marginTop: 14, fontSize: 14 }}>Tamaño máximo por archivo: 20 MB</div>
+          <div className="muted" style={{ marginTop: 14, fontSize: 14 }}>{CASOS_REALES ? "Factura PNG o JPEG de hasta 15 MiB" : "Tamaño máximo por archivo: 20 MB"}</div>
         </div>
 
         {archivos.length > 0 && (
@@ -110,7 +142,7 @@ export default function Subir({ ir, iniciar }) {
                     </div>
                     {fallo ? (
                       <div className="estado-arch" style={{ color: 'var(--error)', marginTop: 6 }}>
-                        <CircleAlert size={16} />{ERRORES[a.error]}
+                        <CircleAlert size={16} />{CASOS_REALES && a.error === 'tipo' ? 'Selecciona un archivo PNG o JPEG' : CASOS_REALES && a.error === 'tamano' ? 'La imagen debe pesar entre 1 byte y 15 MiB' : ERRORES[a.error]}
                       </div>
                     ) : (
                       <>
@@ -137,13 +169,15 @@ export default function Subir({ ir, iniciar }) {
           </div>
         )}
 
+        {!CASOS_REALES && <>
         <p style={{ margin: '24px 0 10px', fontWeight: 600 }}>O pega el texto <span className="muted" style={{ fontWeight: 400 }}>(opcional)</span></p>
         <textarea className="area" placeholder="Pega aquí el contenido del documento o registro" />
+        </>}
 
         <div className="acciones-fin">
-          <button className="btn" onClick={() => ir('casos')}>Cancelar</button>
-          <button className="btn btn-primario" disabled={!listos} onClick={() => iniciar(tipo)}>
-            <Play size={18} />Iniciar revisión
+          <button className="btn" onClick={() => ir('casos')} disabled={enviando}>Cancelar</button>
+          <button className="btn btn-primario" disabled={!listos || enviando} onClick={manejarIniciar}>
+            {enviando ? <><Loader size={18} className="girando" />Iniciando…</> : <><Play size={18} />Iniciar revisión</>}
           </button>
         </div>
       </div>

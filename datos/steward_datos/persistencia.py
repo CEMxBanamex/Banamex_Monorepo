@@ -7,9 +7,10 @@ from typing import Optional
 
 from sqlalchemy.orm import Session
 
-from .contratos import ETIQUETAS, FacturaExtraida, ResultadoValidacion
+from .contratos import ETIQUETAS, FacturaExtraida, RegistrarHallazgoEntrada, ResultadoValidacion
 from .db.models import CampoExtraido, Caso, ConceptoFactura, EventoBitacora, Factura, Hallazgo
 from .reglas import normalizar as n
+from .tools.registrar_hallazgo import registrar_hallazgo
 
 CAMPOS_VISIBLES = ("emisor_nombre", "fecha", "subtotal", "impuestos", "total", "moneda",
                    "folio", "emisor_rfc", "receptor_nombre", "receptor_rfc", "tasa_iva", "retenciones")
@@ -54,21 +55,18 @@ def guardar_resultado(s: Session, r: ResultadoValidacion, *, cuando: Optional[da
     s.query(Hallazgo).filter_by(caso_id=r.caso_id).delete()
     guardados = []
     for h in r.hallazgos:
-        fila = Hallazgo(caso_id=r.caso_id, regla_id=h.regla_id, regla_version=h.regla_version, politica_id=h.politica_id,
-                        efecto=h.efecto, severidad=h.severidad, titulo=h.titulo, texto=h.texto,
-                        cifras=[list(c) for c in h.cifras] if h.cifras else None, campos=h.campos or None, filas=h.filas,
-                        evidencia=h.evidencia, evidencia_detalle=h.evidencia_detalle, origen="codigo",
-                        fragmentos_ids=(fragmentos_por_regla or {}).get(h.regla_id), creado_en=cuando)
-        s.add(fila)
-        s.flush()
-        s.add(EventoBitacora(caso_id=r.caso_id, fecha=cuando, actor_tipo="agente", actor_nombre="Agente", accion="regla_aplicada",
-                             tono="info", detalle=h.titulo, regla_id=h.regla_id, regla_version=h.regla_version, hallazgo_id=fila.id))
+        registrado = registrar_hallazgo(RegistrarHallazgoEntrada(
+            caso_id=r.caso_id, hallazgo=h, origen="codigo",
+            fragmentos_ids=(fragmentos_por_regla or {}).get(h.regla_id) or [],
+        ), s, cuando=cuando)
+        fila = s.get(Hallazgo, registrado.hallazgo_id)
         guardados.append(fila)
-    caso.resultado_sugerido = r.resultado_sugerido
+    sugerido = "humana" if any(not h.politica_id.strip() for h in r.hallazgos) else r.resultado_sugerido
+    caso.resultado_sugerido = sugerido
     caso.explicacion = explicacion or r.motivo
     caso.estado = "revision"
     s.add(EventoBitacora(caso_id=r.caso_id, fecha=cuando, actor_tipo="agente", actor_nombre="Agente", accion="resultado_sugerido",
-                         tono="info", detalle=f"Resultado sugerido: {r.resultado_sugerido}",
+                         tono="info", detalle=f"Resultado sugerido: {sugerido}",
                          datos={"reglas_evaluadas": r.reglas_evaluadas, "motivo": r.motivo}))
     s.flush()
     return guardados

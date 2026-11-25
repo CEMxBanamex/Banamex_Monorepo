@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import { Estado, Resultado, Banner, Dialogo } from '../components.jsx'
 import { CAMPOS_FACTURA, HALLAZGOS_FACTURA } from '../data.js'
+import { registrarDecisionCaso } from '../api.js'
 
 const RESULTADO_TXT = { aceptado: 'Aceptado', rechazado: 'Rechazado', humana: 'Requiere revisión humana' }
 
@@ -310,15 +311,38 @@ export default function DetalleFactura({ caso, variante, setVariante, usuario, i
         verBitacora={() => ir('bitacora')}
         corrigiendo={corrigiendo}
         onCorregir={guardarCorreccion}
-        onEscalar={() => { setEventos((e) => e + 1); toast({ texto: 'Caso escalado a supervisión', icono: Flag, color: '#f2c14e' }) }}
+        onEscalar={async () => {
+          setEventos((e) => e + 1)
+          try {
+            await registrarDecisionCaso(caso.id, {
+              accion: 'escalar',
+              resultado: 'humana',
+              motivo: 'Caso escalado a supervisión por analista',
+            })
+          } catch (err) {
+            console.warn('Error al registrar escalamiento:', err)
+          }
+          toast({ texto: 'Caso escalado a supervisión', icono: Flag, color: '#f2c14e' })
+        }}
         onConfirmar={() => setDialogo(true)}
       />
       {dialogo && (
         <Dialogo
           titulo="Confirmar resultado"
           onCancelar={() => setDialogo(false)}
-          onConfirmar={() => {
-            setDialogo(false); setEstado('revisado'); setEventos((e) => e + 1)
+          onConfirmar={async () => {
+            setDialogo(false)
+            setEstado('revisado')
+            setEventos((e) => e + 1)
+            try {
+              await registrarDecisionCaso(caso.id, {
+                accion: 'confirmar',
+                resultado: resultado === 'humana' ? 'aceptado' : resultado,
+                motivo: 'Confirmado por analista humano tras revisión',
+              })
+            } catch (err) {
+              console.warn('Error al registrar decisión:', err)
+            }
             toast({ texto: 'Resultado confirmado y registrado en la bitácora' })
           }}
         >
