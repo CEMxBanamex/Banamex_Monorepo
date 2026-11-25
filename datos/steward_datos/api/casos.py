@@ -45,6 +45,7 @@ class CampoDetalle(BaseModel):
     valor: Optional[str]
     conf: Optional[int] = Field(None, ge=0, le=100)
     valor_corregido: Optional[str] = None
+    estado_evidencia: Optional[Literal["coincidencia_textual", "pendiente_revision", "sin_valor_leido"]] = None
 
 
 class HallazgoDetalle(BaseModel):
@@ -69,6 +70,13 @@ class EventoDetalle(BaseModel):
     extra: Optional[dict] = None
 
 
+class ConceptoDetalle(BaseModel):
+    descripcion: str
+    cantidad: Optional[str] = None
+    precio_unitario: Optional[str] = None
+    importe: Optional[str] = None
+
+
 class CasoDetalle(BaseModel):
     documento_url: Optional[str] = None
     id: str
@@ -84,6 +92,8 @@ class CasoDetalle(BaseModel):
     campos: list[CampoDetalle] = Field(default_factory=list)
     hallazgos: list[HallazgoDetalle] = Field(default_factory=list)
     eventos: list[EventoDetalle] = Field(default_factory=list)
+    revision_evidencia: Optional[dict] = None
+    conceptos: list[ConceptoDetalle] = Field(default_factory=list)
 
 
 class UrlSubidaEntrada(BaseModel):

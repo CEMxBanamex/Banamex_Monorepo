@@ -1,0 +1,143 @@
+{
+  "caso_id": "F-9502",
+  "archivo": "piloto_012.png",
+  "fuente": "JSON impreso en terminal; no es el archivo pausa.json completo",
+  "factura": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": "62282276",
+        "confianza": null,
+        "etiqueta": "Serie y folio",
+        "pagina": 1,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": "21/07/2026",
+        "confianza": null,
+        "etiqueta": "Fecha de emisión",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Bermúdez Consultores SAPI de CV",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": "BCS091217EXF",
+        "confianza": null,
+        "etiqueta": "RFC emisor",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Avenida Nuevo León 825, San Fabiola de la Montaña",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Grupo Financiero Demo SA de CV",
+        "confianza": null,
+        "etiqueta": "RECEPTOR",
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "GFD960701AB4",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": 1,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": 1,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "159,900.55",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": 1,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "25,584.09",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16 %",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "total": {
+        "valor": "$ 185,884.64 MXN",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": 1,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Pago a 30 días",
+        "confianza": null,
+        "etiqueta": "Condiciones de pago",
+        "pagina": 1,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "cantidad": "5",
+        "precio_unitario": "19,485.14",
+        "importe": "97,425.70"
+      },
+      {
+        "descripcion": "Desarrollo de reporte analítico",
+        "cantidad": "1",
+        "precio_unitario": "25,827.34",
+        "importe": "25,827.34"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "4",
+        "precio_unitario": "7,436.81",
+        "importe": "29,747.24"
+      },
+      {
+        "descripcion": "Papelería y artículos de oficina",
+        "cantidad": "1",
+        "precio_unitario": "2,275.34",
+        "importe": "2,275.34"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "4,624.93",
+        "importe": "4,624.93"
+      }
+    ],
+    "texto_completo": "Bermúdez Consultores SAPI de CV\nAvenida Nuevo León 825, San Fabiola de la Montaña\nRFC emisor BCS091217EXF\n\nRECEPTOR\nGrupo Financiero Demo SA de CV\nGFD960701AB4\n\nDocumento\nFactura\nSerie y folio\n62282276\nFecha de emisión\n21/07/2026\nMoneda\nMXN\n\nConcepto\nCant.\nP. unitario\nImporte\nServicio de consultoría\n5\n19,485.14\n97,425.70\nDesarrollo de reporte analítico\n1\n25,827.34\n25,827.34\nMantenimiento preventivo de equipo\n4\n7,436.81\n29,747.24\nPapelería y artículos de oficina\n1\n2,275.34\n2,275.34\nHospedaje de servidores\n1\n4,624.93\n4,624.93\n\nSubtotal\n159,900.55\nIVA 16 %\n25,584.09\nTotal\n$ 185,884.64 MXN\n\nCondiciones de pago: Pago a 30 días",
+    "modelo": "qwen3-vl:4b-instruct",
+    "paginas": 1
+  }
+}

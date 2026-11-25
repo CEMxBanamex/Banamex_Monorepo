@@ -47,11 +47,16 @@ export default function DetalleReal({ casoId, ir, toast }) {
             <section className="tarjeta tarjeta-pad">
               <h2>Documento original</h2>
               {caso.documento_url
-                ? <img src={caso.documento_url} alt={caso.archivo} style={{ maxWidth: '100%' }} />
+                ? caso.archivo.toLowerCase().endsWith('.pdf')
+                  ? <object data={caso.documento_url} type="application/pdf" aria-label={caso.archivo} style={{ width: '100%', minHeight: 600 }}>
+                      <a href={caso.documento_url} target="_blank" rel="noreferrer">Abrir PDF original</a>
+                    </object>
+                  : <img src={caso.documento_url} alt={caso.archivo} style={{ maxWidth: '100%' }} />
                 : <p>El caso no tiene una imagen disponible.</p>}
             </section>
             <section className="tarjeta tarjeta-pad">
               <h2>Hallazgos</h2>
+              {caso.revision_evidencia && <p role="note">Los datos leídos requieren comparación con el documento original antes de registrar tu decisión.</p>}
               {caso.explicacion && <p style={{ whiteSpace: 'pre-wrap' }}>{caso.explicacion}</p>}
               {caso.hallazgos.map((hallazgo) => (
                 <article key={hallazgo.id}>
@@ -64,8 +69,27 @@ export default function DetalleReal({ casoId, ir, toast }) {
                 <>
                   <h2>Campos extraídos</h2>
                   <dl>{caso.campos.map((campo) => (
-                    <div key={campo.id}><dt>{campo.etiqueta}</dt><dd>{campo.valor ?? 'Sin dato'}</dd></div>
+                    <div key={campo.id}>
+                      <dt>{campo.etiqueta}</dt>
+                      <dd>{campo.valor ?? 'Sin valor leído'}
+                        {campo.estado_evidencia === 'pendiente_revision' && <small> · Evidencia incompleta: comprobar en el original</small>}
+                      </dd>
+                    </div>
                   ))}</dl>
+                </>
+              )}
+              {caso.conceptos?.length > 0 && (
+                <>
+                  <h2>Conceptos leídos</h2>
+                  <div style={{ overflowX: 'auto' }}>
+                    <table>
+                      <thead><tr><th>Descripción</th><th>Cantidad</th><th>Precio unitario</th><th>Importe</th></tr></thead>
+                      <tbody>{caso.conceptos.map((concepto, i) => (
+                        <tr key={i}><td>{concepto.descripcion}</td><td>{concepto.cantidad ?? 'Sin lectura'}</td>
+                          <td>{concepto.precio_unitario ?? 'Sin lectura'}</td><td>{concepto.importe ?? 'Sin lectura'}</td></tr>
+                      ))}</tbody>
+                    </table>
+                  </div>
                 </>
               )}
             </section>

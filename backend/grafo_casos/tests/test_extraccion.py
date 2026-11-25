@@ -17,7 +17,7 @@ class TestExtraccion(unittest.TestCase):
         self.archivo = Path(self.tmp.name) / "factura.png"
         Image.new("RGB", (10, 10), "white").save(self.archivo)
 
-    def extraer(self, salida, **envoltura):
+    def extraer(self, salida, *, conservar_lecturas=False, **envoltura):
         def responder(request):
             entrada = json.loads(request.content)
             self.assertTrue(entrada["images"])
@@ -29,11 +29,18 @@ class TestExtraccion(unittest.TestCase):
                 self.assertTrue(esquema_visible["properties"]["campos"]["properties"][campo]["description"])
             self.assertIn("campos", esquema["required"])
             self.assertIn("texto_completo", esquema["required"])
+            self.assertIn("conceptos", esquema["required"])
+            concepto = esquema["$defs"]["ConceptoLeido"]
+            self.assertEqual(set(concepto["required"]), {"descripcion", "cantidad", "precio_unitario", "importe"})
+            self.assertNotIn("minItems", esquema["properties"]["conceptos"])
+            for clave in concepto["required"]:
+                self.assertTrue(concepto["properties"][clave]["description"])
             self.assertEqual(set(esquema["properties"]["campos"]["required"]), set(CAMPOS_FACTURA))
             self.assertEqual(set(esquema["$defs"]["CampoLeido"]["required"]), {"valor", "etiqueta"})
             return httpx.Response(200, json={"done": True, "response": json.dumps(salida), **envoltura})
         with httpx.Client(base_url="http://ollama", transport=httpx.MockTransport(responder)) as cliente:
-            return extraer_campos_factura(str(self.archivo), cliente=cliente)
+            return extraer_campos_factura(str(self.archivo), cliente=cliente,
+                                          conservar_lecturas=conservar_lecturas)
 
     def test_conserva_nulos_y_descarta_mediciones_no_verificadas(self):
         salida = {"campos": {"total": {"valor": "447.04", "etiqueta": "TOTAL", "confianza": 99, "bbox": [1, 2, 3, 4]},
@@ -109,3 +116,72 @@ class TestExtraccion(unittest.TestCase):
         self.assertEqual(factura.campos["emisor_rfc"].valor, "AAA010101AAA")
         self.assertEqual(factura.campos["emisor_rfc"].etiqueta, "RFC")
         self.assertIsNone(factura.campos["receptor_rfc"].valor)
+
+    def test_rfc_sin_etiqueta_en_bloque_receptor(self):
+        factura = self.extraer({"campos": {
+            "receptor_nombre": {"valor": "Cliente Ejemplo SA", "etiqueta": "RECEPTOR"},
+            "receptor_rfc": {"valor": "BBB020202BBB", "etiqueta": None},
+        }, "texto_completo": "RECEPTOR\nCliente Ejemplo SA\nBBB020202BBB"})
+        self.assertEqual(factura.campos["receptor_rfc"].valor, "BBB020202BBB")
+        self.assertIsNone(factura.campos["receptor_rfc"].etiqueta)
+        self.assertIsNone(factura.campos["receptor_rfc"].confianza)
+
+    def test_rfc_sin_etiqueta_rechaza_bloques_ambiguos_y_valores_sin_respaldo(self):
+        for texto in (
+            "EMISOR\nCliente Ejemplo SA\nBBB020202BBB",  # Otro rol.
+            "RECEPTOR\nOtro Cliente SA\nBBB020202BBB",  # Otro nombre.
+            "RECEPTOR\nCliente Ejemplo SA\nRFC BBB020202BBB",  # No es línea completa.
+            "RECEPTOR\nCliente Ejemplo SA\nBBB020202BBB9",  # Coincidencia parcial.
+            "RECEPTOR\nCliente Ejemplo SA\nMoneda MXN\nBBB020202BBB",  # Otro bloque.
+            "RECEPTOR\nCliente Ejemplo SA\nBBB020202BBB\nBBB020202BBB",  # Ambiguo.
+            "RECEPTOR\nCliente Ejemplo SA",  # Ausente.
+        ):
+            with self.subTest(texto=texto):
+                factura = self.extraer({"campos": {
+                    "folio": {"valor": "F-1", "etiqueta": "Folio"},
+                    "receptor_nombre": {"valor": "Cliente Ejemplo SA", "etiqueta": "RECEPTOR"},
+                    "receptor_rfc": {"valor": "BBB020202BBB", "etiqueta": None},
+                }, "texto_completo": "Folio F-1\n" + texto})
+                self.assertIsNone(factura.campos["receptor_rfc"].valor)
+
+    def test_no_conserva_folio_y_fecha_omitidos_en_transcripcion(self):
+        factura = self.extraer({"campos": {
+            "folio": {"valor": "23175403", "etiqueta": "Folio"},
+            "fecha": {"valor": "27/09/2026", "etiqueta": "Fecha"},
+            "total": {"valor": "116.00", "etiqueta": "Total"},
+        }, "texto_completo": "Total 116.00"})
+        self.assertIsNone(factura.campos["folio"].valor)
+        self.assertIsNone(factura.campos["fecha"].valor)
+
+    def test_conceptos_conserva_filas_celdas_nulas_e_importes_sin_calcular(self):
+        conceptos = [
+            {"descripcion": "Servicio A", "cantidad": "2", "precio_unitario": "1,000.00", "importe": "2,001.00"},
+            {"descripcion": "Servicio B", "cantidad": None, "precio_unitario": None, "importe": "300.00"},
+        ]
+        factura = self.extraer({"campos": {"folio": {"valor": "F-8", "etiqueta": "Folio"}},
+                               "conceptos": conceptos,
+                               "texto_completo": "Folio F-8\nServicio A 2 1,000.00 2,001.00\nServicio B 300.00"})
+        self.assertEqual([c.model_dump() for c in factura.conceptos], conceptos)
+
+    def test_admite_lista_vacia_sin_fabricar_conceptos(self):
+        factura = self.extraer({"campos": {"folio": {"valor": "F-8", "etiqueta": "Folio"}},
+                               "conceptos": [], "texto_completo": "Folio F-8"})
+        self.assertEqual(factura.conceptos, [])
+
+    def test_modo_revision_conserva_lectura_y_anula_mediciones_no_verificadas(self):
+        salida = {"campos": {
+            "folio": {"valor": "F-8", "etiqueta": "Folio", "confianza": 99, "bbox": [1, 2, 3, 4]},
+            "total": {"valor": "116.00", "etiqueta": "Total"},
+        }, "texto_completo": "Total 116.00"}
+        normal = self.extraer(salida)
+        revision = self.extraer(salida, conservar_lecturas=True)
+        self.assertIsNone(normal.campos["folio"].valor)
+        self.assertEqual(revision.campos["folio"].valor, "F-8")
+        self.assertIsNone(revision.campos["folio"].confianza)
+        self.assertIsNone(revision.campos["folio"].bbox)
+
+    def test_modo_revision_no_admite_respuestas_vacias_o_truncadas(self):
+        for salida, envoltura in [({"campos": {}, "texto_completo": "Folio F-8"}, {}),
+                                  ({"campos": {"folio": {"valor": "F-8"}}}, {"done_reason": "length"})]:
+            with self.subTest(salida=salida), self.assertRaises(ErrorExtraccion):
+                self.extraer(salida, conservar_lecturas=True, **envoltura)

@@ -1,0 +1,137 @@
+{
+  "caso_id": "F-9501",
+  "archivo": "piloto_003.png",
+  "fuente": "JSON impreso en terminal; no es el archivo pausa.json completo",
+  "factura": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": "FAC-042683",
+        "confianza": null,
+        "etiqueta": "No. de factura",
+        "pagina": 1,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": "24 de agosto de 2026",
+        "confianza": null,
+        "etiqueta": "Expedida el",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Heredia Grupo SC",
+        "confianza": null,
+        "etiqueta": "EMISOR",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": "HGS940808H56",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Grupo Financiero Demo SA de CV",
+        "confianza": null,
+        "etiqueta": "FACTURAR A",
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "GFD960701AB4",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": 1,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": 1,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "80,916.47",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": 1,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "12,946.64",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16 %",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "total": {
+        "valor": "$ 93,863.11 MXN",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": 1,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Contado",
+        "confianza": null,
+        "etiqueta": "Condiciones de pago",
+        "pagina": 1,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "5",
+        "precio_unitario": "11,936.89",
+        "importe": "59,684.45"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "5",
+        "precio_unitario": "1,092.83",
+        "importe": "5,464.15"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "3",
+        "precio_unitario": "3,466.40",
+        "importe": "10,399.20"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "5,368.67",
+        "importe": "5,368.67"
+      }
+    ],
+    "texto_completo": "Heredia Grupo SC\nCircunvalación Norte Padilla 482, San Lorenzo los bajos\n\nEMISOR\nRFC: HGS940808H56\nNo. de factura: FAC-042683\nExpedida el 24 de agosto de 2026\n\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\n\nConcepto\nCapacitación en línea\nServicio de cafetería\nLicencia anual de software\nServicio de limpieza\n\nSubtotal\nIVA 16 %\nTotal\n\nCondiciones de pago: Contado\n\n$ 93,863.11 MXN\n\n",
+    "modelo": "qwen3-vl:4b-instruct",
+    "paginas": 1
+  }
+}

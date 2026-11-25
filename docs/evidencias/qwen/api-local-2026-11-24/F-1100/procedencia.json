@@ -1,0 +1,29 @@
+{
+  "origen": "Respuestas API exportadas por el usuario en PowerShell 5.1; archivos originales sin correcciones de texto",
+  "archivos": [
+    {
+      "archivo": "detalle.json",
+      "sha256": "646431dd181e3a5ee42a7ee3100e7b235d30c55fa9ffd2fb84de86dbcb3cf574"
+    },
+    {
+      "archivo": "bitacora.json",
+      "sha256": "98ccb50995ff6ec9171ab18849886a7505e56492049b251aa5c76a0c3529559d"
+    },
+    {
+      "archivo": "decision.json",
+      "sha256_original": "1705442c14f4b2f338905c31e7121fc840c46a5f335b06bc5308f4b4f39d74e7",
+      "sha256_versionado": "1705442c14f4b2f338905c31e7121fc840c46a5f335b06bc5308f4b4f39d74e7"
+    },
+    {
+      "archivo": "detalle_cerrado.json",
+      "sha256_original": "d3a13cb6e1925219dfad994311016f3a709be618a452c03fd7218d9a918ac54a",
+      "transformacion": "documento_url sustituida por null para no versionar URL prefirmada; sin cambios en campos o eventos",
+      "sha256_versionado": "6bf3d193b3f8611b5789f8abb2de78b2980e47e191918d0e3a9be173688b3a44"
+    },
+    {
+      "archivo": "bitacora_cerrada.json",
+      "sha256_original": "aee38623dd78403e287395de3a5044b87e5e6a41f67e258690a7d7f5f47964f1",
+      "sha256_versionado": "aee38623dd78403e287395de3a5044b87e5e6a41f67e258690a7d7f5f47964f1"
+    }
+  ]
+}
