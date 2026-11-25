@@ -1,5 +1,8 @@
 # Agente de ejemplo: flujo de casos (S1-32)
 
+La [convención de agentes (S3-12)](../../docs/agentes/convencion.md) explica cómo usar
+este grafo como referencia para prompts, contratos, herramientas, errores, pasos y pruebas.
+
 ## 1. Propósito
 
 Este módulo implementa un agente de demostración mediante un grafo de ejecución con LangGraph. Su objetivo es mostrar una estructura reutilizable para construir agentes con:

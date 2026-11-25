@@ -1,3 +1,4 @@
+
 """Pruebas unitarias del grafo asíncrono de chat."""
 
 import unittest
@@ -72,13 +73,16 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
 
         self.cliente_mcp.ejecutar.assert_awaited_once_with(
             "buscar_politicas",
-            {"entrada": {"consulta": "Busca políticas relacionadas con facturas"}},
+            {
+                "entrada": {
+                    "consulta": "Busca políticas relacionadas con facturas"
+                }
+            },
             unittest.mock.ANY,
         )
 
-
     async def test_calidad_de_datos_ejecuta_consultar_calidad(self):
-        pregunta = "\u00bfQu\u00e9 significa calidad de datos?"
+        pregunta = "¿Qué significa calidad de datos?"
 
         self.cliente_mcp.ejecutar.return_value = SimpleNamespace(
             structuredContent={
@@ -123,7 +127,7 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
         )
 
     async def test_concepto_especifico_se_consulta_en_glosario(self):
-        pregunta = "\u00bfQu\u00e9 significa completitud?"
+        pregunta = "¿Qué significa completitud?"
 
         eventos = await self.ejecutar_chat(pregunta)
         respuesta = eventos[-1]
@@ -179,7 +183,6 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
 
         self.cliente_mcp.ejecutar.assert_not_awaited()
 
-
     async def test_metrica_ejecuta_obtener_metrica(self):
         pregunta = "¿Cuál fue el monto facturado?"
 
@@ -221,12 +224,14 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
         )
 
         pasos = [
-            evento for evento in eventos
+            evento
+            for evento in eventos
             if isinstance(evento, PasoEvent)
         ]
 
         paso_ejecutor = next(
-            paso for paso in pasos
+            paso
+            for paso in pasos
             if paso.id == "ejecutor"
             and paso.estado == EstadoPaso.COMPLETADO
         )
@@ -234,7 +239,6 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
         self.assertIn("Monto facturado", paso_ejecutor.detalle)
         self.assertIn("Suma del total", paso_ejecutor.detalle)
         self.assertIn("SELECT SUM(total_mxn)", paso_ejecutor.detalle)
-
 
     async def test_respuesta_general(self):
         eventos = await self.ejecutar_chat("hola, ¿cómo estás?")
@@ -245,7 +249,7 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
             respuesta.tipo,
             TipoRespuesta.INFORMACION_GENERAL,
         )
-        self.assertTrue(respuesta.simulado)
+        self.assertFalse(respuesta.simulado)
         self.assertEqual(respuesta.fuentes, [])
 
         self.cliente_mcp.ejecutar.assert_not_awaited()
@@ -259,7 +263,7 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
             respuesta.tipo,
             TipoRespuesta.INFORMACION_GENERAL,
         )
-        self.assertTrue(respuesta.simulado)
+        self.assertFalse(respuesta.simulado)
         self.assertEqual(respuesta.fuentes, [])
 
         self.cliente_mcp.ejecutar.assert_not_awaited()
@@ -411,7 +415,6 @@ class TestFlujoChat(unittest.IsolatedAsyncioTestCase):
                     entrada["dimensiones"],
                     dimensiones_esperadas,
                 )
-
 
 
 if __name__ == "__main__":

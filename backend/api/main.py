@@ -1,17 +1,24 @@
-"""Aplicación FastAPI para Data Steward Agéntico."""
+"""Aplicación FastAPI: casos, bitácora, chat, conversaciones y subida de archivos."""
 
 import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.api.chat import router as chat_router
+from backend.api.casos import router as casos_router
+from backend.api.chat_provisional import router as chat_provisional_router
+from backend.api.chat_stream import router as chat_stream_router
+from backend.api.conversaciones import router as conversaciones_router
 from backend.api.subidas import router as subidas_router
+
 
 app = FastAPI(title="Data Steward Agéntico")
 
+app.include_router(chat_provisional_router)
+app.include_router(chat_stream_router)
+app.include_router(conversaciones_router)
 app.include_router(subidas_router)
-app.include_router(chat_router)
+app.include_router(casos_router)
 
 origenes = [
     origen.strip()
@@ -30,5 +37,5 @@ if origenes:
 
 @app.get("/api/health")
 def health() -> dict:
-    """Comprueba que el proceso está activo."""
+    """Confirma que el proceso responde."""
     return {"status": "ok"}

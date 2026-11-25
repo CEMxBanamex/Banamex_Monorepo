@@ -40,6 +40,7 @@ async def probar_analista():
             esperadas = {
                 TOOL,
                 "consultar_caso",
+                "consultar_bitacora",
                 "buscar_facturas",
                 "buscar_politicas",
                 "consultar_glosario",

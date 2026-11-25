@@ -2,7 +2,7 @@
 
 El archivo no pasa por el backend (decisión arquitectura/decision-subida-directa-a-s3 del vault):
 1. El frontend pide aquí una URL con el nombre del archivo y el tipo de caso.
-2. Sube el archivo con `PUT <upload_url>` y la cabecera `Content-Type` que devuelve este endpoint.
+2. Sube el archivo con `PUT <upload_url>` con la cabecera `Content-Type` que devuelve este endpoint e `If-None-Match: *`.
 3. Crea el caso con el `s3_key` que recibió.
 
 Generar la URL no llama a AWS: boto3 la firma en local con las credenciales disponibles (el perfil de la EC2 en dev
@@ -13,17 +13,22 @@ y prod; las falsas del docker-compose en local). Variables:
   dirección que ve el navegador (http://localhost:8333), no la de la red de Docker (http://s3:8333).
 - S3_URL_SUBIDA_SEGUNDOS: vigencia de la URL (900 por omisión).
 """
+import hashlib
 import os
 import re
 import uuid
 from functools import lru_cache
 from pathlib import PurePath
-from typing import Literal
+from typing import Annotated, Literal
 
 import boto3
 from botocore.config import Config
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
+
+from steward_datos.contratos import ContextoUsuario
+
+from backend.api.autenticacion import resolver_usuario
 
 router = APIRouter(prefix="/api/casos", tags=["Casos"])
 
@@ -88,7 +93,12 @@ def _cliente_s3(endpoint: str | None, region: str):
     return boto3.client("s3", region_name=region, endpoint_url=endpoint or None, config=configuracion)
 
 
-def firmar_subida(entrada: UrlSubidaEntrada) -> UrlSubidaSalida:
+def prefijo_subida(usuario: ContextoUsuario) -> str:
+    identidad = hashlib.sha256(usuario.usuario_id.encode()).hexdigest()
+    return f"casos/{identidad}/"
+
+
+def firmar_subida(entrada: UrlSubidaEntrada, usuario: ContextoUsuario) -> UrlSubidaSalida:
     bucket = os.getenv("S3_BUCKET", "").strip()
     if not bucket:
         raise RuntimeError("Falta S3_BUCKET")
@@ -102,13 +112,13 @@ def firmar_subida(entrada: UrlSubidaEntrada) -> UrlSubidaSalida:
         raise ValueError(f"El archivo supera el máximo de {TAMANO_MAXIMO_BYTES // (1024 * 1024)} MB")
 
     content_type = TIPOS_CONTENIDO[extension]
-    s3_key = f"casos/{uuid.uuid4().hex}/{nombre}"
+    s3_key = f"{prefijo_subida(usuario)}{uuid.uuid4().hex}/{nombre}"
     segundos = int(os.getenv("S3_URL_SUBIDA_SEGUNDOS", "900"))
     endpoint = os.getenv("S3_ENDPOINT_PUBLICO") or os.getenv("S3_ENDPOINT_URL") or None
     cliente = _cliente_s3(endpoint, os.getenv("AWS_REGION", "us-east-1"))
     upload_url = cliente.generate_presigned_url(
         "put_object",
-        Params={"Bucket": bucket, "Key": s3_key, "ContentType": content_type},
+        Params={"Bucket": bucket, "Key": s3_key, "ContentType": content_type, "IfNoneMatch": "*"},
         ExpiresIn=segundos,
         HttpMethod="PUT",
     )
@@ -116,10 +126,12 @@ def firmar_subida(entrada: UrlSubidaEntrada) -> UrlSubidaSalida:
 
 
 @router.post("/url-subida", response_model=UrlSubidaSalida)
-def generar_url_subida(entrada: UrlSubidaEntrada) -> UrlSubidaSalida:
+def generar_url_subida(
+    entrada: UrlSubidaEntrada, usuario: Annotated[ContextoUsuario, Depends(resolver_usuario)],
+) -> UrlSubidaSalida:
     """URL prefirmada de PUT para subir el archivo de un caso directo al bucket del ambiente."""
     try:
-        return firmar_subida(entrada)
+        return firmar_subida(entrada, usuario)
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
     except RuntimeError as error:

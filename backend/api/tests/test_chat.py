@@ -1,4 +1,5 @@
-﻿"""Pruebas HTTP del endpoint de chat y su transmisión SSE."""
+﻿
+"""Pruebas HTTP del endpoint de chat y su transmisión SSE."""
 
 import os
 import unittest
@@ -26,14 +27,69 @@ class TestChatAPI(unittest.TestCase):
             "X-Rol": "analista",
             "Accept": "text/event-stream",
         }
+        self.payload = {"mensaje": "Consulta las políticas"}
+
+    @staticmethod
+    async def eventos_falsos(**kwargs):
+        yield PasoEvent(
+            id="enrutador",
+            texto="Clasificando solicitud",
+            estado=EstadoPaso.EN_CURSO,
+        )
+        yield RespuestaEvent(
+            respuesta="Respuesta de prueba",
+            simulado=False,
+            duracion_ms=10,
+            tipo=TipoRespuesta.POLITICAS,
+            fuentes=["buscar_politicas"],
+        )
 
     def test_chat_autenticado_transmite_eventos_sse(self):
-        async def eventos_falsos(**kwargs):
-            yield PasoEvent(
-                id="enrutador",
-                texto="Clasificando solicitud",
-                estado=EstadoPaso.EN_CURSO,
+        with (
+            patch.dict(os.environ, {"AUTH_MODE": "dev"}),
+            patch("backend.api.chat_stream.FlujoChat") as flujo_cls,
+        ):
+            flujo_cls.return_value.astream_chat.side_effect = (
+                self.eventos_falsos
             )
+
+            response = self.client.post(
+                self.url,
+                json=self.payload,
+                headers=self.headers,
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "text/event-stream",
+            response.headers["content-type"],
+        )
+        self.assertIn("data:", response.text)
+        self.assertIn("Clasificando solicitud", response.text)
+        self.assertIn("Respuesta de prueba", response.text)
+        self.assertIn("buscar_politicas", response.text)
+
+        flujo_cls.assert_called_once()
+        flujo_cls.return_value.astream_chat.assert_called_once()
+
+        kwargs = flujo_cls.return_value.astream_chat.call_args.kwargs
+        self.assertEqual(kwargs["usuario_id"], "dev-ana")
+        self.assertEqual(kwargs["rol"], "analista")
+        self.assertEqual(kwargs["pregunta"], self.payload["mensaje"])
+
+    def test_auth_no_configurada_devuelve_503(self):
+        with patch.dict(os.environ, {"AUTH_MODE": ""}):
+            response = self.client.post(
+                self.url,
+                json=self.payload,
+                headers=self.headers,
+            )
+
+        self.assertEqual(response.status_code, 503)
+        self.assertIn("autenticación configurada", response.text.lower())
+
+    def test_encabezado_de_rol_no_sobrescribe_rol_de_desarrollo(self):
+        async def eventos_falsos(**kwargs):
             yield RespuestaEvent(
                 respuesta="Respuesta de prueba",
                 simulado=False,
@@ -42,52 +98,35 @@ class TestChatAPI(unittest.TestCase):
                 fuentes=["buscar_politicas"],
             )
 
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}), patch(
-            "backend.api.chat.flujo_chat.astream_chat",
-            side_effect=eventos_falsos,
-        ):
-            response = self.client.post(
-                self.url,
-                json={"pregunta": "Consulta las políticas"},
-                headers=self.headers,
-            )
-
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("text/event-stream", response.headers["content-type"])
-        self.assertIn("data:", response.text)
-        self.assertIn("Clasificando solicitud", response.text)
-        self.assertIn("Respuesta de prueba", response.text)
-        self.assertIn("buscar_politicas", response.text)
-
-    def test_solicitud_sin_autenticacion_devuelve_401(self):
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}):
-            response = self.client.post(
-                self.url,
-                json={"pregunta": "Consulta las políticas"},
-            )
-
-        self.assertEqual(response.status_code, 401)
-
-    def test_rol_invalido_devuelve_403(self):
         headers = {
             "X-Usuario": "usuario_demo",
             "X-Rol": "invitado",
+            "Accept": "text/event-stream",
         }
 
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}):
+        with (
+            patch.dict(os.environ, {"AUTH_MODE": "dev"}),
+            patch("backend.api.chat_stream.FlujoChat") as flujo_cls,
+        ):
+            flujo_cls.return_value.astream_chat.side_effect = eventos_falsos
+
             response = self.client.post(
                 self.url,
-                json={"pregunta": "Consulta las políticas"},
+                json=self.payload,
                 headers=headers,
             )
 
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 200)
 
-    def test_pregunta_vacia_devuelve_422(self):
+        kwargs = flujo_cls.return_value.astream_chat.call_args.kwargs
+        self.assertEqual(kwargs["usuario_id"], "dev-ana")
+        self.assertEqual(kwargs["rol"], "analista")
+
+    def test_mensaje_vacio_devuelve_422(self):
         with patch.dict(os.environ, {"AUTH_MODE": "dev"}):
             response = self.client.post(
                 self.url,
-                json={"pregunta": ""},
+                json={"mensaje": ""},
                 headers=self.headers,
             )
 
@@ -98,7 +137,7 @@ class TestChatAPI(unittest.TestCase):
             response = self.client.post(
                 self.url,
                 json={
-                    "pregunta": "Consulta las políticas",
+                    "mensaje": "Consulta las políticas",
                     "campo_invalido": "valor",
                 },
                 headers=self.headers,
@@ -106,7 +145,7 @@ class TestChatAPI(unittest.TestCase):
 
         self.assertEqual(response.status_code, 422)
 
-    def test_error_del_grafo_emite_evento_sse(self):
+    def test_error_del_grafo_emite_paso_de_error_sse(self):
         async def eventos_con_error(**kwargs):
             yield PasoEvent(
                 id="enrutador",
@@ -115,19 +154,24 @@ class TestChatAPI(unittest.TestCase):
             )
             raise RuntimeError("Error interno de prueba")
 
-        with patch.dict(os.environ, {"AUTH_MODE": "dev"}), patch(
-            "backend.api.chat.flujo_chat.astream_chat",
-            side_effect=eventos_con_error,
+        with (
+            patch.dict(os.environ, {"AUTH_MODE": "dev"}),
+            patch("backend.api.chat_stream.FlujoChat") as flujo_cls,
         ):
+            flujo_cls.return_value.astream_chat.side_effect = (
+                eventos_con_error
+            )
+
             response = self.client.post(
                 self.url,
-                json={"pregunta": "Consulta las políticas"},
+                json=self.payload,
                 headers=self.headers,
             )
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn("event: error", response.text)
-        self.assertIn("Ocurrió un error al procesar la solicitud.", response.text)
+        self.assertIn("event: paso", response.text)
+        self.assertIn("No se pudo completar la consulta", response.text)
+        self.assertIn('"estado":"error"', response.text)
         self.assertNotIn("Error interno de prueba", response.text)
 
 

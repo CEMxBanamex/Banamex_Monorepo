@@ -1,3 +1,4 @@
+
 """Grafo asíncrono de chat con ejecución autenticada de herramientas MCP."""
 
 import json
@@ -61,7 +62,6 @@ def _texto_resultado_mcp(resultado: Any) -> str:
     return "La herramienta terminó sin devolver contenido."
 
 
-
 def _formatear_resultado_calidad(resultado: Any) -> str:
     """Resume las reglas de calidad devueltas por MCP."""
 
@@ -97,25 +97,26 @@ def _formatear_resultado_calidad(resultado: Any) -> str:
     ]
 
     if incumplidas:
-        lineas.extend(["", "Reglas que requieren atenci?n:"])
+        lineas.extend(["", "Reglas que requieren atención:"])
 
         for regla in incumplidas:
             lineas.append(
                 f"- {regla.get('regla_id', 'Sin ID')} "
                 f"[{regla.get('tabla', 'Sin tabla')}]: "
-                f"{regla.get('descripcion', 'Sin descripci?n')} "
+                f"{regla.get('descripcion', 'Sin descripción')} "
                 f"Resultado: {regla.get('porcentaje', 'No disponible')}% "
-                f"(umbral: {regla.get('umbral', 'No disponible')}%)."
+                f"(umbral: {regla.get('umbral', 'No disponible')})."
             )
     else:
         lineas.append("Todas las reglas cumplen su umbral.")
 
     lineas.extend([
         "",
-        "Nota: estos resultados describen las reglas registradas; no constituyen una definici?n conceptual oficial del glosario.",
+        "Nota: estos resultados describen las reglas registradas; no constituyen una definición conceptual oficial del glosario.",
     ])
 
     return "\n".join(lineas)
+
 
 def _extraer_termino(pregunta: str) -> str:
     """Extrae el término solicitado para una consulta del glosario."""
@@ -130,6 +131,7 @@ def _extraer_termino(pregunta: str) -> str:
         return coincidencia.group(1).strip()
 
     return pregunta.strip()
+
 
 ALIAS_DIMENSIONES = {
     "proveedor": ("proveedor", "proveedores"),
@@ -176,6 +178,7 @@ def _extraer_dimensiones(texto: str, metrica: str) -> list[str]:
                 break
 
     return encontradas[:2]
+
 
 def _seleccionar_herramienta(
     dominio: str,
@@ -279,7 +282,7 @@ def _seleccionar_herramienta(
 
         if any(
             palabra in texto
-            for palabra in ("glosario", "significa", "definici?n", "definicion")
+            for palabra in ("glosario", "significa", "definición", "definicion")
         ):
             return (
                 "consultar_glosario",
@@ -297,6 +300,29 @@ def _seleccionar_herramienta(
         )
 
     if dominio == "casos":
+        identificador = caso_id.strip() if caso_id else None
+        encontrado = re.search(r"\b[FV]-\d{4,}\b", pregunta, re.IGNORECASE)
+
+        if encontrado:
+            en_pregunta = encontrado.group(0).upper()
+
+            if identificador and identificador.upper() != en_pregunta:
+                return (
+                    None,
+                    {},
+                    "El identificador de la pregunta no coincide con el caso abierto. "
+                    "Abre el caso correcto para continuar.",
+                )
+
+            identificador = en_pregunta
+
+        if identificador:
+            return (
+                "consultar_caso",
+                {"entrada": {"caso_id": identificador.upper()}},
+                None,
+            )
+
         if "factura" in texto:
             return (
                 "buscar_facturas",
@@ -308,7 +334,8 @@ def _seleccionar_herramienta(
             return (
                 None,
                 {},
-                "Para consultar un caso necesito su identificador. Indícame el caso_id para continuar.",
+                "Para consultar un caso necesito su identificador. "
+                "Indícame el caso_id para continuar.",
             )
 
         return (
@@ -377,7 +404,8 @@ class FlujoChat:
                 "dominios_ejecutados": [],
                 "respuesta": resultado["respuesta"],
                 "fuentes": [],
-                "simulado": True,
+                # Textos fijos de orientación o rechazo: no son respuestas inventadas.
+                "simulado": False,
             }
 
         dominios_validos = {"gobernanza", "casos", "analista"}
@@ -426,6 +454,7 @@ class FlujoChat:
             respuesta = _texto_resultado_mcp(resultado_mcp)
             detalle_paso = None
 
+            # S3-16: conservar el detalle de la métrica y el SQL generado.
             if herramienta == "obtener_metrica":
                 datos = getattr(resultado_mcp, "structuredContent", None)
 
@@ -439,9 +468,11 @@ class FlujoChat:
                         f"SQL generado:\n{datos.get('sql', 'No disponible')}"
                     )
 
+            # Dev: conservar el formato de presentación de los casos.
             if herramienta == "consultar_caso":
                 respuesta = formatear_caso(resultado_mcp) or respuesta
 
+            # Conservar el formato especializado de calidad de datos.
             if herramienta == "consultar_calidad":
                 respuesta = _formatear_resultado_calidad(resultado_mcp)
 

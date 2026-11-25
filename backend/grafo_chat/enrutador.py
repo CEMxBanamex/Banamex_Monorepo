@@ -1,3 +1,4 @@
+
 """Enrutador determinista para el grafo de chat S3-15."""
 
 import re
@@ -41,6 +42,14 @@ PALABRAS_GOBERNANZA = (
     "hallazgo",
     "dato personal",
     "factura extemporanea",
+    # Preguntas del guion de la demo.
+    "rfc",
+    "asteriscos",
+    "enmascarado",
+    "enmascarada",
+    "calidad",
+    "dueno",
+    "datos personales",
 )
 
 PALABRAS_CASOS = (
@@ -75,6 +84,9 @@ PALABRAS_ANALISTA = (
     "monto comprometido",
     "clientes activos",
 )
+
+# Un folio de caso tiene prioridad sobre otros términos de la pregunta.
+PATRON_FOLIO = re.compile(r"(?<!\w)[fv]-\d{4,}(?!\w)")
 
 PALABRAS_FUERA_ALCANCE = (
     "pronostico del clima",
@@ -117,6 +129,12 @@ def clasificar_dominio(estado: EstadoChat) -> dict[str, Any]:
     if _contiene_alguna(pregunta, PALABRAS_FUERA_ALCANCE):
         dominio: DominioChat = "fuera_de_alcance"
 
+    # Los folios identifican consultas específicas de casos.
+    elif PATRON_FOLIO.search(pregunta):
+        dominio = "casos"
+
+    # Las métricas se evalúan antes de gobernanza porque algunas
+    # expresiones, como "monto facturado", aparecen en ambos dominios.
     elif _contiene_alguna(pregunta, PALABRAS_ANALISTA):
         dominio = "analista"
 

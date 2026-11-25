@@ -9,11 +9,8 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from steward_datos.contratos import FacturaExtraida, Resultado
 
-from .herramientas_demo import (
-    extraer_factura_demo,
-    redactar_demo,
-    validar_factura_demo,
-)
+from .herramientas_demo import extraer_factura_demo, validar_factura_demo
+from .redactor import redactar_explicacion_caso
 
 
 class DecisionAnalista(BaseModel):
@@ -32,6 +29,7 @@ class EstadoCaso(TypedDict, total=False):
     factura: dict
     resultado_sugerido: Resultado
     motivo: str
+    hallazgos: list[dict]
     explicacion: str
     decision_analista: dict
 
@@ -67,11 +65,13 @@ def validador(estado: EstadoCaso) -> dict:
 def redactor(estado: EstadoCaso) -> dict:
     """Construye la explicación que recibirá el analista."""
     motivo = estado.get("motivo")
-
     if not isinstance(motivo, str) or not motivo.strip():
         raise ValueError("No existe un motivo válido para redactar.")
 
-    return {"explicacion": redactar_demo(motivo)}
+    explicacion, _ = redactar_explicacion_caso(
+        estado["caso_id"], estado["resultado_sugerido"], motivo, estado.get("hallazgos"),
+    )
+    return {"explicacion": explicacion}
 
 
 def revision_analista(estado: EstadoCaso) -> dict:

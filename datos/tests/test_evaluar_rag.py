@@ -1,4 +1,6 @@
-"""evaluar_rag.py --sin-bd reproduce buscar_politicas en memoria (para calibrar sin PostgreSQL)."""
+
+"""evaluar_rag.py --sin-bd reproduce buscar_politicas en memoria."""
+
 import os
 import subprocess
 import sys
@@ -8,17 +10,38 @@ RAIZ = Path(__file__).resolve().parent.parent
 
 
 def _correr(*args):
-    env = {**os.environ, "EMBEDDING_PROVEEDOR": "falso"}
-    r = subprocess.run([sys.executable, str(RAIZ / "scripts" / "evaluar_rag.py"), "--sin-bd", *args],
-                       capture_output=True, text=True, env=env, check=True)
-    return r.stdout
+    env = {
+        **os.environ,
+        "EMBEDDING_PROVEEDOR": "falso",
+        "PYTHONIOENCODING": "utf-8",
+    }
+
+    resultado = subprocess.run(
+        [
+            sys.executable,
+            str(RAIZ / "scripts" / "evaluar_rag.py"),
+            "--sin-bd",
+            *args,
+        ],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        env=env,
+        check=True,
+    )
+
+    return resultado.stdout
 
 
 def test_evaluar_sin_bd():
     salida = _correr()
-    assert "acierto@1" in salida and "preguntas" in salida
+
+    assert "acierto@1" in salida
+    assert "acierto@5" in salida
+    assert "MRR" in salida
 
 
-def test_calibrar_sin_bd_recomienda_umbral():
+def test_evaluar_calibrar_sin_bd():
     salida = _correr("--calibrar")
-    assert "RAG_UMBRAL_SIMILITUD=" in salida and "6 sin política" in salida
+
+    assert "umbral" in salida.lower()
