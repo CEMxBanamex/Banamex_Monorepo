@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './styles.css'
+import { API_BASE_URL } from './api.js'
 import { CHAT_REAL } from './chatConfig.js'
+import './styles.css'
 
 async function iniciar() {
-  if (import.meta.env.DEV && !CHAT_REAL) {
+  // MSW solo en desarrollo: simula casos y bitácora si no hay VITE_API_URL, y el chat si VITE_CHAT_REAL no es true.
+  if (import.meta.env.DEV && (!API_BASE_URL || !CHAT_REAL)) {
     const { worker } = await import('./mocks/browser.js')
     await worker.start({
       onUnhandledRequest: 'bypass',

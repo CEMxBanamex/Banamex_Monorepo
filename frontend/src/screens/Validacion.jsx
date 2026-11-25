@@ -3,6 +3,7 @@ import { CircleX, Shield, Table, Check, Flag, Pencil } from 'lucide-react'
 import { Dialogo } from '../components.jsx'
 import { Cabecera, BarraAcciones, ResultadoSugerido } from './Detalle.jsx'
 import { POLITICAS, REGISTROS, FILAS_FALTANTES } from '../data.js'
+import { registrarDecisionCaso } from '../api.js'
 
 export default function Validacion({ caso, ir, toast }) {
   const [dialogo, setDialogo] = useState(false)
@@ -83,15 +84,38 @@ export default function Validacion({ caso, ir, toast }) {
         eventos={eventos}
         verBitacora={() => ir('bitacora')}
         onCorregir={() => toast({ texto: 'La corrección de registros se hace en el archivo de origen', icono: Pencil, color: '#9cc7e8' })}
-        onEscalar={() => { setEventos((e) => e + 1); toast({ texto: 'Caso escalado a supervisión', icono: Flag, color: '#f2c14e' }) }}
+        onEscalar={async () => {
+          setEventos((e) => e + 1)
+          try {
+            await registrarDecisionCaso(caso.id || 'V-0207', {
+              accion: 'escalar',
+              resultado: 'humana',
+              motivo: 'Validación escalada a supervisión',
+            })
+          } catch (err) {
+            console.warn('Error al escalar validación:', err)
+          }
+          toast({ texto: 'Caso escalado a supervisión', icono: Flag, color: '#f2c14e' })
+        }}
         onConfirmar={() => setDialogo(true)}
       />
       {dialogo && (
         <Dialogo
           titulo="Confirmar resultado"
           onCancelar={() => setDialogo(false)}
-          onConfirmar={() => {
-            setDialogo(false); setEstado('revisado'); setEventos((e) => e + 1)
+          onConfirmar={async () => {
+            setDialogo(false)
+            setEstado('revisado')
+            setEventos((e) => e + 1)
+            try {
+              await registrarDecisionCaso(caso.id || 'V-0207', {
+                accion: 'confirmar',
+                resultado: 'rechazado',
+                motivo: 'Confirmado rechazo por incumplimiento de P-007',
+              })
+            } catch (err) {
+              console.warn('Error al registrar decisión de validación:', err)
+            }
             toast({ texto: 'Resultado confirmado y registrado en la bitácora' })
           }}
         >

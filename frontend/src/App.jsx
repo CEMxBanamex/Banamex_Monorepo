@@ -50,10 +50,11 @@ export default function App() {
       : { pantalla: 'validacion', caso: c.id })
     window.scrollTo(0, 0)
   }
-  const iniciar = (tipo) => {
+  const iniciar = (tipo, nuevoCaso) => {
+    const idCaso = nuevoCaso?.id || (tipo === 'factura' ? 'F-1043' : 'V-0207')
     setVista(tipo === 'factura'
-      ? { pantalla: 'factura', caso: 'F-1043', variante: 'procesando' }
-      : { pantalla: 'validacion', caso: 'V-0207' })
+      ? { pantalla: 'factura', caso: idCaso, variante: 'procesando' }
+      : { pantalla: 'validacion', caso: idCaso })
     window.scrollTo(0, 0)
   }
 

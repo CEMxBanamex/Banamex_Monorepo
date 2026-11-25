@@ -19,6 +19,7 @@ from typing import Optional, Union
 from .contratos import (
     ConsultarCalidadSalida, ConsultarGlosarioSalida, MetricaNoDisponible, ObtenerMetricaEntrada, ObtenerMetricaSalida,
     BuscarFacturasEntrada, BuscarFacturasSalida, BuscarPoliticasEntrada, BuscarPoliticasSalida, CasoOut,
+    ConsultarBitacoraEntrada, ConsultarBitacoraSalida,
     RegistrarHallazgoEntrada, RegistrarHallazgoSalida, ResultadoValidacion, ValidarReglasEntrada,
 )
 from .tools import buscar_politicas as _bp
@@ -27,6 +28,7 @@ from .tools import consultar_glosario as _cg
 from .tools import obtener_metrica as _om
 from .tools import consultas_chat as _cc
 from .tools import registrar_hallazgo as _rh
+from .tools import consultar_bitacora as _cb
 from .tools import validar_reglas as _vr
 
 
@@ -72,6 +74,11 @@ def registrar_tools_datos(mcp, solo_propias: bool = False) -> None:
     def registrar_hallazgo(entrada: RegistrarHallazgoEntrada) -> RegistrarHallazgoSalida:
         """Guarda un hallazgo del caso y su evento en la bitácora de auditoría."""
         return _rh.registrar_hallazgo(entrada)
+
+    @mcp.tool(name="consultar_bitacora")
+    def consultar_bitacora(entrada: ConsultarBitacoraEntrada) -> ConsultarBitacoraSalida:
+        """Consulta los eventos de la bitácora de auditoría con filtros por caso, usuario, acción y rango de fechas. Solo lectura."""
+        return _cb.consultar_bitacora(entrada)
 
     @mcp.tool(name="consultar_caso")
     def consultar_caso(caso_id: str) -> CasoOut:

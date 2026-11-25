@@ -1,9 +1,11 @@
 import { setupWorker } from 'msw/browser'
 import { http, HttpResponse } from 'msw'
+import { handlers } from './handlers.js'
 
 const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const handlers = [
+// Chat simulado (sin VITE_CHAT_REAL). Los de casos y bitácora vienen de handlers.js.
+const handlersChat = [
   http.post('/api/chat/stream', async ({ request }) => {
     const entrada = await request.json()
 
@@ -110,4 +112,4 @@ const handlers = [
   }),
 ]
 
-export const worker = setupWorker(...handlers)
+export const worker = setupWorker(...handlers, ...handlersChat)

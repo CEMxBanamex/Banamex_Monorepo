@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   FlaskConical, ReceiptText, Table, CircleCheck, Upload, File, Image,
-  X, Check, CircleAlert, Play,
+  X, Check, CircleAlert, Play, Loader,
 } from 'lucide-react'
+import { crearCaso } from '../api.js'
 
 const ADMITIDOS = ['pdf', 'jpg', 'jpeg', 'png', 'xls', 'xlsx', 'csv', 'md', 'txt']
 const INICIALES = [
@@ -46,8 +47,27 @@ export default function Subir({ ir, iniciar }) {
     setArchivos((as) => [...as, ...nuevos])
   }
 
+  const [enviando, setEnviando] = useState(false)
+
   const reintentar = (i) => setArchivos((as) => as.map((a, j) => (j === i ? { ...a, error: null, progreso: 5 } : a)))
   const listos = archivos.some((a) => !a.error && a.progreso === 100)
+
+  async function manejarIniciar() {
+    setEnviando(true)
+    const archivoPrincipal = archivos.find((a) => a.progreso === 100)?.nombre || 'factura_nueva.pdf'
+    try {
+      const resp = await crearCaso({
+        archivo: archivoPrincipal,
+        tipo: tipo === 'factura' ? 'Factura' : 'Validación con políticas',
+      })
+      iniciar(tipo, resp)
+    } catch (e) {
+      console.warn('Iniciando con fallback:', e)
+      iniciar(tipo)
+    } finally {
+      setEnviando(false)
+    }
+  }
 
   return (
     <main className="main">
@@ -141,9 +161,9 @@ export default function Subir({ ir, iniciar }) {
         <textarea className="area" placeholder="Pega aquí el contenido del documento o registro" />
 
         <div className="acciones-fin">
-          <button className="btn" onClick={() => ir('casos')}>Cancelar</button>
-          <button className="btn btn-primario" disabled={!listos} onClick={() => iniciar(tipo)}>
-            <Play size={18} />Iniciar revisión
+          <button className="btn" onClick={() => ir('casos')} disabled={enviando}>Cancelar</button>
+          <button className="btn btn-primario" disabled={!listos || enviando} onClick={manejarIniciar}>
+            {enviando ? <><Loader size={18} className="girando" />Iniciando…</> : <><Play size={18} />Iniciar revisión</>}
           </button>
         </div>
       </div>
