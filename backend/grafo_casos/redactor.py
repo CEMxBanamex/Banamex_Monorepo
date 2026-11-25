@@ -5,6 +5,8 @@ Transforma los hallazgos técnicos del validador en una justificación humana
 clara, registra cada hallazgo en la bitácora de auditoría y prepara el estado
 para la pausa (interrupt) de revisión del analista.
 """
+from contextlib import nullcontext
+import logging
 from typing import Optional
 
 from steward_datos.contratos import (
@@ -12,6 +14,9 @@ from steward_datos.contratos import (
     RegistrarHallazgoEntrada,
     Resultado,
 )
+
+
+logger = logging.getLogger(__name__)
 
 
 def redactar_explicacion_caso(
@@ -113,39 +118,39 @@ def ejecutar_redactor(
 
     eventos_ids = []
     if registrar_en_bd and hallazgos:
+        from steward_datos.db.sesion import sesion
         from steward_datos.tools.registrar_hallazgo import registrar_hallazgo
 
-        for h in hallazgos:
-            regla = (h.get("regla_id") or "").strip()
-            version = (h.get("regla_version") or "").strip()
-            politica = (h.get("politica_id") or "").strip()
-            if not (regla and version and politica):
-                continue
-            try:
-                hallazgo_obj = HallazgoOut(
-                    regla_id=regla,
-                    regla_version=version,
-                    politica_id=politica,
-                    efecto=h.get("efecto", "revision"),
-                    severidad=h.get("severidad", "adv"),
-                    titulo=h.get("titulo", "Hallazgo del redactor"),
-                    texto=h.get("texto", explicacion),
-                    cifras=h.get("cifras"),
-                    evidencia=h.get("evidencia", "documento"),
-                )
-                res = registrar_hallazgo(
-                    RegistrarHallazgoEntrada(
-                        caso_id=caso_id,
-                        hallazgo=hallazgo_obj,
-                        origen="codigo",
-                        actor_nombre="Agente Redactor",
-                    ),
-                    s=sesion_bd,
-                )
-                eventos_ids.append(res.evento_id)
-            except Exception:
-                # Si no está en BD o es prueba aislada, continuar
-                pass
+        try:
+            contexto = sesion() if sesion_bd is None else nullcontext(sesion_bd)
+            with contexto as s:
+                for h in hallazgos:
+                    regla = (h.get("regla_id") or "").strip()
+                    version = (h.get("regla_version") or "").strip()
+                    if not (regla and version):
+                        raise ValueError("El hallazgo requiere una regla y versión reales para la auditoría.")
+                    politica = (h.get("politica_id") or "").strip()
+                    hallazgo_obj = HallazgoOut(
+                        regla_id=regla,
+                        regla_version=version,
+                        politica_id=politica,
+                        efecto=h.get("efecto", "revision") if politica else "revision",
+                        severidad=h.get("severidad", "adv"),
+                        titulo=h.get("titulo", "Hallazgo del redactor"),
+                        texto=h.get("texto", explicacion),
+                        cifras=h.get("cifras"),
+                        evidencia=h.get("evidencia", "documento"),
+                    )
+                    res = registrar_hallazgo(
+                        RegistrarHallazgoEntrada(
+                            caso_id=caso_id, hallazgo=hallazgo_obj, origen="codigo", actor_nombre="Agente Redactor",
+                        ),
+                        s=s,
+                    )
+                    eventos_ids.append(res.evento_id)
+        except Exception:
+            logger.exception("Falló el registro de hallazgos del redactor para el caso %s", caso_id)
+            raise
 
     return {
         "explicacion": explicacion,

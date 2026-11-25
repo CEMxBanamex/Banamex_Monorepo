@@ -1,6 +1,7 @@
 """Flujo local con extracción Ollama, herramientas de Datos y revisión humana."""
 from datetime import date
 import hashlib
+import logging
 from pathlib import Path
 import re
 from typing import TypedDict
@@ -14,6 +15,9 @@ from steward_datos.contratos import ContextoUsuario
 from .extraccion import extraer_campos_factura
 from .flujo import DecisionAnalista
 from .herramientas_reales import HerramientasReales
+
+
+logger = logging.getLogger(__name__)
 
 
 class EstadoReal(TypedDict, total=False):
@@ -114,10 +118,19 @@ class FlujoCasosReal:
         return {"politicas": salida, "fragmentos": fragmentos}
 
     def _redactor(self, estado):
-        return {"explicacion": redactar_evidencia(estado["resultado"], estado["politicas"])}
+        resultado = estado["resultado"]
+        politicas = estado["politicas"]
+        if any(not h["politica_id"].strip() for h in resultado["hallazgos"]):
+            resultado = {**resultado, "resultado_sugerido": "humana"}
+            politicas = {**politicas, "resultado_sugerido": "humana"}
+        return {"resultado": resultado, "politicas": politicas, "explicacion": redactar_evidencia(resultado, politicas)}
 
     def _guardar(self, estado):
-        self.tools.guardar(estado["caso_id"], estado["factura"], estado["resultado"], estado["explicacion"], estado["fragmentos"])
+        try:
+            self.tools.guardar(estado["caso_id"], estado["factura"], estado["resultado"], estado["explicacion"], estado["fragmentos"])
+        except Exception:
+            logger.exception("Falló el registro de hallazgos del caso %s", estado["caso_id"])
+            raise
         return {}
 
     def _revision(self, estado):
