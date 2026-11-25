@@ -1,0 +1,101 @@
+.caso-real {
+  display: grid;
+  gap: 24px;
+  max-width: 1600px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.caso-real__cabecera,
+.caso-real__estado,
+.caso-real__accion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.caso-real__cabecera { flex-wrap: wrap; }
+.caso-real__titulo { flex-basis: 100%; min-width: 0; margin-top: 6px; }
+.caso-real__titulo h1 { margin: 0 0 10px; font-size: clamp(25px, 3vw, 34px); overflow-wrap: anywhere; }
+.caso-real__estado { flex-wrap: wrap; color: var(--texto-2); font-size: 14px; }
+
+.caso-real__pildora,
+.caso-real__regla {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--azul-tenue);
+  color: var(--marca);
+  font-size: 13px;
+  font-weight: 600;
+}
+.caso-real__pildora[data-estado="revision"] { background: var(--adv-bg); color: var(--adv); }
+.caso-real__pildora[data-estado="revisado"] { background: var(--exito-bg); color: var(--exito); }
+.caso-real__pildora[data-estado="error"] { background: var(--error-bg); color: var(--error); }
+
+.caso-real__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.caso-real__grid--sin-documento { grid-template-columns: minmax(0, 1fr); }
+.caso-real__columna { display: grid; gap: 20px; min-width: 0; }
+
+.caso-real__panel { padding: clamp(16px, 2.4vw, 28px); min-width: 0; }
+.caso-real__panel h2 { display: flex; align-items: center; gap: 10px; }
+.caso-real__panel h2 svg { color: var(--marca); flex: none; }
+.caso-real__visor, .caso-real__vacio, .caso-real__resumen {
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 14px 0 0;
+  background: var(--fondo);
+  line-height: 1.55;
+}
+.caso-real__visor img { display: block; width: 100%; max-height: 70vh; object-fit: contain; }
+.caso-real__vacio { color: var(--texto-2); }
+.caso-real__resumen { white-space: pre-wrap; overflow-wrap: anywhere; }
+.caso-real__hallazgo { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--borde); overflow-wrap: anywhere; }
+.caso-real__hallazgo h3 { margin: 8px 0 4px; font-size: 16px; }
+.caso-real__hallazgo p { margin: 4px 0 0; line-height: 1.5; }
+
+.caso-real__campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+  gap: 10px;
+  margin: 16px 0 0;
+}
+.caso-real__campos > div { padding: 12px 14px; background: var(--fondo); border-radius: 8px; min-width: 0; }
+.caso-real__campos dt { color: var(--texto-2); font-size: 13px; }
+.caso-real__campos dd { margin: 5px 0 0; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; }
+
+.caso-real__decision { display: grid; gap: 18px; }
+.caso-real__decision fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
+.caso-real__decision legend { padding: 0; margin-bottom: 8px; font-weight: 600; }
+.caso-real__opciones { display: flex; flex-wrap: wrap; gap: 10px; }
+.caso-real__opcion {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  min-height: 46px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.caso-real__opcion input { margin: 0; accent-color: var(--marca); }
+.caso-real__opcion:has(:checked) { background: var(--azul-tenue); border-color: var(--marca); color: var(--marca); }
+.caso-real__opcion:hover { border-color: var(--marca); }
+.caso-real__motivo { display: grid; gap: 8px; font-weight: 600; }
+.caso-real__motivo textarea { width: 100%; padding: 12px; border: 1px solid var(--borde); border-radius: 8px; resize: vertical; font-weight: 400; }
+.caso-real__pie { display: flex; justify-content: flex-end; }
+.caso-real__error { margin: 0; padding: 12px 16px; border-radius: 8px; color: var(--error); background: var(--error-bg); }
+
+@media (max-width: 1080px) {
+  .caso-real__grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .caso-real { padding-inline: 16px; gap: 16px; }
+  .caso-real__pie .btn { width: 100%; }
+}
