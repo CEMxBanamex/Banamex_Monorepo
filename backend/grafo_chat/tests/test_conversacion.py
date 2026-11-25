@@ -30,6 +30,16 @@ class TestRevision(unittest.TestCase):
             with self.subTest(texto=texto):
                 self.assertEqual(conversacion.revisar_respuesta(texto), conversacion.REDIRECCION)
 
+    def test_identificador_ya_mencionado_se_permite(self):
+        contexto = "Caso F-0936. No cumple: R-014 el total coincide con subtotal más impuestos"
+        texto = "Como F-0936 incumple R-014, no debería pagarse hasta corregirla."
+        self.assertEqual(conversacion.revisar_respuesta(texto, contexto), texto)
+
+    def test_identificador_nuevo_se_sustituye_aunque_haya_otros(self):
+        contexto = "Caso F-0936. No cumple: R-014"
+        texto = "F-0936 incumple R-014 y además P-009."
+        self.assertEqual(conversacion.revisar_respuesta(texto, contexto), conversacion.REDIRECCION)
+
     def test_vacia_o_solo_pensamiento(self):
         self.assertIsNone(conversacion.revisar_respuesta("  "))
         self.assertIsNone(conversacion.revisar_respuesta("<think>calculo</think>"))
@@ -75,6 +85,15 @@ class TestResponder(unittest.IsolatedAsyncioTestCase):
         with mock.patch.dict(os.environ, ENTORNO, clear=True):
             texto = await conversacion.responder("¿y la F-0936?", cliente=cliente_falso("F-0936 excede $5000."))
         self.assertEqual(texto, conversacion.REDIRECCION)
+
+    async def test_puede_hablar_del_caso_ya_consultado(self):
+        historial = [{"role": "user", "content": "¿Por qué se rechazó la F-0936?"},
+                     {"role": "assistant", "content": "Caso F-0936 rechazado por R-014."}]
+        with mock.patch.dict(os.environ, ENTORNO, clear=True):
+            texto = await conversacion.responder(
+                "¿y eso qué significa para el pago?", historial,
+                cliente=cliente_falso("F-0936 no debería pagarse mientras incumpla R-014; lo decides tú."))
+        self.assertTrue(texto.startswith("F-0936 no debería pagarse"))
 
     async def test_falla_del_modelo_devuelve_none(self):
         with mock.patch.dict(os.environ, ENTORNO, clear=True):
