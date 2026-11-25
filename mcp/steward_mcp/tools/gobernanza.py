@@ -3,6 +3,7 @@
 
 from functools import partial
 
+import httpx
 from anyio import to_thread
 from mcp.server.fastmcp import Context
 from mcp.server.fastmcp.exceptions import ToolError
@@ -13,6 +14,7 @@ from steward_datos.contratos import (
     ConsultarCalidadSalida,
     ConsultarGlosarioSalida,
 )
+from steward_datos.rag.embeddings import ErrorEmbeddings
 from steward_datos.tools.buscar_politicas import (
     buscar_politicas as buscar,
 )
@@ -48,6 +50,10 @@ def registrar(servidor):
         except SQLAlchemyError as error:
             raise ToolError(
                 "CONSULTA_NO_DISPONIBLE: no se pudieron consultar las políticas."
+            ) from error
+        except (httpx.HTTPError, ErrorEmbeddings) as error:
+            raise ToolError(
+                "MODELO_NO_DISPONIBLE: no se pudo consultar el modelo de embeddings para buscar políticas."
             ) from error
 
         await ctx.report_progress(1, 1, "Búsqueda de políticas terminada")

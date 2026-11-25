@@ -21,7 +21,8 @@ def embeber(textos: list[str], lote: int = 16) -> list[list[float]]:
     if config.EMBEDDING_PROVEEDOR == "falso":
         return [_falso(t) for t in textos]
     vectores = []
-    with httpx.Client(base_url=config.OLLAMA_URL, timeout=120) as cliente:
+    # Conectar falla rápido si la laptop con Ollama no está en la tailnet; generar puede tardar más.
+    with httpx.Client(base_url=config.OLLAMA_URL, timeout=httpx.Timeout(120, connect=5)) as cliente:
         for i in range(0, len(textos), lote):
             r = cliente.post("/api/embed", json={"model": config.EMBEDDING_MODELO, "input": textos[i:i + lote]})
             if r.status_code != 200:
