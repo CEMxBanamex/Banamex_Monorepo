@@ -1,0 +1,43 @@
+name: Historial del chat
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths:
+      - 'backend/**'
+      - 'backend/tests/test_historial_postgres.py'
+      - 'datos/**'
+      - 'contratos/**'
+      - '.github/workflows/historial-chat.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historial-postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.1-pg16
+        env:
+          POSTGRES_PASSWORD: prueba-local
+          POSTGRES_DB: historial_pruebas
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d historial_pruebas"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 20
+    env:
+      CHAT_DATABASE_URL_PRUEBAS: postgresql+psycopg://postgres:prueba-local@localhost:5432/historial_pruebas
+      PYTHONPATH: ${{ github.workspace }}/datos
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r datos/requirements.txt -r backend/requirements.txt -r backend/grafo_casos/requirements.txt -r mcp/requirements.txt ruff==0.14.0
+      - run: ruff check backend/api backend/tests
+      - run: python -m unittest backend.tests.test_historial_postgres -v
