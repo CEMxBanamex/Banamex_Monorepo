@@ -57,6 +57,7 @@ export default function Subir({ ir, iniciar }) {
   const listos = archivos.some((a) => !a.error && a.progreso === 100)
 
   async function manejarIniciar() {
+    if (enviando) return
     setEnviando(true)
     setErrorEnvio('')
     const archivoPrincipal = archivos.find((a) => a.progreso === 100)?.nombre || 'factura_nueva.pdf'
@@ -155,7 +156,7 @@ export default function Subir({ ir, iniciar }) {
                         ) : a.progreso === 100 ? (
                           <span className="estado-arch" style={{ color: 'var(--exito)' }}><Check size={16} />Listo</span>
                         ) : (
-                          <span className="estado-arch" style={{ color: 'var(--info)', fontWeight: 500 }}>Subiendo…</span>
+                          <span className="estado-arch" style={{ color: 'var(--info)', fontWeight: 500 }}><Loader size={16} className="girando" aria-hidden="true" />Subiendo…</span>
                         )}
                       </>
                     )}
@@ -174,10 +175,11 @@ export default function Subir({ ir, iniciar }) {
         <textarea className="area" placeholder="Pega aquí el contenido del documento o registro" />
         </>}
 
-        <div className="acciones-fin">
+        {enviando && <p className="indicador-carga" role="status">Estamos subiendo el documento y preparando la revisión. Puedes mantener esta página abierta.</p>}
+        <div className="acciones-fin" aria-busy={enviando}>
           <button className="btn" onClick={() => ir('casos')} disabled={enviando}>Cancelar</button>
           <button className="btn btn-primario" disabled={!listos || enviando} onClick={manejarIniciar}>
-            {enviando ? <><Loader size={18} className="girando" />Iniciando…</> : <><Play size={18} />Iniciar revisión</>}
+            {enviando ? <><Loader size={18} className="girando" aria-hidden="true" />Iniciando…</> : <><Play size={18} />Iniciar revisión</>}
           </button>
         </div>
       </div>

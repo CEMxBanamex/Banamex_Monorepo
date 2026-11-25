@@ -5,6 +5,10 @@ import {
 } from 'lucide-react'
 import logo from './assets/logo.png'
 
+export function IndicadorCarga({ children = 'Cargando…' }) {
+  return <p className="indicador-carga" role="status"><Loader size={18} className="girando" aria-hidden="true" />{children}</p>
+}
+
 export function Logo({ size = 40 }) {
   return <img src={logo} width={size} height={size} alt="" aria-hidden="true" style={{ display: 'block' }} />
 }

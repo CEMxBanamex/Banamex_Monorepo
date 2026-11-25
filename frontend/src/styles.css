@@ -231,6 +231,13 @@ textarea.area { width: 100%; min-height: 140px; border: 1px solid var(--borde); 
 .paso-proc .pend { border: 2px solid var(--borde); }
 .paso-proc .et { margin-left: auto; font-size: 14px; }
 @keyframes gira { to { transform: rotate(360deg); } }
+/* La animación funciona también dentro de botones deshabilitados. */
+.girando, svg.lucide-loader { animation: gira 1s linear infinite; transform-origin: center; flex-shrink: 0; }
+.indicador-carga { display: inline-flex; align-items: center; gap: 8px; color: var(--texto-2); }
+.esqueleto .indicador-carga { margin: 0 0 16px; }
+@media (prefers-reduced-motion: reduce) {
+  .girando, svg.lucide-loader { animation: none; }
+}
 
 .politica { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--borde); }
 .politica:last-child { border-bottom: 0; }
@@ -292,3 +299,5 @@ textarea.area { width: 100%; min-height: 140px; border: 1px solid var(--borde); 
   .campo { grid-template-columns: 1fr; gap: 6px; }
   .tarjeta { overflow-x: auto; }
 }
+
+.rueda-carga { width: 16px; height: 16px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; display: inline-block; }

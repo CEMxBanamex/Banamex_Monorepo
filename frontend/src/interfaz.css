@@ -145,3 +145,10 @@ body:has(.barra-acciones) .chat-lanzador { bottom: 108px; }
   .tema-boton { right: 10px; }
   .shell .topbar { padding-right: 60px; }
 }
+
+/* Separación del rótulo y crecimiento del mensaje sin ocupar el panel completo. */
+.chat-panel .asistente-formulario label { display: block; margin-bottom: 8px; }
+.chat-panel .asistente-formulario textarea {
+  height: 36px; min-height: 36px; max-height: min(180px, 25dvh);
+  resize: none; overflow-y: hidden; padding: 6px 4px; line-height: 1.6;
+}

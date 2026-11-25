@@ -1,3 +1,4 @@
+import { IndicadorCarga } from '../components.jsx'
 import { Fragment, useEffect, useState } from 'react'
 import { Download, Lock, ChevronDown, ChevronRight, Calendar, Bot, RotateCw } from 'lucide-react'
 import { EVENTOS } from '../data.js'
@@ -96,7 +97,8 @@ export default function Bitacora({ toast }) {
 
       <div className="tarjeta bitacora-contenedor" role="region" aria-label="Eventos de bitácora" tabIndex={0}>
         {cargando ? (
-          <div className="esqueleto">
+          <div className="esqueleto" aria-busy="true">
+            <IndicadorCarga>Cargando bitácora…</IndicadorCarga>
             {[0, 1, 2, 3, 4].map((i) => (
               <div key={i} style={{ width: `${80 + ((i * 5) % 20)}%` }} />
             ))}
