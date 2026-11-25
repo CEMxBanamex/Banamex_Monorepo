@@ -24,6 +24,7 @@ from .herramientas_demo import (
     responder_fuera_alcance,
     responder_general,
 )
+from .presentacion_caso import formatear_caso
 
 
 def _texto_resultado_mcp(resultado: Any) -> str:
@@ -437,6 +438,9 @@ class FlujoChat:
                         f"Definición: {datos.get('definicion', 'No disponible')}\n"
                         f"SQL generado:\n{datos.get('sql', 'No disponible')}"
                     )
+
+            if herramienta == "consultar_caso":
+                respuesta = formatear_caso(resultado_mcp) or respuesta
 
             if herramienta == "consultar_calidad":
                 respuesta = _formatear_resultado_calidad(resultado_mcp)
