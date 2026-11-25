@@ -43,7 +43,7 @@ class TestChatProvisional(unittest.TestCase):
         entorno.start()
         self.addCleanup(entorno.stop)
 
-        self.client = TestClient(app)
+        self.client = TestClient(app, headers={"X-Usuario": "dev-ana", "X-Rol": "analista"})
         self.addCleanup(self.client.close)
 
     def test_consulta_provisional_con_caso(self):
@@ -153,8 +153,8 @@ class TestChatProvisional(unittest.TestCase):
             self.assertEqual(respuesta.status_code, 200)
             clase.return_value.astream_chat.assert_called_once_with(
                 pregunta="Hola",
-                usuario_id="dev-ana",
-                rol="analista",
+                usuario_id="usuario-inyectado",
+                rol="administrador",
                 historial=[],
                 caso_id="F-1042",
             )
