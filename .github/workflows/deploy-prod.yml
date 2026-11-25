@@ -238,6 +238,8 @@ jobs:
       - name: Build
         env:
           VITE_API_URL: https://api.${{ vars.DOMINIO }}
+          # El chat usa el backend real (grafo de S3-15 e historial en PostgreSQL) en vez de respuestas simuladas.
+          VITE_CHAT_REAL: "true"
         run: vercel build --prod --token="$VERCEL_TOKEN"
       # El dominio de producción (app.<DOMINIO>) se asigna en la configuración del proyecto de Vercel.
       - run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
