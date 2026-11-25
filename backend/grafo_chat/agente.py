@@ -128,7 +128,8 @@ Ejemplos:
 - "2 + 2" -> conversar.
 
 Reglas para decidir:
-- Nunca elijas "conversar" para explicar una política, una regla, la calidad de datos o una métrica: eso siempre requiere su herramienta. Si dudas entre conversar y una herramienta, usa la herramienta.
+- Nunca elijas "conversar" para explicar una política, una regla, la calidad de datos o una métrica: eso siempre \
+requiere su herramienta. Si dudas entre conversar y una herramienta, usa la herramienta.
 - Si mencionan un folio (F-0000) y preguntan por él, usa consultar_caso; si piden su historial, consultar_bitacora.
 - Si hay un caso abierto en la pantalla y la pregunta es sobre "esta factura" o "este caso", usa ese folio.
 - No inventes folios, términos ni métricas: si falta un dato indispensable, elige "conversar" para pedirlo.
