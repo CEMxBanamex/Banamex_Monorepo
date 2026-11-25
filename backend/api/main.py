@@ -5,12 +5,14 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.api.casos import router as casos_router
 from backend.api.chat import router as chat_router
 from backend.api.subidas import router as subidas_router
 
 app = FastAPI(title="Data Steward Agéntico")
 
 app.include_router(subidas_router)
+app.include_router(casos_router)
 app.include_router(chat_router)
 
 origenes = [

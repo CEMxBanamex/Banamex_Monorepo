@@ -10,6 +10,7 @@ from backend.api import subidas
 from backend.api.main import app
 
 ENTORNO_AWS = {
+    "AUTH_MODE": "dev",
     "S3_BUCKET": "dsa-dev-archivos-pruebas",
     "AWS_REGION": "us-east-1",
     "AWS_ACCESS_KEY_ID": "pruebas",
@@ -28,7 +29,7 @@ class TestUrlSubida(unittest.TestCase):
         datos = {"nombre_archivo": "factura 1042.pdf", "tipo_documento": "Factura", **cuerpo}
         with mock.patch.dict(os.environ, entorno or ENTORNO_AWS, clear=False):
             subidas._cliente_s3.cache_clear()
-            return self.cliente.post("/api/casos/url-subida", json=datos)
+            return self.cliente.post("/api/casos/url-subida", json=datos, headers={"X-Usuario": "dev-ana", "X-Rol": "analista"})
 
     def test_url_firmada_para_el_bucket_del_ambiente(self):
         respuesta = self.pedir()
@@ -43,13 +44,14 @@ class TestUrlSubida(unittest.TestCase):
         self.assertEqual(consulta["X-Amz-Expires"], ["900"])
         # El Content-Type va dentro de la firma: el navegador debe mandar el mismo.
         self.assertIn("content-type", consulta["X-Amz-SignedHeaders"][0])
+        self.assertIn("if-none-match", consulta["X-Amz-SignedHeaders"][0])
         self.assertEqual(datos["content_type"], "application/pdf")
         self.assertEqual(datos["expira_en_segundos"], 900)
 
     def test_llave_unica_y_nombre_saneado(self):
         primera = self.pedir(nombre_archivo="../../etc/factura (copia)#1.PDF").json()
         segunda = self.pedir(nombre_archivo="../../etc/factura (copia)#1.PDF").json()
-        self.assertRegex(primera["s3_key"], r"^casos/[0-9a-f]{32}/factura_copia_1\.PDF$")
+        self.assertRegex(primera["s3_key"], r"^casos/[0-9a-f]{64}/[0-9a-f]{32}/factura_copia_1\.PDF$")
         self.assertNotEqual(primera["s3_key"], segunda["s3_key"])
         self.assertNotIn("..", primera["s3_key"])
 

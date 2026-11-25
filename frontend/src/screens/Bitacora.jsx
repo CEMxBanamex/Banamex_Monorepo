@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Download, Lock, ChevronDown, ChevronRight, Calendar, Bot, RotateCw } from 'lucide-react'
 import { EVENTOS } from '../data.js'
-import { obtenerBitacora } from '../api.js'
+import { CASOS_REALES, obtenerBitacora } from '../api.js'
 
 const TONOS = {
   exito: ['var(--exito-bg)', 'var(--exito)'],
@@ -13,6 +13,7 @@ const TONOS = {
 export default function Bitacora({ toast }) {
   const [abierto, setAbierto] = useState('EV-3108')
   const [eventos, setEventos] = useState([])
+  const [error, setError] = useState('')
   const [cargando, setCargando] = useState(true)
   const [filtroCaso, setFiltroCaso] = useState('todos')
   const [filtroAccion, setFiltroAccion] = useState('todas')
@@ -30,8 +31,9 @@ export default function Bitacora({ toast }) {
       })
       .catch((err) => {
         if (!cancelado) {
-          console.warn('API de bitácora no disponible, usando respaldo:', err)
-          setEventos(EVENTOS)
+          if (!CASOS_REALES) console.warn('API de bitácora no disponible, usando respaldo:', err)
+          setEventos(CASOS_REALES ? [] : EVENTOS)
+          if (CASOS_REALES) setError(err.message)
           setCargando(false)
         }
       })
@@ -53,6 +55,7 @@ export default function Bitacora({ toast }) {
       <div className="cabecera">
         <div>
           <h1>Bitácora</h1>
+          {error && <p role="alert">{error}</p>}
           <p><Lock size={16} />Registro de solo lectura de todas las acciones de personas y del agente.</p>
         </div>
         <button

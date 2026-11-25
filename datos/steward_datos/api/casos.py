@@ -70,6 +70,7 @@ class EventoDetalle(BaseModel):
 
 
 class CasoDetalle(BaseModel):
+    documento_url: Optional[str] = None
     id: str
     archivo: str
     tipo: TipoCaso

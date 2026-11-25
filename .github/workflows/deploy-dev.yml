@@ -99,6 +99,7 @@ jobs:
       - name: Build
         env:
           VITE_API_URL: https://api-dev.${{ vars.DOMINIO }}
+          VITE_API_DEV_USUARIO: dev-ana
         run: vercel build --token="$VERCEL_TOKEN"
       - name: Deploy y alias dev.<DOMINIO>
         run: |
