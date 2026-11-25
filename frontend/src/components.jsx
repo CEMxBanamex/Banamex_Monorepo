@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import {
   Loader, Eye, Check, CircleAlert, CircleCheck, CircleX, TriangleAlert,
-  Inbox, Upload, List, LogOut,
+  Inbox, Upload, List, LogOut, ShieldCheck,
 } from 'lucide-react'
 import logo from './assets/logo.png'
 
@@ -42,6 +42,7 @@ export function Shell({ activo, usuario, ir, onSalir, children }) {
     ['casos', Inbox, 'Casos'],
     ['subir', Upload, 'Subir caso'],
     ['bitacora', List, 'Bitácora'],
+    ...(usuario.esAdmin ? [['administrador', ShieldCheck, 'Administrador']] : []),
 
   ]
   return (
@@ -54,6 +55,7 @@ export function Shell({ activo, usuario, ir, onSalir, children }) {
             <div className="txt">
               <div className="nombre">{usuario.nombre}</div>
               <div className="rol">{usuario.rol}</div>
+              {usuario.correo && <div className="correo-usuario">{usuario.correo}</div>}
             </div>
           </div>
           <button className="salir" onClick={onSalir}><LogOut size={18} />Cerrar sesión</button>

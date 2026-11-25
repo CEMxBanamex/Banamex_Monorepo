@@ -1,3 +1,4 @@
+import AccesoDemo from './screens/AccesoDemo.jsx'
 import { useCallback, useEffect, useState } from 'react'
 import { LayoutGrid, Bot, X, Moon, Sun } from 'lucide-react'
 import { Shell, Toast } from './components.jsx'
@@ -42,6 +43,7 @@ const DEMO = [
 
 export default function App() {
   const [vista, setVista] = useState({ pantalla: 'login' })
+  const [usuarioDemo, setUsuarioDemo] = useState(null)
   const [toast, setToast] = useState(null)
   const [menu, setMenu] = useState(false)
   const [chatAbierto, setChatAbierto] = useState(false)
@@ -80,12 +82,24 @@ export default function App() {
   const { pantalla } = vista
   let contenido
   if (pantalla === 'login') {
-    contenido = <Login expirada={vista.expirada} onEntrar={() => ir('casos')} />
+    contenido = import.meta.env.VITE_ACCESO_DEMO === 'true'
+      ? <AccesoDemo onEntrarAdmin={(correoAdmin) => {
+          setUsuarioDemo({ nombre: 'Administrador', iniciales: 'AD', rol: 'Administrador', correo: correoAdmin, esAdmin: true })
+          ir('casos')
+        }} onEntrar={(solicitud) => {
+          const palabras = solicitud.nombre.trim().split(/\s+/)
+          const iniciales = (palabras[0][0] + (palabras.length > 1 ? palabras[palabras.length - 1][0] : '')).toUpperCase()
+          setUsuarioDemo({ nombre: solicitud.nombre, iniciales, rol: 'Analista', correo: solicitud.correo })
+          ir('casos')
+        }} />
+      : <Login expirada={vista.expirada} onEntrar={() => ir('casos')} />
   } else {
-    const usuario = pantalla === 'validacion' ? USUARIOS.diego : USUARIOS.ana
+    const usuario = usuarioDemo || (pantalla === 'validacion' ? USUARIOS.diego : USUARIOS.ana)
     const activo = pantalla === 'factura' || pantalla === 'validacion' ? 'casos' : pantalla
     let pagina
-    if (pantalla === 'casos') {
+    if (pantalla === 'administrador' && usuarioDemo?.esAdmin && import.meta.env.VITE_ACCESO_DEMO === 'true') {
+      pagina = <AccesoDemo panelAdmin correoAdministrador={usuarioDemo.correo} onVolver={() => ir('casos')} />
+    } else if (pantalla === 'casos') {
       pagina = <Bandeja variante={vista.variante} abrirCaso={abrirCaso} ir={ir} setVariante={(v) => setVista({ ...vista, variante: v })} />
       } else if (pantalla === 'asistente') {
       pagina = <Asistente />
@@ -112,7 +126,7 @@ export default function App() {
       pagina = <Bitacora toast={setToast} />
     }
     contenido = (
-      <Shell activo={activo} usuario={usuario} ir={ir} onSalir={() => { setChatAbierto(false); setVista({ pantalla: 'login' }) }}>
+      <Shell activo={activo} usuario={usuario} ir={ir} onSalir={() => { setUsuarioDemo(null); setChatAbierto(false); setVista({ pantalla: 'login' }) }}>
         <div className={`espacio-trabajo ${chatAbierto ? 'chat-abierto' : ''}`}>
           <div className="pagina-trabajo">{pagina}</div>
           <aside className="chat-panel" hidden={!chatAbierto} aria-label="Panel del asistente">
@@ -135,7 +149,7 @@ export default function App() {
       </button>
       {pantalla !== 'login' && !chatAbierto && <button className="chat-lanzador" aria-label="Abrir asistente" aria-expanded={false} onClick={() => setChatAbierto(true)}><Bot size={23} /><span>Asistente</span></button>}
       <Toast toast={toast} onCerrar={cerrarToast} />
-      {!CASOS_REALES && !chatAbierto && <div className="demo">
+      {!CASOS_REALES && import.meta.env.VITE_ACCESO_DEMO !== 'true' && !chatAbierto && <div className="demo">
         {menu && (
           <div className="demo-menu">
             {DEMO.map(([grupo, items]) => (
