@@ -1,0 +1,453 @@
+{
+  "caso_id": "F-9401",
+  "archivo": "piloto_003.png",
+  "fecha": "2026-11-02",
+  "sha256": "c6e1773e0fd48c0177eedf4ce764d5379ff5a0620bff25c067d3abe084392e47",
+  "factura": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": "FAC-042683",
+        "confianza": null,
+        "etiqueta": "No. de factura",
+        "pagina": 1,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": "24 de agosto de 2026",
+        "confianza": null,
+        "etiqueta": "Expedida el",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Heredia Grupo SC",
+        "confianza": null,
+        "etiqueta": "EMISOR",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": "HGS940808H56",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Grupo Financiero Demo SA de CV",
+        "confianza": null,
+        "etiqueta": "FACTURAR A",
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "GFD960701AB4",
+        "confianza": null,
+        "etiqueta": "RFC",
+        "pagina": 1,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": 1,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "80,916.47",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": 1,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "12,946.64",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16 %",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "total": {
+        "valor": "$ 93,863.11 MXN",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": 1,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Contado",
+        "confianza": null,
+        "etiqueta": "Condiciones de pago",
+        "pagina": 1,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "5",
+        "precio_unitario": "11,936.89",
+        "importe": "59,684.45"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "5",
+        "precio_unitario": "1,092.83",
+        "importe": "5,464.15"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "3",
+        "precio_unitario": "3,466.40",
+        "importe": "10,399.20"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "5,368.67",
+        "importe": "5,368.67"
+      }
+    ],
+    "texto_completo": "Heredia Grupo SC\nCircunvalación Norte Padilla 482, San Lorenzo los bajos\n\nEMISOR\nRFC: HGS940808H56\nNo. de factura: FAC-042683\nExpedida el 24 de agosto de 2026\n\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\n\nConcepto\nCapacitación en línea\nServicio de cafetería\nLicencia anual de software\nServicio de limpieza\n\nSubtotal\nIVA 16 %\nTotal\n\nCondiciones de pago: Contado\n\n$ 93,863.11 MXN\n\n",
+    "modelo": "qwen3-vl:4b-instruct",
+    "paginas": 1
+  },
+  "resultado": {
+    "caso_id": "F-9401",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-003@1.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-017@1.0",
+      "R-019@1.0",
+      "R-018@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "regla_id": "R-003",
+        "regla_version": "1.0",
+        "politica_id": "P-004",
+        "politica_version": "1.0",
+        "politica_seccion": "2. Umbral de confianza",
+        "efecto": "informativo",
+        "severidad": "info",
+        "titulo": "No se conoce la confianza de lectura",
+        "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+        "cifras": null,
+        "campos": [
+          "folio",
+          "fecha",
+          "emisor_nombre",
+          "emisor_rfc",
+          "receptor_nombre",
+          "receptor_rfc",
+          "moneda",
+          "subtotal",
+          "impuestos",
+          "tasa_iva",
+          "total"
+        ],
+        "filas": null,
+        "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total",
+        "evidencia_detalle": null
+      }
+    ],
+    "resultado_sugerido": "humana",
+    "motivo": "Revisión humana requerida: lecturas conservadas sin verificación visual. Las reglas se calcularon sobre esas lecturas. Todos los campos se leyeron con buena confianza y las reglas evaluadas se cumplen."
+  },
+  "politicas": {
+    "caso_id": "F-9401",
+    "resultado_sugerido": "humana",
+    "motivo": "Revisión humana requerida: lecturas conservadas sin verificación visual. Las reglas se calcularon sobre esas lecturas. Todos los campos se leyeron con buena confianza y las reglas evaluadas se cumplen.",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-003@1.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-017@1.0",
+      "R-019@1.0",
+      "R-018@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "hallazgo": {
+          "regla_id": "R-003",
+          "regla_version": "1.0",
+          "politica_id": "P-004",
+          "politica_version": "1.0",
+          "politica_seccion": "2. Umbral de confianza",
+          "efecto": "informativo",
+          "severidad": "info",
+          "titulo": "No se conoce la confianza de lectura",
+          "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+          "cifras": null,
+          "campos": [
+            "folio",
+            "fecha",
+            "emisor_nombre",
+            "emisor_rfc",
+            "receptor_nombre",
+            "receptor_rfc",
+            "moneda",
+            "subtotal",
+            "impuestos",
+            "tasa_iva",
+            "total"
+          ],
+          "filas": null,
+          "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total",
+          "evidencia_detalle": null
+        },
+        "politica": {
+          "politica_id": "P-004",
+          "version": "1.0",
+          "seccion": "2. Umbral de confianza",
+          "texto": "P-004 v1.0 · Lectura automatizada de documentos (vigente desde 01/02/2026)\nSección 2. Umbral de confianza\n\nCada campo leído automáticamente lleva una confianza de lectura entre 0 % y 100 %. Si algún campo que se usa para evaluar las reglas tiene una confianza menor a 80 %, el campo se marca como dudoso y el caso pasa a revisión humana (regla **R-003 v1.0**). El analista debe verificar el dato contra el documento original y, si es necesario, corregirlo. Toda corrección queda registrada en la bitácora con el valor anterior y el nuevo.",
+          "origen": "rag"
+        }
+      }
+    ],
+    "pasos": [
+      "Validando reglas… 15 evaluadas, 1 hallazgos",
+      "Buscando política de R-003… P-004 v1.0"
+    ]
+  },
+  "fragmentos": {
+    "R-003": [
+      24
+    ]
+  },
+  "explicacion": "Revisión de evidencia (experimental): valores conservados, no verificados contra el documento.\nsubtotal: '80,916.47'. El valor no aparece en la transcripción del modelo.\nimpuestos: '12,946.64'. El valor no aparece en la transcripción del modelo.\nretenciones: sin valor leído; no demuestra ausencia en el documento.\nLos conceptos y las asociaciones de etiquetas y roles requieren revisión del original.\nRevisión humana requerida: lecturas conservadas sin verificación visual. Las reglas se calcularon sobre esas lecturas. Todos los campos se leyeron con buena confianza y las reglas evaluadas se cumplen.\nNo se conoce la confianza de lectura: El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original. Evidencia: página 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total (R-003 · P-004 v1.0 §2. Umbral de confianza). Fragmento recuperado.\nLa decisión final corresponde al analista.",
+  "revision_evidencia": {
+    "version": "experimental-conservar-lectura-v1",
+    "requiere_revision_humana": true,
+    "habilitado_para_decision_automatica": false,
+    "alcance": "Informe de consistencia con otra salida del mismo modelo. No verifica la imagen, la asociación de etiquetas o roles, ni la exactitud de los conceptos. No sustituye las reglas ni debe usarse como factura aprobada.",
+    "campos": {
+      "folio": {
+        "valor_leido": "FAC-042683",
+        "etiqueta_leida": "No. de factura",
+        "valor_filtro_anterior": "FAC-042683",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "fecha": {
+        "valor_leido": "24 de agosto de 2026",
+        "etiqueta_leida": "Expedida el",
+        "valor_filtro_anterior": "24 de agosto de 2026",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "emisor_nombre": {
+        "valor_leido": "Heredia Grupo SC",
+        "etiqueta_leida": "EMISOR",
+        "valor_filtro_anterior": "Heredia Grupo SC",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "emisor_rfc": {
+        "valor_leido": "HGS940808H56",
+        "etiqueta_leida": "RFC",
+        "valor_filtro_anterior": "HGS940808H56",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "emisor_direccion": {
+        "valor_leido": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+        "etiqueta_leida": null,
+        "valor_filtro_anterior": "Circunvalación Norte Padilla 482, San Lorenzo los bajos",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "receptor_nombre": {
+        "valor_leido": "Grupo Financiero Demo SA de CV",
+        "etiqueta_leida": "FACTURAR A",
+        "valor_filtro_anterior": "Grupo Financiero Demo SA de CV",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "receptor_rfc": {
+        "valor_leido": "GFD960701AB4",
+        "etiqueta_leida": "RFC",
+        "valor_filtro_anterior": "GFD960701AB4",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "moneda": {
+        "valor_leido": "MXN",
+        "etiqueta_leida": "Moneda",
+        "valor_filtro_anterior": "MXN",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "subtotal": {
+        "valor_leido": "80,916.47",
+        "etiqueta_leida": "Subtotal",
+        "valor_filtro_anterior": null,
+        "estado": "pendiente_revision",
+        "motivos": [
+          "El valor no aparece en la transcripción del modelo."
+        ]
+      },
+      "impuestos": {
+        "valor_leido": "12,946.64",
+        "etiqueta_leida": "IVA 16 %",
+        "valor_filtro_anterior": null,
+        "estado": "pendiente_revision",
+        "motivos": [
+          "El valor no aparece en la transcripción del modelo."
+        ]
+      },
+      "tasa_iva": {
+        "valor_leido": "16 %",
+        "etiqueta_leida": "IVA 16 %",
+        "valor_filtro_anterior": "16 %",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "retenciones": {
+        "valor_leido": null,
+        "etiqueta_leida": null,
+        "valor_filtro_anterior": null,
+        "estado": "sin_valor_leido",
+        "motivos": [
+          "El modelo no entregó un valor; esto no demuestra ausencia en el documento."
+        ]
+      },
+      "total": {
+        "valor_leido": "$ 93,863.11 MXN",
+        "etiqueta_leida": "Total",
+        "valor_filtro_anterior": "$ 93,863.11 MXN",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      },
+      "condiciones_pago": {
+        "valor_leido": "Contado",
+        "etiqueta_leida": "Condiciones de pago",
+        "valor_filtro_anterior": "Contado",
+        "estado": "coincidencia_textual",
+        "motivos": []
+      }
+    },
+    "conceptos_leidos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "5",
+        "precio_unitario": "11,936.89",
+        "importe": "59,684.45"
+      },
+      {
+        "descripcion": "Servicio de cafetería",
+        "cantidad": "5",
+        "precio_unitario": "1,092.83",
+        "importe": "5,464.15"
+      },
+      {
+        "descripcion": "Licencia anual de software",
+        "cantidad": "3",
+        "precio_unitario": "3,466.40",
+        "importe": "10,399.20"
+      },
+      {
+        "descripcion": "Servicio de limpieza",
+        "cantidad": "1",
+        "precio_unitario": "5,368.67",
+        "importe": "5,368.67"
+      }
+    ],
+    "conceptos_verificados": false,
+    "texto_completo": "Heredia Grupo SC\nCircunvalación Norte Padilla 482, San Lorenzo los bajos\n\nEMISOR\nRFC: HGS940808H56\nNo. de factura: FAC-042683\nExpedida el 24 de agosto de 2026\n\nFACTURAR A\nGrupo Financiero Demo SA de CV\nRFC: GFD960701AB4\nMoneda: MXN\n\nConcepto\nCapacitación en línea\nServicio de cafetería\nLicencia anual de software\nServicio de limpieza\n\nSubtotal\nIVA 16 %\nTotal\n\nCondiciones de pago: Contado\n\n$ 93,863.11 MXN\n\n"
+  },
+  "resultado_reglas": {
+    "caso_id": "F-9401",
+    "reglas_evaluadas": [
+      "R-031@1.0",
+      "R-030@1.0",
+      "R-001@1.2",
+      "R-002@2.0",
+      "R-003@1.0",
+      "R-004@1.1",
+      "R-005@1.0",
+      "R-010@1.0",
+      "R-011@2.0",
+      "R-014@2.1",
+      "R-015@1.0",
+      "R-017@1.0",
+      "R-019@1.0",
+      "R-018@1.0",
+      "R-021@1.2"
+    ],
+    "hallazgos": [
+      {
+        "regla_id": "R-003",
+        "regla_version": "1.0",
+        "politica_id": "P-004",
+        "politica_version": "1.0",
+        "politica_seccion": "2. Umbral de confianza",
+        "efecto": "informativo",
+        "severidad": "info",
+        "titulo": "No se conoce la confianza de lectura",
+        "texto": "El modelo de visión no informó la confianza de: folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total. No se pudo comprobar el umbral; verifica estos campos contra el documento original.",
+        "cifras": null,
+        "campos": [
+          "folio",
+          "fecha",
+          "emisor_nombre",
+          "emisor_rfc",
+          "receptor_nombre",
+          "receptor_rfc",
+          "moneda",
+          "subtotal",
+          "impuestos",
+          "tasa_iva",
+          "total"
+        ],
+        "filas": null,
+        "evidencia": "página 1, folio, fecha, proveedor, rfc del proveedor, receptor, rfc del receptor, moneda, subtotal, impuestos, tasa de iva, total",
+        "evidencia_detalle": null
+      }
+    ],
+    "resultado_sugerido": "aceptado",
+    "motivo": "Todos los campos se leyeron con buena confianza y las reglas evaluadas se cumplen."
+  }
+}

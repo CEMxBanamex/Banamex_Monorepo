@@ -108,6 +108,7 @@ services:
       AUTH_MODE: ${AUTH_MODE:-dev}
       CLAVE_IDENTIDAD_MCP: ${CLAVE_IDENTIDAD_MCP:?Define CLAVE_IDENTIDAD_MCP en .env}
       OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+      VISION_MODELO: ${VISION_MODELO:-qwen3-vl:4b-instruct}
       OLLAMA_URL: ${OLLAMA_BASE_URL:-}
       EMBEDDING_PROVEEDOR: ${EMBEDDING_PROVEEDOR:-falso}
       MCP_URL: ${MCP_URL:-http://mcp:8001/mcp}

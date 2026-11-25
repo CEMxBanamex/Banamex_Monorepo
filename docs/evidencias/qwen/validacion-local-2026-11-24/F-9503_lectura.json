@@ -1,0 +1,143 @@
+{
+  "caso_id": "F-9503",
+  "archivo": "piloto_021.jpg",
+  "fuente": "JSON impreso en terminal; no es el archivo pausa.json completo",
+  "factura": {
+    "tipo_documento": "factura",
+    "campos": {
+      "folio": {
+        "valor": "B 8836",
+        "confianza": null,
+        "etiqueta": "Serie y folio",
+        "pagina": 1,
+        "bbox": null
+      },
+      "fecha": {
+        "valor": "11/07/2026",
+        "confianza": null,
+        "etiqueta": "Fecha de emisión",
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_nombre": {
+        "valor": "Vera Grupo SAPI de CV",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_rfc": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "emisor_direccion": {
+        "valor": "Retorno Farías 464, Nueva San Vicente y las Granadinas",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_nombre": {
+        "valor": "Banco Demo SA, Institución de Banca Múltiple",
+        "confianza": null,
+        "etiqueta": "RECEPTOR",
+        "pagina": 1,
+        "bbox": null
+      },
+      "receptor_rfc": {
+        "valor": "BDM970315QW2",
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "moneda": {
+        "valor": "MXN",
+        "confianza": null,
+        "etiqueta": "Moneda",
+        "pagina": 1,
+        "bbox": null
+      },
+      "subtotal": {
+        "valor": "76,252.23",
+        "confianza": null,
+        "etiqueta": "Subtotal",
+        "pagina": 1,
+        "bbox": null
+      },
+      "impuestos": {
+        "valor": "12,200.36",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "tasa_iva": {
+        "valor": "16 %",
+        "confianza": null,
+        "etiqueta": "IVA 16 %",
+        "pagina": 1,
+        "bbox": null
+      },
+      "retenciones": {
+        "valor": null,
+        "confianza": null,
+        "etiqueta": null,
+        "pagina": 1,
+        "bbox": null
+      },
+      "total": {
+        "valor": "$ 88,452.59 MXN",
+        "confianza": null,
+        "etiqueta": "Total",
+        "pagina": 1,
+        "bbox": null
+      },
+      "condiciones_pago": {
+        "valor": "Pago a 30 días",
+        "confianza": null,
+        "etiqueta": "Condiciones de pago",
+        "pagina": 1,
+        "bbox": null
+      }
+    },
+    "conceptos": [
+      {
+        "descripcion": "Capacitación en línea",
+        "cantidad": "3",
+        "precio_unitario": "6,186.25",
+        "importe": "18,558.75"
+      },
+      {
+        "descripcion": "Soporte técnico mensual",
+        "cantidad": "1",
+        "precio_unitario": "5,333.24",
+        "importe": "5,333.24"
+      },
+      {
+        "descripcion": "Mantenimiento preventivo de equipo",
+        "cantidad": "3",
+        "precio_unitario": "8,878.06",
+        "importe": "26,634.18"
+      },
+      {
+        "descripcion": "Hospedaje de servidores",
+        "cantidad": "1",
+        "precio_unitario": "10,926.02",
+        "importe": "10,926.02"
+      },
+      {
+        "descripcion": "Renta de equipo de cómputo",
+        "cantidad": "4",
+        "precio_unitario": "3,700.01",
+        "importe": "14,800.04"
+      }
+    ],
+    "texto_completo": "Vera Grupo SAPI de CV\nRetorno Farías 464, Nueva San Vicente y las Granadinas\n\nRECEPTOR\nBanco Demo SA, Institución de Banca Múltiple\nBDM970315QW2\n\nDocumento\nFactura\nSerie y folio\nB 8836\nFecha de emisión\n11/07/2026\nMoneda\nMXN\n\nConcepto\nCantidad\nPrecio unitario\nImporte\nCapacitación en línea\n3\n6,186.25\n18,558.75\nSoporte técnico mensual\n1\n5,333.24\n5,333.24\nMantenimiento preventivo de equipo\n3\n8,878.06\n26,634.18\nHospedaje de servidores\n1\n10,926.02\n10,926.02\nRenta de equipo de cómputo\n4\n3,700.01\n14,800.04\n\nSubtotal\n76,252.23\nIVA 16 %\n12,200.36\nTotal\n$ 88,452.59 MXN\n\nCondiciones de pago: Pago a 30 días",
+    "modelo": "qwen3-vl:4b-instruct",
+    "paginas": 1
+  }
+}
