@@ -45,7 +45,7 @@ class CampoDetalle(BaseModel):
     valor: Optional[str]
     conf: Optional[int] = Field(None, ge=0, le=100)
     valor_corregido: Optional[str] = None
-    estado_evidencia: Optional[Literal["coincidencia_textual", "pendiente_revision", "sin_valor_leido"]] = None
+    estado_evidencia: Optional[Literal["coincidencia_textual", "pendiente_revision", "sin_valor_leido", "atributo_xml"]] = None
 
 
 class HallazgoDetalle(BaseModel):
@@ -92,6 +92,8 @@ class CasoDetalle(BaseModel):
     campos: list[CampoDetalle] = Field(default_factory=list)
     hallazgos: list[HallazgoDetalle] = Field(default_factory=list)
     eventos: list[EventoDetalle] = Field(default_factory=list)
+    origen_extraccion: Literal["vision", "xml_cfdi"] = "vision"
+    uuid_fiscal: Optional[str] = None
     revision_evidencia: Optional[dict] = None
     conceptos: list[ConceptoDetalle] = Field(default_factory=list)
 

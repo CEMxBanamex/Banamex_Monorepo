@@ -85,7 +85,9 @@ class HerramientasReales:
             if revision_evidencia is not None:
                 s.add(EventoBitacora(caso_id=caso_id, fecha=ahora, actor_tipo="agente", actor_nombre="Agente",
                                      accion="extraccion", tono="info",
-                                     detalle="Lecturas conservadas sin verificación visual; requiere revisión humana.",
+                                     detalle=("CFDI leído con código; sin validación fiscal; requiere revisión humana."
+                                              if factura.get("origen_extraccion") == "xml_cfdi" else
+                                              "Lecturas conservadas sin verificación visual; requiere revisión humana."),
                                      datos={"tipo": "revision_evidencia_experimental",
                                             "revision_evidencia": revision_evidencia,
                                             "resultado_reglas_sobre_lecturas": resultado_reglas}))

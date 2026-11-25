@@ -25,6 +25,7 @@ from steward_datos.tools.consultas_chat_seguras import CasoNoDisponible, consult
 
 from backend.api.autenticacion import resolver_usuario
 from backend.api.subidas import _cliente_s3, nombre_seguro, prefijo_subida
+from backend.grafo_casos.extraccion import ErrorExtraccion
 from backend.grafo_casos.flujo_real import FlujoCasosReal
 from backend.grafo_casos.herramientas_reales import HerramientasReales
 
@@ -35,7 +36,7 @@ V_CASOS = table("v_casos", column("caso_id"))
 FLUJOS: dict[str, FlujoCasosReal] = {}
 DECISION = Lock()
 logger = logging.getLogger(__name__)
-IMAGENES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".pdf": "application/pdf"}
+IMAGENES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".pdf": "application/pdf", ".xml": "application/xml"}
 MAX_IMAGEN = 15 * 1024 * 1024
 
 
@@ -97,6 +98,8 @@ def detalle_caso(caso_id: str, usuario: Usuario):
         resultado_sugerido=c.resultado_sugerido, resultado_final=c.resultado_final,
         explicacion=c.explicacion, fecha=c.creado_en.isoformat(), responsable=c.responsable or "",
         revision_evidencia=informe, conceptos=(lectura or {}).get("conceptos", []),
+        uuid_fiscal=(lectura or {}).get("uuid_fiscal"),
+        origen_extraccion=(lectura or {}).get("origen_extraccion", "vision"),
         campos=[CampoDetalle(id=x.campo, etiqueta=x.etiqueta or x.campo, valor=x.valor,
                              conf=x.confianza,
                              estado_evidencia=evidencia_campos.get(x.campo, {}).get("estado"),
@@ -159,7 +162,7 @@ def crear_caso(entrada: CrearCasoEntrada, usuario: Usuario):
         raise HTTPException(422, str(error)) from error
     mime = IMAGENES.get(Path(nombre).suffix.lower())
     if not mime:
-        raise HTTPException(422, "Selecciona una factura PNG, JPEG o PDF")
+        raise HTTPException(422, "Selecciona una factura PNG, JPEG, PDF o XML CFDI 4.0")
     prefijo = prefijo_subida(usuario)
     if not entrada.s3_key or not re.fullmatch(f"{prefijo}[0-9a-f]{{32}}/{re.escape(nombre)}", entrada.s3_key):
         raise HTTPException(422, "Selecciona una factura subida con tu sesión")
@@ -204,6 +207,8 @@ def crear_caso(entrada: CrearCasoEntrada, usuario: Usuario):
                     return anterior
             logger.exception("No se pudo guardar el caso %s", caso_id)
             raise HTTPException(503, "No se pudo guardar el caso") from error
+        except ErrorExtraccion as error:
+            raise HTTPException(422, str(error)) from error
         except Exception as error:
             logger.exception("No se completó el grafo de casos para %s", caso_id)
             raise HTTPException(503, "No se completó el análisis de la factura") from error

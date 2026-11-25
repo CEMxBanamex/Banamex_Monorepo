@@ -91,7 +91,7 @@ class FlujoCasosReal:
             raise ValueError("Usar un identificador F- seguido de 4 a 10 dígitos.")
         ruta = Path(archivo).resolve(strict=True)
         if not ruta.is_file():
-            raise ValueError("Seleccionar un documento PNG, JPEG o PDF.")
+            raise ValueError("Seleccionar un documento PNG, JPEG, PDF o XML CFDI 4.0.")
         if caso_id in self._threads:
             raise ValueError("El caso ya fue iniciado.")
         sha = hashlib.sha256(ruta.read_bytes()).hexdigest()
@@ -129,6 +129,9 @@ class FlujoCasosReal:
                         "motivo": "Revisión humana requerida: lecturas conservadas sin verificación visual. "
                                   "Las reglas se calcularon sobre esas lecturas; sus hallazgos deben "
                                   "contrastarse con el documento original. No se dispone de confianza calibrada."}
+            if estado["factura"].get("origen_extraccion") == "xml_cfdi":
+                revision["motivo"] = ("Revisión humana requerida: atributos leídos del XML sin inferencia visual. "
+                                      "Las reglas evalúan esos datos; no se validan sellos ni estatus ante el SAT.")
             return {"resultado": revision, "resultado_reglas": datos}
         return {"resultado": datos}
 
@@ -144,14 +147,17 @@ class FlujoCasosReal:
             politicas = {**politicas, "resultado_sugerido": "humana"}
         explicacion = redactar_evidencia(resultado, politicas)
         if self.revisar_lecturas:
-            avisos = ["Revisión de evidencia (experimental): valores conservados, no verificados contra el documento."]
+            xml = estado["factura"].get("origen_extraccion") == "xml_cfdi"
+            avisos = ["Lectura estructurada de CFDI 4.0; requiere revisión del analista." if xml else
+                      "Revisión de evidencia (experimental): valores conservados, no verificados contra el documento."]
             avisos.extend(estado["revision_evidencia"].get("alertas_documento", []))
             for nombre, campo in estado["revision_evidencia"]["campos"].items():
                 if campo["estado"] == "pendiente_revision":
                     avisos.append(f"{nombre}: {campo['valor_leido']!r}. " + " ".join(campo["motivos"]))
                 elif campo["estado"] == "sin_valor_leido":
                     avisos.append(f"{nombre}: sin valor leído; no demuestra ausencia en el documento.")
-            avisos.append("Los conceptos y las asociaciones de etiquetas y roles requieren revisión del original.")
+            if not xml:
+                avisos.append("Los conceptos y las asociaciones de etiquetas y roles requieren revisión del original.")
             explicacion = "\n".join(avisos) + "\n" + explicacion
         return {"resultado": resultado, "politicas": politicas, "explicacion": explicacion}
 
